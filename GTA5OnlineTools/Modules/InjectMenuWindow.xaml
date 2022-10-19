@@ -88,9 +88,6 @@
                 Content="注入GTA5游戏进程"
                 Emoji="💉" />
             <TextBlock Style="{StaticResource TextBlockStyle_Hint}">
-                提示：请在故事模式注入成功后再进入线上（可能不起作用，后续更新修复）
-            </TextBlock>
-            <TextBlock Style="{StaticResource TextBlockStyle_Hint}">
                 提示：关键词如何使用？假如我输入淘宝，那么只要含有淘宝这两个字的聊天栏和手机短信都会被拦截不显示
             </TextBlock>
             <TextBlock Style="{StaticResource TextBlockStyle_Hint}">
