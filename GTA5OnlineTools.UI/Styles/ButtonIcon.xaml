@@ -16,7 +16,7 @@
                     <Border
                         Name="border"
                         Width="150"
-                        Height="230"
+                        Height="200"
                         Margin="{TemplateBinding Margin}"
                         Padding="{TemplateBinding Padding}"
                         Background="{TemplateBinding Background}"
@@ -28,7 +28,7 @@
                             <TextBlock
                                 HorizontalAlignment="Center"
                                 FontSize="42"
-                                Foreground="#37aefe"
+                                Foreground="#2196F3"
                                 Style="{DynamicResource TextBlockStyle_IconFontBase}"
                                 Text="{TemplateBinding Icon}" />
                             <TextBlock

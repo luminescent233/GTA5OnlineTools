@@ -56,7 +56,10 @@
                 Text="{Binding LoadModel.BuildDate, FallbackValue='2022/01/01 00:00:00'}" />
             <!--  ##########  -->
 
-            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <StackPanel
+                Margin="0,20,0,0"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center">
                 <ui:UiLoadingSpinner
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"

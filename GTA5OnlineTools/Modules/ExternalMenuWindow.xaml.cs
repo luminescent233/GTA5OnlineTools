@@ -22,6 +22,7 @@ public partial class ExternalMenuWindow
     public RelayCommand<MenuBar> NavigateCommand { get; private set; }
 
     private readonly ReadMeView ReadMeView = new();
+
     private readonly SelfStateView SelfStateView = new();
     private readonly WorldFunctionView WorldFunctionView = new();
     private readonly OnlineOptionView OnlineOptionView = new();
@@ -73,7 +74,7 @@ public partial class ExternalMenuWindow
         // 绑定菜单切换命令
         NavigateCommand = new(Navigate);
         // 设置主页
-        ContentControl_Main.Content = ReadMeView;
+        ContentControl_Main.Content = SelfStateView;
 
         ///////////////////////////////////////////////////////////////
 
@@ -100,8 +101,6 @@ public partial class ExternalMenuWindow
     /// </summary>
     private void CreateMenuBar()
     {
-        MenuBars.Add(new MenuBar() { Emoji = "💌", Title = "README", NameSpace = "ReadMeView" });
-
         MenuBars.Add(new MenuBar() { Emoji = "🍎", Title = "自身属性", NameSpace = "SelfStateView" });
         MenuBars.Add(new MenuBar() { Emoji = "🍐", Title = "世界功能", NameSpace = "WorldFunctionView" });
         MenuBars.Add(new MenuBar() { Emoji = "🍋", Title = "线上选项", NameSpace = "OnlineOptionView" });
@@ -111,6 +110,8 @@ public partial class ExternalMenuWindow
         MenuBars.Add(new MenuBar() { Emoji = "🍈", Title = "外部ESP", NameSpace = "ExternalOverlayView" });
         MenuBars.Add(new MenuBar() { Emoji = "🍑", Title = "战局聊天", NameSpace = "SessionChatView" });
         MenuBars.Add(new MenuBar() { Emoji = "🥭", Title = "任务帮手", NameSpace = "JobHelperView" });
+
+        MenuBars.Add(new MenuBar() { Emoji = "💌", Title = "README", NameSpace = "ReadMeView" });
     }
 
     /// <summary>

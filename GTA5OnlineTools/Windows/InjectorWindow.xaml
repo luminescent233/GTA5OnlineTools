@@ -6,7 +6,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ui="http://crazyzhang.cn/ui/2022/xaml"
     x:Name="Window_Injector"
-    Title="GTA5线上小助手 - 基础DLL注入器"
+    Title="GTA5线上小助手 - DLL注入器"
     Width="800"
     Height="450"
     Closing="Window_Injector_Closing"

@@ -392,7 +392,6 @@
                         DockPanel.Dock="Left"
                         FontSize="18"
                         FontWeight="Bold"
-                        Foreground="#13A10E"
                         Text="📖 使用说明" />
                     <Button
                         Command="{Binding FrameHideClickCommand}"

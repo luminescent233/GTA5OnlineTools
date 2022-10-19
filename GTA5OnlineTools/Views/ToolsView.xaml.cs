@@ -119,7 +119,7 @@ public partial class ToolsView : UserControl
     {
         try
         {
-            if (MessageBox.Show("你确定要初始化配置文件吗？", "警告", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            if (MessageBox.Show("你确定要初始化配置文件吗？将恢复全部配置文件为默认版本，对于修复崩溃问题很有帮助", "警告", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
             {
                 ProcessUtil.CloseThirdProcess();
                 Thread.Sleep(100);
@@ -278,7 +278,7 @@ public partial class ToolsView : UserControl
             return;
         }
 
-        if (MessageBox.Show("你确定替换GTA5故事模式存档吗？", "警告", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+        if (MessageBox.Show("你确定替换GTA5故事模式存档吗？将替换GTA5正版故事模式默认存档（存档进度：100%）", "警告", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
         {
             try
             {
