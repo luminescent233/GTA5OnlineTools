@@ -18,11 +18,13 @@ public static class LoggerHelper
             Layout = "${longdate} ${level:upperCase=true} ${message}",
             MaxArchiveFiles = 20,
             ArchiveAboveSize = 1024 * 1024,
-            ArchiveEvery = FileArchivePeriod.Day
+            ArchiveEvery = FileArchivePeriod.Day,
+            Encoding = Encoding.UTF8
         };
 
         config.AddRule(LogLevel.Debug, LogLevel.Fatal, logfile);
 
+        LogManager.ThrowExceptions = false;
         LogManager.Configuration = config;
     }
 
