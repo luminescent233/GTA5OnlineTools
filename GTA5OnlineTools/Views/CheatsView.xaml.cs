@@ -248,7 +248,7 @@ public partial class CheatsView : UserControl
                             var windowName = new StringBuilder(length + 1);
                             Win32.GetWindowText(caption_handle, windowName, windowName.Capacity);
 
-                            if (windowName.ToString() == "Kiddion's Modest Menu v0.9.4")
+                            if (windowName.ToString() == "Kiddion's Modest Menu v0.9.5")
                             {
                                 isShow = true;
                                 ProcessUtil.OpenProcess("Kiddion_Chs", true);

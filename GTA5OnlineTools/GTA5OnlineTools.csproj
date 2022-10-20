@@ -9,8 +9,8 @@
     <StartupObject>GTA5OnlineTools.App</StartupObject>
     <ApplicationIcon>Assets\Images\Favicon.ico</ApplicationIcon>
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
-    <AssemblyVersion>3.0.6.0</AssemblyVersion>
-    <FileVersion>3.0.6.0</FileVersion>
+    <AssemblyVersion>3.0.6.1</AssemblyVersion>
+    <FileVersion>3.0.6.1</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -33,10 +33,10 @@
     <None Remove="Features\Files\BincoHax.exe" />
     <None Remove="Features\Files\dControl.exe" />
     <None Remove="Features\Files\dControl.ini" />
-    <None Remove="Features\Files\GetKidTxt.exe" />
     <None Remove="Features\Files\GTAHax.exe" />
     <None Remove="Features\Files\Inject\BlcokMsg.dll" />
     <None Remove="Features\Files\Inject\YimMenu.dll" />
+    <None Remove="Features\Files\KiddionUI.exe" />
     <None Remove="Features\Files\Kiddion\config.json" />
     <None Remove="Features\Files\Kiddion\key87\config.json" />
     <None Remove="Features\Files\Kiddion\Kiddion.exe" />
@@ -55,7 +55,7 @@
     <EmbeddedResource Include="Features\Files\BincoHax.exe" />
     <EmbeddedResource Include="Features\Files\dControl.exe" />
     <EmbeddedResource Include="Features\Files\dControl.ini" />
-    <EmbeddedResource Include="Features\Files\GetKidTxt.exe" />
+    <EmbeddedResource Include="Features\Files\KiddionUI.exe" />
     <EmbeddedResource Include="Features\Files\GTAHax.exe" />
     <EmbeddedResource Include="Features\Files\Inject\BlcokMsg.dll" />
     <EmbeddedResource Include="Features\Files\Inject\YimMenu.dll" />

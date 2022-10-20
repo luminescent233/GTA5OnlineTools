@@ -312,7 +312,7 @@ public partial class ToolsView : UserControl
     /// </summary>
     private void GetKiddionTextClick()
     {
-        ProcessUtil.OpenProcess("GetKidTxt", false);
+        ProcessUtil.OpenProcess("KiddionUI", false);
     }
 
     /// <summary>
