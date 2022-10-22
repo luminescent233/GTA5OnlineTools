@@ -348,6 +348,18 @@ public partial class ModulesView : UserControl
                 StatScriptsWindow = null;
             }
 
+            if (HeistPrepsWindow != null)
+            {
+                HeistPrepsWindow.Close();
+                HeistPrepsWindow = null;
+            }
+
+            if (CasinoHackWindow != null)
+            {
+                CasinoHackWindow.Close();
+                CasinoHackWindow = null;
+            }
+
             if (SpeedMeterWindow != null)
             {
                 SpeedMeterWindow.Close();
