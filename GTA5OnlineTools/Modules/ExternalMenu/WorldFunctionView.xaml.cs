@@ -30,6 +30,8 @@ public partial class WorldFunctionView : UserControl
             using var streamReader = new StreamReader(FileUtil.F_CustomTPList_Path);
             List<TeleportData.TeleportInfo> teleportPreviews = JsonUtil.JsonDese<List<TeleportData.TeleportInfo>>(streamReader.ReadToEnd());
 
+            TeleportData.CustomTeleport.Clear();
+
             foreach (var item in teleportPreviews)
             {
                 TeleportData.CustomTeleport.Add(item);
