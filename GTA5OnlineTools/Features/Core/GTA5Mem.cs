@@ -41,6 +41,9 @@ public static class GTA5Mem
                 LoggerHelper.Info($"《GTA5》进程数量 {pArray.Length}");
                 foreach (var item in pArray)
                 {
+                    if (item.MainWindowHandle == IntPtr.Zero)
+                        continue;
+
                     if (item.MainModule.FileVersionInfo.LegalCopyright == "Rockstar Games Inc. (C) 2005-2022 Take Two Interactive. All rights reserved.")
                     {
                         GTA5Process = item;

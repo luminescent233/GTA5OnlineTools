@@ -25,6 +25,9 @@ public static class ProcessUtil
         {
             foreach (var item in pArray)
             {
+                if (item.MainWindowHandle == IntPtr.Zero)
+                    continue;
+
                 if (item.MainModule.FileVersionInfo.LegalCopyright == "Rockstar Games Inc. (C) 2005-2022 Take Two Interactive. All rights reserved.")
                     return true;
             }

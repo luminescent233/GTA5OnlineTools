@@ -203,7 +203,7 @@ public partial class SelfStateView : UserControl
 
             ////////////////////////////////
 
-            this.Dispatcher.BeginInvoke(new Action(delegate
+            this.Dispatcher.BeginInvoke(() =>
             {
                 if (Slider_Health.Value != oHealth)
                     Slider_Health.Value = oHealth;
@@ -225,7 +225,7 @@ public partial class SelfStateView : UserControl
 
                 if (Slider_StealthSpeed.Value != oStealthSpeed)
                     Slider_StealthSpeed.Value = oStealthSpeed;
-            }));
+            });
 
             Thread.Sleep(1000);
         }

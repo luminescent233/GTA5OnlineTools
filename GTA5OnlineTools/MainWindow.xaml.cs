@@ -146,6 +146,9 @@ public partial class MainWindow
         GTA5Mem.CloseHandle();
         LoggerHelper.Info("释放内存模块进程句柄成功");
 
+        ModulesView.ActionCloseAllModulesWindow();
+        LoggerHelper.Info("关闭小助手功能窗口成功");
+
         ProcessUtil.CloseThirdProcess();
         LoggerHelper.Info("关闭第三方进程成功");
 
