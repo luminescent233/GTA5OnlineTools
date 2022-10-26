@@ -59,30 +59,30 @@ public static class Offsets
         public static int[] MaxHealth = new int[] { 0x08, 0x284 };
         public static int[] Armor = new int[] { 0x08, 0x150C };
 
-        public static int[] RunSpeed = new int[] { 0x08, 0x10C8, 0xCF0 };
-        public static int[] SwimSpeed = new int[] { 0x08, 0x10C8, 0x170 };
-        public static int[] StealthSpeed = new int[] { 0x08, 0x10C8, 0x18C };
+        public static int[] RunSpeed = new int[] { 0x08, 0x10A8, 0xCF0 };
+        public static int[] SwimSpeed = new int[] { 0x08, 0x10A8, 0x170 };
+        public static int[] StealthSpeed = new int[] { 0x08, 0x10A8, 0x18C };
 
         public static int[] GodMode = new int[] { 0x08, 0x189 };
-        public static int[] Wanted = new int[] { 0x08, 0x10c8, 0x888 };
+        public static int[] Wanted = new int[] { 0x08, 0x10A8, 0x888 };
         public static int[] Invisibility = new int[] { 0x08, 0x2C };            // on 0x01 off 0x27
 
-        public static int[] Seatbelt = new int[] { 0x08, 0x145C };
+        public static int[] Seatbelt = new int[] { 0x08, 0x143C };
         public static int[] NoRagdoll = new int[] { 0x08, 0x10B8 };
         public static int[] NoCollision = new int[] { 0x08, 0x30, 0x10, 0x20, 0x70, 0x00, 0x2C };
     }
 
-    public static int[] SpecialAmmo = new int[] { 0x08, 0x10C8, 0x218 };
-    public static int[] NeverWanted = new int[] { 0x08, 0x10C8, 0x73C };
-    public static int[] WantedCanChange = new int[] { 0x08, 0x10c8, 0x73C };
-    public static int[] NPCIgnore = new int[] { 0x08, 0x10c8, 0x872 };          // 00 04 C3 C7
+    public static int[] SpecialAmmo = new int[] { 0x08, 0x10A8, 0x218 };
+    public static int[] NeverWanted = new int[] { 0x08, 0x10A8, 0x73C };
+    public static int[] WantedCanChange = new int[] { 0x08, 0x10A8, 0x73C };
+    public static int[] NPCIgnore = new int[] { 0x08, 0x10A8, 0x872 };          // 00 04 C3 C7
 
     public static int[] RpMultiplier = new int[] { 0x10 };
     public static int[] ApMultiplier = new int[] { 0x3188 };
 
-    public static int[] OnlineListPlayerName = new int[] { 0x08, 0x10C8, 0xA4 };
+    public static int[] OnlineListPlayerName = new int[] { 0x08, 0x10A8, 0xA4 };
 
-    public static int[] RID = new int[] { 0x08, 0x10C8, 0x90 };
+    public static int[] RID = new int[] { 0x08, 0x10A8, 0x90 };
 
     public static class Vehicle
     {
@@ -92,36 +92,36 @@ public static class Offsets
 
         public static int[] Health = new int[] { 0x08, 0xD10, 0x280 };
 
-        //public static int[] VehicleDrawHandler = new int[] { 0x08, 0xD30, 0x48 };
-        //public static int[] Vehicle_EMS = new int[] { 0x08, 0xD30, 0x48, 0x3D6 };
-        //public static int[] Vehicle_Brakes = new int[] { 0x08, 0xD30, 0x48, 0x3D7 };
-        //public static int[] Vehicle_Transmission = new int[] { 0x08, 0xD30, 0x48, 0x3D8 };
-        //public static int[] Vehicle_Horn = new int[] { 0x08, 0xD30, 0x48, 0x3D9 };
-        //public static int[] Vehicle_Suspension = new int[] { 0x08, 0xD30, 0x48, 0x3DA };
-        //public static int[] Vehicle_Armor = new int[] { 0x08, 0xD30, 0x48, 0x3DB };
-        //public static int[] Vehicle_Turbo = new int[] { 0x08, 0xD30, 0x48, 0x3DD };
-        //public static int[] Vehicle_Windows = new int[] { 0x08, 0xD30, 0x48, 0x3FF };
+        //public static int[] VehicleDrawHandler = new int[] { 0x08, 0xD10, 0x48 };
+        //public static int[] Vehicle_EMS = new int[] { 0x08, 0xD10, 0x48, 0x3D6 };
+        //public static int[] Vehicle_Brakes = new int[] { 0x08, 0xD10, 0x48, 0x3D7 };
+        //public static int[] Vehicle_Transmission = new int[] { 0x08, 0xD10, 0x48, 0x3D8 };
+        //public static int[] Vehicle_Horn = new int[] { 0x08, 0xD10, 0x48, 0x3D9 };
+        //public static int[] Vehicle_Suspension = new int[] { 0x08, 0xD10, 0x48, 0x3DA };
+        //public static int[] Vehicle_Armor = new int[] { 0x08, 0xD10, 0x48, 0x3DB };
+        //public static int[] Vehicle_Turbo = new int[] { 0x08, 0xD10, 0x48, 0x3DD };
+        //public static int[] Vehicle_Windows = new int[] { 0x08, 0xD10, 0x48, 0x3FF };
 
-        public static int[] Extras = new int[] { 0x08, 0xD30, 0x20, 0x58B };
-        public static int[] Parachute = new int[] { 0x08, 0xD30, 0x20, 0x58C };
+        public static int[] Extras = new int[] { 0x08, 0xD10, 0x20, 0x58B };
+        public static int[] Parachute = new int[] { 0x08, 0xD10, 0x20, 0x58C };
     }
 
     public static class Weapon
     {
-        public static int[] AmmoInfo = new int[] { 0x08, 0x10D8, 0x20, 0x60 };
+        public static int[] AmmoInfo = new int[] { 0x08, 0x10B8, 0x20, 0x60 };
         public static int[] AmmoModifier = new int[] { 0x08, 0x10D0, 0x78 };
 
-        public static int[] NoSpread = new int[] { 0x8, 0x10D8, 0x20, 0x7C };
-        public static int[] NoRecoil = new int[] { 0x8, 0x10D8, 0x20, 0x2F4 };
+        public static int[] NoSpread = new int[] { 0x8, 0x10B8, 0x20, 0x7C };
+        public static int[] NoRecoil = new int[] { 0x8, 0x10B8, 0x20, 0x2F4 };
 
-        public static int[] ImpactType = new int[] { 0x08, 0x10D8, 0x20, 0x20 };
-        public static int[] ImpactExplosion = new int[] { 0x08, 0x10D8, 0x20, 0x24 };
+        public static int[] ImpactType = new int[] { 0x08, 0x10B8, 0x20, 0x20 };
+        public static int[] ImpactExplosion = new int[] { 0x08, 0x10B8, 0x20, 0x24 };
 
-        public static int[] Range = new int[] { 0x08, 0x10D8, 0x20, 0x28C };
-        public static int[] LockRange = new int[] { 0x08, 0x10D8, 0x20, 0x288 };
+        public static int[] Range = new int[] { 0x08, 0x10B8, 0x20, 0x28C };
+        public static int[] LockRange = new int[] { 0x08, 0x10B8, 0x20, 0x288 };
 
-        public static int[] ReloadMult = new int[] { 0x08, 0x10D8, 0x20, 0x134 };
-        public static int[] ReloadVehicleMult = new int[] { 0x08, 0x10D8, 0x20, 0x130 };
+        public static int[] ReloadMult = new int[] { 0x08, 0x10B8, 0x20, 0x134 };
+        public static int[] ReloadVehicleMult = new int[] { 0x08, 0x10B8, 0x20, 0x130 };
 
     }
 
@@ -142,7 +142,7 @@ public static class Offsets
 
     public static int[] InVehicle = new int[] { 0x08, 0xE52 };       // 1代表在载具，0代表不在
 
-    public static int[] VehicleMaxSpeed = new int[] { 0x08, 0xD30, 0x8CC };
+    public static int[] VehicleMaxSpeed = new int[] { 0x08, 0xD10, 0x8CC };
     public static int[] VehicleGear = new int[] { 0xFD4 };
     public static int[] VehicleRPM = new int[] { 0xE50 };
 
@@ -196,6 +196,7 @@ public static class Offsets
     public const int CPed_InVehicle = 0xE32;                // int 0:false 1:true
     public const int CPed_Ragdoll = 0x1098;                 // int 32:false 1/0:true
     public const int CPed_CPlayerInfo = 0x10A8;
+    public const int CPed_CPedInventory = 0x10B0;
     public const int CPed_CPedWeaponManager = 0x10B8;
     public const int CPed_Seatbelt = 0x143C;                // byte 55:false 56:true
     public const int CPed_Armor = 0x150C;                   // float, 50:Online 100:Story Mode
@@ -223,6 +224,8 @@ public static class Offsets
     public const int CPed_CVehicle_VisualZ = 0x98;
     public const int CPed_CVehicle_State = 0xD8;            // int 0:Player 1:NPC 2:Unused 3:Destroyed
     public const int CPed_CVehicle_God = 0x189;             // int8 0:false 1:true
+    public const int CPed_CVehicle_Health = 0x280;          // float
+    public const int CPed_CVehicle_HealthMax = 0x284;
     public const int CPed_CVehicle_Passenger = 0xC42;       // byte 载具座位人数
 
     // CPed CVehicle CModelInfo Offsets
@@ -249,6 +252,20 @@ public static class Offsets
     public const int CPed_CPlayerInfo_Stamina = 0xCF4;
     public const int CPed_CPlayerInfo_StaminaRegen = 0xCF8;
 
+    // CPed CPedInventory Offsets
+    public const int CPed_CPedInventory_AmmoModifier = 0x78;
+
     // CPed CPedWeaponManager Offsets
+    public const int CPed_CPedWeaponManager_CWeaponInfo = 0x20;
+
+    // CPed CPedWeaponManager CWeaponInfo Offsets
+    public const int CPed_CPedWeaponManager_CWeaponInfo_ImpactType = 0x20;          // byte
+    public const int CPed_CPedWeaponManager_CWeaponInfo_ImpactExplosion = 0x24;
+    public const int CPed_CPedWeaponManager_CWeaponInfo_CAmmoInfo = 0x60;
+    public const int CPed_CPedWeaponManager_CWeaponInfo_Spread = 0x7C;              // float
+    public const int CPed_CPedWeaponManager_CWeaponInfo_ReloadMult = 0x134;
+    public const int CPed_CPedWeaponManager_CWeaponInfo_LockRange = 0x288;
+    public const int CPed_CPedWeaponManager_CWeaponInfo_Range = 0x28C;
+    public const int CPed_CPedWeaponManager_CWeaponInfo_Recoil = 0x2F4;
 
 }

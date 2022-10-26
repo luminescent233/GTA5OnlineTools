@@ -68,7 +68,15 @@ public static class Vehicle
     /// </summary>
     public static void Extras(byte flag)
     {
-        GTA5Mem.Write<byte>(General.WorldPTR, Offsets.Vehicle.Extras, flag);
+        long pCPedFactory = GTA5Mem.Read<long>(General.WorldPTR);
+        long pCPed = GTA5Mem.Read<long>(pCPedFactory + Offsets.CPed);
+        byte oInVehicle = GTA5Mem.Read<byte>(pCPed + Offsets.CPed_InVehicle);
+
+        if (oInVehicle == 0x01)
+        {
+            long pCVehicle = GTA5Mem.Read<long>(pCPed + Offsets.CPed_CVehicle);
+            GTA5Mem.Write<byte>(pCVehicle + Offsets.CPed_CVehicle_CModelInfo_Extras, flag);
+        }
     }
 
     /// <summary>
@@ -76,10 +84,44 @@ public static class Vehicle
     /// </summary>
     public static void Parachute(bool isEnable)
     {
-        if (isEnable)
-            GTA5Mem.Write<byte>(General.WorldPTR, Offsets.Vehicle.Parachute, 1);
-        else
-            GTA5Mem.Write<byte>(General.WorldPTR, Offsets.Vehicle.Parachute, 0);
+        long pCPedFactory = GTA5Mem.Read<long>(General.WorldPTR);
+        long pCPed = GTA5Mem.Read<long>(pCPedFactory + Offsets.CPed);
+        byte oInVehicle = GTA5Mem.Read<byte>(pCPed + Offsets.CPed_InVehicle);
+
+        if (oInVehicle == 0x01)
+        {
+            long pCVehicle = GTA5Mem.Read<long>(pCPed + Offsets.CPed_CVehicle);
+            if (isEnable)
+                GTA5Mem.Write<byte>(pCVehicle + Offsets.CPed_CVehicle_CModelInfo_Parachute, 0x01);
+            else
+                GTA5Mem.Write<byte>(pCVehicle + Offsets.CPed_CVehicle_CModelInfo_Parachute, 0x00);
+        }
+    }
+
+    /// <summary>
+    /// 补满载具血量
+    /// </summary>
+    public static void FillHealth()
+    {
+        long pCPedFactory = GTA5Mem.Read<long>(General.WorldPTR);
+        long pCPed = GTA5Mem.Read<long>(pCPedFactory + Offsets.CPed);
+        byte oInVehicle = GTA5Mem.Read<byte>(pCPed + Offsets.CPed_InVehicle);
+
+        if (oInVehicle == 0x01)
+        {
+            long pCVehicle = GTA5Mem.Read<long>(pCPed + Offsets.CPed_CVehicle);
+
+            float oVHealth = GTA5Mem.Read<float>(pCVehicle + Offsets.CPed_CVehicle_Health);
+            float oVHealthMax = GTA5Mem.Read<float>(pCVehicle + Offsets.CPed_CVehicle_HealthMax);
+            if (oVHealth < oVHealthMax)
+            {
+                GTA5Mem.Write(pCVehicle + Offsets.CPed_CVehicle_Health, oVHealthMax);
+            }
+            else
+            {
+                GTA5Mem.Write(pCVehicle + Offsets.CPed_CVehicle_Health, 1000.0f);
+            }
+        }
     }
 
     /// <summary>
@@ -137,13 +179,12 @@ public static class Vehicle
     }
 
     /// <summary>
-    /// 补满载具血量
+    /// 刷出线上载具
     /// </summary>
-    public static void FillHealth()
-    {
-        GTA5Mem.Write<float>(General.WorldPTR, Offsets.Vehicle.Health, 1000.0f);
-    }
-
+    /// <param name="hash"></param>
+    /// <param name="z255"></param>
+    /// <param name="dist"></param>
+    /// <param name="mod"></param>
     public static void SpawnVehicle(long hash, float z255, int dist, int[] mod)
     {
         Task.Run(() =>
@@ -212,6 +253,11 @@ public static class Vehicle
         });
     }
 
+    /// <summary>
+    /// 刷出线上载具
+    /// </summary>
+    /// <param name="hash"></param>
+    /// <param name="z255"></param>
     public static void SpawnVehicle(long hash, float z255)
     {
         Task.Run(() =>
@@ -291,6 +337,10 @@ public static class Vehicle
         });
     }
 
+    /// <summary>
+    /// 刷出个人载具
+    /// </summary>
+    /// <param name="index"></param>
     public static void SpawnPersonalVehicle(int index)
     {
         Hacks.WriteGA<int>(Offsets.SpawnPersonalVehicleIndex1, index);

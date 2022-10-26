@@ -9,27 +9,30 @@ public static class Weapon
     /// </summary>
     public static void FillCurrentAmmo()
     {
-        long pWeapon_AmmoInfo = GTA5Mem.Read<long>(General.WorldPTR, Offsets.Weapon.AmmoInfo);
+        long pCPedFactory = GTA5Mem.Read<long>(General.WorldPTR);
+        long pCPed = GTA5Mem.Read<long>(pCPedFactory + Offsets.CPed);
+        long pCPedWeaponManager = GTA5Mem.Read<long>(pCPed + Offsets.CPed_CPedWeaponManager);
+        long pCWeaponInfo = GTA5Mem.Read<long>(pCPedWeaponManager + Offsets.CPed_CPedWeaponManager_CWeaponInfo);
+        long pCAmmoInfo = GTA5Mem.Read<long>(pCWeaponInfo + Offsets.CPed_CPedWeaponManager_CWeaponInfo_CAmmoInfo);
 
-        int getMaxAmmo = GTA5Mem.Read<int>(pWeapon_AmmoInfo + 0x28);
+        int getMaxAmmo = GTA5Mem.Read<int>(pCAmmoInfo + 0x28);
 
-        long my_offset_0 = pWeapon_AmmoInfo;
-        long my_offset_1;
+        long my_offset_1 = pCAmmoInfo;
+        long my_offset_2;
         byte ammo_type;
-
         do
         {
-            my_offset_0 = GTA5Mem.Read<long>(my_offset_0 + 0x08);
-            my_offset_1 = GTA5Mem.Read<long>(my_offset_0 + 0x00);
+            my_offset_1 = GTA5Mem.Read<long>(my_offset_1 + 0x08);
+            my_offset_2 = GTA5Mem.Read<long>(my_offset_1 + 0x00);
 
-            if (my_offset_0 == 0 || my_offset_1 == 0)
+            if (my_offset_1 == 0 || my_offset_2 == 0)
                 return;
 
-            ammo_type = GTA5Mem.Read<byte>(my_offset_1 + 0x0C);
+            ammo_type = GTA5Mem.Read<byte>(my_offset_2 + 0x0C);
 
         } while (ammo_type == 0x00);
 
-        GTA5Mem.Write<int>(my_offset_1 + 0x18, getMaxAmmo);
+        GTA5Mem.Write(my_offset_2 + 0x18, getMaxAmmo);
     }
 
     /// <summary>
@@ -37,21 +40,29 @@ public static class Weapon
     /// </summary>
     public static void FillAllAmmo()
     {
-        long pWeapon = GTA5Mem.Read<long>(General.WorldPTR, new int[] { 0x08, 0x10D0, 0x48 });
+        long pCPedFactory = GTA5Mem.Read<long>(General.WorldPTR);
+        long pCPed = GTA5Mem.Read<long>(pCPedFactory + Offsets.CPed);
+        long pCPedInventory = GTA5Mem.Read<long>(pCPed + Offsets.CPed_CPedInventory);
+        long pWeapon = GTA5Mem.Read<long>(pCPedInventory + 0x48);
 
         int count = 0;
-        while (GTA5Mem.Read<int>(pWeapon + count * 0x08) != 0 && GTA5Mem.Read<int>(pWeapon + count * 0x08, new int[] { 0x08 }) != 0)
+        long offset_1 = GTA5Mem.Read<long>(pWeapon + count * 0x08);
+        long offset_2 = GTA5Mem.Read<long>(offset_1 + 0x08);
+        while (offset_1 != 0 && offset_2 != 0)
         {
-            int ammo_1 = GTA5Mem.Read<int>(pWeapon + count * 0x08, new int[] { 0x08, 0x28 });
-            int ammo_2 = GTA5Mem.Read<int>(pWeapon + count * 0x08, new int[] { 0x08, 0x34 });
+            int ammo_1 = GTA5Mem.Read<int>(offset_2 + 0x28);
+            int ammo_2 = GTA5Mem.Read<int>(offset_2 + 0x34);
             int max_ammo = Math.Max(ammo_1, ammo_2);
-            GTA5Mem.Write<int>(pWeapon + count * 0x08, new int[] { 0x20 }, max_ammo);
+            GTA5Mem.Write(offset_1 + 0x20, max_ammo);
+
             count++;
+            offset_1 = GTA5Mem.Read<long>(pWeapon + count * 0x08);
+            offset_2 = GTA5Mem.Read<long>(offset_1 + 0x08);
         }
     }
 
     /// <summary>
-    /// 无限弹药
+    /// 无限弹药（旧版方式，已弃用）
     /// </summary>
     public static void InfiniteAmmo(bool isEnable)
     {
@@ -76,7 +87,7 @@ public static class Weapon
     }
 
     /// <summary>
-    /// 无需换弹
+    /// 无需换弹（旧版方式，已弃用）
     /// </summary>
     public static void NoReload(bool isEnable)
     {
@@ -105,7 +116,11 @@ public static class Weapon
     /// </summary>
     public static void AmmoModifier(byte flag)
     {
-        GTA5Mem.Write<byte>(General.WorldPTR, Offsets.Weapon.AmmoModifier, flag);
+        long pCPedFactory = GTA5Mem.Read<long>(General.WorldPTR);
+        long pCPed = GTA5Mem.Read<long>(pCPedFactory + Offsets.CPed);
+        long pCPedInventory = GTA5Mem.Read<long>(pCPed + Offsets.CPed_CPedInventory);
+
+        GTA5Mem.Write(pCPedInventory + Offsets.CPed_CPedInventory_AmmoModifier, flag);
     }
 
     /// <summary>
@@ -113,7 +128,12 @@ public static class Weapon
     /// </summary>
     public static void NoRecoil()
     {
-        GTA5Mem.Write<float>(General.WorldPTR, Offsets.Weapon.NoRecoil, 0.0f);
+        long pCPedFactory = GTA5Mem.Read<long>(General.WorldPTR);
+        long pCPed = GTA5Mem.Read<long>(pCPedFactory + Offsets.CPed);
+        long pCPedWeaponManager = GTA5Mem.Read<long>(pCPed + Offsets.CPed_CPedWeaponManager);
+        long pCWeaponInfo = GTA5Mem.Read<long>(pCPedWeaponManager + Offsets.CPed_CPedWeaponManager_CWeaponInfo);
+
+        GTA5Mem.Write(pCWeaponInfo + Offsets.CPed_CPedWeaponManager_CWeaponInfo_Recoil, 0.0f);
     }
 
     /// <summary>
@@ -121,7 +141,12 @@ public static class Weapon
     /// </summary>
     public static void NoSpread()
     {
-        GTA5Mem.Write<float>(General.WorldPTR, Offsets.Weapon.NoSpread, 0.0f);
+        long pCPedFactory = GTA5Mem.Read<long>(General.WorldPTR);
+        long pCPed = GTA5Mem.Read<long>(pCPedFactory + Offsets.CPed);
+        long pCPedWeaponManager = GTA5Mem.Read<long>(pCPed + Offsets.CPed_CPedWeaponManager);
+        long pCWeaponInfo = GTA5Mem.Read<long>(pCPedWeaponManager + Offsets.CPed_CPedWeaponManager_CWeaponInfo);
+
+        GTA5Mem.Write(pCWeaponInfo + Offsets.CPed_CPedWeaponManager_CWeaponInfo_Spread, 0.0f);
     }
 
     /// <summary>
@@ -129,7 +154,12 @@ public static class Weapon
     /// </summary>
     public static void ImpactType(byte type)
     {
-        GTA5Mem.Write<byte>(General.WorldPTR, Offsets.Weapon.ImpactType, type);
+        long pCPedFactory = GTA5Mem.Read<long>(General.WorldPTR);
+        long pCPed = GTA5Mem.Read<long>(pCPedFactory + Offsets.CPed);
+        long pCPedWeaponManager = GTA5Mem.Read<long>(pCPed + Offsets.CPed_CPedWeaponManager);
+        long pCWeaponInfo = GTA5Mem.Read<long>(pCPedWeaponManager + Offsets.CPed_CPedWeaponManager_CWeaponInfo);
+
+        GTA5Mem.Write(pCWeaponInfo + Offsets.CPed_CPedWeaponManager_CWeaponInfo_ImpactType, type);
     }
 
     /// <summary>
@@ -137,7 +167,12 @@ public static class Weapon
     /// </summary>
     public static void ImpactExplosion(int id)
     {
-        GTA5Mem.Write<int>(General.WorldPTR, Offsets.Weapon.ImpactExplosion, id);
+        long pCPedFactory = GTA5Mem.Read<long>(General.WorldPTR);
+        long pCPed = GTA5Mem.Read<long>(pCPedFactory + Offsets.CPed);
+        long pCPedWeaponManager = GTA5Mem.Read<long>(pCPed + Offsets.CPed_CPedWeaponManager);
+        long pCWeaponInfo = GTA5Mem.Read<long>(pCPedWeaponManager + Offsets.CPed_CPedWeaponManager_CWeaponInfo);
+
+        GTA5Mem.Write(pCWeaponInfo + Offsets.CPed_CPedWeaponManager_CWeaponInfo_ImpactExplosion, id);
     }
 
     /// <summary>
@@ -145,8 +180,13 @@ public static class Weapon
     /// </summary>
     public static void Range()
     {
-        GTA5Mem.Write<float>(General.WorldPTR, Offsets.Weapon.Range, 2000.0f);
-        GTA5Mem.Write<float>(General.WorldPTR, Offsets.Weapon.LockRange, 1000.0f);
+        long pCPedFactory = GTA5Mem.Read<long>(General.WorldPTR);
+        long pCPed = GTA5Mem.Read<long>(pCPedFactory + Offsets.CPed);
+        long pCPedWeaponManager = GTA5Mem.Read<long>(pCPed + Offsets.CPed_CPedWeaponManager);
+        long pCWeaponInfo = GTA5Mem.Read<long>(pCPedWeaponManager + Offsets.CPed_CPedWeaponManager_CWeaponInfo);
+
+        GTA5Mem.Write(pCWeaponInfo + Offsets.CPed_CPedWeaponManager_CWeaponInfo_LockRange, 1000.0f);
+        GTA5Mem.Write(pCWeaponInfo + Offsets.CPed_CPedWeaponManager_CWeaponInfo_Range, 2000.0f);
     }
 
     /// <summary>
@@ -154,9 +194,14 @@ public static class Weapon
     /// </summary>
     public static void ReloadMult(bool isEnable)
     {
+        long pCPedFactory = GTA5Mem.Read<long>(General.WorldPTR);
+        long pCPed = GTA5Mem.Read<long>(pCPedFactory + Offsets.CPed);
+        long pCPedWeaponManager = GTA5Mem.Read<long>(pCPed + Offsets.CPed_CPedWeaponManager);
+        long pCWeaponInfo = GTA5Mem.Read<long>(pCPedWeaponManager + Offsets.CPed_CPedWeaponManager_CWeaponInfo);
+
         if (isEnable)
-            GTA5Mem.Write<float>(General.WorldPTR, Offsets.Weapon.ReloadMult, 4.0f);
+            GTA5Mem.Write(pCWeaponInfo + Offsets.CPed_CPedWeaponManager_CWeaponInfo_ReloadMult, 4.0f);
         else
-            GTA5Mem.Write<float>(General.WorldPTR, Offsets.Weapon.ReloadMult, 1.0f);
+            GTA5Mem.Write(pCWeaponInfo + Offsets.CPed_CPedWeaponManager_CWeaponInfo_ReloadMult, 1.0f);
     }
 }

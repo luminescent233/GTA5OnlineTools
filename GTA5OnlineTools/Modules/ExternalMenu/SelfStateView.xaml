@@ -51,7 +51,7 @@
                         <TextBlock
                             Margin="5"
                             HorizontalAlignment="Right"
-                            Text="{Binding ElementName=Slider_MaxHealth, Path=Value, StringFormat={}{0:0}}" />
+                            Text="{Binding ElementName=Slider_HealthMax, Path=Value, StringFormat={}{0:0}}" />
                     </DockPanel>
                     <Slider
                         Name="Slider_HealthMax"
@@ -103,7 +103,7 @@
                         <TextBlock
                             Margin="5"
                             HorizontalAlignment="Right"
-                            Text="{Binding ElementName=Slider_Wanted, Path=Value, StringFormat={}{0:0}}" />
+                            Text="{Binding ElementName=Slider_WantedLevel, Path=Value, StringFormat={}{0:0}}" />
                     </DockPanel>
                     <Slider
                         Name="Slider_WantedLevel"
@@ -172,13 +172,13 @@
                         DockPanel.Dock="Left">
                         <ui:UiLabelEmoji
                             Margin="5,0,0,0"
-                            Content="潜行速度"
+                            Content="走路速度"
                             Emoji="🚶🏻"
                             Style="{StaticResource LabelEmojiStyle_MenuTitle}" />
                         <TextBlock
                             Margin="5"
                             HorizontalAlignment="Right"
-                            Text="{Binding ElementName=Slider_StealthSpeed, Path=Value, StringFormat={}{0:0.0}}" />
+                            Text="{Binding ElementName=Slider_WalkSpeed, Path=Value, StringFormat={}{0:0.0}}" />
                     </DockPanel>
                     <Slider
                         Name="Slider_WalkSpeed"

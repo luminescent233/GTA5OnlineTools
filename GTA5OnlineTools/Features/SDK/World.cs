@@ -59,7 +59,7 @@ public static class World
                 continue;
 
             // 跳过玩家
-            long m_player_info = GTA5Mem.Read<long>(m_ped_list + 0x10C8);
+            long m_player_info = GTA5Mem.Read<long>(m_ped_list + 0x10A8);
             if (GTA5Mem.IsValid(m_player_info))
                 continue;
 
@@ -69,12 +69,12 @@ public static class World
 
                 if (oHostility > 0x01)
                 {
-                    GTA5Mem.Write<float>(m_ped_list + 0x280, 0.0f);
+                    GTA5Mem.Write(m_ped_list + 0x280, 0.0f);
                 }
             }
             else
             {
-                GTA5Mem.Write<float>(m_ped_list + 0x280, 0.0f);
+                GTA5Mem.Write(m_ped_list + 0x280, 0.0f);
             }
         }
     }
@@ -97,7 +97,7 @@ public static class World
                 continue;
 
             // 跳过玩家
-            long m_player_info = GTA5Mem.Read<long>(m_ped_list + 0x10C8);
+            long m_player_info = GTA5Mem.Read<long>(m_ped_list + 0x10A8);
             if (GTA5Mem.IsValid(m_player_info))
                 continue;
 
@@ -108,7 +108,7 @@ public static class World
                 ped_type == (int)EnumData.PedTypes.SWAT ||
                 ped_type == (int)EnumData.PedTypes.ARMY)
             {
-                GTA5Mem.Write<float>(m_ped_list + 0x280, 0.0f);
+                GTA5Mem.Write(m_ped_list + 0x280, 0.0f);
             }
         }
     }
@@ -131,7 +131,7 @@ public static class World
                 continue;
 
             // 跳过玩家
-            long m_player_info = GTA5Mem.Read<long>(m_ped_list + 0x10C8);
+            long m_player_info = GTA5Mem.Read<long>(m_ped_list + 0x10A8);
             if (GTA5Mem.IsValid(m_player_info))
                 continue;
 
@@ -143,18 +143,18 @@ public static class World
 
                 if (oHostility > 0x01)
                 {
-                    GTA5Mem.Write<float>(m_vehicle + 0x280, -1.0f);
-                    GTA5Mem.Write<float>(m_vehicle + 0x840, -1.0f);
-                    GTA5Mem.Write<float>(m_vehicle + 0x844, -1.0f);
-                    GTA5Mem.Write<float>(m_vehicle + 0x908, -1.0f);
+                    GTA5Mem.Write(m_vehicle + 0x280, -1.0f);
+                    GTA5Mem.Write(m_vehicle + 0x840, -1.0f);
+                    GTA5Mem.Write(m_vehicle + 0x844, -1.0f);
+                    GTA5Mem.Write(m_vehicle + 0x908, -1.0f);
                 }
             }
             else
             {
-                GTA5Mem.Write<float>(m_vehicle + 0x280, -1.0f);
-                GTA5Mem.Write<float>(m_vehicle + 0x840, -1.0f);
-                GTA5Mem.Write<float>(m_vehicle + 0x844, -1.0f);
-                GTA5Mem.Write<float>(m_vehicle + 0x908, -1.0f);
+                GTA5Mem.Write(m_vehicle + 0x280, -1.0f);
+                GTA5Mem.Write(m_vehicle + 0x840, -1.0f);
+                GTA5Mem.Write(m_vehicle + 0x844, -1.0f);
+                GTA5Mem.Write(m_vehicle + 0x908, -1.0f);
             }
         }
     }
@@ -177,10 +177,10 @@ public static class World
             if (!GTA5Mem.IsValid(m_vehicle_list))
                 continue;
 
-            GTA5Mem.Write<float>(m_vehicle_list + 0x280, -1.0f);     // m_health
-            GTA5Mem.Write<float>(m_vehicle_list + 0x840, -1.0f);     // m_body_health
-            GTA5Mem.Write<float>(m_vehicle_list + 0x844, -1.0f);     // m_petrol_tank_health
-            GTA5Mem.Write<float>(m_vehicle_list + 0x908, -1.0f);     // m_engine_health
+            GTA5Mem.Write(m_vehicle_list + 0x280, -1.0f);     // m_health
+            GTA5Mem.Write(m_vehicle_list + 0x840, -1.0f);     // m_body_health
+            GTA5Mem.Write(m_vehicle_list + 0x844, -1.0f);     // m_petrol_tank_health
+            GTA5Mem.Write(m_vehicle_list + 0x908, -1.0f);     // m_engine_health
         }
     }
 
@@ -204,7 +204,7 @@ public static class World
                 continue;
 
             // 跳过玩家
-            long m_player_info = GTA5Mem.Read<long>(m_ped_list + 0x10C8);
+            long m_player_info = GTA5Mem.Read<long>(m_ped_list + 0x10A8);
             if (GTA5Mem.IsValid(m_player_info))
                 continue;
 
@@ -218,14 +218,14 @@ public static class World
 
                 if (oHostility > 0x01)
                 {
-                    GTA5Mem.Write<Vector3>(m_navigation + 0x50, v3MyPos);
-                    GTA5Mem.Write<Vector3>(m_ped_list + 0x90, v3MyPos);
+                    GTA5Mem.Write(m_navigation + 0x50, v3MyPos);
+                    GTA5Mem.Write(m_ped_list + 0x90, v3MyPos);
                 }
             }
             else
             {
-                GTA5Mem.Write<Vector3>(m_navigation + 0x50, v3MyPos);
-                GTA5Mem.Write<Vector3>(m_ped_list + 0x90, v3MyPos);
+                GTA5Mem.Write(m_navigation + 0x50, v3MyPos);
+                GTA5Mem.Write(m_ped_list + 0x90, v3MyPos);
             }
         }
     }

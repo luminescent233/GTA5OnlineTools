@@ -1,8 +1,8 @@
-﻿using GameOverlay.Drawing;
-using GameOverlay.Windows;
-
-using GTA5OnlineTools.Features.Core;
+﻿using GTA5OnlineTools.Features.Core;
 using GTA5OnlineTools.Features.Data;
+
+using GameOverlay.Drawing;
+using GameOverlay.Windows;
 
 namespace GTA5OnlineTools.Features.SDK;
 
@@ -179,14 +179,14 @@ public class Overlay : IDisposable
                 if (ped_Health <= 0)
                     continue;
 
-                float ped_MaxHealth = GTA5Mem.Read<float>(m_ped_list + 0x2A0);
+                float ped_MaxHealth = GTA5Mem.Read<float>(m_ped_list + 0x284);
                 float ped_HPPercentage = ped_Health / ped_MaxHealth;
 
-                long m_player_info = GTA5Mem.Read<long>(m_ped_list + 0x10C8);
+                long m_player_info = GTA5Mem.Read<long>(m_ped_list + 0x10A8);
                 //if (!Memory.IsValid(m_player_info))
                 //    continue;
 
-                string pedName = GTA5Mem.ReadString(m_player_info + 0xA4, null, 20);
+                string pedName = GTA5Mem.ReadString(m_player_info + 0xA4, 20);
 
                 // 绘制玩家
                 if (!Settings.Overlay.ESP_Player)
@@ -451,7 +451,7 @@ public class Overlay : IDisposable
                         continue;
                     }
 
-                    long ped_offset_1 = GTA5Mem.Read<long>(ped_offset_0 + 0x10C8);
+                    long ped_offset_1 = GTA5Mem.Read<long>(ped_offset_0 + 0x10A8);
                     long pedRID = GTA5Mem.Read<long>(ped_offset_1 + 0x90);
                     if (myRID == pedRID)
                     {
