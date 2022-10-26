@@ -515,7 +515,7 @@ public class Overlay : IDisposable
 
                         if (Convert.ToBoolean(Win32.GetKeyState((int)WinVK.F5) & Win32.KEY_PRESSED))
                         {
-                            Teleport.SetTeleportV3Pos(teleW_pedCoords);
+                            Teleport.SetTeleportPosition(teleW_pedCoords);
                         }
                     }
                 }

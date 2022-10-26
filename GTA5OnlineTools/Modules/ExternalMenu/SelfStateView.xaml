@@ -54,14 +54,14 @@
                             Text="{Binding ElementName=Slider_MaxHealth, Path=Value, StringFormat={}{0:0}}" />
                     </DockPanel>
                     <Slider
-                        Name="Slider_MaxHealth"
+                        Name="Slider_HealthMax"
                         VerticalAlignment="Center"
                         DockPanel.Dock="Right"
                         IsSnapToTickEnabled="True"
                         Maximum="1000"
                         Minimum="0"
                         TickFrequency="1"
-                        ValueChanged="Slider_MaxHealth_ValueChanged" />
+                        ValueChanged="Slider_HealthMax_ValueChanged" />
                 </DockPanel>
                 <!--  护甲值  -->
                 <DockPanel LastChildFill="True">
@@ -106,14 +106,14 @@
                             Text="{Binding ElementName=Slider_Wanted, Path=Value, StringFormat={}{0:0}}" />
                     </DockPanel>
                     <Slider
-                        Name="Slider_Wanted"
+                        Name="Slider_WantedLevel"
                         VerticalAlignment="Center"
                         DockPanel.Dock="Right"
                         IsSnapToTickEnabled="True"
                         Maximum="5"
                         Minimum="0"
                         TickFrequency="1"
-                        ValueChanged="Slider_Wanted_ValueChanged" />
+                        ValueChanged="Slider_WantedLevel_ValueChanged" />
                 </DockPanel>
                 <!--  奔跑速度  -->
                 <DockPanel LastChildFill="True">
@@ -181,14 +181,14 @@
                             Text="{Binding ElementName=Slider_StealthSpeed, Path=Value, StringFormat={}{0:0.0}}" />
                     </DockPanel>
                     <Slider
-                        Name="Slider_StealthSpeed"
+                        Name="Slider_WalkSpeed"
                         VerticalAlignment="Center"
                         DockPanel.Dock="Right"
                         IsSnapToTickEnabled="True"
                         Maximum="10"
                         Minimum="0"
                         TickFrequency="0.1"
-                        ValueChanged="Slider_StealthSpeed_ValueChanged" />
+                        ValueChanged="Slider_WalkSpeed_ValueChanged" />
                 </DockPanel>
             </StackPanel>
 

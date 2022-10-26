@@ -8,7 +8,7 @@ public static class CoreUtil
     /// <summary>
     /// 主窗口标题
     /// </summary>
-    public const string MainAppWindowName = "GTA5线上小助手 支持1.61 完全免费 v";
+    public const string MainAppWindowName = "GTA5线上小助手 支持1.63 完全免费 v";
 
     /// <summary>
     /// 目标进程，默认为GTA5
@@ -28,7 +28,7 @@ public static class CoreUtil
     /// <summary>
     /// 程序客户端最后编译时间
     /// </summary>
-    public static string ClientBuildTime = File.GetLastWriteTime(Process.GetCurrentProcess().MainModule.FileName).ToString();
+    public static string ClientBuildTime = File.GetLastWriteTime(Environment.ProcessPath).ToString();
 
     /// <summary>
     /// 检查更新相关信息

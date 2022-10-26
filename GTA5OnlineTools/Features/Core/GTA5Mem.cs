@@ -114,6 +114,11 @@ public static class GTA5Mem
         if (GTA5ProHandle != IntPtr.Zero)
         {
             Win32.CloseHandle(GTA5ProHandle);
+
+            GTA5Process = null;
+            GTA5WinHandle = IntPtr.Zero;
+            GTA5ProId = 0;
+            GTA5ProBaseAddress = 0;
             GTA5ProHandle = IntPtr.Zero;
 
             General.WorldPTR = 0;
@@ -373,17 +378,17 @@ public static class GTA5Mem
 
     public static long Rip_37(long address)
     {
-        return address + Read<int>(address + 0x03, null) + 0x07;
+        return address + Read<int>(address + 0x03) + 0x07;
     }
 
     public static long Rip_6A(long address)
     {
-        return address + Read<int>(address + 0x06, null) + 0x0A;
+        return address + Read<int>(address + 0x06) + 0x0A;
     }
 
     public static long Rip_389(long address)
     {
-        return address + Read<int>(address + 0x03, null) - 0x89;
+        return address + Read<int>(address + 0x03) - 0x89;
     }
 
     /// <summary>

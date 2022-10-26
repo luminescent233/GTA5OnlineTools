@@ -56,8 +56,8 @@ public static class Offsets
     public static class Player
     {
         public static int[] Health = new int[] { 0x08, 0x280 };
-        public static int[] MaxHealth = new int[] { 0x08, 0x2A0 };
-        public static int[] Armor = new int[] { 0x08, 0x1530 };
+        public static int[] MaxHealth = new int[] { 0x08, 0x284 };
+        public static int[] Armor = new int[] { 0x08, 0x150C };
 
         public static int[] RunSpeed = new int[] { 0x08, 0x10C8, 0xCF0 };
         public static int[] SwimSpeed = new int[] { 0x08, 0x10C8, 0x170 };
@@ -86,11 +86,11 @@ public static class Offsets
 
     public static class Vehicle
     {
-        public static int[] GodMode = new int[] { 0x08, 0xD30, 0x189 };
-        public static int[] CurPassenger = new int[] { 0x08, 0xD30, 0xC62 };
-        public static int[] Invisibility = new int[] { 0x08, 0xD30, 0x2C };            // on 0x01 off 0x27
+        public static int[] GodMode = new int[] { 0x08, 0xD10, 0x189 };
+        public static int[] CurPassenger = new int[] { 0x08, 0xD10, 0xC62 };
+        public static int[] Invisibility = new int[] { 0x08, 0xD10, 0x2C };            // on 0x01 off 0x27
 
-        public static int[] Health = new int[] { 0x08, 0xD30, 0x280 };
+        public static int[] Health = new int[] { 0x08, 0xD10, 0x280 };
 
         //public static int[] VehicleDrawHandler = new int[] { 0x08, 0xD30, 0x48 };
         //public static int[] Vehicle_EMS = new int[] { 0x08, 0xD30, 0x48, 0x3D6 };
@@ -146,14 +146,14 @@ public static class Offsets
     public static int[] VehicleGear = new int[] { 0xFD4 };
     public static int[] VehicleRPM = new int[] { 0xE50 };
 
-    // 角色在载具中，坐标偏移多了个pCVehicle = 0xD30
-    public static int[] VehicleVisualX = new int[] { 0x08, 0xD30, 0x90 };
-    public static int[] VehicleVisualY = new int[] { 0x08, 0xD30, 0x94 };
-    public static int[] VehicleVisualZ = new int[] { 0x08, 0xD30, 0x98 };
+    // 角色在载具中，坐标偏移多了个pCVehicle = 0xD10
+    public static int[] VehicleVisualX = new int[] { 0x08, 0xD10, 0x90 };
+    public static int[] VehicleVisualY = new int[] { 0x08, 0xD10, 0x94 };
+    public static int[] VehicleVisualZ = new int[] { 0x08, 0xD10, 0x98 };
 
-    public static int[] VehiclePositionX = new int[] { 0x08, 0xD30, 0x30, 0x50 };
-    public static int[] VehiclePositionY = new int[] { 0x08, 0xD30, 0x30, 0x54 };
-    public static int[] VehiclePositionZ = new int[] { 0x08, 0xD30, 0x30, 0x58 };
+    public static int[] VehiclePositionX = new int[] { 0x08, 0xD10, 0x30, 0x50 };
+    public static int[] VehiclePositionY = new int[] { 0x08, 0xD10, 0x30, 0x54 };
+    public static int[] VehiclePositionZ = new int[] { 0x08, 0xD10, 0x30, 0x58 };
 
     ////////////////////////////////////////////////////////////////////
 
@@ -174,4 +174,81 @@ public static class Offsets
     public static int[] Crosshair_TPP_Location_Z = new int[] { 0x0, 0x3c0, 0x3F8 };
 
     public static int[] Fov_Zoom = new int[] { 0x0, 0x3c0, 0x10, 0x30 };
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    // CPedFactory (WorldPTR)
+    public const int CPed = 0x08;
+
+    // CPed Offsets
+    public const int CPed_EntityType = 0x2B;                // int 156:Player 152:Other
+    public const int CPed_Invisible = 0x2C;                 // byte 0x01:on 0x24:off
+    public const int CPed_CNavigation = 0x30;
+    public const int CPed_VisualX = 0x90;                   // float, vector3
+    public const int CPed_VisualY = 0x94;
+    public const int CPed_VisualZ = 0x98;
+    public const int CPed_Proof = 0x188;
+    public const int CPed_God = 0x189;                      // int8 0:false 1:true
+    public const int CPed_Hostility = 0x18C;
+    public const int CPed_Health = 0x280;                   // float
+    public const int CPed_HealthMax = 0x284;
+    public const int CPed_CVehicle = 0xD10;
+    public const int CPed_InVehicle = 0xE32;                // int 0:false 1:true
+    public const int CPed_Ragdoll = 0x1098;                 // int 32:false 1/0:true
+    public const int CPed_CPlayerInfo = 0x10A8;
+    public const int CPed_CPedWeaponManager = 0x10B8;
+    public const int CPed_Seatbelt = 0x143C;                // byte 55:false 56:true
+    public const int CPed_Armor = 0x150C;                   // float, 50:Online 100:Story Mode
+
+    // CPed CNavigation Offsets
+    public const int CPed_CNavigation_RightX = 0x20;        // float, vector3
+    public const int CPed_CNavigation_RightY = 0x24;
+    public const int CPed_CNavigation_RightZ = 0x28;
+    public const int CPed_CNavigation_ForwardX = 0x30;      // float, vector3
+    public const int CPed_CNavigation_ForwardY = 0x34;
+    public const int CPed_CNavigation_ForwardZ = 0x38;
+    public const int CPed_CNavigation_UpX = 0x40;           // float, vector3
+    public const int CPed_CNavigation_UpY = 0x44;
+    public const int CPed_CNavigation_UpZ = 0x48;
+    public const int CPed_CNavigation_PositionX = 0x50;     // float, vector3
+    public const int CPed_CNavigation_PositionY = 0x54;
+    public const int CPed_CNavigation_PositionZ = 0x58;
+
+    // CPed CVehicle Offsets
+    public const int CPed_CVehicle_CModelInfo = 0x20;
+    public const int CPed_CVehicle_Invisible = 0x2C;        // byte 0x01:on 0x27:off
+    public const int CPed_CVehicle_CNavigation = 0x30;
+    public const int CPed_CVehicle_VisualX = 0x90;          // float, vector3
+    public const int CPed_CVehicle_VisualY = 0x94;
+    public const int CPed_CVehicle_VisualZ = 0x98;
+    public const int CPed_CVehicle_State = 0xD8;            // int 0:Player 1:NPC 2:Unused 3:Destroyed
+    public const int CPed_CVehicle_God = 0x189;             // int8 0:false 1:true
+    public const int CPed_CVehicle_Passenger = 0xC42;       // byte 载具座位人数
+
+    // CPed CVehicle CModelInfo Offsets
+    public const int CPed_CVehicle_CModelInfo_ModelHash = 0x18;         // int
+    public const int CPed_CVehicle_CModelInfo_CamDist = 0x38;           // float
+    public const int CPed_CVehicle_CModelInfo_Name = 0x298;             // string [10]
+    public const int CPed_CVehicle_CModelInfo_Maker = 0x2A4;            // string [10]
+    public const int CPed_CVehicle_CModelInfo_Extras = 0x58B;           // short
+    public const int CPed_CVehicle_CModelInfo_Parachute = 0x58C;
+
+    // CPed CVehicle CNavigation Offsets
+    public const int CPed_CVehicle_CNavigation_PositionX = 0x50;        // float, vector3
+    public const int CPed_CVehicle_CNavigation_PositionY = 0x54;
+    public const int CPed_CVehicle_CNavigation_PositionZ = 0x58;
+
+    // CPed CPlayerInfo Offsets
+    public const int CPed_CPlayerInfo_Name = 0xA4;                  // string[20]
+    public const int CPed_CPlayerInfo_SwimSpeed = 0x170;            // float
+    public const int CPed_CPlayerInfo_FrameFlags = 0x219;
+    public const int CPed_CPlayerInfo_WalkSpeed = 0x18C;
+    public const int CPed_CPlayerInfo_WantedCanChange = 0x73C;      // float
+    public const int CPed_CPlayerInfo_WantedLevel = 0x888;          // int8
+    public const int CPed_CPlayerInfo_RunSpeed = 0xCF0;             // float
+    public const int CPed_CPlayerInfo_Stamina = 0xCF4;
+    public const int CPed_CPlayerInfo_StaminaRegen = 0xCF8;
+
+    // CPed CPedWeaponManager Offsets
+
 }

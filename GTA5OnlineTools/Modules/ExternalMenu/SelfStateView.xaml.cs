@@ -169,53 +169,120 @@ public partial class SelfStateView : UserControl
     {
         while (Globals.IsAppRunning)
         {
-            float oHealth = GTA5Mem.Read<float>(General.WorldPTR, Offsets.Player.Health);
-            float oMaxHealth = GTA5Mem.Read<float>(General.WorldPTR, Offsets.Player.MaxHealth);
-            float oArmor = GTA5Mem.Read<float>(General.WorldPTR, Offsets.Player.Armor);
+            long pCPedFactory = GTA5Mem.Read<long>(General.WorldPTR);
+            long pCPed = GTA5Mem.Read<long>(pCPedFactory + Offsets.CPed);
+            long pCPlayerInfo = GTA5Mem.Read<long>(pCPed + Offsets.CPed_CPlayerInfo);
+            long pCNavigation = GTA5Mem.Read<long>(pCPed + Offsets.CPed_CNavigation);
 
-            byte oWanted = GTA5Mem.Read<byte>(General.WorldPTR, Offsets.Player.Wanted);
-            float oRunSpeed = GTA5Mem.Read<float>(General.WorldPTR, Offsets.Player.RunSpeed);
-            float oSwimSpeed = GTA5Mem.Read<float>(General.WorldPTR, Offsets.Player.SwimSpeed);
-            float oStealthSpeed = GTA5Mem.Read<float>(General.WorldPTR, Offsets.Player.StealthSpeed);
+            byte oInVehicle = GTA5Mem.Read<byte>(pCPed + Offsets.CPed_InVehicle);
 
-            byte oInVehicle = GTA5Mem.Read<byte>(General.WorldPTR, Offsets.InVehicle);
-            byte oCurPassenger = GTA5Mem.Read<byte>(General.WorldPTR, Offsets.Vehicle.CurPassenger);
+            float oGod = GTA5Mem.Read<float>(pCPed + Offsets.CPed_God);
+            float oHealth = GTA5Mem.Read<float>(pCPed + Offsets.CPed_Health);
+            float oHealthMax = GTA5Mem.Read<float>(pCPed + Offsets.CPed_HealthMax);
+            float oArmor = GTA5Mem.Read<float>(pCPed + Offsets.CPed_Armor);
+            byte oRagdoll = GTA5Mem.Read<byte>(pCPed + Offsets.CPed_Ragdoll);
+            byte oSeatbelt = GTA5Mem.Read<byte>(pCPed + Offsets.CPed_Seatbelt);
 
-            ////////////////////////////////
+            byte oWantedLevel = GTA5Mem.Read<byte>(pCPlayerInfo + Offsets.CPed_CPlayerInfo_WantedLevel);
+            float oRunSpeed = GTA5Mem.Read<float>(pCPlayerInfo + Offsets.CPed_CPlayerInfo_RunSpeed);
+            float oSwimSpeed = GTA5Mem.Read<float>(pCPlayerInfo + Offsets.CPed_CPlayerInfo_SwimSpeed);
+            float oWalkSpeed = GTA5Mem.Read<float>(pCPlayerInfo + Offsets.CPed_CPlayerInfo_WalkSpeed);
 
+            ////////////////////////////////////////////////////////////////
+
+            // 玩家无敌
             if (Settings.Player.GodMode)
-                Player.GodMode(true);
+            {
+                if (pCPed == 0x00)
+                    GTA5Mem.Write<byte>(pCPed + Offsets.CPed_God, 0x01);
+            }
+            else
+            {
+                if (pCPed == 0x01)
+                    GTA5Mem.Write<byte>(pCPed + Offsets.CPed_God, 0x00);
+            }
 
+            // 挂机防踢
             if (Settings.Player.AntiAFK)
-                Player.AntiAFK(true);
+            {
+                if (Hacks.ReadGA<int>(262145 + 87) == 120000)
+                    Player.AntiAFK(true);
+            }
+            else
+            {
+                if (Hacks.ReadGA<int>(262145 + 87) == 99999999)
+                    Player.AntiAFK(false);
+            }
 
+            // 无布娃娃
             if (Settings.Player.NoRagdoll)
-                Player.NoRagdoll(true);
+            {
+                if (oRagdoll == 0x20)
+                    GTA5Mem.Write<byte>(pCPed + Offsets.CPed_Ragdoll, 0x01);
+            }
+            else
+            {
+                if (oRagdoll == 0x01)
+                    GTA5Mem.Write<byte>(pCPed + Offsets.CPed_Ragdoll, 0x20);
+            }
 
+            // 玩家无碰撞体积
             if (Settings.Player.NoCollision)
-                GTA5Mem.Write(General.WorldPTR, Offsets.Player.NoCollision, -1.0f);
+            {
+                long pointer = GTA5Mem.Read<long>(pCNavigation + 0x10);
+                pointer = GTA5Mem.Read<long>(pointer + 0x20);
+                pointer = GTA5Mem.Read<long>(pointer + 0x70);
+                pointer = GTA5Mem.Read<long>(pointer + 0x00);
+                GTA5Mem.Write(pointer + 0x2C, -1.0f);
+            }
 
-            if (Settings.Vehicle.VehicleGodMode)
-                GTA5Mem.Write<byte>(General.WorldPTR, Offsets.Vehicle.GodMode, 0x01);
-
+            // 安全带
             if (Settings.Vehicle.VehicleSeatbelt)
-                GTA5Mem.Write<byte>(General.WorldPTR, Offsets.Player.Seatbelt, 0xC9);
+            {
+                if (oSeatbelt == 0xC8)
+                    GTA5Mem.Write<byte>(pCPed + Offsets.CPed_Seatbelt, 0xC9);
+            }
+            else
+            {
+                if (oSeatbelt == 0xC9)
+                    GTA5Mem.Write<byte>(pCPed + Offsets.CPed_Seatbelt, 0xC8);
+            }
 
-            ////////////////////////////////
+            ////////////////////////////////////////////////////////////////
+
+            if (oInVehicle != 0x00)
+            {
+                long pCVehicle = GTA5Mem.Read<long>(pCPed + Offsets.CPed_CVehicle);
+                byte oVehicleGod = GTA5Mem.Read<byte>(pCVehicle + Offsets.CPed_CVehicle_God);
+
+                // 载具无敌
+                if (Settings.Vehicle.VehicleGodMode)
+                {
+                    if (oVehicleGod == 0x00)
+                        GTA5Mem.Write<byte>(pCVehicle + Offsets.CPed_CVehicle_God, 0x01);
+                }
+                else
+                {
+                    if (oVehicleGod == 0x01)
+                        GTA5Mem.Write<byte>(pCVehicle + Offsets.CPed_CVehicle_God, 0x00);
+                }
+            }
+
+            ////////////////////////////////////////////////////////////////
 
             this.Dispatcher.BeginInvoke(() =>
             {
                 if (Slider_Health.Value != oHealth)
                     Slider_Health.Value = oHealth;
 
-                if (Slider_MaxHealth.Value != oMaxHealth)
-                    Slider_MaxHealth.Value = oMaxHealth;
+                if (Slider_HealthMax.Value != oHealthMax)
+                    Slider_HealthMax.Value = oHealthMax;
 
                 if (Slider_Armor.Value != oArmor)
                     Slider_Armor.Value = oArmor;
 
-                if (Slider_Wanted.Value != oWanted)
-                    Slider_Wanted.Value = oWanted;
+                if (Slider_WantedLevel.Value != oWantedLevel)
+                    Slider_WantedLevel.Value = oWantedLevel;
 
                 if (Slider_RunSpeed.Value != oRunSpeed)
                     Slider_RunSpeed.Value = oRunSpeed;
@@ -223,8 +290,8 @@ public partial class SelfStateView : UserControl
                 if (Slider_SwimSpeed.Value != oSwimSpeed)
                     Slider_SwimSpeed.Value = oSwimSpeed;
 
-                if (Slider_StealthSpeed.Value != oStealthSpeed)
-                    Slider_StealthSpeed.Value = oStealthSpeed;
+                if (Slider_WalkSpeed.Value != oWalkSpeed)
+                    Slider_WalkSpeed.Value = oWalkSpeed;
             });
 
             Thread.Sleep(1000);
@@ -253,37 +320,37 @@ public partial class SelfStateView : UserControl
 
     private void Slider_Health_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
     {
-        GTA5Mem.Write<float>(General.WorldPTR, Offsets.Player.Health, (float)Slider_Health.Value);
+        Player.Health((float)Slider_Health.Value);
     }
 
-    private void Slider_MaxHealth_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+    private void Slider_HealthMax_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
     {
-        GTA5Mem.Write<float>(General.WorldPTR, Offsets.Player.MaxHealth, (float)Slider_MaxHealth.Value);
+        Player.HealthMax((float)Slider_HealthMax.Value);
     }
 
     private void Slider_Armor_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
     {
-        GTA5Mem.Write<float>(General.WorldPTR, Offsets.Player.Armor, (float)Slider_Armor.Value);
+        Player.Armor((float)Slider_Armor.Value);
     }
 
-    private void Slider_Wanted_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+    private void Slider_WantedLevel_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
     {
-        GTA5Mem.Write<byte>(General.WorldPTR, Offsets.Player.Wanted, (byte)Slider_Wanted.Value);
+        Player.WantedLevel((byte)Slider_WantedLevel.Value);
     }
 
     private void Slider_RunSpeed_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
     {
-        GTA5Mem.Write<float>(General.WorldPTR, Offsets.Player.RunSpeed, (float)Slider_RunSpeed.Value);
+        Player.RunSpeed((float)Slider_RunSpeed.Value);
     }
 
     private void Slider_SwimSpeed_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
     {
-        GTA5Mem.Write<float>(General.WorldPTR, Offsets.Player.SwimSpeed, (float)Slider_SwimSpeed.Value);
+        Player.SwimSpeed((float)Slider_SwimSpeed.Value);
     }
 
-    private void Slider_StealthSpeed_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+    private void Slider_WalkSpeed_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
     {
-        GTA5Mem.Write<float>(General.WorldPTR, Offsets.Player.StealthSpeed, (float)Slider_StealthSpeed.Value);
+        Player.WalkSpeed((float)Slider_WalkSpeed.Value);
     }
 
     private void CheckBox_PlayerGodMode_Click(object sender, RoutedEventArgs e)
@@ -300,7 +367,7 @@ public partial class SelfStateView : UserControl
 
     private void CheckBox_Invisibility_Click(object sender, RoutedEventArgs e)
     {
-        Player.Invisibility(CheckBox_Invisibility.IsChecked == true);
+        Player.Invisible(CheckBox_Invisibility.IsChecked == true);
     }
 
     private void CheckBox_UndeadOffRadar_Click(object sender, RoutedEventArgs e)

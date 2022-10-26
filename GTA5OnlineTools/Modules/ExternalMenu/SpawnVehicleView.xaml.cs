@@ -103,7 +103,7 @@ public partial class SpawnVehicleView : UserControl
 
     private void CheckBox_VehicleInvisibility_Click(object sender, RoutedEventArgs e)
     {
-        Vehicle.Invisibility(CheckBox_VehicleInvisibility.IsChecked == true);
+        Vehicle.Invisible(CheckBox_VehicleInvisibility.IsChecked == true);
     }
 
     private void Button_FillVehicleHealth_Click(object sender, RoutedEventArgs e)

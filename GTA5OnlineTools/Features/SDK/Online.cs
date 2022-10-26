@@ -21,7 +21,7 @@ public static class Online
     /// <param name="sessionID">战局ID</param>
     public static void LoadSession(int sessionID)
     {
-        Task.Run(() =>
+        Task.Run(async () =>
         {
             GTA5Mem.SetForegroundWindow();
 
@@ -38,7 +38,7 @@ public static class Online
 
             // 切换战局状态
             Hacks.WriteGA<int>(Offsets.InitSession_State, 1);
-            Task.Delay(200).Wait();
+            await Task.Delay(200);
             Hacks.WriteGA<int>(Offsets.InitSession_State, 0);
         });
     }
@@ -48,10 +48,10 @@ public static class Online
     /// </summary>
     public static void EmptySession()
     {
-        Task.Run(() =>
+        Task.Run(async () =>
         {
             ProcessMgr.SuspendProcess(GTA5Mem.GTA5ProId);
-            Task.Delay(10000).Wait();
+            await Task.Delay(10000);
             ProcessMgr.ResumeProcess(GTA5Mem.GTA5ProId);
         });
     }

@@ -123,7 +123,7 @@ public partial class PlayerListView : UserControl
             var index = ListBox_PlayerList.SelectedIndex;
             if (index != -1)
             {
-                Teleport.SetTeleportV3Pos(playerData[index].PlayerInfo.V3Pos);
+                Teleport.SetTeleportPosition(playerData[index].PlayerInfo.V3Pos);
             }
         }
     }

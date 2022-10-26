@@ -406,7 +406,7 @@ public partial class HeistPrepsWindow
         int index = HeistPrepsConfig.FastTeleport.FindIndex(t => t.Name == str);
         if (index != -1)
         {
-            Teleport.SetTeleportV3Pos(HeistPrepsConfig.FastTeleport[index].Position);
+            Teleport.SetTeleportPosition(HeistPrepsConfig.FastTeleport[index].Position);
         }
 
         AppendTextBox($"传送到 {str} 成功");

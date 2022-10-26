@@ -5,14 +5,34 @@ namespace GTA5OnlineTools.Features.SDK;
 public static class Vehicle
 {
     /// <summary>
+    /// 玩家是否在载具中
+    /// </summary>
+    public static bool IsInVehicle()
+    {
+        long pCPedFactory = GTA5Mem.Read<long>(General.WorldPTR);
+        long pCPed = GTA5Mem.Read<long>(pCPedFactory + Offsets.CPed);
+        byte oInVehicle = GTA5Mem.Read<byte>(pCPed + Offsets.CPed_InVehicle);
+
+        return oInVehicle == 0x01;
+    }
+
+    /// <summary>
     /// 载具无敌模式
     /// </summary>
     public static void GodMode(bool isEnable)
     {
-        if (isEnable)
-            GTA5Mem.Write<byte>(General.WorldPTR, Offsets.Vehicle.GodMode, 0x01);
-        else
-            GTA5Mem.Write<byte>(General.WorldPTR, Offsets.Vehicle.GodMode, 0x00);
+        long pCPedFactory = GTA5Mem.Read<long>(General.WorldPTR);
+        long pCPed = GTA5Mem.Read<long>(pCPedFactory + Offsets.CPed);
+        byte oInVehicle = GTA5Mem.Read<byte>(pCPed + Offsets.CPed_InVehicle);
+
+        if (oInVehicle == 0x01)
+        {
+            long pCVehicle = GTA5Mem.Read<long>(pCPed + Offsets.CPed_CVehicle);
+            if (isEnable)
+                GTA5Mem.Write<byte>(pCVehicle + Offsets.CPed_CVehicle_God, 0x01);
+            else
+                GTA5Mem.Write<byte>(pCVehicle + Offsets.CPed_CVehicle_God, 0x00);
+        }
     }
 
     /// <summary>
@@ -20,21 +40,27 @@ public static class Vehicle
     /// </summary>
     public static void Seatbelt(bool isEnable)
     {
+        long pCPedFactory = GTA5Mem.Read<long>(General.WorldPTR);
+        long pCPed = GTA5Mem.Read<long>(pCPedFactory + Offsets.CPed);
+
         if (isEnable)
-            GTA5Mem.Write<byte>(General.WorldPTR, Offsets.Player.Seatbelt, 0xC9);
+            GTA5Mem.Write<byte>(pCPed + Offsets.CPed_Seatbelt, 0xC9);
         else
-            GTA5Mem.Write<byte>(General.WorldPTR, Offsets.Player.Seatbelt, 0xC8);
+            GTA5Mem.Write<byte>(pCPed + Offsets.CPed_Seatbelt, 0xC8);
     }
 
     /// <summary>
     /// 载具隐形
     /// </summary>
-    public static void Invisibility(bool isEnable)
+    public static void Invisible(bool isEnable)
     {
+        long pCPedFactory = GTA5Mem.Read<long>(General.WorldPTR);
+        long pCPed = GTA5Mem.Read<long>(pCPedFactory + Offsets.CPed);
+
         if (isEnable)
-            GTA5Mem.Write<byte>(General.WorldPTR, Offsets.Vehicle.Invisibility, 0x01);
+            GTA5Mem.Write<byte>(pCPed + Offsets.CPed_CVehicle_Invisible, 0x01);
         else
-            GTA5Mem.Write<byte>(General.WorldPTR, Offsets.Vehicle.Invisibility, 0x27);
+            GTA5Mem.Write<byte>(pCPed + Offsets.CPed_CVehicle_Invisible, 0x27);
     }
 
     /// <summary>

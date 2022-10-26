@@ -294,7 +294,7 @@ public partial class WorldFunctionView : UserControl
     {
         AudioUtil.PlayClickSound();
 
-        Teleport.SetTeleportV3Pos(TempData.TCode);
+        Teleport.SetTeleportPosition(TempData.TCode);
 
         NotifierHelper.Show(NotifierType.Success, "传送到自定义坐标成功");
     }
