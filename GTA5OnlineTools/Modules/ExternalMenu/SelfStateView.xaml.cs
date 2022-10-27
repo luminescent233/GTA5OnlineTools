@@ -176,7 +176,7 @@ public partial class SelfStateView : UserControl
 
             byte oInVehicle = GTA5Mem.Read<byte>(pCPed + Offsets.CPed_InVehicle);
 
-            float oGod = GTA5Mem.Read<byte>(pCPed + Offsets.CPed_God);
+            byte oGod = GTA5Mem.Read<byte>(pCPed + Offsets.CPed_God);
             float oHealth = GTA5Mem.Read<float>(pCPed + Offsets.CPed_Health);
             float oHealthMax = GTA5Mem.Read<float>(pCPed + Offsets.CPed_HealthMax);
             float oArmor = GTA5Mem.Read<float>(pCPed + Offsets.CPed_Armor);
