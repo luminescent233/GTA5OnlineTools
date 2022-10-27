@@ -108,16 +108,6 @@ public partial class LoadWindow
                         FileUtil.ExtractResFile(FileUtil.Resource_Inject_Path + "YimMenu.dll", FileUtil.D_Inject_Path + "YimMenu.dll");
                 }
 
-                if (!File.Exists(FileUtil.D_Inject_Path + "BlcokMsg.dll"))
-                {
-                    FileUtil.ExtractResFile(FileUtil.Resource_Inject_Path + "BlcokMsg.dll", FileUtil.D_Inject_Path + "BlcokMsg.dll");
-                }
-                else
-                {
-                    if (!FileUtil.IsOccupied(FileUtil.D_Inject_Path + "BlcokMsg.dll"))
-                        FileUtil.ExtractResFile(FileUtil.Resource_Inject_Path + "BlcokMsg.dll", FileUtil.D_Inject_Path + "BlcokMsg.dll");
-                }
-
                 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 
                 // 提前预加载转换字库

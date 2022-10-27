@@ -180,10 +180,10 @@ public partial class DrawWindow : Window
         {
             long pCVehicle = GTA5Mem.Read<long>(pCPed + Offsets.CPed_CVehicle);
 
-            var v3_1 = GTA5Mem.Read<Vector3>(pCVehicle + 0x7F0);
+            var v3_1 = GTA5Mem.Read<Vector3>(pCVehicle + 0x7D0);
             var VehicleSpeed1 = Math.Sqrt(Math.Pow(v3_1.X, 2) + Math.Pow(v3_1.Y, 2) + Math.Pow(v3_1.Z, 2));
 
-            var v3_2 = GTA5Mem.Read<Vector3>(pCVehicle + 0x7F0);
+            var v3_2 = GTA5Mem.Read<Vector3>(pCVehicle + 0x7D0);
             var VehicleSpeed2 = Math.Sqrt(Math.Pow(v3_2.X, 2) + Math.Pow(v3_2.Y, 2) + Math.Pow(v3_2.Z, 2));
 
             var VehicleSpeed = VehicleSpeed1 + (VehicleSpeed2 - VehicleSpeed1) * 0.5;

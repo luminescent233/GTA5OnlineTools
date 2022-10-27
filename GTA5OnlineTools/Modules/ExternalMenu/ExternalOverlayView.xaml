@@ -102,16 +102,16 @@
                 <WrapPanel Orientation="Horizontal">
                     <RadioButton
                         x:Name="RadioButton_AimBot_BoneIndex_0"
-                        Click="RadioButton_AimBot_BoneIndex_0_Click"
+                        Click="RadioButton_AimBot_BoneIndex_Click"
                         Content="头部"
                         IsChecked="True" />
                     <RadioButton
                         x:Name="RadioButton_AimBot_BoneIndex_7"
-                        Click="RadioButton_AimBot_BoneIndex_0_Click"
+                        Click="RadioButton_AimBot_BoneIndex_Click"
                         Content="颈部" />
                     <RadioButton
                         x:Name="RadioButton_AimBot_BoneIndex_8"
-                        Click="RadioButton_AimBot_BoneIndex_0_Click"
+                        Click="RadioButton_AimBot_BoneIndex_Click"
                         Content="腹部" />
                 </WrapPanel>
             </GroupBox>

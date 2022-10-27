@@ -8,8 +8,6 @@ public static class Settings
 
     public static float Forward = 1.5f;
 
-    public static int ProduceTime = 5;
-
     public static class Player
     {
         public static bool GodMode = false;

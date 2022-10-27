@@ -1,4 +1,5 @@
 ﻿using GTA5OnlineTools.Common.Utils;
+using GTA5OnlineTools.Common.Helper;
 using GTA5OnlineTools.Features.SDK;
 using GTA5OnlineTools.Features.Data;
 using GTA5OnlineTools.Features.Core;
@@ -21,7 +22,7 @@ public partial class ExternalOverlayView : UserControl
 
     private void ExternalMenuWindow_WindowClosingEvent()
     {
-        overlay?.Dispose();
+        CloseESP();
     }
 
     private void Button_Overaly_Run_Click(object sender, RoutedEventArgs e)
@@ -40,8 +41,7 @@ public partial class ExternalOverlayView : UserControl
         }
         else
         {
-            MessageBox.Show("ESP程序已经运行了，请勿重复启动",
-                "警告", MessageBoxButton.OK, MessageBoxImage.Warning);
+            NotifierHelper.Show(NotifierType.Warning, "ESP程序已经运行了，请勿重复启动");
         }
     }
 
@@ -266,7 +266,7 @@ public partial class ExternalOverlayView : UserControl
         }
     }
 
-    private void RadioButton_AimBot_BoneIndex_0_Click(object sender, RoutedEventArgs e)
+    private void RadioButton_AimBot_BoneIndex_Click(object sender, RoutedEventArgs e)
     {
         if (RadioButton_AimBot_BoneIndex_0.IsChecked == true)
         {

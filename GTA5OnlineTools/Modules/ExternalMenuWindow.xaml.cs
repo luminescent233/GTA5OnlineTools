@@ -198,7 +198,7 @@ public partial class ExternalMenuWindow
         if (Settings.ShowWindow)
         {
             //Show();
-            WindowState = WindowState.Normal;
+            this.WindowState = WindowState.Normal;
             this.Focus();
 
             if (CheckBox_IsTopMost.IsChecked == false)
@@ -213,7 +213,7 @@ public partial class ExternalMenuWindow
         else
         {
             //Hide();
-            WindowState = WindowState.Minimized;
+            this.WindowState = WindowState.Minimized;
 
             Win32.GetCursorPos(out ThisWinPOINT);
             GTA5Mem.SetForegroundWindow();

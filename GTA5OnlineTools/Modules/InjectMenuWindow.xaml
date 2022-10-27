@@ -35,71 +35,9 @@
 
     <UniformGrid Columns="2">
         <!--  面板1  -->
-        <DockPanel>
-            <ui:UiLabelEmoji Content="关键词列表" DockPanel.Dock="Top" />
-            <ListBox
-                x:Name="ListBox_BlcokWords"
-                Margin="5"
-                DockPanel.Dock="Bottom"
-                SelectedIndex="0" />
-        </DockPanel>
-        <!--  面板2  -->
-        <StackPanel>
-            <ui:UiLabelEmoji Content="增加屏蔽关键词" />
-            <DockPanel LastChildFill="True">
-                <ui:UiButtonEmoji
-                    x:Name="Button_AddBlcokWords"
-                    Margin="0,5,5,5"
-                    Click="Button_AddBlcokWords_Click"
-                    Content="增加"
-                    DockPanel.Dock="Right"
-                    Emoji="➕" />
-                <ui:UiTextBoxHint
-                    x:Name="TextBox_InputBlcokWord"
-                    DockPanel.Dock="Left"
-                    Hint="请输入关键词" />
-            </DockPanel>
-            <ui:UiButtonEmoji
-                x:Name="Button_RemoveBlcokWords"
-                Margin="5,0,5,5"
-                Click="Button_RemoveBlcokWords_Click"
-                Content="删除选中项"
-                Emoji="🗑"
-                Foreground="#FF8C00" />
-            <UniformGrid Columns="2">
-                <ui:UiButtonEmoji
-                    x:Name="Button_SaveBlcokWords"
-                    Margin="5,0,2,5"
-                    Click="Button_SaveBlcokWords_Click"
-                    Content="保存当前敏感词列表"
-                    Emoji="💾" />
-                <ui:UiButtonEmoji
-                    x:Name="Button_DefaultBlcokWords"
-                    Margin="2,0,5,5"
-                    Click="Button_DefaultBlcokWords_Click"
-                    Content="使用预设敏感词列表"
-                    Emoji="💽" />
-            </UniformGrid>
 
-            <ui:UiLabelEmoji Content="启用功能" Emoji="☕" />
-            <ui:UiButtonEmoji
-                x:Name="Button_InjectGTA5GameProcess"
-                Click="Button_InjectGTA5Process_Click"
-                Content="注入GTA5游戏进程"
-                Emoji="💉" />
-            <TextBlock Style="{StaticResource TextBlockStyle_Hint}">
-                提示：关键词如何使用？假如我输入淘宝，那么只要含有淘宝这两个字的聊天栏和手机短信都会被拦截不显示
-            </TextBlock>
-            <TextBlock Style="{StaticResource TextBlockStyle_Hint}">
-                提示：注入成功后会有滴一声提示音，按END键卸载注入
-            </TextBlock>
-            <TextBlock Style="{StaticResource TextBlockStyle_Hint}">
-                提示：如果要修改过滤关键词，请先保存然后卸载注入后重新注入，切换战局生效
-            </TextBlock>
-            <TextBlock Style="{StaticResource TextBlockStyle_Hint}">
-                提示：英文不区分大小写，QQ、qq、Qq、qQ输入qq一样都可以拦截，关键词尽量精简
-            </TextBlock>
-        </StackPanel>
+        <!--  面板2  -->
+
 
     </UniformGrid>
 

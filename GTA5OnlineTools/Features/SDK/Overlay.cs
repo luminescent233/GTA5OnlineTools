@@ -53,13 +53,15 @@ public class Overlay : IDisposable
         _window.DrawGraphics += _window_DrawGraphics;
         _window.SetupGraphics += _window_SetupGraphics;
 
-        var thread0 = new Thread(AimbotThread);
-        thread0.IsBackground = true;
-        thread0.Start();
+        new Thread(AimbotThread)
+        {
+            IsBackground = true
+        }.Start();
 
-        var thread1 = new Thread(IsDrawGameOverlay);
-        thread1.IsBackground = true;
-        thread1.Start();
+        new Thread(IsDrawGameOverlay)
+        {
+            IsBackground = true
+        }.Start();
     }
 
     private void IsDrawGameOverlay()
@@ -71,7 +73,7 @@ public class Overlay : IDisposable
             else
                 isDraw = true;
 
-            Thread.Sleep(500);
+            Thread.Sleep(1000);
         }
     }
 
@@ -397,15 +399,22 @@ public class Overlay : IDisposable
         }
     }
 
+    /// <summary>
+    /// 窗口移动跟随
+    /// </summary>
+    /// <param name="gfx"></param>
     private void ResizeWindow(Graphics gfx)
     {
-        // 窗口移动跟随
         windowData = GTA5Mem.GetGameWindowData();
-        _window.X = windowData.Left;
-        _window.Y = windowData.Top;
-        _window.Width = windowData.Width;
-        _window.Height = windowData.Height;
-        gfx.Resize(_window.Width, _window.Height);
+
+        if (_window.X != windowData.Left)
+        {
+            _window.X = windowData.Left;
+            _window.Y = windowData.Top;
+            _window.Width = windowData.Width;
+            _window.Height = windowData.Height;
+            gfx.Resize(_window.Width, _window.Height);
+        }
     }
 
     private void AimbotThread()
@@ -415,11 +424,16 @@ public class Overlay : IDisposable
             if (Settings.Overlay.AimBot_Enabled)
             {
                 float aimBot_Min_Distance = Settings.Overlay.AimBot_Fov;
-                Vector3 aimBot_ViewAngles = new Vector3 { X = 0, Y = 0, Z = 0 };
-                Vector3 teleW_pedCoords = new Vector3 { X = 0, Y = 0, Z = 0 };
+                Vector3 aimBot_ViewAngles = new() { X = 0, Y = 0, Z = 0 };
+                Vector3 teleW_pedCoords = new() { X = 0, Y = 0, Z = 0 };
+
+                long pCPedFactory = GTA5Mem.Read<long>(General.WorldPTR);
+                long pCPed = GTA5Mem.Read<long>(pCPedFactory + Offsets.CPed);
+                byte oInVehicle = GTA5Mem.Read<byte>(pCPed + Offsets.CPed_InVehicle);
+                long pCPlayerInfo = GTA5Mem.Read<long>(pCPed + Offsets.CPed_CPlayerInfo);
 
                 // 玩家自己RID
-                long myRID = GTA5Mem.Read<long>(General.WorldPTR, Offsets.RID);
+                long myRID = GTA5Mem.Read<long>(pCPlayerInfo + Offsets.CPed_CPlayerInfo_RockstarID);
 
                 // 相机坐标
                 long pCCameraPTR = GTA5Mem.Read<long>(General.CCameraPTR);
@@ -428,9 +442,8 @@ public class Overlay : IDisposable
                 Vector3 cameraV3Pos = GTA5Mem.Read<Vector3>(pCCameraPTR_0 + 0x60);
 
                 // 是否是第一人称，当Fov=0为第一人称或者开镜状态，第三人称50
-                float isFPP = GTA5Mem.Read<float>(pCCameraPTR_0 + 0x10, new int[] { 0x30 });
-                // 玩家是否处于载具中，或者掩护状态（载具/掩体=0，正常=16）
-                byte isPlayerInCar = GTA5Mem.Read<byte>(General.WorldPTR, Offsets.InVehicle);
+                long offset = GTA5Mem.Read<long>(pCCameraPTR_0 + 0x10);
+                float isFPP = GTA5Mem.Read<float>(offset + 0x30);
 
                 // Ped实体
                 long pReplayInterfacePTR = GTA5Mem.Read<long>(General.ReplayInterfacePTR);
@@ -458,7 +471,7 @@ public class Overlay : IDisposable
                         continue;
                     }
 
-                    string pedName = GTA5Mem.ReadString(ped_offset_1 + 0xA4, null, 20);
+                    string pedName = GTA5Mem.ReadString(ped_offset_1 + 0xA4, 20);
 
                     // 绘制玩家
                     if (!Settings.Overlay.ESP_Player)
@@ -493,7 +506,7 @@ public class Overlay : IDisposable
                 }
 
                 // 玩家处于载具或者掩护状态中不启用自瞄，无目标取消自瞄
-                if (isPlayerInCar == 0 && aimBot_Min_Distance != Settings.Overlay.AimBot_Fov)
+                if (oInVehicle != 0x01 && aimBot_Min_Distance != Settings.Overlay.AimBot_Fov)
                 {
                     // 默认按住Ctrl键自瞄
                     if (Convert.ToBoolean(Win32.GetKeyState((int)Settings.Overlay.AimBot_Key) & Win32.KEY_PRESSED))
@@ -501,16 +514,12 @@ public class Overlay : IDisposable
                         if (isFPP == 0)
                         {
                             // 第一人称及开镜自瞄
-                            GTA5Mem.Write<float>(pCCameraPTR_0 + 0x40, aimBot_ViewAngles.X);
-                            GTA5Mem.Write<float>(pCCameraPTR_0 + 0x44, aimBot_ViewAngles.Y);
-                            GTA5Mem.Write<float>(pCCameraPTR_0 + 0x48, aimBot_ViewAngles.Z);
+                            GTA5Mem.Write(pCCameraPTR_0 + 0x40, aimBot_ViewAngles);
                         }
                         else
                         {
                             // 第三人称及自瞄
-                            GTA5Mem.Write<float>(pCCameraPTR_0 + 0x3D0, aimBot_ViewAngles.X);
-                            GTA5Mem.Write<float>(pCCameraPTR_0 + 0x3D4, aimBot_ViewAngles.Y);
-                            GTA5Mem.Write<float>(pCCameraPTR_0 + 0x3D8, aimBot_ViewAngles.Z);
+                            GTA5Mem.Write(pCCameraPTR_0 + 0x3D0, aimBot_ViewAngles);
                         }
 
                         if (Convert.ToBoolean(Win32.GetKeyState((int)WinVK.F5) & Win32.KEY_PRESSED))
@@ -525,7 +534,13 @@ public class Overlay : IDisposable
         }
     }
 
-    // 绘制十字准星
+    /// <summary>
+    /// 绘制十字准星
+    /// </summary>
+    /// <param name="gfx"></param>
+    /// <param name="brush"></param>
+    /// <param name="length"></param>
+    /// <param name="stroke"></param>
     private void DrawCrosshair(Graphics gfx, IBrush brush, float length, float stroke)
     {
         gfx.DrawLine(brush,
@@ -542,7 +557,14 @@ public class Overlay : IDisposable
         //gfx.DrawCircle(brush, gview_width, gview_height, gview_height / 4, stroke);
     }
 
-    // 2D方框
+    /// <summary>
+    /// 2D方框
+    /// </summary>
+    /// <param name="gfx"></param>
+    /// <param name="brush"></param>
+    /// <param name="screenV2"></param>
+    /// <param name="boxV2"></param>
+    /// <param name="stroke"></param>
     private static void Draw2DBox(Graphics gfx, IBrush brush, Vector2 screenV2, Vector2 boxV2, float stroke)
     {
         gfx.DrawRectangle(brush, Rectangle.Create(
@@ -552,7 +574,14 @@ public class Overlay : IDisposable
             boxV2.Y), stroke);
     }
 
-    // 2D射线
+    /// <summary>
+    /// 2D射线
+    /// </summary>
+    /// <param name="gfx"></param>
+    /// <param name="brush"></param>
+    /// <param name="screenV2"></param>
+    /// <param name="boxV2"></param>
+    /// <param name="stroke"></param>
     private void Draw2DLine(Graphics gfx, IBrush brush, Vector2 screenV2, Vector2 boxV2, float stroke)
     {
         gfx.DrawLine(brush,
@@ -562,7 +591,15 @@ public class Overlay : IDisposable
             screenV2.Y - boxV2.Y / 2, stroke);
     }
 
-    // 2DBox血条
+    /// <summary>
+    /// 2DBox血条
+    /// </summary>
+    /// <param name="gfx"></param>
+    /// <param name="brush"></param>
+    /// <param name="screenV2"></param>
+    /// <param name="boxV2"></param>
+    /// <param name="pedHPPercentage"></param>
+    /// <param name="stroke"></param>
     private void Draw2DHealthBar(Graphics gfx, IBrush brush, Vector2 screenV2, Vector2 boxV2, float pedHPPercentage, float stroke)
     {
         gfx.DrawRectangle(_brushes["white"], Rectangle.Create(
@@ -577,7 +614,15 @@ public class Overlay : IDisposable
             boxV2.Y * pedHPPercentage * -1.0f));
     }
 
-    // 3DBox血条
+    /// <summary>
+    /// 3DBox血条
+    /// </summary>
+    /// <param name="gfx"></param>
+    /// <param name="brush"></param>
+    /// <param name="screenV2"></param>
+    /// <param name="boxV2"></param>
+    /// <param name="hpPer"></param>
+    /// <param name="stroke"></param>
     private void Draw3DHealthBar(Graphics gfx, IBrush brush, Vector2 screenV2, Vector2 boxV2, float hpPer, float stroke)
     {
         gfx.DrawRectangle(_brushes["white"], Rectangle.Create(
@@ -592,7 +637,16 @@ public class Overlay : IDisposable
             boxV2.X / 10 / 2));
     }
 
-    // 2DBox血量数字
+    /// <summary>
+    /// 2DBox血量数字
+    /// </summary>
+    /// <param name="gfx"></param>
+    /// <param name="brush"></param>
+    /// <param name="screenV2"></param>
+    /// <param name="boxV2"></param>
+    /// <param name="health"></param>
+    /// <param name="maxHealth"></param>
+    /// <param name="index"></param>
     private void Draw2DHealthText(Graphics gfx, IBrush brush, Vector2 screenV2, Vector2 boxV2, float health, float maxHealth, int index)
     {
         gfx.DrawText(_fonts["Microsoft YaHei"], 10, brush,
@@ -601,7 +655,16 @@ public class Overlay : IDisposable
             $"[{index}] HP : {health:0}/{maxHealth:0}");
     }
 
-    // 3DBox血量数字
+    /// <summary>
+    /// 3DBox血量数字
+    /// </summary>
+    /// <param name="gfx"></param>
+    /// <param name="brush"></param>
+    /// <param name="screenV2"></param>
+    /// <param name="boxV2"></param>
+    /// <param name="pedHealth"></param>
+    /// <param name="pedMaxHealth"></param>
+    /// <param name="index"></param>
     private void Draw3DHealthText(Graphics gfx, IBrush brush, Vector2 screenV2, Vector2 boxV2, float pedHealth, float pedMaxHealth, int index)
     {
         gfx.DrawText(_fonts["Microsoft YaHei"], 10, brush,
@@ -610,7 +673,15 @@ public class Overlay : IDisposable
             $"[{index}] HP : {pedHealth:0}/{pedMaxHealth:0}");
     }
 
-    // 2DBox玩家名称
+    /// <summary>
+    /// 2DBox玩家名称
+    /// </summary>
+    /// <param name="gfx"></param>
+    /// <param name="brush"></param>
+    /// <param name="screenV2"></param>
+    /// <param name="boxV2"></param>
+    /// <param name="name"></param>
+    /// <param name="distance"></param>
     private void Draw2DNameText(Graphics gfx, IBrush brush, Vector2 screenV2, Vector2 boxV2, string name, float distance)
     {
         gfx.DrawText(_fonts["Microsoft YaHei"], 10, brush,
@@ -619,7 +690,15 @@ public class Overlay : IDisposable
             $"[{distance:0m}] ID : {name}");
     }
 
-    // 3DBox玩家名称
+    /// <summary>
+    /// 3DBox玩家名称
+    /// </summary>
+    /// <param name="gfx"></param>
+    /// <param name="brush"></param>
+    /// <param name="screenV2"></param>
+    /// <param name="boxV2"></param>
+    /// <param name="name"></param>
+    /// <param name="distance"></param>
     private void Draw3DNameText(Graphics gfx, IBrush brush, Vector2 screenV2, Vector2 boxV2, string name, float distance)
     {
         gfx.DrawText(_fonts["Microsoft YaHei"], 10, brush,
@@ -634,6 +713,13 @@ public class Overlay : IDisposable
         public Vector3 Max;
     }
 
+    /// <summary>
+    /// 绘制3D方框连线
+    /// </summary>
+    /// <param name="gfx"></param>
+    /// <param name="brush"></param>
+    /// <param name="m_Position"></param>
+    /// <param name="stroke"></param>
     private void DrawAABBLine(Graphics gfx, IBrush brush, Vector3 m_Position, float stroke)
     {
         Vector3 aabb_0 = new Vector3(0.0f, 0.0f, 1.0f) + m_Position; // 0
@@ -647,6 +733,13 @@ public class Overlay : IDisposable
         }
     }
 
+    /// <summary>
+    /// 绘制3D方框
+    /// </summary>
+    /// <param name="gfx"></param>
+    /// <param name="brush"></param>
+    /// <param name="m_Position"></param>
+    /// <param name="m_SinCos"></param>
     private void DrawAABBBox(Graphics gfx, IBrush brush, Vector3 m_Position, Vector2 m_SinCos)
     {
         AxisAlignedBox aabb = new AxisAlignedBox
@@ -737,6 +830,13 @@ public class Overlay : IDisposable
         }
     }
 
+    /// <summary>
+    /// 绘制骨骼连线
+    /// </summary>
+    /// <param name="gfx"></param>
+    /// <param name="offset"></param>
+    /// <param name="bone0"></param>
+    /// <param name="bone1"></param>
     private void DrawBone(Graphics gfx, long offset, int bone0, int bone1)
     {
         Vector2 v2Bone0 = WorldToScreen(GetBonePosition(offset, bone0));
@@ -746,14 +846,30 @@ public class Overlay : IDisposable
             gfx.DrawLine(_brushes["white"], v2Bone0.X, v2Bone0.Y, v2Bone1.X, v2Bone1.Y, 1);
     }
 
+    /// <summary>
+    /// 骨骼绘制调试
+    /// </summary>
+    /// <param name="gfx"></param>
+    /// <param name="offset"></param>
+    /// <param name="bone"></param>
+    private void DrawBoneDeBug(Graphics gfx, long offset, int bone)
+    {
+        Vector2 v2Bone = WorldToScreen(GetBonePosition(offset, bone));
+        if (!IsNullVector2(v2Bone))
+            gfx.DrawText(_fonts["Microsoft YaHei"], 10, _brushes["white"], v2Bone.X, v2Bone.Y, $"{bone}");
+    }
+
+    /// <summary>
+    /// 获取骨骼3D坐标
+    /// </summary>
+    /// <param name="offset"></param>
+    /// <param name="BoneID"></param>
+    /// <returns></returns>
     private Vector3 GetBonePosition(long offset, int BoneID)
     {
         float[] bomematrix = GTA5Mem.ReadMatrix<float>(offset + 0x60, 16);
 
-        Vector3 bone_offset_pos;
-        bone_offset_pos.X = GTA5Mem.Read<float>(offset + 0x430 + BoneID * 0x10);
-        bone_offset_pos.Y = GTA5Mem.Read<float>(offset + 0x430 + BoneID * 0x10 + 0x4);
-        bone_offset_pos.Z = GTA5Mem.Read<float>(offset + 0x430 + BoneID * 0x10 + 0x4 + 0x4);
+        Vector3 bone_offset_pos = GTA5Mem.Read<Vector3>(offset + 0x410 + BoneID * 0x10);
 
         Vector3 bone_pos;
         bone_pos.X = bomematrix[0] * bone_offset_pos.X + bomematrix[4] * bone_offset_pos.Y + bomematrix[8] * bone_offset_pos.Z + bomematrix[12];
@@ -763,7 +879,12 @@ public class Overlay : IDisposable
         return bone_pos;
     }
 
-    // 鼠标角度
+    /// <summary>
+    /// 鼠标角度
+    /// </summary>
+    /// <param name="cameraV3"></param>
+    /// <param name="targetV3"></param>
+    /// <returns></returns>
     private Vector3 GetCCameraViewAngles(Vector3 cameraV3, Vector3 targetV3)
     {
         float distance = (float)Math.Sqrt(Math.Pow(cameraV3.X - targetV3.X, 2) + Math.Pow(cameraV3.Y - targetV3.Y, 2) + Math.Pow(cameraV3.Z - targetV3.Z, 2));
@@ -776,13 +897,21 @@ public class Overlay : IDisposable
         };
     }
 
-    // 判断屏幕坐标是否有效
+    /// <summary>
+    /// 判断屏幕坐标是否有效
+    /// </summary>
+    /// <param name="vector"></param>
+    /// <returns></returns>
     private bool IsNullVector2(Vector2 vector)
     {
         return vector.X == 0 && vector.Y == 0;
     }
 
-    // 世界坐标转屏幕坐标
+    /// <summary>
+    /// 世界坐标转屏幕坐标
+    /// </summary>
+    /// <param name="posV3"></param>
+    /// <returns></returns>
     private Vector2 WorldToScreen(Vector3 posV3)
     {
         Vector2 screenV2;
@@ -807,7 +936,11 @@ public class Overlay : IDisposable
         return screenV2;
     }
 
-    // 获取方框高度
+    /// <summary>
+    /// 获取方框高度
+    /// </summary>
+    /// <param name="posV3"></param>
+    /// <returns></returns>
     private Vector2 GetBoxWH(Vector3 posV3)
     {
         Vector2 boxV2;

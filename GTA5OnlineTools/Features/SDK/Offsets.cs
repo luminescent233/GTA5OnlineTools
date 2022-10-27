@@ -243,6 +243,7 @@ public static class Offsets
 
     // CPed CPlayerInfo Offsets
     public const int CPed_CPlayerInfo_Name = 0xA4;                  // string[20]
+    public const int CPed_CPlayerInfo_RockstarID = 0x90;
     public const int CPed_CPlayerInfo_SwimSpeed = 0x170;            // float
     public const int CPed_CPlayerInfo_FrameFlags = 0x219;
     public const int CPed_CPlayerInfo_WalkSpeed = 0x18C;
