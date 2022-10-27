@@ -2,9 +2,8 @@
 
 public class PlayerData
 {
-    public long RID { get; set; }
-    public string Name { get; set; }
-
+    public long RockstarId { get; set; }
+    public string PlayerName { get; set; }
     public PlayerInfo PlayerInfo { get; set; }
 }
 
@@ -17,5 +16,5 @@ public class PlayerInfo
     public bool NoRagdoll { get; set; }
     public byte WantedLevel { get; set; }
     public float RunSpeed { get; set; }
-    public Vector3 V3Pos { get; set; }
+    public Vector3 Position { get; set; }
 }

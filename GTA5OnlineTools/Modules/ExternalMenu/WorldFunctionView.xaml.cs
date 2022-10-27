@@ -1,7 +1,6 @@
 ﻿using GTA5OnlineTools.Common.Utils;
 using GTA5OnlineTools.Common.Helper;
 using GTA5OnlineTools.Features.SDK;
-using GTA5OnlineTools.Features.Core;
 using GTA5OnlineTools.Features.Data;
 using GTA5OnlineTools.Features.Client;
 
@@ -75,20 +74,20 @@ public partial class WorldFunctionView : UserControl
     {
         AudioUtil.PlayClickSound();
 
-        World.KillNPC(false);
+        World.KillAllNPC(false);
     }
     private void Button_KillAllHostilityNPC_Click(object sender, RoutedEventArgs e)
     {
         AudioUtil.PlayClickSound();
 
-        World.KillNPC(true);
+        World.KillAllNPC(true);
     }
 
     private void Button_KillAllPolice_Click(object sender, RoutedEventArgs e)
     {
         AudioUtil.PlayClickSound();
 
-        World.KillPolice();
+        World.KillAllPolice();
     }
 
     private void Button_DestroyAllVehicles_Click(object sender, RoutedEventArgs e)
@@ -102,28 +101,28 @@ public partial class WorldFunctionView : UserControl
     {
         AudioUtil.PlayClickSound();
 
-        World.DestroyNPCVehicles(false);
+        World.DestroyAllNPCVehicles(false);
     }
 
     private void Button_DestroyAllHostilityNPCVehicles_Click(object sender, RoutedEventArgs e)
     {
         AudioUtil.PlayClickSound();
 
-        World.DestroyNPCVehicles(true);
+        World.DestroyAllNPCVehicles(true);
     }
 
     private void Button_TPAllNPCToMe_Click(object sender, RoutedEventArgs e)
     {
         AudioUtil.PlayClickSound();
 
-        World.TeleportNPCToMe(false);
+        World.TeleportAllNPCToMe(false);
     }
 
     private void Button_TPHostilityNPCToMe_Click(object sender, RoutedEventArgs e)
     {
         AudioUtil.PlayClickSound();
 
-        World.TeleportNPCToMe(true);
+        World.TeleportAllNPCToMe(true);
     }
 
     /////////////////////////////////////////////////////////////////////////////
@@ -203,7 +202,7 @@ public partial class WorldFunctionView : UserControl
     {
         AudioUtil.PlayClickSound();
 
-        Vector3 vector3 = Memory.Read<Vector3>(General.WorldPTR, Offsets.PlayerPositionX);
+        Vector3 vector3 = Teleport.GetPlayerPosition();
 
         TeleportData.CustomTeleport.Add(new TeleportData.TeleportInfo()
         {
@@ -215,8 +214,6 @@ public partial class WorldFunctionView : UserControl
 
         ListBox_TeleportClass.SelectedIndex = 0;
         ListBox_TeleportInfo.SelectedIndex = ListBox_TeleportInfo.Items.Count - 1;
-
-        NotifierHelper.Show(NotifierType.Success, "增加自定义传送坐标成功");
     }
 
     private void Button_Teleport_EditCustom_Click(object sender, RoutedEventArgs e)
@@ -296,8 +293,6 @@ public partial class WorldFunctionView : UserControl
         AudioUtil.PlayClickSound();
 
         Teleport.SetTeleportPosition(TempData.TCode);
-
-        NotifierHelper.Show(NotifierType.Success, "传送到自定义坐标成功");
     }
 
     private void Button_Teleport_SaveCustom_Click(object sender, RoutedEventArgs e)

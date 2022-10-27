@@ -128,7 +128,7 @@
                 <Button Click="Button_Blips_Click" Content="游戏厅" />
                 <Button Click="Button_Blips_Click" Content="虎鲸" />
                 <Button Click="Button_Blips_Click" Content="车友会" />
-
+                <Button Click="Button_Blips_Click" Content="事务所" />
             </WrapPanel>
 
             <ui:UiLabelEmoji Content="梅利威瑟" />

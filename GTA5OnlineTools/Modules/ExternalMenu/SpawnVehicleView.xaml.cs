@@ -43,8 +43,7 @@ public partial class SpawnVehicleView : UserControl
 
     private void ListBox_VehicleClass_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        int index = ListBox_VehicleClass.SelectedIndex;
-
+        var index = ListBox_VehicleClass.SelectedIndex;
         if (index != -1)
         {
             ListBox_VehicleInfo.Items.Clear();
@@ -62,9 +61,8 @@ public partial class SpawnVehicleView : UserControl
     {
         SpawnVehicleHash = 0;
 
-        int index1 = ListBox_VehicleClass.SelectedIndex;
-        int index2 = ListBox_VehicleInfo.SelectedIndex;
-
+        var index1 = ListBox_VehicleClass.SelectedIndex;
+        var index2 = ListBox_VehicleInfo.SelectedIndex;
         if (index1 != -1 && index2 != -1)
         {
             SpawnVehicleHash = VehicleData.VehicleClassData[index1].VehicleInfo[index2].Hash;
@@ -72,22 +70,20 @@ public partial class SpawnVehicleView : UserControl
         }
     }
 
-    private void Button_SpawnOnlineVehicle_Click(object sender, RoutedEventArgs e)
+    private void Button_SpawnOnlineVehicleA_Click(object sender, RoutedEventArgs e)
     {
         AudioUtil.PlayClickSound();
 
-        string str = (e.OriginalSource as Button).Content.ToString();
+        Vehicle.SpawnVehicle(SpawnVehicleHash, -255.0f, 5, SpawnVehicleMod);
+        //Vehicle.SpawnVehicle(SpawnVehicleHash, -255.0f);
+    }
 
-        if (str == "刷出线上载具（空地）")
-        {
-            Vehicle.SpawnVehicle(SpawnVehicleHash, -255.0f, 5, SpawnVehicleMod);
-            //Vehicle.SpawnVehicle(SpawnVehicleHash, -255.0f);
-        }
-        else
-        {
-            Vehicle.SpawnVehicle(SpawnVehicleHash, 0.0f, 5, SpawnVehicleMod);
-            //Vehicle.SpawnVehicle(SpawnVehicleHash, -255.0f);
-        }
+    private void Button_SpawnOnlineVehicleB_Click(object sender, RoutedEventArgs e)
+    {
+        AudioUtil.PlayClickSound();
+
+        Vehicle.SpawnVehicle(SpawnVehicleHash, 0.0f, 5, SpawnVehicleMod);
+        //Vehicle.SpawnVehicle(SpawnVehicleHash, -255.0f);
     }
 
     /////////////////////////////////////////////////////////////////////////////////
@@ -157,7 +153,7 @@ public partial class SpawnVehicleView : UserControl
 
             foreach (var item in pVInfos)
             {
-                Application.Current.Dispatcher.Invoke(() =>
+                this.Dispatcher.Invoke(() =>
                 {
                     ListBox_PersonalVehicle.Items.Add($"[{item.plate}]\t{item.Name}");
                 });

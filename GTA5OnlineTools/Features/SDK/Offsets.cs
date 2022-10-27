@@ -45,132 +45,8 @@ public static class Offsets
     public const int oPlayerIDHelp = 2689235;
     public const int oPlayerGA = 2703735;
 
-    ////////////////////////////////////////////////////////////////////
-
     public const int SpawnPersonalVehicleIndex1 = oVMYCar + 965;
     public const int SpawnPersonalVehicleIndex2 = oVMYCar + 962;
-
-    public static class Player
-    {
-        public static int[] Health = new int[] { 0x08, 0x280 };
-        public static int[] MaxHealth = new int[] { 0x08, 0x284 };
-        public static int[] Armor = new int[] { 0x08, 0x150C };
-
-        public static int[] RunSpeed = new int[] { 0x08, 0x10A8, 0xCF0 };
-        public static int[] SwimSpeed = new int[] { 0x08, 0x10A8, 0x170 };
-        public static int[] StealthSpeed = new int[] { 0x08, 0x10A8, 0x18C };
-
-        public static int[] GodMode = new int[] { 0x08, 0x189 };
-        public static int[] Wanted = new int[] { 0x08, 0x10A8, 0x888 };
-        public static int[] Invisibility = new int[] { 0x08, 0x2C };            // on 0x01 off 0x27
-
-        public static int[] Seatbelt = new int[] { 0x08, 0x143C };
-        public static int[] NoRagdoll = new int[] { 0x08, 0x10B8 };
-        public static int[] NoCollision = new int[] { 0x08, 0x30, 0x10, 0x20, 0x70, 0x00, 0x2C };
-    }
-
-    public static int[] SpecialAmmo = new int[] { 0x08, 0x10A8, 0x218 };
-    public static int[] NeverWanted = new int[] { 0x08, 0x10A8, 0x73C };
-    public static int[] WantedCanChange = new int[] { 0x08, 0x10A8, 0x73C };
-    public static int[] NPCIgnore = new int[] { 0x08, 0x10A8, 0x872 };          // 00 04 C3 C7
-
-    public static int[] RpMultiplier = new int[] { 0x10 };
-    public static int[] ApMultiplier = new int[] { 0x3188 };
-
-    public static int[] OnlineListPlayerName = new int[] { 0x08, 0x10A8, 0xA4 };
-
-    public static int[] RID = new int[] { 0x08, 0x10A8, 0x90 };
-
-    public static class Vehicle
-    {
-        public static int[] GodMode = new int[] { 0x08, 0xD10, 0x189 };
-        public static int[] CurPassenger = new int[] { 0x08, 0xD10, 0xC62 };
-        public static int[] Invisibility = new int[] { 0x08, 0xD10, 0x2C };            // on 0x01 off 0x27
-
-        public static int[] Health = new int[] { 0x08, 0xD10, 0x280 };
-
-        //public static int[] VehicleDrawHandler = new int[] { 0x08, 0xD10, 0x48 };
-        //public static int[] Vehicle_EMS = new int[] { 0x08, 0xD10, 0x48, 0x3D6 };
-        //public static int[] Vehicle_Brakes = new int[] { 0x08, 0xD10, 0x48, 0x3D7 };
-        //public static int[] Vehicle_Transmission = new int[] { 0x08, 0xD10, 0x48, 0x3D8 };
-        //public static int[] Vehicle_Horn = new int[] { 0x08, 0xD10, 0x48, 0x3D9 };
-        //public static int[] Vehicle_Suspension = new int[] { 0x08, 0xD10, 0x48, 0x3DA };
-        //public static int[] Vehicle_Armor = new int[] { 0x08, 0xD10, 0x48, 0x3DB };
-        //public static int[] Vehicle_Turbo = new int[] { 0x08, 0xD10, 0x48, 0x3DD };
-        //public static int[] Vehicle_Windows = new int[] { 0x08, 0xD10, 0x48, 0x3FF };
-
-        public static int[] Extras = new int[] { 0x08, 0xD10, 0x20, 0x58B };
-        public static int[] Parachute = new int[] { 0x08, 0xD10, 0x20, 0x58C };
-    }
-
-    public static class Weapon
-    {
-        public static int[] AmmoInfo = new int[] { 0x08, 0x10B8, 0x20, 0x60 };
-        public static int[] AmmoModifier = new int[] { 0x08, 0x10D0, 0x78 };
-
-        public static int[] NoSpread = new int[] { 0x8, 0x10B8, 0x20, 0x7C };
-        public static int[] NoRecoil = new int[] { 0x8, 0x10B8, 0x20, 0x2F4 };
-
-        public static int[] ImpactType = new int[] { 0x08, 0x10B8, 0x20, 0x20 };
-        public static int[] ImpactExplosion = new int[] { 0x08, 0x10B8, 0x20, 0x24 };
-
-        public static int[] Range = new int[] { 0x08, 0x10B8, 0x20, 0x28C };
-        public static int[] LockRange = new int[] { 0x08, 0x10B8, 0x20, 0x288 };
-
-        public static int[] ReloadMult = new int[] { 0x08, 0x10B8, 0x20, 0x134 };
-        public static int[] ReloadVehicleMult = new int[] { 0x08, 0x10B8, 0x20, 0x130 };
-
-    }
-
-    ////////////////////////////////////////////////////////////////////
-
-    public static int[] PlayerVisualX = new int[] { 0x08, 0x90 };
-    public static int[] PlayerVisualY = new int[] { 0x08, 0x94 };
-    public static int[] PlayerVisualZ = new int[] { 0x08, 0x98 };
-
-    public static int[] PlayerPositionX = new int[] { 0x08, 0x30, 0x50 };
-    public static int[] PlayerPositionY = new int[] { 0x08, 0x30, 0x54 };
-    public static int[] PlayerPositionZ = new int[] { 0x08, 0x30, 0x58 };
-
-    public static int[] PlayerSin = new int[] { 0x08, 0x30, 0x20 };
-    public static int[] PlayerCos = new int[] { 0x08, 0x30, 0x30 };
-
-    public static int[] PlayerProof = new int[] { 0x08, 0x188 };
-
-    public static int[] InVehicle = new int[] { 0x08, 0xE52 };       // 1代表在载具，0代表不在
-
-    public static int[] VehicleMaxSpeed = new int[] { 0x08, 0xD10, 0x8CC };
-    public static int[] VehicleGear = new int[] { 0xFD4 };
-    public static int[] VehicleRPM = new int[] { 0xE50 };
-
-    // 角色在载具中，坐标偏移多了个pCVehicle = 0xD10
-    public static int[] VehicleVisualX = new int[] { 0x08, 0xD10, 0x90 };
-    public static int[] VehicleVisualY = new int[] { 0x08, 0xD10, 0x94 };
-    public static int[] VehicleVisualZ = new int[] { 0x08, 0xD10, 0x98 };
-
-    public static int[] VehiclePositionX = new int[] { 0x08, 0xD10, 0x30, 0x50 };
-    public static int[] VehiclePositionY = new int[] { 0x08, 0xD10, 0x30, 0x54 };
-    public static int[] VehiclePositionZ = new int[] { 0x08, 0xD10, 0x30, 0x58 };
-
-    ////////////////////////////////////////////////////////////////////
-
-    public static int[] ViewAngles_FPP_CosYaw = new int[] { 0x0, 0x3c0, 0x40 };
-    public static int[] ViewAngles_FPP_SinYaw = new int[] { 0x0, 0x3c0, 0x44 };
-    public static int[] ViewAngles_FPP_SinPitch = new int[] { 0x0, 0x3c0, 0x48 };
-
-    public static int[] Crosshair_Location_X = new int[] { 0x0, 0x3c0, 0x60 };
-    public static int[] Crosshair_Location_Y = new int[] { 0x0, 0x3c0, 0x64 };
-    public static int[] Crosshair_Location_Z = new int[] { 0x0, 0x3c0, 0x68 };
-
-    public static int[] ViewAngles_TPS_CosYaw = new int[] { 0x0, 0x3c0, 0x3D0 };
-    public static int[] ViewAngles_TPS_SinYaw = new int[] { 0x0, 0x3c0, 0x3D4 };
-    public static int[] ViewAngles_TPS_SinPitch = new int[] { 0x0, 0x3c0, 0x3D8 };
-
-    public static int[] Crosshair_TPP_Location_X = new int[] { 0x0, 0x3c0, 0x3F0 };
-    public static int[] Crosshair_TPP_Location_Y = new int[] { 0x0, 0x3c0, 0x3F4 };
-    public static int[] Crosshair_TPP_Location_Z = new int[] { 0x0, 0x3c0, 0x3F8 };
-
-    public static int[] Fov_Zoom = new int[] { 0x0, 0x3c0, 0x10, 0x30 };
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -191,7 +67,7 @@ public static class Offsets
     public const int CPed_HealthMax = 0x284;
     public const int CPed_CVehicle = 0xD10;
     public const int CPed_InVehicle = 0xE32;                // int 0:false 1:true
-    public const int CPed_Ragdoll = 0x1098;                 // int 32:false 1/0:true
+    public const int CPed_Ragdoll = 0x1098;
     public const int CPed_CPlayerInfo = 0x10A8;
     public const int CPed_CPedInventory = 0x10B0;
     public const int CPed_CPedWeaponManager = 0x10B8;
@@ -223,9 +99,9 @@ public static class Offsets
     public const int CPed_CVehicle_God = 0x189;             // int8 0:false 1:true
     public const int CPed_CVehicle_Health = 0x280;          // float
     public const int CPed_CVehicle_HealthMax = 0x284;
-    public const int CPed_CVehicle_HealthBody = 0x840;
-    public const int CPed_CVehicle_HealthPetrolTank = 0x844;
-    public const int CPed_CVehicle_HealthEngine = 0x908;
+    public const int CPed_CVehicle_HealthBody = 0x820;
+    public const int CPed_CVehicle_HealthPetrolTank = 0x824;
+    public const int CPed_CVehicle_HealthEngine = 0x8E8;
     public const int CPed_CVehicle_Passenger = 0xC42;       // byte 载具座位人数
 
     // CPed CVehicle CModelInfo Offsets
@@ -269,5 +145,35 @@ public static class Offsets
     public const int CPed_CPedWeaponManager_CWeaponInfo_LockRange = 0x288;
     public const int CPed_CPedWeaponManager_CWeaponInfo_Range = 0x28C;
     public const int CPed_CPedWeaponManager_CWeaponInfo_Recoil = 0x2F4;
+
+    // CReplayInterface Offsets
+    public const int CReplayInterface_CVehicleInterface = 0x10;
+    public const int CReplayInterface_CPedInterface = 0x18;
+    public const int CReplayInterface_CObjectInterface = 0x28;
+
+    // CReplayInterface CVehicleInterface Offsets
+    public const int CReplayInterface_CVehicleInterface_CVehicleList = 0x180;
+    public const int CReplayInterface_CVehicleInterface_MaxVehicles = 0x188;        // int32
+    public const int CReplayInterface_CVehicleInterface_CurVehicles = 0x190;
+
+    // CReplayInterface CPedInterface Offsets
+    public const int CReplayInterface_CPedInterface_CPedList = 0x100;
+    public const int CReplayInterface_CPedInterface_MaxPeds = 0x108;                // int32
+    public const int CReplayInterface_CPedInterface_CurPeds = 0x110;
+
+    // CNetworkPlayerMgr Offsets
+    public const int CNetworkPlayerMgr_CNetGamePlayerLocal = 0xE8;
+    public const int CNetworkPlayerMgr_CNetGamePlayer = 0x180;
+    public const int CNetworkPlayerMgr_PlayerLimit = 0x280;
+    public const int CNetworkPlayerMgr_PlayerCount = 0x28C;
+
+    // CNetworkPlayerMgr CNetGamePlayer Offsets
+    public const int CNetworkPlayerMgr_CNetGamePlayer_CPlayerInfo = 0xA0;
+
+    // CNetworkPlayerMgr CNetGamePlayer CPlayerInfo Offsets
+    public const int CNetworkPlayerMgr_CNetGamePlayer_RockstarId = 0x28;            // int64
+    public const int CNetworkPlayerMgr_CNetGamePlayer_HostToken = 0x80;             // int64
+    public const int CNetworkPlayerMgr_CNetGamePlayer_Name = 0xA4;
+    public const int CNetworkPlayerMgr_CNetGamePlayer_CPed = 0x1E8;
 
 }

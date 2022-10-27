@@ -323,15 +323,15 @@ public static class Online
     /// <param name="produce_time"></param>
     public static void SetBunkerProduceResearchTime(bool isEnable, int produce_time)
     {
-        // Base Time to Produce                                                     // tuneables_processing.c
-        Hacks.WriteGA(262145 + 21576, isEnable ? produce_time : 600000);       // Product                  215868155 
-        Hacks.WriteGA(262145 + 21592, isEnable ? produce_time : 300000);       // Research                 -676414773
+        // Base Time to Produce                                                 // tuneables_processing.c
+        Hacks.WriteGA(262145 + 21576, isEnable ? produce_time : 600000);        // Product                  215868155 
+        Hacks.WriteGA(262145 + 21592, isEnable ? produce_time : 300000);        // Research                 -676414773
 
         // Time to Produce Reductions
-        Hacks.WriteGA(262145 + 21577, isEnable ? produce_time : 90000);        // Production Equipment     631477612
-        Hacks.WriteGA(262145 + 21578, isEnable ? produce_time : 90000);        // Production Staff         818645907
-        Hacks.WriteGA(262145 + 21593, isEnable ? produce_time : 45000);        // Research Equipment       -1148432846
-        Hacks.WriteGA(262145 + 21594, isEnable ? produce_time : 45000);        // Research Staff           510883248
+        Hacks.WriteGA(262145 + 21577, isEnable ? produce_time : 90000);         // Production Equipment     631477612
+        Hacks.WriteGA(262145 + 21578, isEnable ? produce_time : 90000);         // Production Staff         818645907
+        Hacks.WriteGA(262145 + 21593, isEnable ? produce_time : 45000);         // Research Equipment       -1148432846
+        Hacks.WriteGA(262145 + 21594, isEnable ? produce_time : 45000);         // Research Staff           510883248
     }
 
     /// <summary>

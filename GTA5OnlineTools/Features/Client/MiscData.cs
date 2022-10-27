@@ -25,6 +25,7 @@ public static class MiscData
         new FlagInfo(){ Name="游戏厅", ID=740 },
         new FlagInfo(){ Name="虎鲸", ID=760 },
         new FlagInfo(){ Name="车友会", ID=777 },
+        new FlagInfo(){ Name="事务所", ID=826 },
     };
 
     public static List<FlagInfo> Sessions = new()

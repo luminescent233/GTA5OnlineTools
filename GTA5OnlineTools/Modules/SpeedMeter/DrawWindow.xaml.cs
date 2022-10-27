@@ -193,9 +193,6 @@ public partial class DrawWindow : Window
         }
         else
         {
-            //double PlayerSpeed = GTA5Mem.Read<double>(Globals.WorldPTR, new int[] { 0x8, 0x850 });
-            //return PlayerSpeed * SpeedUnit;
-
             return 0;
         }
     }
@@ -206,7 +203,11 @@ public partial class DrawWindow : Window
     /// <returns></returns>
     private double GetVehicleMaxSpeed()
     {
-        return Memory.Read<double>(General.UnkPTR, Offsets.VehicleMaxSpeed) * SpeedUnit;
+        long pUnk = Memory.Read<long>(General.UnkPTR);
+        long offset = Memory.Read<long>(pUnk + 0x08);
+        offset = Memory.Read<long>(pUnk + 0xD10);
+
+        return Memory.Read<double>(pUnk + 0x8CC) * SpeedUnit;
     }
 
     /// <summary>
@@ -215,7 +216,9 @@ public partial class DrawWindow : Window
     /// <returns></returns>
     private string GetVehicleGear()
     {
-        var gear = Memory.Read<int>(General.UnkPTR, Offsets.VehicleGear);
+        long pUnk = Memory.Read<long>(General.UnkPTR);
+        int gear = Memory.Read<int>(pUnk + 0xFD4);
+
         return gear == 0 ? "R" : gear.ToString();
     }
 
@@ -225,7 +228,9 @@ public partial class DrawWindow : Window
     /// <returns></returns>
     private float GetVehicleRPM()
     {
-        return Memory.Read<float>(General.UnkPTR, Offsets.VehicleRPM);
+        long pUnk = Memory.Read<long>(General.UnkPTR);
+
+        return Memory.Read<float>(pUnk + 0xE50);
     }
 }
 

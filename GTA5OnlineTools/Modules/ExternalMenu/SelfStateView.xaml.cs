@@ -5,6 +5,7 @@ using GTA5OnlineTools.Features.Data;
 using GTA5OnlineTools.Common.Utils;
 using GTA5OnlineTools.Config.Modules;
 using GTA5OnlineTools.Models.Modules;
+using GTA5OnlineTools.Features.Client;
 
 namespace GTA5OnlineTools.Modules.ExternalMenu;
 
@@ -302,17 +303,55 @@ public partial class SelfStateView : UserControl
     {
         while (Globals.IsAppRunning)
         {
+            // 自动消星
             if (Settings.Common.AutoClearWanted)
                 Player.WantedLevel(0x00);
 
-            if (Settings.Common.AutoKillNPC)
-                World.KillNPC(false);
+            long pCReplayInterface = Memory.Read<long>(General.ReplayInterfacePTR);
+            long pCPedInterface = Memory.Read<long>(pCReplayInterface + Offsets.CReplayInterface_CPedInterface);
+            int oMaxPeds = Memory.Read<int>(pCPedInterface + Offsets.CReplayInterface_CPedInterface_MaxPeds);
 
-            if (Settings.Common.AutoKillHostilityNPC)
-                World.KillNPC(true);
+            for (int i = 0; i < oMaxPeds; i++)
+            {
+                long pCPedList = Memory.Read<long>(pCPedInterface + Offsets.CReplayInterface_CPedInterface_CPedList);
 
-            if (Settings.Common.AutoKillPolice)
-                World.KillPolice();
+                long pCPed = Memory.Read<long>(pCPedList + i * 0x10);
+                if (!Memory.IsValid(pCPed))
+                    continue;
+
+                // 跳过玩家
+                long pCPlayerInfo = Memory.Read<long>(pCPed + Offsets.CPed_CPlayerInfo);
+                if (Memory.IsValid(pCPlayerInfo))
+                    continue;
+
+                // 自动击杀NPC
+                if (Settings.Common.AutoKillNPC)
+                    Memory.Write(pCPed + Offsets.CPed_Health, 0.0f);
+
+                // 自动击杀敌对NPC
+                if (Settings.Common.AutoKillHostilityNPC)
+                {
+                    byte oHostility = Memory.Read<byte>(pCPed + Offsets.CPed_Hostility);
+                    if (oHostility > 0x01)
+                    {
+                        Memory.Write(pCPed + Offsets.CPed_Health, 0.0f);
+                    }
+                }
+
+                // 自动击杀警察
+                if (Settings.Common.AutoKillPolice)
+                {
+                    int ped_type = Memory.Read<int>(pCPed + Offsets.CPed_Ragdoll);
+                    ped_type = ped_type << 11 >> 25;
+
+                    if (ped_type == (int)EnumData.PedTypes.COP ||
+                        ped_type == (int)EnumData.PedTypes.SWAT ||
+                        ped_type == (int)EnumData.PedTypes.ARMY)
+                    {
+                        Memory.Write(pCPed + Offsets.CPed_Health, 0.0f);
+                    }
+                }
+            }
 
             Thread.Sleep(200);
         }
@@ -385,15 +424,15 @@ public partial class SelfStateView : UserControl
     {
         if (CheckBox_NPCIgnore.IsChecked == true && CheckBox_PoliceIgnore.IsChecked == false)
         {
-            Player.NPCIgnore(0x04);
+            Player.NPCIgnore(0x040000);
         }
         else if (CheckBox_NPCIgnore.IsChecked == false && CheckBox_PoliceIgnore.IsChecked == true)
         {
-            Player.NPCIgnore(0xC3);
+            Player.NPCIgnore(0xC30000);
         }
         else if (CheckBox_NPCIgnore.IsChecked == true && CheckBox_PoliceIgnore.IsChecked == true)
         {
-            Player.NPCIgnore(0xC7);
+            Player.NPCIgnore(0xC70000);
         }
         else
         {
@@ -409,19 +448,19 @@ public partial class SelfStateView : UserControl
 
     private void CheckBox_AutoKillNPC_Click(object sender, RoutedEventArgs e)
     {
-        World.KillNPC(false);
+        World.KillAllNPC(false);
         Settings.Common.AutoKillNPC = CheckBox_AutoKillNPC.IsChecked == true;
     }
 
     private void CheckBox_AutoKillHostilityNPC_Click(object sender, RoutedEventArgs e)
     {
-        World.KillNPC(true);
+        World.KillAllNPC(true);
         Settings.Common.AutoKillHostilityNPC = CheckBox_AutoKillHostilityNPC.IsChecked == true;
     }
 
     private void CheckBox_AutoKillPolice_Click(object sender, RoutedEventArgs e)
     {
-        World.KillPolice();
+        World.KillAllPolice();
         Settings.Common.AutoKillPolice = CheckBox_AutoKillPolice.IsChecked == true;
     }
 

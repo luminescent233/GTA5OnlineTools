@@ -160,11 +160,11 @@ public static class Hacks
         for (long i = 0; i < dw_curPickUpNum; i++)
         {
             long dwpPickup = Memory.Read<long>(m_dwpPedList + i * 0x10);
-            uint dwPickupHash = Memory.Read<uint>(dwpPickup + 0x488);
+            uint dwPickupHash = Memory.Read<uint>(dwpPickup + 0x468);
 
             if (dwPickupHash == 4263048111)
             {
-                Memory.Write(dwpPickup + 0x488, pickupHash);
+                Memory.Write(dwpPickup + 0x468, pickupHash);
                 break;
             }
         }

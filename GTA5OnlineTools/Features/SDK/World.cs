@@ -1,5 +1,6 @@
 ﻿using GTA5OnlineTools.Features.Core;
 using GTA5OnlineTools.Features.Client;
+using System.Numerics;
 
 namespace GTA5OnlineTools.Features.SDK;
 
@@ -42,190 +43,188 @@ public static class World
     }
 
     /// <summary>
-    /// 杀死NPC，仅敌对？
+    /// 杀死全部NPC（仅敌对？）
     /// </summary>
-    public static void KillNPC(bool isOnlyHostility)
+    public static void KillAllNPC(bool isOnlyKillHostility)
     {
-        // Ped实体
-        long m_replay = Memory.Read<long>(General.ReplayInterfacePTR);
-        long m_ped_interface = Memory.Read<long>(m_replay + 0x18);
-        int m_max_peds = Memory.Read<int>(m_ped_interface + 0x108);
+        long pCReplayInterface = Memory.Read<long>(General.ReplayInterfacePTR);
+        long pCPedInterface = Memory.Read<long>(pCReplayInterface + Offsets.CReplayInterface_CPedInterface);
+        int oMaxPeds = Memory.Read<int>(pCPedInterface + Offsets.CReplayInterface_CPedInterface_MaxPeds);
 
-        for (int i = 0; i < m_max_peds; i++)
+        for (int i = 0; i < oMaxPeds; i++)
         {
-            long m_ped_list = Memory.Read<long>(m_ped_interface + 0x100);
-            m_ped_list = Memory.Read<long>(m_ped_list + i * 0x10);
-            if (!Memory.IsValid(m_ped_list))
+            long pCPedList = Memory.Read<long>(pCPedInterface + Offsets.CReplayInterface_CPedInterface_CPedList);
+
+            long pCPed = Memory.Read<long>(pCPedList + i * 0x10);
+            if (!Memory.IsValid(pCPed))
                 continue;
 
             // 跳过玩家
-            long m_player_info = Memory.Read<long>(m_ped_list + 0x10A8);
-            if (Memory.IsValid(m_player_info))
+            long pCPlayerInfo = Memory.Read<long>(pCPed + Offsets.CPed_CPlayerInfo);
+            if (Memory.IsValid(pCPlayerInfo))
                 continue;
 
-            if (isOnlyHostility)
+            if (isOnlyKillHostility)
             {
-                byte oHostility = Memory.Read<byte>(m_ped_list + 0x18C);
-
+                byte oHostility = Memory.Read<byte>(pCPed + Offsets.CPed_Hostility);
                 if (oHostility > 0x01)
                 {
-                    Memory.Write(m_ped_list + 0x280, 0.0f);
+                    Memory.Write(pCPed + Offsets.CPed_Health, 0.0f);
                 }
             }
             else
             {
-                Memory.Write(m_ped_list + 0x280, 0.0f);
+                Memory.Write(pCPed + Offsets.CPed_Health, 0.0f);
             }
         }
     }
 
     /// <summary>
-    /// 杀死警察
+    /// 杀死全部警察
     /// </summary>
-    public static void KillPolice()
+    public static void KillAllPolice()
     {
-        // Ped实体
-        long m_replay = Memory.Read<long>(General.ReplayInterfacePTR);
-        long m_ped_interface = Memory.Read<long>(m_replay + 0x18);
-        int m_max_peds = Memory.Read<int>(m_ped_interface + 0x108);
+        long pCReplayInterface = Memory.Read<long>(General.ReplayInterfacePTR);
+        long pCPedInterface = Memory.Read<long>(pCReplayInterface + Offsets.CReplayInterface_CPedInterface);
+        int oMaxPeds = Memory.Read<int>(pCPedInterface + Offsets.CReplayInterface_CPedInterface_MaxPeds);
 
-        for (int i = 0; i < m_max_peds; i++)
+        for (int i = 0; i < oMaxPeds; i++)
         {
-            long m_ped_list = Memory.Read<long>(m_ped_interface + 0x100);
-            m_ped_list = Memory.Read<long>(m_ped_list + i * 0x10);
-            if (!Memory.IsValid(m_ped_list))
+            long pCPedList = Memory.Read<long>(pCPedInterface + Offsets.CReplayInterface_CPedInterface_CPedList);
+
+            long pCPed = Memory.Read<long>(pCPedList + i * 0x10);
+            if (!Memory.IsValid(pCPed))
                 continue;
 
             // 跳过玩家
-            long m_player_info = Memory.Read<long>(m_ped_list + 0x10A8);
-            if (Memory.IsValid(m_player_info))
+            long pCPlayerInfo = Memory.Read<long>(pCPed + Offsets.CPed_CPlayerInfo);
+            if (Memory.IsValid(pCPlayerInfo))
                 continue;
 
-            int ped_type = Memory.Read<int>(m_ped_list + 0x10B8);
+            int ped_type = Memory.Read<int>(pCPed + Offsets.CPed_Ragdoll);
             ped_type = ped_type << 11 >> 25;
 
             if (ped_type == (int)EnumData.PedTypes.COP ||
                 ped_type == (int)EnumData.PedTypes.SWAT ||
                 ped_type == (int)EnumData.PedTypes.ARMY)
             {
-                Memory.Write(m_ped_list + 0x280, 0.0f);
+                Memory.Write(pCPed + Offsets.CPed_Health, 0.0f);
             }
         }
     }
 
     /// <summary>
-    /// 摧毁NPC载具，仅敌对？
+    /// 摧毁全部NPC载具（仅敌对？）
     /// </summary>
-    public static void DestroyNPCVehicles(bool isOnlyHostility)
+    public static void DestroyAllNPCVehicles(bool isOnlyKillHostility)
     {
-        // Ped实体
-        long m_replay = Memory.Read<long>(General.ReplayInterfacePTR);
-        long m_ped_interface = Memory.Read<long>(m_replay + 0x18);
-        int m_max_peds = Memory.Read<int>(m_ped_interface + 0x108);
+        long pCReplayInterface = Memory.Read<long>(General.ReplayInterfacePTR);
+        long pCPedInterface = Memory.Read<long>(pCReplayInterface + Offsets.CReplayInterface_CPedInterface);
+        int oMaxPeds = Memory.Read<int>(pCPedInterface + Offsets.CReplayInterface_CPedInterface_MaxPeds);
 
-        for (int i = 0; i < m_max_peds; i++)
+        for (int i = 0; i < oMaxPeds; i++)
         {
-            long m_ped_list = Memory.Read<long>(m_ped_interface + 0x100);
-            m_ped_list = Memory.Read<long>(m_ped_list + i * 0x10);
-            if (!Memory.IsValid(m_ped_list))
+            long pCPedList = Memory.Read<long>(pCPedInterface + Offsets.CReplayInterface_CPedInterface_CPedList);
+
+            long pCPed = Memory.Read<long>(pCPedList + i * 0x10);
+            if (!Memory.IsValid(pCPed))
                 continue;
 
             // 跳过玩家
-            long m_player_info = Memory.Read<long>(m_ped_list + 0x10A8);
-            if (Memory.IsValid(m_player_info))
+            long pCPlayerInfo = Memory.Read<long>(pCPed + Offsets.CPed_CPlayerInfo);
+            if (Memory.IsValid(pCPlayerInfo))
                 continue;
 
-            long m_vehicle = Memory.Read<long>(m_ped_list + 0xD10);
+            long pCVehicle = Memory.Read<long>(pCPed + Offsets.CPed_CVehicle);
+            if (!Memory.IsValid(pCVehicle))
+                continue;
 
-            if (isOnlyHostility)
+            if (isOnlyKillHostility)
             {
-                byte oHostility = Memory.Read<byte>(m_ped_list + 0x18C);
-
+                byte oHostility = Memory.Read<byte>(pCPed + Offsets.CPed_Hostility);
                 if (oHostility > 0x01)
                 {
-                    Memory.Write(m_vehicle + 0x280, -1.0f);
-                    Memory.Write(m_vehicle + 0x820, -1.0f);
-                    Memory.Write(m_vehicle + 0x824, -1.0f);
-                    Memory.Write(m_vehicle + 0x8E8, -1.0f);
+                    Memory.Write(pCVehicle + Offsets.CPed_CVehicle_Health, -1.0f);
+                    Memory.Write(pCVehicle + Offsets.CPed_CVehicle_HealthBody, -1.0f);
+                    Memory.Write(pCVehicle + Offsets.CPed_CVehicle_HealthPetrolTank, -1.0f);
+                    Memory.Write(pCVehicle + Offsets.CPed_CVehicle_HealthEngine, -1.0f);
                 }
             }
             else
             {
-                Memory.Write(m_vehicle + 0x280, -1.0f);
-                Memory.Write(m_vehicle + 0x820, -1.0f);
-                Memory.Write(m_vehicle + 0x824, -1.0f);
-                Memory.Write(m_vehicle + 0x8E8, -1.0f);
+                Memory.Write(pCVehicle + Offsets.CPed_CVehicle_Health, -1.0f);
+                Memory.Write(pCVehicle + Offsets.CPed_CVehicle_HealthBody, -1.0f);
+                Memory.Write(pCVehicle + Offsets.CPed_CVehicle_HealthPetrolTank, -1.0f);
+                Memory.Write(pCVehicle + Offsets.CPed_CVehicle_HealthEngine, -1.0f);
             }
         }
     }
 
     /// <summary>
-    /// 摧毁全部载具，玩家自己的载具也会摧毁
+    /// 摧毁全部载具（玩家自己的载具也会摧毁）
     /// </summary>
     public static void DestroyAllVehicles()
     {
-        // Ped实体
-        long m_replay = Memory.Read<long>(General.ReplayInterfacePTR);
-        long m_vehicle_interface = Memory.Read<long>(m_replay + 0x10);
-        long m_ped_interface = Memory.Read<long>(m_replay + 0x18);
-        int m_max_peds = Memory.Read<int>(m_ped_interface + 0x108);
+        long pCReplayInterface = Memory.Read<long>(General.ReplayInterfacePTR);
+        long pCVehicleInterface = Memory.Read<long>(pCReplayInterface + Offsets.CReplayInterface_CVehicleInterface);
+        long pCPedInterface = Memory.Read<long>(pCReplayInterface + Offsets.CReplayInterface_CPedInterface);
+        int oMaxPeds = Memory.Read<int>(pCPedInterface + Offsets.CReplayInterface_CPedInterface_MaxPeds);
 
-        for (int i = 0; i < m_max_peds; i++)
+        for (int i = 0; i < oMaxPeds; i++)
         {
-            long m_vehicle_list = Memory.Read<long>(m_vehicle_interface + 0x180);
-            m_vehicle_list = Memory.Read<long>(m_vehicle_list + i * 0x10);
-            if (!Memory.IsValid(m_vehicle_list))
+            long pCVehicleList = Memory.Read<long>(pCVehicleInterface + Offsets.CReplayInterface_CVehicleInterface_CVehicleList);
+            long pCVehicle = Memory.Read<long>(pCVehicleList + i * 0x10);
+            if (!Memory.IsValid(pCVehicle))
                 continue;
 
-            Memory.Write(m_vehicle_list + 0x280, -1.0f);     // m_health
-            Memory.Write(m_vehicle_list + 0x820, -1.0f);     // m_body_health
-            Memory.Write(m_vehicle_list + 0x824, -1.0f);     // m_petrol_tank_health
-            Memory.Write(m_vehicle_list + 0x8E8, -1.0f);     // m_engine_health
+            Memory.Write(pCVehicle + Offsets.CPed_CVehicle_Health, -1.0f);
+            Memory.Write(pCVehicle + Offsets.CPed_CVehicle_HealthBody, -1.0f);
+            Memory.Write(pCVehicle + Offsets.CPed_CVehicle_HealthPetrolTank, -1.0f);
+            Memory.Write(pCVehicle + Offsets.CPed_CVehicle_HealthEngine, -1.0f);
         }
     }
 
     /// <summary>
-    /// 传送NPC到我这里，仅敌对？
+    /// 传送全部NPC到我这里，仅敌对？
     /// </summary>
-    public static void TeleportNPCToMe(bool isOnlyHostility)
+    public static void TeleportAllNPCToMe(bool isOnlyHostility)
     {
         Vector3 v3MyPos = Teleport.GetPlayerPosition();
 
-        // Ped实体
-        long m_replay = Memory.Read<long>(General.ReplayInterfacePTR);
-        long m_ped_interface = Memory.Read<long>(m_replay + 0x18);
-        int m_max_peds = Memory.Read<int>(m_ped_interface + 0x108);
+        long pCReplayInterface = Memory.Read<long>(General.ReplayInterfacePTR);
+        long pCPedInterface = Memory.Read<long>(pCReplayInterface + Offsets.CReplayInterface_CPedInterface);
+        int oMaxPeds = Memory.Read<int>(pCPedInterface + Offsets.CReplayInterface_CPedInterface_MaxPeds);
 
-        for (int i = 0; i < m_max_peds; i++)
+        for (int i = 0; i < oMaxPeds; i++)
         {
-            long m_ped_list = Memory.Read<long>(m_ped_interface + 0x100);
-            m_ped_list = Memory.Read<long>(m_ped_list + i * 0x10);
-            if (!Memory.IsValid(m_ped_list))
+            long pCPedList = Memory.Read<long>(pCPedInterface + Offsets.CReplayInterface_CPedInterface_CPedList);
+
+            long pCPed = Memory.Read<long>(pCPedList + i * 0x10);
+            if (!Memory.IsValid(pCPed))
                 continue;
 
             // 跳过玩家
-            long m_player_info = Memory.Read<long>(m_ped_list + 0x10A8);
-            if (Memory.IsValid(m_player_info))
+            long pCPlayerInfo = Memory.Read<long>(pCPed + Offsets.CPed_CPlayerInfo);
+            if (Memory.IsValid(pCPlayerInfo))
                 continue;
 
-            long m_navigation = Memory.Read<long>(m_ped_list + 0x30);
-            if (!Memory.IsValid(m_navigation))
+            long pCNavigation = Memory.Read<long>(pCPed + Offsets.CPed_CNavigation);
+            if (!Memory.IsValid(pCNavigation))
                 continue;
 
             if (isOnlyHostility)
             {
-                byte oHostility = Memory.Read<byte>(m_ped_list + 0x18C);
-
+                byte oHostility = Memory.Read<byte>(pCPed + Offsets.CPed_Hostility);
                 if (oHostility > 0x01)
                 {
-                    Memory.Write(m_navigation + 0x50, v3MyPos);
-                    Memory.Write(m_ped_list + 0x90, v3MyPos);
+                    Memory.Write(pCPed + Offsets.CPed_CVehicle_VisualX, v3MyPos);
+                    Memory.Write(pCNavigation + Offsets.CPed_CVehicle_CNavigation_PositionX, v3MyPos);
                 }
             }
             else
             {
-                Memory.Write(m_navigation + 0x50, v3MyPos);
-                Memory.Write(m_ped_list + 0x90, v3MyPos);
+                Memory.Write(pCPed + Offsets.CPed_CVehicle_VisualX, v3MyPos);
+                Memory.Write(pCNavigation + Offsets.CPed_CVehicle_CNavigation_PositionX, v3MyPos);
             }
         }
     }

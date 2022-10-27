@@ -220,10 +220,10 @@ public static class Player
     }
 
     /// <summary>
-    /// NPC忽略
+    /// NPC无视玩家
     /// </summary>
     /// <param name="value"></param>
-    public static void NPCIgnore(byte value)
+    public static void NPCIgnore(int value)
     {
         long pCPedFactory = Memory.Read<long>(General.WorldPTR);
         long pCPed = Memory.Read<long>(pCPedFactory + Offsets.CPed);

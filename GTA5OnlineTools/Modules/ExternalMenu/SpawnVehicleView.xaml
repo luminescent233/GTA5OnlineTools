@@ -55,7 +55,7 @@
                         Content="补满载具血量" />
                 </WrapPanel>
 
-                <ui:UiLabelEmoji Content="载具附加功能" />
+                <ui:UiLabelEmoji Content="附加功能" />
                 <ComboBox
                     x:Name="ComboBox_VehicleExtras"
                     Margin="5"
@@ -78,11 +78,11 @@
             <StackPanel Margin="5,0,5,0">
                 <Button
                     x:Name="Button_SpawnOnlineVehicleA"
-                    Click="Button_SpawnOnlineVehicle_Click"
+                    Click="Button_SpawnOnlineVehicleA_Click"
                     Content="刷出线上载具（空地）" />
                 <Button
                     x:Name="Button_SpawnOnlineVehicleB"
-                    Click="Button_SpawnOnlineVehicle_Click"
+                    Click="Button_SpawnOnlineVehicleB_Click"
                     Content="刷出线上载具（室内）" />
                 <TextBlock Style="{StaticResource TextBlockStyle_Hint}">
                     提示：如果载具刷不出，请切换战局，并找一个开阔区域刷
