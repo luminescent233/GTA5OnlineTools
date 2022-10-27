@@ -145,6 +145,81 @@ public static class Player
     }
 
     /// <summary>
+    /// 角色隐形（虚假）
+    /// </summary>
+    public static void Invisible(bool isEnable)
+    {
+        long pCPedFactory = GTA5Mem.Read<long>(General.WorldPTR);
+        long pCPed = GTA5Mem.Read<long>(pCPedFactory + Offsets.CPed);
+
+        if (isEnable)
+            GTA5Mem.Write<byte>(pCPed + Offsets.CPed_Invisible, 0x01);
+        else
+            GTA5Mem.Write<byte>(pCPed + Offsets.CPed_Invisible, 0x27);
+    }
+
+    /// <summary>
+    /// 补满血量和护甲
+    /// </summary>
+    public static void FillHealthArmor()
+    {
+        long pCPedFactory = GTA5Mem.Read<long>(General.WorldPTR);
+        long pCPed = GTA5Mem.Read<long>(pCPedFactory + Offsets.CPed);
+
+        float oHealth = GTA5Mem.Read<float>(pCPed + Offsets.CPed_Health);
+        float oHealthMax = GTA5Mem.Read<float>(pCPed + Offsets.CPed_HealthMax);
+        if (oHealth < oHealthMax)
+        {
+            GTA5Mem.Write(pCPed + Offsets.CPed_Health, oHealthMax);
+        }
+        else
+        {
+            GTA5Mem.Write(pCPed + Offsets.CPed_Health, 328.0f);
+        }
+
+        GTA5Mem.Write(pCPed + Offsets.CPed_Armor, 50.0f);
+    }
+
+    /// <summary>
+    /// 玩家自杀（设置当前生命值为1.0）
+    /// </summary>
+    public static void Suicide()
+    {
+        long pCPedFactory = GTA5Mem.Read<long>(General.WorldPTR);
+        long pCPed = GTA5Mem.Read<long>(pCPedFactory + Offsets.CPed);
+        GTA5Mem.Write(pCPed + Offsets.CPed_Health, 1.0f);
+    }
+
+    /// <summary>
+    /// 雷达影踪（最大生命值为0）
+    /// </summary>
+    public static void UndeadOffRadar(bool isEnable)
+    {
+        long pCPedFactory = GTA5Mem.Read<long>(General.WorldPTR);
+        long pCPed = GTA5Mem.Read<long>(pCPedFactory + Offsets.CPed);
+
+        if (isEnable)
+            GTA5Mem.Write(pCPed + Offsets.CPed_HealthMax, 0.0f);
+        else
+            GTA5Mem.Write(pCPed + Offsets.CPed_HealthMax, 328.0f);
+    }
+
+    /// <summary>
+    /// 永不通缉
+    /// </summary>
+    public static void WantedCanChange(bool isEnable)
+    {
+        long pCPedFactory = GTA5Mem.Read<long>(General.WorldPTR);
+        long pCPed = GTA5Mem.Read<long>(pCPedFactory + Offsets.CPed);
+        long pCPlayerInfo = GTA5Mem.Read<long>(pCPed + Offsets.CPed_CPlayerInfo);
+
+        if (isEnable)
+            GTA5Mem.Write(pCPlayerInfo + Offsets.CPed_CPlayerInfo_WantedCanChange, 1.0f);
+        else
+            GTA5Mem.Write(pCPlayerInfo + Offsets.CPed_CPlayerInfo_WantedCanChange, 0.0f);
+    }
+
+    /// <summary>
     /// 无碰撞体积
     /// </summary>
     public static void NoCollision(bool isEnable)
@@ -278,80 +353,5 @@ public static class Player
 
         oProof = isEnable ? oProof | (1 << 24) : (uint)(oProof & ~(1 << 24));
         GTA5Mem.Write(pCPed + Offsets.CPed_Proof, oProof);
-    }
-
-    /// <summary>
-    /// 角色隐形（虚假）
-    /// </summary>
-    public static void Invisible(bool isEnable)
-    {
-        long pCPedFactory = GTA5Mem.Read<long>(General.WorldPTR);
-        long pCPed = GTA5Mem.Read<long>(pCPedFactory + Offsets.CPed);
-
-        if (isEnable)
-            GTA5Mem.Write<byte>(pCPed + Offsets.CPed_Invisible, 0x01);
-        else
-            GTA5Mem.Write<byte>(pCPed + Offsets.CPed_Invisible, 0x27);
-    }
-
-    /// <summary>
-    /// 补满血量和护甲
-    /// </summary>
-    public static void FillHealthArmor()
-    {
-        long pCPedFactory = GTA5Mem.Read<long>(General.WorldPTR);
-        long pCPed = GTA5Mem.Read<long>(pCPedFactory + Offsets.CPed);
-
-        float oHealth = GTA5Mem.Read<float>(pCPed + Offsets.CPed_Health);
-        float oHealthMax = GTA5Mem.Read<float>(pCPed + Offsets.CPed_HealthMax);
-        if (oHealth < oHealthMax)
-        {
-            GTA5Mem.Write(pCPed + Offsets.CPed_Health, oHealthMax);
-        }
-        else
-        {
-            GTA5Mem.Write(pCPed + Offsets.CPed_Health, 328.0f);
-        }
-
-        GTA5Mem.Write(pCPed + Offsets.CPed_Armor, 50.0f);
-    }
-
-    /// <summary>
-    /// 玩家自杀（设置当前生命值为1.0）
-    /// </summary>
-    public static void Suicide()
-    {
-        long pCPedFactory = GTA5Mem.Read<long>(General.WorldPTR);
-        long pCPed = GTA5Mem.Read<long>(pCPedFactory + Offsets.CPed);
-        GTA5Mem.Write(pCPed + Offsets.CPed_Health, 1.0f);
-    }
-
-    /// <summary>
-    /// 雷达影踪（最大生命值为0）
-    /// </summary>
-    public static void UndeadOffRadar(bool isEnable)
-    {
-        long pCPedFactory = GTA5Mem.Read<long>(General.WorldPTR);
-        long pCPed = GTA5Mem.Read<long>(pCPedFactory + Offsets.CPed);
-
-        if (isEnable)
-            GTA5Mem.Write(pCPed + Offsets.CPed_HealthMax, 0.0f);
-        else
-            GTA5Mem.Write(pCPed + Offsets.CPed_HealthMax, 328.0f);
-    }
-
-    /// <summary>
-    /// 永不通缉
-    /// </summary>
-    public static void WantedCanChange(bool isEnable)
-    {
-        long pCPedFactory = GTA5Mem.Read<long>(General.WorldPTR);
-        long pCPed = GTA5Mem.Read<long>(pCPedFactory + Offsets.CPed);
-        long pCPlayerInfo = GTA5Mem.Read<long>(pCPed + Offsets.CPed_CPlayerInfo);
-
-        if (isEnable)
-            GTA5Mem.Write(pCPlayerInfo + Offsets.CPed_CPlayerInfo_WantedCanChange, 1.0f);
-        else
-            GTA5Mem.Write(pCPlayerInfo + Offsets.CPed_CPlayerInfo_WantedCanChange, 0.0f);
     }
 }

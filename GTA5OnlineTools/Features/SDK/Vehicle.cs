@@ -140,13 +140,13 @@ public static class Vehicle
             int BSTValue = GTA5Mem.Read<int>(General.PickupDataPTR, new int[] { 0x160 });
 
             long m_dwpPickUpInterface = GTA5Mem.Read<long>(General.ReplayInterfacePTR, new int[] { 0x20 });
-            long dw_curPickUpNum = GTA5Mem.Read<long>(m_dwpPickUpInterface + 0x110, null);
-            long m_dwpPedList = GTA5Mem.Read<long>(m_dwpPickUpInterface + 0x100, null);
+            long dw_curPickUpNum = GTA5Mem.Read<long>(m_dwpPickUpInterface + 0x110);
+            long m_dwpPedList = GTA5Mem.Read<long>(m_dwpPickUpInterface + 0x100);
 
             for (long i = 0; i < dw_curPickUpNum; i++)
             {
-                long dwpPickup = GTA5Mem.Read<long>(m_dwpPedList + i * 0x10, null);
-                int dwPickupValue = GTA5Mem.Read<int>(dwpPickup + 0x490, null);
+                long dwpPickup = GTA5Mem.Read<long>(m_dwpPedList + i * 0x10);
+                int dwPickupValue = GTA5Mem.Read<int>(dwpPickup + 0x490);
 
                 if (dwPickupValue == BSTValue)
                 {
@@ -154,9 +154,9 @@ public static class Vehicle
 
                     Task.Delay(10).Wait();
 
-                    float dwpPickupX = GTA5Mem.Read<float>(dwpPickup + 0x90, null);
-                    float dwpPickupY = GTA5Mem.Read<float>(dwpPickup + 0x94, null);
-                    float dwpPickupZ = GTA5Mem.Read<float>(dwpPickup + 0x98, null);
+                    float dwpPickupX = GTA5Mem.Read<float>(dwpPickup + 0x90);
+                    float dwpPickupY = GTA5Mem.Read<float>(dwpPickup + 0x94);
+                    float dwpPickupZ = GTA5Mem.Read<float>(dwpPickup + 0x98);
 
                     float Vehx = GTA5Mem.Read<float>(General.WorldPTR, Offsets.VehicleVisualX);
                     float Vehy = GTA5Mem.Read<float>(General.WorldPTR, Offsets.VehicleVisualY);
@@ -369,6 +369,6 @@ public static class Vehicle
             }
         }
 
-        return "";
+        return string.Empty;
     }
 }

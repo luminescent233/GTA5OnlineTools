@@ -41,13 +41,13 @@ public static class Outfits
     public static int TOP
     {
         get => Hacks.ReadGA<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponent + (OutfitIndex * 13) + 14);
-        set => Hacks.WriteGA<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponent + (OutfitIndex * 13) + 14, value);
+        set => Hacks.WriteGA(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponent + (OutfitIndex * 13) + 14, value);
     }
 
     public static int TOP_TEX
     {
         get => Hacks.ReadGA<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponentTex + (OutfitIndex * 13) + 14);
-        set => Hacks.WriteGA<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponentTex + (OutfitIndex * 13) + 14, value);
+        set => Hacks.WriteGA(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponentTex + (OutfitIndex * 13) + 14, value);
     }
 
     /*********************** UNDERSHIRT ***********************/
@@ -55,13 +55,13 @@ public static class Outfits
     public static int UNDERSHIRT
     {
         get => Hacks.ReadGA<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponent + (OutfitIndex * 13) + 11);
-        set => Hacks.WriteGA<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponent + (OutfitIndex * 13) + 11, value);
+        set => Hacks.WriteGA(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponent + (OutfitIndex * 13) + 11, value);
     }
 
     public static int UNDERSHIRT_TEX
     {
         get => Hacks.ReadGA<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponentTex + (OutfitIndex * 13) + 11);
-        set => Hacks.WriteGA<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponentTex + (OutfitIndex * 13) + 11, value);
+        set => Hacks.WriteGA(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponentTex + (OutfitIndex * 13) + 11, value);
     }
 
     /*********************** LEGS ***********************/
@@ -69,13 +69,13 @@ public static class Outfits
     public static int LEGS
     {
         get => Hacks.ReadGA<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponent + (OutfitIndex * 13) + 7);
-        set => Hacks.WriteGA<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponent + (OutfitIndex * 13) + 7, value);
+        set => Hacks.WriteGA(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponent + (OutfitIndex * 13) + 7, value);
     }
 
     public static int LEGS_TEX
     {
         get => Hacks.ReadGA<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponentTex + (OutfitIndex * 13) + 7);
-        set => Hacks.WriteGA<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponentTex + (OutfitIndex * 13) + 7, value);
+        set => Hacks.WriteGA(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponentTex + (OutfitIndex * 13) + 7, value);
     }
 
     /*********************** FEET ***********************/
@@ -83,13 +83,13 @@ public static class Outfits
     public static int FEET
     {
         get => Hacks.ReadGA<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponent + (OutfitIndex * 13) + 9);
-        set => Hacks.WriteGA<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponent + (OutfitIndex * 13) + 9, value);
+        set => Hacks.WriteGA(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponent + (OutfitIndex * 13) + 9, value);
     }
 
     public static int FEET_TEX
     {
         get => Hacks.ReadGA<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponentTex + (OutfitIndex * 13) + 9);
-        set => Hacks.WriteGA<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponentTex + (OutfitIndex * 13) + 9, value);
+        set => Hacks.WriteGA(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponentTex + (OutfitIndex * 13) + 9, value);
     }
 
     /*********************** ACCESSORIES ***********************/
@@ -97,13 +97,13 @@ public static class Outfits
     public static int ACCESSORIES
     {
         get => Hacks.ReadGA<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponent + (OutfitIndex * 13) + 10);
-        set => Hacks.WriteGA<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponent + (OutfitIndex * 13) + 10, value);
+        set => Hacks.WriteGA(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponent + (OutfitIndex * 13) + 10, value);
     }
 
     public static int ACCESSORIES_TEX
     {
         get => Hacks.ReadGA<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponentTex + (OutfitIndex * 13) + 10);
-        set => Hacks.WriteGA<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponentTex + (OutfitIndex * 13) + 10, value);
+        set => Hacks.WriteGA(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponentTex + (OutfitIndex * 13) + 10, value);
     }
 
     /*********************** BAGS ***********************/
@@ -111,13 +111,13 @@ public static class Outfits
     public static int BAGS
     {
         get => Hacks.ReadGA<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponent + (OutfitIndex * 13) + 8);
-        set => Hacks.WriteGA<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponent + (OutfitIndex * 13) + 8, value);
+        set => Hacks.WriteGA(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponent + (OutfitIndex * 13) + 8, value);
     }
 
     public static int BAGS_TEX
     {
         get => Hacks.ReadGA<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponentTex + (OutfitIndex * 13) + 8);
-        set => Hacks.WriteGA<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponentTex + (OutfitIndex * 13) + 8, value);
+        set => Hacks.WriteGA(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponentTex + (OutfitIndex * 13) + 8, value);
     }
 
     /*********************** GLOVES ***********************/
@@ -125,13 +125,13 @@ public static class Outfits
     public static int GLOVES
     {
         get => Hacks.ReadGA<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponent + (OutfitIndex * 13) + 6);
-        set => Hacks.WriteGA<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponent + (OutfitIndex * 13) + 6, value);
+        set => Hacks.WriteGA(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponent + (OutfitIndex * 13) + 6, value);
     }
 
     public static int GLOVES_TEX
     {
         get => Hacks.ReadGA<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponentTex + (OutfitIndex * 13) + 6);
-        set => Hacks.WriteGA<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponentTex + (OutfitIndex * 13) + 6, value);
+        set => Hacks.WriteGA(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponentTex + (OutfitIndex * 13) + 6, value);
     }
 
     /*********************** DECALS ***********************/
@@ -139,13 +139,13 @@ public static class Outfits
     public static int DECALS
     {
         get => Hacks.ReadGA<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponent + (OutfitIndex * 13) + 13);
-        set => Hacks.WriteGA<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponent + (OutfitIndex * 13) + 13, value);
+        set => Hacks.WriteGA(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponent + (OutfitIndex * 13) + 13, value);
     }
 
     public static int DECALS_TEX
     {
         get => Hacks.ReadGA<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponentTex + (OutfitIndex * 13) + 13);
-        set => Hacks.WriteGA<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponentTex + (OutfitIndex * 13) + 13, value);
+        set => Hacks.WriteGA(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponentTex + (OutfitIndex * 13) + 13, value);
     }
 
     /*********************** MASK ***********************/
@@ -153,13 +153,13 @@ public static class Outfits
     public static int MASK
     {
         get => Hacks.ReadGA<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponent + (OutfitIndex * 13) + 4);
-        set => Hacks.WriteGA<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponent + (OutfitIndex * 13) + 4, value);
+        set => Hacks.WriteGA(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponent + (OutfitIndex * 13) + 4, value);
     }
 
     public static int MASK_TEX
     {
         get => Hacks.ReadGA<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponentTex + (OutfitIndex * 13) + 4);
-        set => Hacks.WriteGA<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponentTex + (OutfitIndex * 13) + 4, value);
+        set => Hacks.WriteGA(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponentTex + (OutfitIndex * 13) + 4, value);
     }
 
     /*********************** ARMOR ***********************/
@@ -167,13 +167,13 @@ public static class Outfits
     public static int ARMOR
     {
         get => Hacks.ReadGA<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponent + (OutfitIndex * 13) + 12);
-        set => Hacks.WriteGA<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponent + (OutfitIndex * 13) + 12, value);
+        set => Hacks.WriteGA(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponent + (OutfitIndex * 13) + 12, value);
     }
 
     public static int ARMOR_TEX
     {
         get => Hacks.ReadGA<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponentTex + (OutfitIndex * 13) + 12);
-        set => Hacks.WriteGA<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponentTex + (OutfitIndex * 13) + 12, value);
+        set => Hacks.WriteGA(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponentTex + (OutfitIndex * 13) + 12, value);
     }
 
     /********************************************************************************************/
@@ -185,13 +185,13 @@ public static class Outfits
     public static int HATS
     {
         get => Hacks.ReadGA<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWProp + (OutfitIndex * 10) + 3);
-        set => Hacks.WriteGA<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWProp + (OutfitIndex * 10) + 3, value);
+        set => Hacks.WriteGA(oWardrobeG + (0 * oWPointA) + oWPointB + oWProp + (OutfitIndex * 10) + 3, value);
     }
 
     public static int HATS_TEX
     {
         get => Hacks.ReadGA<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWPropTex + (OutfitIndex * 10) + 3);
-        set => Hacks.WriteGA<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWPropTex + (OutfitIndex * 10) + 3, value);
+        set => Hacks.WriteGA(oWardrobeG + (0 * oWPointA) + oWPointB + oWPropTex + (OutfitIndex * 10) + 3, value);
     }
 
     /*********************** GLASSES ***********************/
@@ -199,13 +199,13 @@ public static class Outfits
     public static int GLASSES
     {
         get => Hacks.ReadGA<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWProp + (OutfitIndex * 10) + 4);
-        set => Hacks.WriteGA<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWProp + (OutfitIndex * 10) + 4, value);
+        set => Hacks.WriteGA(oWardrobeG + (0 * oWPointA) + oWPointB + oWProp + (OutfitIndex * 10) + 4, value);
     }
 
     public static int GLASSES_TEX
     {
         get => Hacks.ReadGA<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWPropTex + (OutfitIndex * 10) + 4);
-        set => Hacks.WriteGA<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWPropTex + (OutfitIndex * 10) + 4, value);
+        set => Hacks.WriteGA(oWardrobeG + (0 * oWPointA) + oWPointB + oWPropTex + (OutfitIndex * 10) + 4, value);
     }
 
     /*********************** EARS ***********************/
@@ -213,13 +213,13 @@ public static class Outfits
     public static int EARS
     {
         get => Hacks.ReadGA<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWProp + (OutfitIndex * 10) + 5);
-        set => Hacks.WriteGA<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWProp + (OutfitIndex * 10) + 5, value);
+        set => Hacks.WriteGA(oWardrobeG + (0 * oWPointA) + oWPointB + oWProp + (OutfitIndex * 10) + 5, value);
     }
 
     public static int EARS_TEX
     {
         get => Hacks.ReadGA<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWPropTex + (OutfitIndex * 10) + 5);
-        set => Hacks.WriteGA<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWPropTex + (OutfitIndex * 10) + 5, value);
+        set => Hacks.WriteGA(oWardrobeG + (0 * oWPointA) + oWPointB + oWPropTex + (OutfitIndex * 10) + 5, value);
     }
 
     /*********************** WATCHES ***********************/
@@ -227,13 +227,13 @@ public static class Outfits
     public static int WATCHES
     {
         get => Hacks.ReadGA<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWProp + (OutfitIndex * 10) + 9);
-        set => Hacks.WriteGA<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWProp + (OutfitIndex * 10) + 9, value);
+        set => Hacks.WriteGA(oWardrobeG + (0 * oWPointA) + oWPointB + oWProp + (OutfitIndex * 10) + 9, value);
     }
 
     public static int WATCHES_TEX
     {
         get => Hacks.ReadGA<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWPropTex + (OutfitIndex * 10) + 9);
-        set => Hacks.WriteGA<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWPropTex + (OutfitIndex * 10) + 9, value);
+        set => Hacks.WriteGA(oWardrobeG + (0 * oWPointA) + oWPointB + oWPropTex + (OutfitIndex * 10) + 9, value);
     }
 
     /*********************** WRIST ***********************/
@@ -241,12 +241,12 @@ public static class Outfits
     public static int WRIST
     {
         get => Hacks.ReadGA<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWProp + (OutfitIndex * 10) + 10);
-        set => Hacks.WriteGA<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWProp + (OutfitIndex * 10) + 10, value);
+        set => Hacks.WriteGA(oWardrobeG + (0 * oWPointA) + oWPointB + oWProp + (OutfitIndex * 10) + 10, value);
     }
 
     public static int WRIST_TEX
     {
         get => Hacks.ReadGA<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWPropTex + (OutfitIndex * 10) + 10);
-        set => Hacks.WriteGA<int>(oWardrobeG + (0 * oWPointA) + oWPointB + oWPropTex + (OutfitIndex * 10) + 10, value);
+        set => Hacks.WriteGA(oWardrobeG + (0 * oWPointA) + oWPointB + oWPropTex + (OutfitIndex * 10) + 10, value);
     }
 }

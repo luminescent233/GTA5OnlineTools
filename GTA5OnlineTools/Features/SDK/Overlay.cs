@@ -136,8 +136,8 @@ public class Overlay : IDisposable
             /////////////////////////////////////////////////////////////////////
 
             // 玩家列表
-            long pPlayerListPTR = GTA5Mem.Read<long>(General.NetworkPlayerMgrPTR);
-            int playerCount = GTA5Mem.Read<int>(pPlayerListPTR + 0x178);
+            long pCNetworkPlayerMgr = GTA5Mem.Read<long>(General.NetworkPlayerMgrPTR);
+            int playerCount = GTA5Mem.Read<int>(pCNetworkPlayerMgr + 0x178);
 
             // Ped数量
             long m_replay = GTA5Mem.Read<long>(General.ReplayInterfacePTR);

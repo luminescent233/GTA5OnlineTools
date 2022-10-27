@@ -52,10 +52,10 @@ public partial class DrawWindow : Window
             // 但是WPF窗口在未设置 AllowsTransparency = true 时，会自动去掉 WS_EX_LAYERED 样式 (在 HwndTarget 类中)
             // 如果设置了 AllowsTransparency = true 将使用WPF内置的低性能的透明实现
             // 所以这里通过 Hook 的方式，在不使用WPF内置的透明实现的情况下，强行保证这个样式存在
-            if (msg == (int)Win32.WM_STYLECHANGING && (long)wParam == (long)Win32.GWL_EXSTYLE)
+            if (msg == Win32.WM_STYLECHANGING && (long)wParam == Win32.GWL_EXSTYLE)
             {
                 var styleStruct = (STYLESTRUCT)Marshal.PtrToStructure(lParam, typeof(STYLESTRUCT));
-                styleStruct.styleNew |= (int)Win32.WS_EX_LAYERED;
+                styleStruct.styleNew |= Win32.WS_EX_LAYERED;
                 Marshal.StructureToPtr(styleStruct, lParam, false);
                 handled = true;
             }
@@ -65,13 +65,17 @@ public partial class DrawWindow : Window
 
         this.DataContext = this;
 
-        var thread0 = new Thread(DrawThread);
-        thread0.IsBackground = true;
-        thread0.Start();
+        new Thread(DrawThread)
+        {
+            Name = "DrawThread",
+            IsBackground = true
+        }.Start();
 
-        var thread1 = new Thread(MainThread);
-        thread1.IsBackground = true;
-        thread1.Start();
+        new Thread(MainThread)
+        {
+            Name = "MainThread",
+            IsBackground = true
+        }.Start();
 
         Console.Beep(600, 75);
     }
@@ -90,7 +94,7 @@ public partial class DrawWindow : Window
         {
             var windowData = GTA5Mem.GetGameWindowData();
 
-            this.Dispatcher.Invoke((Delegate)(() =>
+            this.Dispatcher.Invoke(() =>
             {
                 var width = Window_Draw.ActualWidth * ScreenMgr.GetScalingRatio();
 
@@ -108,7 +112,7 @@ public partial class DrawWindow : Window
                 this.Left /= ScreenMgr.GetScalingRatio();
                 this.Top /= ScreenMgr.GetScalingRatio();
 
-                if (IsPlayerInCar() && GTA5Mem.IsForegroundWindow())
+                if (Vehicle.IsInVehicle() && GTA5Mem.IsForegroundWindow())
                 {
                     if (!isShow)
                     {
@@ -145,7 +149,7 @@ public partial class DrawWindow : Window
                         isChange = false;
                     }
                 }
-            }));
+            });
 
             Thread.Sleep(200);
         }
@@ -163,26 +167,23 @@ public partial class DrawWindow : Window
     }
 
     /// <summary>
-    /// 判断玩家是否在载具中
-    /// </summary>
-    /// <returns></returns>
-    private bool IsPlayerInCar()
-    {
-        return GTA5Mem.Read<int>(General.WorldPTR, Offsets.InVehicle) == 1;
-    }
-
-    /// <summary>
     /// 获取载具速度
     /// </summary>
     /// <returns></returns>
     private int GetVehicleSpeed()
     {
-        if (IsPlayerInCar())
+        long pCPedFactory = GTA5Mem.Read<long>(General.WorldPTR);
+        long pCPed = GTA5Mem.Read<long>(pCPedFactory + Offsets.CPed);
+        byte oInVehicle = GTA5Mem.Read<byte>(pCPed + Offsets.CPed_InVehicle);
+
+        if (oInVehicle == 0x01)
         {
-            var v3_1 = GTA5Mem.Read<Vector3>(General.WorldPTR, new int[] { 0x8, 0xD30, 0x7F0 });
+            long pCVehicle = GTA5Mem.Read<long>(pCPed + Offsets.CPed_CVehicle);
+
+            var v3_1 = GTA5Mem.Read<Vector3>(pCVehicle + 0x7F0);
             var VehicleSpeed1 = Math.Sqrt(Math.Pow(v3_1.X, 2) + Math.Pow(v3_1.Y, 2) + Math.Pow(v3_1.Z, 2));
 
-            var v3_2 = GTA5Mem.Read<Vector3>(General.WorldPTR, new int[] { 0x8, 0xD30, 0x7F0 });
+            var v3_2 = GTA5Mem.Read<Vector3>(pCVehicle + 0x7F0);
             var VehicleSpeed2 = Math.Sqrt(Math.Pow(v3_2.X, 2) + Math.Pow(v3_2.Y, 2) + Math.Pow(v3_2.Z, 2));
 
             var VehicleSpeed = VehicleSpeed1 + (VehicleSpeed2 - VehicleSpeed1) * 0.5;

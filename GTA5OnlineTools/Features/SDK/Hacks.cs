@@ -33,7 +33,7 @@ public static class Hacks
     /// <param name="vaule"></param>
     public static void WriteGA<T>(int index, T vaule) where T : struct
     {
-        GTA5Mem.Write<T>(GlobalAddress(index), vaule);
+        GTA5Mem.Write(GlobalAddress(index), vaule);
     }
 
     /// <summary>
@@ -123,12 +123,12 @@ public static class Hacks
         uint Stat_ResotreHash = ReadGA<uint>(1655453 + 4);
         int Stat_ResotreValue = ReadGA<int>(1020252 + 5526);
 
-        WriteGA<uint>(1659575 + 4, Joaat(hash));
-        WriteGA<int>(1020252 + 5526, value);
-        WriteGA<int>(1648034 + 1139, -1);
+        WriteGA(1659575 + 4, Joaat(hash));
+        WriteGA(1020252 + 5526, value);
+        WriteGA(1648034 + 1139, -1);
         Thread.Sleep(1000);
-        WriteGA<uint>(1659575 + 4, Stat_ResotreHash);
-        WriteGA<int>(1020252 + 5526, Stat_ResotreValue);
+        WriteGA(1659575 + 4, Stat_ResotreHash);
+        WriteGA(1020252 + 5526, Stat_ResotreValue);
     }
 
     /// <summary>
@@ -139,33 +139,32 @@ public static class Hacks
         //uint modelHash = Joaat("prop_cash_pile_01");
         uint pickupHash = Joaat(pickup);
 
-        float x = GTA5Mem.Read<float>(General.WorldPTR, Offsets.PlayerPositionX);
-        float y = GTA5Mem.Read<float>(General.WorldPTR, Offsets.PlayerPositionY);
-        float z = GTA5Mem.Read<float>(General.WorldPTR, Offsets.PlayerPositionZ);
+        Vector3 vector3 = Teleport.GetPlayerPosition();
 
-        WriteGA<float>(2787534 + 3, x);
-        WriteGA<float>(2787534 + 4, y);
-        WriteGA<float>(2787534 + 5, z + 3.0f);
-        WriteGA<int>(2787534 + 1, 9999);    // 9999
+        WriteGA(2787534 + 3, vector3.X);
+        WriteGA(2787534 + 4, vector3.Y);
+        WriteGA(2787534 + 5, vector3.Z + 3.0f);
+        WriteGA(2787534 + 1, 9999);
 
-        WriteGA<int>(4534105 + 1 + (ReadGA<int>(2787534) * 85) + 66 + 2, 2);
-        WriteGA<int>(2787534 + 6, 1);
+        WriteGA(4534105 + 1 + (ReadGA<int>(2787534) * 85) + 66 + 2, 2);
+        WriteGA(2787534 + 6, 1);
 
         Thread.Sleep(150);
 
-        var m_dwpPickUpInterface = GTA5Mem.Read<long>(General.ReplayInterfacePTR, new int[] { 0x20 });
+        long pReplayInterface = GTA5Mem.Read<long>(General.ReplayInterfacePTR);
+        long m_dwpPickUpInterface = GTA5Mem.Read<long>(pReplayInterface + 0x20);
 
-        var dw_curPickUpNum = GTA5Mem.Read<long>(m_dwpPickUpInterface + 0x110, null);
-        var m_dwpPedList = GTA5Mem.Read<long>(m_dwpPickUpInterface + 0x100, null);
+        long dw_curPickUpNum = GTA5Mem.Read<long>(m_dwpPickUpInterface + 0x110);
+        long m_dwpPedList = GTA5Mem.Read<long>(m_dwpPickUpInterface + 0x100);
 
         for (long i = 0; i < dw_curPickUpNum; i++)
         {
-            long dwpPickup = GTA5Mem.Read<long>(m_dwpPedList + i * 0x10, null);
-            uint dwPickupHash = GTA5Mem.Read<uint>(dwpPickup + 0x488, null);
+            long dwpPickup = GTA5Mem.Read<long>(m_dwpPedList + i * 0x10);
+            uint dwPickupHash = GTA5Mem.Read<uint>(dwpPickup + 0x488);
 
             if (dwPickupHash == 4263048111)
             {
-                GTA5Mem.Write<uint>(dwpPickup + 0x488, pickupHash);
+                GTA5Mem.Write(dwpPickup + 0x488, pickupHash);
                 break;
             }
         }
