@@ -176,7 +176,7 @@ public partial class SelfStateView : UserControl
 
             byte oInVehicle = GTA5Mem.Read<byte>(pCPed + Offsets.CPed_InVehicle);
 
-            float oGod = GTA5Mem.Read<float>(pCPed + Offsets.CPed_God);
+            float oGod = GTA5Mem.Read<byte>(pCPed + Offsets.CPed_God);
             float oHealth = GTA5Mem.Read<float>(pCPed + Offsets.CPed_Health);
             float oHealthMax = GTA5Mem.Read<float>(pCPed + Offsets.CPed_HealthMax);
             float oArmor = GTA5Mem.Read<float>(pCPed + Offsets.CPed_Armor);
@@ -193,12 +193,12 @@ public partial class SelfStateView : UserControl
             // 玩家无敌
             if (Settings.Player.GodMode)
             {
-                if (pCPed == 0x00)
+                if (oGod == 0x00)
                     GTA5Mem.Write<byte>(pCPed + Offsets.CPed_God, 0x01);
             }
             else
             {
-                if (pCPed == 0x01)
+                if (oGod == 0x01)
                     GTA5Mem.Write<byte>(pCPed + Offsets.CPed_God, 0x00);
             }
 
@@ -385,19 +385,19 @@ public partial class SelfStateView : UserControl
     {
         if (CheckBox_NPCIgnore.IsChecked == true && CheckBox_PoliceIgnore.IsChecked == false)
         {
-            GTA5Mem.Write<byte>(General.WorldPTR, Offsets.NPCIgnore, 0x04);
+            Player.NPCIgnore(0x04);
         }
         else if (CheckBox_NPCIgnore.IsChecked == false && CheckBox_PoliceIgnore.IsChecked == true)
         {
-            GTA5Mem.Write<byte>(General.WorldPTR, Offsets.NPCIgnore, 0xC3);
+            Player.NPCIgnore(0xC3);
         }
         else if (CheckBox_NPCIgnore.IsChecked == true && CheckBox_PoliceIgnore.IsChecked == true)
         {
-            GTA5Mem.Write<byte>(General.WorldPTR, Offsets.NPCIgnore, 0xC7);
+            Player.NPCIgnore(0xC7);
         }
         else
         {
-            GTA5Mem.Write<byte>(General.WorldPTR, Offsets.NPCIgnore, 0x00);
+            Player.NPCIgnore(0x00);
         }
     }
 

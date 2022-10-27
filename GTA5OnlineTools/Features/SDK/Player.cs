@@ -168,7 +168,7 @@ public static class Player
 
         float oHealth = GTA5Mem.Read<float>(pCPed + Offsets.CPed_Health);
         float oHealthMax = GTA5Mem.Read<float>(pCPed + Offsets.CPed_HealthMax);
-        if (oHealth < oHealthMax)
+        if (oHealth <= oHealthMax)
         {
             GTA5Mem.Write(pCPed + Offsets.CPed_Health, oHealthMax);
         }
@@ -217,6 +217,19 @@ public static class Player
             GTA5Mem.Write(pCPlayerInfo + Offsets.CPed_CPlayerInfo_WantedCanChange, 1.0f);
         else
             GTA5Mem.Write(pCPlayerInfo + Offsets.CPed_CPlayerInfo_WantedCanChange, 0.0f);
+    }
+
+    /// <summary>
+    /// NPC忽略
+    /// </summary>
+    /// <param name="value"></param>
+    public static void NPCIgnore(byte value)
+    {
+        long pCPedFactory = GTA5Mem.Read<long>(General.WorldPTR);
+        long pCPed = GTA5Mem.Read<long>(pCPedFactory + Offsets.CPed);
+        long pCPlayerInfo = GTA5Mem.Read<long>(pCPed + Offsets.CPed_CPlayerInfo);
+
+        GTA5Mem.Write(pCPlayerInfo + Offsets.CPed_CPlayerInfo_NPCIgnore, value);
     }
 
     /// <summary>

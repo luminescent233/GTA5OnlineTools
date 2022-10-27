@@ -14,6 +14,8 @@ public static class Weapon
         long pCPedWeaponManager = GTA5Mem.Read<long>(pCPed + Offsets.CPed_CPedWeaponManager);
         long pCWeaponInfo = GTA5Mem.Read<long>(pCPedWeaponManager + Offsets.CPed_CPedWeaponManager_CWeaponInfo);
         long pCAmmoInfo = GTA5Mem.Read<long>(pCWeaponInfo + Offsets.CPed_CPedWeaponManager_CWeaponInfo_CAmmoInfo);
+        if (!GTA5Mem.IsValid(pCAmmoInfo))
+            return;
 
         int getMaxAmmo = GTA5Mem.Read<int>(pCAmmoInfo + 0x28);
 

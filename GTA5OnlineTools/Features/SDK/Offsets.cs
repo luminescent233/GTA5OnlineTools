@@ -247,6 +247,7 @@ public static class Offsets
     public const int CPed_CPlayerInfo_FrameFlags = 0x219;
     public const int CPed_CPlayerInfo_WalkSpeed = 0x18C;
     public const int CPed_CPlayerInfo_WantedCanChange = 0x73C;      // float
+    public const int CPed_CPlayerInfo_NPCIgnore = 0x870;
     public const int CPed_CPlayerInfo_WantedLevel = 0x888;          // int8
     public const int CPed_CPlayerInfo_RunSpeed = 0xCF0;             // float
     public const int CPed_CPlayerInfo_Stamina = 0xCF4;

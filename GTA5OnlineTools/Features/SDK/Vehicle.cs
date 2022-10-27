@@ -113,7 +113,7 @@ public static class Vehicle
 
             float oVHealth = GTA5Mem.Read<float>(pCVehicle + Offsets.CPed_CVehicle_Health);
             float oVHealthMax = GTA5Mem.Read<float>(pCVehicle + Offsets.CPed_CVehicle_HealthMax);
-            if (oVHealth < oVHealthMax)
+            if (oVHealth <= oVHealthMax)
             {
                 GTA5Mem.Write(pCVehicle + Offsets.CPed_CVehicle_Health, oVHealthMax);
             }
@@ -343,8 +343,8 @@ public static class Vehicle
     /// <param name="index"></param>
     public static void SpawnPersonalVehicle(int index)
     {
-        Hacks.WriteGA<int>(Offsets.SpawnPersonalVehicleIndex1, index);
-        Hacks.WriteGA<int>(Offsets.SpawnPersonalVehicleIndex2, 1);
+        Hacks.WriteGA(Offsets.SpawnPersonalVehicleIndex1, index);
+        Hacks.WriteGA(Offsets.SpawnPersonalVehicleIndex2, 1);
     }
 
     /// <summary>
