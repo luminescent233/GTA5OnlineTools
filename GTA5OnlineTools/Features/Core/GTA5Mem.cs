@@ -124,8 +124,6 @@ public static class GTA5Mem
             General.WorldPTR = 0;
             General.BlipPTR = 0;
             General.GlobalPTR = 0;
-            General.PlayerChatterNamePTR = 0;
-            General.PlayerExternalDisplayNamePTR = 0;
             General.NetworkPlayerMgrPTR = 0;
             General.ReplayInterfacePTR = 0;
             General.WeatherPTR = 0;
@@ -163,20 +161,6 @@ public static class GTA5Mem
             General.GlobalPTR = FindPattern(Offsets.Mask.GlobalMask);
             General.GlobalPTR = Rip_37(General.GlobalPTR);
             LoggerHelper.Info($"《GTA5》GlobalPTR 0x{General.GlobalPTR:x}");
-        }
-
-        if (General.PlayerChatterNamePTR == 0)
-        {
-            General.PlayerChatterNamePTR = FindPattern(Offsets.Mask.PlayerchatterNameMask);
-            General.PlayerChatterNamePTR = Rip_37(General.PlayerChatterNamePTR);
-            LoggerHelper.Info($"《GTA5》PlayerChatterNamePTR 0x{General.PlayerChatterNamePTR:x}");
-        }
-
-        if (General.PlayerExternalDisplayNamePTR == 0)
-        {
-            General.PlayerExternalDisplayNamePTR = FindPattern(Offsets.Mask.PlayerExternalDisplayNameMask);
-            General.PlayerExternalDisplayNamePTR = Rip_37(General.PlayerExternalDisplayNamePTR);
-            LoggerHelper.Info($"《GTA5》PlayerExternalDisplayNamePTR 0x{General.PlayerExternalDisplayNamePTR:x}");
         }
 
         if (General.NetworkPlayerMgrPTR == 0)
@@ -528,6 +512,17 @@ public static class GTA5Mem
         }
 
         return Encoding.UTF8.GetString(buffer);
+    }
+
+    /// <summary>
+    /// 写入字符串
+    /// </summary>
+    /// <param name="address"></param>
+    /// <param name="str"></param>
+    public static void WriteString(long address,  string str)
+    {
+        var buffer = new ASCIIEncoding().GetBytes(str);
+        Win32.WriteProcessMemory(GTA5ProHandle, address, buffer, buffer.Length, out _);
     }
 
     /// <summary>

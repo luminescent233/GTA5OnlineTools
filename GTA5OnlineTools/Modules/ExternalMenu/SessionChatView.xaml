@@ -95,62 +95,7 @@
 
         </StackPanel>
         <!--  面板2  -->
-        <StackPanel>
-            <ui:UiLabelEmoji Content="玩家昵称（最大20字符）" />
-            <StackPanel Margin="5,0,5,0">
-                <TextBlock Margin="5" Text="在线列表 " />
-                <TextBox
-                    x:Name="TextBox_OnlineList"
-                    MaxLength="20"
-                    TextChanged="TextBox_OnlineList_TextChanged" />
-                <!--  ##########  -->
-                <TextBlock Margin="5" Text="聊天名称 " />
-                <TextBox x:Name="TextBox_ChatName" MaxLength="20" />
-                <!--  ##########  -->
-                <TextBlock Margin="5" Text="对外显示 " />
-                <TextBox x:Name="TextBox_ExternalDisplay" MaxLength="20" />
-            </StackPanel>
-            <!--  ##########  -->
-            <StackPanel Margin="5" Orientation="Horizontal">
-                <Button
-                    x:Name="Button_ReadPlayerName"
-                    Click="Button_ReadPlayerName_Click"
-                    Content="读取" />
-                <Button
-                    x:Name="Button_WritePlayerName"
-                    Click="Button_WritePlayerName_Click"
-                    Content="写入" />
-            </StackPanel>
-            <!--  ##########  -->
-            <TextBlock Style="{StaticResource TextBlockStyle_Hint}">
-                提示：修改成功后，切换战局生效，建议三个同时修改
-            </TextBlock>
-            <TextBlock Foreground="#4C4A48" Style="{StaticResource TextBlockStyle_Hint}">
-                特殊修改示例：~o~Hello ~b~Kitty
-            </TextBlock>
-            <UniformGrid Margin="5,0,5,0" Columns="2">
-                <TextBlock Foreground="#4C4A48" Style="{StaticResource TextBlockStyle_Hint}">
-                    ### 昵称颜色 ###<LineBreak />
-                    ~r~ = 红色<LineBreak />
-                    ~b~ = 蓝色<LineBreak />
-                    ~x~ = 淡蓝色<LineBreak />
-                    ~g~ = 绿色<LineBreak />
-                    ~t~ = 淡绿色<LineBreak />
-                    ~y~ = 黄色<LineBreak />
-                    ~p~ = 紫色<LineBreak />
-                    ~q~ = 粉红色<LineBreak />
-                    ~o~ = 橘黄色<LineBreak />
-                    ~c~ = 灰色<LineBreak />
-                    ~m~ = 深灰色<LineBreak />
-                    ~u~ = 黑色<LineBreak />
-                    ~w~ =  白色</TextBlock>
-                <TextBlock Foreground="#4C4A48" Style="{StaticResource TextBlockStyle_Hint}">
-                    ### 昵称样式 ###<LineBreak />
-                    ~bold~ ~h~ = 粗体<LineBreak />
-                    ~italic~ = 斜体<LineBreak />
-                    ~ws~ = 通缉警星</TextBlock>
-            </UniformGrid>
-        </StackPanel>
+        <StackPanel />
         <!--  面板3  -->
 
     </UniformGrid>

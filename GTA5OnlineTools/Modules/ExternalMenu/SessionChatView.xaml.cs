@@ -23,7 +23,6 @@ public partial class SessionChatView : UserControl
         ExternalMenuWindow.WindowClosingEvent += ExternalMenuWindow_WindowClosingEvent;
 
         TextBox_InputMessage.Text = "测试文本: 请把游戏中聊天输入法调成英文,否则会漏掉文字.Hello1234,漏掉文字了吗?";
-        ReadPlayerName();
     }
 
     private void ExternalMenuWindow_WindowClosingEvent()
@@ -201,46 +200,6 @@ public partial class SessionChatView : UserControl
         }
 
         return new string(c);
-    }
-
-    private void Button_ReadPlayerName_Click(object sender, RoutedEventArgs e)
-    {
-        AudioUtil.PlayClickSound();
-
-        ReadPlayerName();
-    }
-
-    private void Button_WritePlayerName_Click(object sender, RoutedEventArgs e)
-    {
-        AudioUtil.PlayClickSound();
-
-        if (TextBox_OnlineList.Text != "" &&
-            TextBox_ChatName.Text != "" &&
-            TextBox_ExternalDisplay.Text != "")
-        {
-            GTA5Mem.WriteString(General.WorldPTR, Offsets.OnlineListPlayerName, TextBox_OnlineList.Text + "\0");
-            GTA5Mem.WriteString(General.PlayerChatterNamePTR + 0xBC, null, TextBox_ChatName.Text + "\0");
-            GTA5Mem.WriteString(General.PlayerExternalDisplayNamePTR + 0x84, null, TextBox_ExternalDisplay.Text + "\0");
-
-            NotifierHelper.Show(NotifierType.Success, "写入成功，请切换战局生效");
-        }
-        else
-        {
-            NotifierHelper.Show(NotifierType.Warning, "内容不能为空");
-        }
-    }
-
-    private void ReadPlayerName()
-    {
-        TextBox_OnlineList.Text = GTA5Mem.ReadString(General.WorldPTR, Offsets.OnlineListPlayerName, 20);
-        TextBox_ChatName.Text = GTA5Mem.ReadString(General.PlayerChatterNamePTR + 0xBC, null, 20);
-        TextBox_ExternalDisplay.Text = GTA5Mem.ReadString(General.PlayerExternalDisplayNamePTR + 0x84, null, 20);
-    }
-
-    private void TextBox_OnlineList_TextChanged(object sender, TextChangedEventArgs e)
-    {
-        TextBox_ChatName.Text = TextBox_OnlineList.Text;
-        TextBox_ExternalDisplay.Text = TextBox_OnlineList.Text;
     }
 }
 

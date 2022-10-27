@@ -33,12 +33,13 @@
         </StackPanel>
     </ui:UiWindow.TitleContent>
 
-    <UniformGrid Columns="2">
-        <!--  面板1  -->
-
-        <!--  面板2  -->
-
-
-    </UniformGrid>
+    <Grid>
+        <TextBlock
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            FontSize="36"
+            FontWeight="Bold"
+            Text="功能维护中..." />
+    </Grid>
 
 </ui:UiWindow>

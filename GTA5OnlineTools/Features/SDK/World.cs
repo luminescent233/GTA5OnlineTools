@@ -135,7 +135,7 @@ public static class World
             if (GTA5Mem.IsValid(m_player_info))
                 continue;
 
-            long m_vehicle = GTA5Mem.Read<long>(m_ped_list + 0xD30);
+            long m_vehicle = GTA5Mem.Read<long>(m_ped_list + 0xD10);
 
             if (isOnlyHostility)
             {
@@ -144,17 +144,17 @@ public static class World
                 if (oHostility > 0x01)
                 {
                     GTA5Mem.Write(m_vehicle + 0x280, -1.0f);
-                    GTA5Mem.Write(m_vehicle + 0x840, -1.0f);
-                    GTA5Mem.Write(m_vehicle + 0x844, -1.0f);
-                    GTA5Mem.Write(m_vehicle + 0x908, -1.0f);
+                    GTA5Mem.Write(m_vehicle + 0x820, -1.0f);
+                    GTA5Mem.Write(m_vehicle + 0x824, -1.0f);
+                    GTA5Mem.Write(m_vehicle + 0x8E8, -1.0f);
                 }
             }
             else
             {
                 GTA5Mem.Write(m_vehicle + 0x280, -1.0f);
-                GTA5Mem.Write(m_vehicle + 0x840, -1.0f);
-                GTA5Mem.Write(m_vehicle + 0x844, -1.0f);
-                GTA5Mem.Write(m_vehicle + 0x908, -1.0f);
+                GTA5Mem.Write(m_vehicle + 0x820, -1.0f);
+                GTA5Mem.Write(m_vehicle + 0x824, -1.0f);
+                GTA5Mem.Write(m_vehicle + 0x8E8, -1.0f);
             }
         }
     }
@@ -178,9 +178,9 @@ public static class World
                 continue;
 
             GTA5Mem.Write(m_vehicle_list + 0x280, -1.0f);     // m_health
-            GTA5Mem.Write(m_vehicle_list + 0x840, -1.0f);     // m_body_health
-            GTA5Mem.Write(m_vehicle_list + 0x844, -1.0f);     // m_petrol_tank_health
-            GTA5Mem.Write(m_vehicle_list + 0x908, -1.0f);     // m_engine_health
+            GTA5Mem.Write(m_vehicle_list + 0x820, -1.0f);     // m_body_health
+            GTA5Mem.Write(m_vehicle_list + 0x824, -1.0f);     // m_petrol_tank_health
+            GTA5Mem.Write(m_vehicle_list + 0x8E8, -1.0f);     // m_engine_health
         }
     }
 
@@ -189,7 +189,7 @@ public static class World
     /// </summary>
     public static void TeleportNPCToMe(bool isOnlyHostility)
     {
-        Vector3 v3MyPos = GTA5Mem.Read<Vector3>(General.WorldPTR, Offsets.PlayerPositionX);
+        Vector3 v3MyPos = Teleport.GetPlayerPosition();
 
         // Ped实体
         long m_replay = GTA5Mem.Read<long>(General.ReplayInterfacePTR);

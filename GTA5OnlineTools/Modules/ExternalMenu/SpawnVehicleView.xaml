@@ -91,10 +91,6 @@
                         x:Name="Button_GetInOnlinePV"
                         Click="Button_GetInOnlinePV_Click"
                         Content="坐进个人载具" />
-                    <Button
-                        x:Name="Button_UnlockVehicle161"
-                        Click="Button_UnlockVehicle161_Click"
-                        Content="解锁1.61未发布载具" />
                 </WrapPanel>
 
             </StackPanel>

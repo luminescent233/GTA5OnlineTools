@@ -154,24 +154,6 @@ public partial class SpawnVehicleView : UserControl
         Online.GetInOnlinePV();
     }
 
-    private void Button_UnlockVehicle161_Click(object sender, RoutedEventArgs e)
-    {
-        AudioUtil.PlayClickSound();
-
-        Hacks.WriteGA<int>(262145 + 33034, 1);        // Benefactor SM722                 - 33034
-        Hacks.WriteGA<int>(262145 + 33035, 1);        // Declasse Draugur                 - 33035
-        Hacks.WriteGA<int>(262145 + 33036, 1);        // Imponte Ruiner ZZ-8              - 33036
-        Hacks.WriteGA<int>(262145 + 33037, 1);        // Grotti Brioso 300                - 33037
-        Hacks.WriteGA<int>(262145 + 33038, 1);        // Declasse Virgero ZX              - 33038
-        Hacks.WriteGA<int>(262145 + 33040, 1);        // DInka Kanjo SJ                   - 33040
-        Hacks.WriteGA<int>(262145 + 33041, 1);        // Dinka Postlude                   - 33041
-        Hacks.WriteGA<int>(262145 + 33042, 1);        // Obey 10F                         - 33042
-        Hacks.WriteGA<int>(262145 + 33043, 1);        // Ubermacht Rhinehart              - 33043
-        Hacks.WriteGA<int>(262145 + 33044, 1);        // BF Weevil Ratrod                 - 33044
-        Hacks.WriteGA<int>(262145 + 33045, 1);        // Obey 10F Widebody                - 33045
-        Hacks.WriteGA<int>(262145 + 33046, 1);        // Ubermacht Sentinel Widebody      - 33046
-    }
-
     private void Button_RefushPersonalVehicleList_Click(object sender, RoutedEventArgs e)
     {
         AudioUtil.PlayClickSound();
