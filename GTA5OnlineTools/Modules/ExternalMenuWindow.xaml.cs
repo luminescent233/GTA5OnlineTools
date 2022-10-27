@@ -216,7 +216,7 @@ public partial class ExternalMenuWindow
             this.WindowState = WindowState.Minimized;
 
             Win32.GetCursorPos(out ThisWinPOINT);
-            GTA5Mem.SetForegroundWindow();
+            Memory.SetForegroundWindow();
         }
     }
 }

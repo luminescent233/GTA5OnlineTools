@@ -75,7 +75,7 @@ public partial class SessionChatView : UserControl
             {
                 TextBox_InputMessage.Text = ToDBC(TextBox_InputMessage.Text);
 
-                GTA5Mem.SetForegroundWindow();
+                Memory.SetForegroundWindow();
                 SendMessageToGTA5(TextBox_InputMessage.Text);
 
                 NotifierHelper.Show(NotifierType.Success, "发生文本到GTA5聊天栏成功");

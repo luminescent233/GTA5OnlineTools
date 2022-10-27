@@ -23,7 +23,7 @@ public static class Online
     {
         Task.Run(async () =>
         {
-            GTA5Mem.SetForegroundWindow();
+            Memory.SetForegroundWindow();
 
             if (sessionID == -1)
             {
@@ -50,9 +50,9 @@ public static class Online
     {
         Task.Run(async () =>
         {
-            ProcessMgr.SuspendProcess(GTA5Mem.GTA5ProId);
+            ProcessMgr.SuspendProcess(Memory.GTA5ProId);
             await Task.Delay(10000);
-            ProcessMgr.ResumeProcess(GTA5Mem.GTA5ProId);
+            ProcessMgr.ResumeProcess(Memory.GTA5ProId);
         });
     }
 

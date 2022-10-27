@@ -1,4 +1,5 @@
 ﻿using GTA5OnlineTools.Features.Core;
+using GTA5OnlineTools.Features.Client;
 
 namespace GTA5OnlineTools.Features.SDK;
 
@@ -9,9 +10,9 @@ public static class Vehicle
     /// </summary>
     public static bool IsInVehicle()
     {
-        long pCPedFactory = GTA5Mem.Read<long>(General.WorldPTR);
-        long pCPed = GTA5Mem.Read<long>(pCPedFactory + Offsets.CPed);
-        byte oInVehicle = GTA5Mem.Read<byte>(pCPed + Offsets.CPed_InVehicle);
+        long pCPedFactory = Memory.Read<long>(General.WorldPTR);
+        long pCPed = Memory.Read<long>(pCPedFactory + Offsets.CPed);
+        byte oInVehicle = Memory.Read<byte>(pCPed + Offsets.CPed_InVehicle);
 
         return oInVehicle == 0x01;
     }
@@ -21,17 +22,17 @@ public static class Vehicle
     /// </summary>
     public static void GodMode(bool isEnable)
     {
-        long pCPedFactory = GTA5Mem.Read<long>(General.WorldPTR);
-        long pCPed = GTA5Mem.Read<long>(pCPedFactory + Offsets.CPed);
-        byte oInVehicle = GTA5Mem.Read<byte>(pCPed + Offsets.CPed_InVehicle);
+        long pCPedFactory = Memory.Read<long>(General.WorldPTR);
+        long pCPed = Memory.Read<long>(pCPedFactory + Offsets.CPed);
+        byte oInVehicle = Memory.Read<byte>(pCPed + Offsets.CPed_InVehicle);
 
         if (oInVehicle == 0x01)
         {
-            long pCVehicle = GTA5Mem.Read<long>(pCPed + Offsets.CPed_CVehicle);
+            long pCVehicle = Memory.Read<long>(pCPed + Offsets.CPed_CVehicle);
             if (isEnable)
-                GTA5Mem.Write<byte>(pCVehicle + Offsets.CPed_CVehicle_God, 0x01);
+                Memory.Write<byte>(pCVehicle + Offsets.CPed_CVehicle_God, 0x01);
             else
-                GTA5Mem.Write<byte>(pCVehicle + Offsets.CPed_CVehicle_God, 0x00);
+                Memory.Write<byte>(pCVehicle + Offsets.CPed_CVehicle_God, 0x00);
         }
     }
 
@@ -40,13 +41,13 @@ public static class Vehicle
     /// </summary>
     public static void Seatbelt(bool isEnable)
     {
-        long pCPedFactory = GTA5Mem.Read<long>(General.WorldPTR);
-        long pCPed = GTA5Mem.Read<long>(pCPedFactory + Offsets.CPed);
+        long pCPedFactory = Memory.Read<long>(General.WorldPTR);
+        long pCPed = Memory.Read<long>(pCPedFactory + Offsets.CPed);
 
         if (isEnable)
-            GTA5Mem.Write<byte>(pCPed + Offsets.CPed_Seatbelt, 0xC9);
+            Memory.Write<byte>(pCPed + Offsets.CPed_Seatbelt, 0xC9);
         else
-            GTA5Mem.Write<byte>(pCPed + Offsets.CPed_Seatbelt, 0xC8);
+            Memory.Write<byte>(pCPed + Offsets.CPed_Seatbelt, 0xC8);
     }
 
     /// <summary>
@@ -54,28 +55,35 @@ public static class Vehicle
     /// </summary>
     public static void Invisible(bool isEnable)
     {
-        long pCPedFactory = GTA5Mem.Read<long>(General.WorldPTR);
-        long pCPed = GTA5Mem.Read<long>(pCPedFactory + Offsets.CPed);
-
-        if (isEnable)
-            GTA5Mem.Write<byte>(pCPed + Offsets.CPed_CVehicle_Invisible, 0x01);
-        else
-            GTA5Mem.Write<byte>(pCPed + Offsets.CPed_CVehicle_Invisible, 0x27);
-    }
-
-    /// <summary>
-    /// 载具附加功能，默认0，跳跃40，加速66，二者都96
-    /// </summary>
-    public static void Extras(byte flag)
-    {
-        long pCPedFactory = GTA5Mem.Read<long>(General.WorldPTR);
-        long pCPed = GTA5Mem.Read<long>(pCPedFactory + Offsets.CPed);
-        byte oInVehicle = GTA5Mem.Read<byte>(pCPed + Offsets.CPed_InVehicle);
+        long pCPedFactory = Memory.Read<long>(General.WorldPTR);
+        long pCPed = Memory.Read<long>(pCPedFactory + Offsets.CPed);
+        byte oInVehicle = Memory.Read<byte>(pCPed + Offsets.CPed_InVehicle);
 
         if (oInVehicle == 0x01)
         {
-            long pCVehicle = GTA5Mem.Read<long>(pCPed + Offsets.CPed_CVehicle);
-            GTA5Mem.Write<byte>(pCVehicle + Offsets.CPed_CVehicle_CModelInfo_Extras, flag);
+            long pCVehicle = Memory.Read<long>(pCPed + Offsets.CPed_CVehicle);
+
+            if (isEnable)
+                Memory.Write<byte>(pCVehicle + Offsets.CPed_CVehicle_Invisible, 0x01);
+            else
+                Memory.Write<byte>(pCVehicle + Offsets.CPed_CVehicle_Invisible, 0x27);
+        }
+    }
+
+    /// <summary>
+    /// 载具附加功能
+    /// </summary>
+    public static void Extras(short flag)
+    {
+        long pCPedFactory = Memory.Read<long>(General.WorldPTR);
+        long pCPed = Memory.Read<long>(pCPedFactory + Offsets.CPed);
+        byte oInVehicle = Memory.Read<byte>(pCPed + Offsets.CPed_InVehicle);
+
+        if (oInVehicle == 0x01)
+        {
+            long pCVehicle = Memory.Read<long>(pCPed + Offsets.CPed_CVehicle);
+            long pCModelInfo = Memory.Read<long>(pCVehicle + Offsets.CPed_CVehicle_CModelInfo);
+            Memory.Write(pCModelInfo + Offsets.CPed_CVehicle_CModelInfo_Extras, flag);
         }
     }
 
@@ -84,17 +92,18 @@ public static class Vehicle
     /// </summary>
     public static void Parachute(bool isEnable)
     {
-        long pCPedFactory = GTA5Mem.Read<long>(General.WorldPTR);
-        long pCPed = GTA5Mem.Read<long>(pCPedFactory + Offsets.CPed);
-        byte oInVehicle = GTA5Mem.Read<byte>(pCPed + Offsets.CPed_InVehicle);
+        long pCPedFactory = Memory.Read<long>(General.WorldPTR);
+        long pCPed = Memory.Read<long>(pCPedFactory + Offsets.CPed);
+        byte oInVehicle = Memory.Read<byte>(pCPed + Offsets.CPed_InVehicle);
 
         if (oInVehicle == 0x01)
         {
-            long pCVehicle = GTA5Mem.Read<long>(pCPed + Offsets.CPed_CVehicle);
+            long pCVehicle = Memory.Read<long>(pCPed + Offsets.CPed_CVehicle);
+            long pCModelInfo = Memory.Read<long>(pCVehicle + Offsets.CPed_CVehicle_CModelInfo);
             if (isEnable)
-                GTA5Mem.Write<byte>(pCVehicle + Offsets.CPed_CVehicle_CModelInfo_Parachute, 0x01);
+                Memory.Write<byte>(pCModelInfo + Offsets.CPed_CVehicle_CModelInfo_Parachute, 0x01);
             else
-                GTA5Mem.Write<byte>(pCVehicle + Offsets.CPed_CVehicle_CModelInfo_Parachute, 0x00);
+                Memory.Write<byte>(pCModelInfo + Offsets.CPed_CVehicle_CModelInfo_Parachute, 0x00);
         }
     }
 
@@ -103,79 +112,31 @@ public static class Vehicle
     /// </summary>
     public static void FillHealth()
     {
-        long pCPedFactory = GTA5Mem.Read<long>(General.WorldPTR);
-        long pCPed = GTA5Mem.Read<long>(pCPedFactory + Offsets.CPed);
-        byte oInVehicle = GTA5Mem.Read<byte>(pCPed + Offsets.CPed_InVehicle);
+        long pCPedFactory = Memory.Read<long>(General.WorldPTR);
+        long pCPed = Memory.Read<long>(pCPedFactory + Offsets.CPed);
+        byte oInVehicle = Memory.Read<byte>(pCPed + Offsets.CPed_InVehicle);
 
         if (oInVehicle == 0x01)
         {
-            long pCVehicle = GTA5Mem.Read<long>(pCPed + Offsets.CPed_CVehicle);
+            long pCVehicle = Memory.Read<long>(pCPed + Offsets.CPed_CVehicle);
 
-            float oVHealth = GTA5Mem.Read<float>(pCVehicle + Offsets.CPed_CVehicle_Health);
-            float oVHealthMax = GTA5Mem.Read<float>(pCVehicle + Offsets.CPed_CVehicle_HealthMax);
+            float oVHealth = Memory.Read<float>(pCVehicle + Offsets.CPed_CVehicle_Health);
+            float oVHealthMax = Memory.Read<float>(pCVehicle + Offsets.CPed_CVehicle_HealthMax);
             if (oVHealth <= oVHealthMax)
             {
-                GTA5Mem.Write(pCVehicle + Offsets.CPed_CVehicle_Health, oVHealthMax);
+                Memory.Write(pCVehicle + Offsets.CPed_CVehicle_Health, oVHealthMax);
+                Memory.Write(pCVehicle + Offsets.CPed_CVehicle_HealthBody, oVHealthMax);
+                Memory.Write(pCVehicle + Offsets.CPed_CVehicle_HealthPetrolTank, oVHealthMax);
+                Memory.Write(pCVehicle + Offsets.CPed_CVehicle_HealthEngine, oVHealthMax);
             }
             else
             {
-                GTA5Mem.Write(pCVehicle + Offsets.CPed_CVehicle_Health, 1000.0f);
+                Memory.Write(pCVehicle + Offsets.CPed_CVehicle_Health, 1000.0f);
+                Memory.Write(pCVehicle + Offsets.CPed_CVehicle_HealthBody, 1000.0f);
+                Memory.Write(pCVehicle + Offsets.CPed_CVehicle_HealthPetrolTank, 1000.0f);
+                Memory.Write(pCVehicle + Offsets.CPed_CVehicle_HealthEngine, 1000.0f);
             }
         }
-    }
-
-    /// <summary>
-    /// 修复载具外观
-    /// </summary>
-    public static void Fix1stfoundBST()
-    {
-        Task.Run(() =>
-        {
-            GTA5Mem.Write<int>(General.GlobalPTR + 0x08 * 0x0A, new int[] { 0x17BE28 }, 1);
-            GTA5Mem.Write<float>(General.WorldPTR, new int[] { 0x08, 0xD30, 0x280 }, 999.0f);
-
-            Task.Delay(300).Wait();
-
-            int FixVehValue = GTA5Mem.Read<int>(General.PickupDataPTR, new int[] { 0x228 });
-            int BSTValue = GTA5Mem.Read<int>(General.PickupDataPTR, new int[] { 0x160 });
-
-            long m_dwpPickUpInterface = GTA5Mem.Read<long>(General.ReplayInterfacePTR, new int[] { 0x20 });
-            long dw_curPickUpNum = GTA5Mem.Read<long>(m_dwpPickUpInterface + 0x110);
-            long m_dwpPedList = GTA5Mem.Read<long>(m_dwpPickUpInterface + 0x100);
-
-            for (long i = 0; i < dw_curPickUpNum; i++)
-            {
-                long dwpPickup = GTA5Mem.Read<long>(m_dwpPedList + i * 0x10);
-                int dwPickupValue = GTA5Mem.Read<int>(dwpPickup + 0x490);
-
-                if (dwPickupValue == BSTValue)
-                {
-                    GTA5Mem.Write<int>(dwpPickup + 0x490, FixVehValue);
-
-                    Task.Delay(10).Wait();
-
-                    float dwpPickupX = GTA5Mem.Read<float>(dwpPickup + 0x90);
-                    float dwpPickupY = GTA5Mem.Read<float>(dwpPickup + 0x94);
-                    float dwpPickupZ = GTA5Mem.Read<float>(dwpPickup + 0x98);
-
-                    float Vehx = GTA5Mem.Read<float>(General.WorldPTR, Offsets.VehicleVisualX);
-                    float Vehy = GTA5Mem.Read<float>(General.WorldPTR, Offsets.VehicleVisualY);
-                    float Vehz = GTA5Mem.Read<float>(General.WorldPTR, Offsets.VehicleVisualZ);
-
-                    Task.Delay(10).Wait();
-
-                    GTA5Mem.Write<float>(dwpPickup + 0x90, Vehx);
-                    GTA5Mem.Write<float>(dwpPickup + 0x94, Vehy);
-                    GTA5Mem.Write<float>(dwpPickup + 0x98, Vehz);
-
-                    GTA5Mem.Write<float>(General.WorldPTR, new int[] { 0x08, 0xD30, 0x9F8 }, 0);
-                }
-            }
-
-            Task.Delay(550).Wait();
-
-            Online.InstantBullShark(false);
-        });
     }
 
     /// <summary>
@@ -191,11 +152,11 @@ public static class Vehicle
         {
             if (hash != 0)
             {
-                float x = GTA5Mem.Read<float>(General.WorldPTR, Offsets.PlayerPositionX);
-                float y = GTA5Mem.Read<float>(General.WorldPTR, Offsets.PlayerPositionY);
-                float z = GTA5Mem.Read<float>(General.WorldPTR, Offsets.PlayerPositionZ);
-                float sin = GTA5Mem.Read<float>(General.WorldPTR, Offsets.PlayerSin);
-                float cos = GTA5Mem.Read<float>(General.WorldPTR, Offsets.PlayerCos);
+                float x = Memory.Read<float>(General.WorldPTR, Offsets.PlayerPositionX);
+                float y = Memory.Read<float>(General.WorldPTR, Offsets.PlayerPositionY);
+                float z = Memory.Read<float>(General.WorldPTR, Offsets.PlayerPositionZ);
+                float sin = Memory.Read<float>(General.WorldPTR, Offsets.PlayerSin);
+                float cos = Memory.Read<float>(General.WorldPTR, Offsets.PlayerCos);
 
                 x += cos * dist;
                 y += sin * dist;
@@ -268,11 +229,11 @@ public static class Vehicle
 
                 const int pegasus = 0;
 
-                float x = GTA5Mem.Read<float>(General.WorldPTR, Offsets.PlayerPositionX);
-                float y = GTA5Mem.Read<float>(General.WorldPTR, Offsets.PlayerPositionY);
-                float z = GTA5Mem.Read<float>(General.WorldPTR, Offsets.PlayerPositionZ);
-                float sin = GTA5Mem.Read<float>(General.WorldPTR, Offsets.PlayerSin);
-                float cos = GTA5Mem.Read<float>(General.WorldPTR, Offsets.PlayerCos);
+                float x = Memory.Read<float>(General.WorldPTR, Offsets.PlayerPositionX);
+                float y = Memory.Read<float>(General.WorldPTR, Offsets.PlayerPositionY);
+                float z = Memory.Read<float>(General.WorldPTR, Offsets.PlayerPositionZ);
+                float sin = Memory.Read<float>(General.WorldPTR, Offsets.PlayerSin);
+                float cos = Memory.Read<float>(General.WorldPTR, Offsets.PlayerCos);
 
                 x += cos * dist;
                 y += sin * dist;
@@ -329,7 +290,7 @@ public static class Vehicle
                 Hacks.WriteGA<int>(Offsets.oVMCreate + 27 + 76, new Random().Next(0, 256));       // B
 
                 Hacks.WriteGA<long>(Offsets.oVMCreate + 27 + 77, 4030726305);                     // vehstate  载具状态 没有这个载具起落架是收起状态
-                GTA5Mem.Write<byte>(Hacks.ReadGA<long>(Offsets.oVMCreate + 27 + 77) + 1, 0x02);    // 2:bulletproof 0:false  防弹的
+                Memory.Write<byte>(Hacks.ReadGA<long>(Offsets.oVMCreate + 27 + 77) + 1, 0x02);    // 2:bulletproof 0:false  防弹的
 
                 Hacks.WriteGA<int>(Offsets.oVMCreate + 27 + 95, 14);      // ownerflag  拥有者标志
                 Hacks.WriteGA<int>(Offsets.oVMCreate + 27 + 94, 2);       // personal car ownerflag  个人载具拥有者标志
@@ -355,7 +316,7 @@ public static class Vehicle
     /// <returns></returns>
     public static string FindVehicleDisplayName(long hash, bool isDisplay)
     {
-        foreach (var item in Data.VehicleData.VehicleClassData)
+        foreach (var item in VehicleData.VehicleClassData)
         {
             foreach (var item0 in item.VehicleInfo)
             {

@@ -25,8 +25,8 @@ public class Overlay : IDisposable
 
     public Overlay()
     {
-        windowData = GTA5Mem.GetGameWindowData();
-        GTA5Mem.SetForegroundWindow();
+        windowData = Memory.GetGameWindowData();
+        Memory.SetForegroundWindow();
 
         /////////////////////////////////////////////
 
@@ -69,7 +69,7 @@ public class Overlay : IDisposable
         while (isRun)
         {
             if (Settings.Overlay.IsNoTOPMostHide)
-                isDraw = GTA5Mem.IsForegroundWindow();
+                isDraw = Memory.IsForegroundWindow();
             else
                 isDraw = true;
 
@@ -128,31 +128,31 @@ public class Overlay : IDisposable
             gview_width = windowData.Width / 2;
             gview_height = windowData.Height / 2;
 
-            long m_ped_factory = GTA5Mem.Read<long>(General.WorldPTR);
-            long m_local_ped = GTA5Mem.Read<long>(m_ped_factory + 0x08);
+            long m_ped_factory = Memory.Read<long>(General.WorldPTR);
+            long m_local_ped = Memory.Read<long>(m_ped_factory + 0x08);
 
             // 自己坐标
-            long pCNavigation = GTA5Mem.Read<long>(m_local_ped + 0x30);
-            Vector3 myPosV3 = GTA5Mem.Read<Vector3>(pCNavigation + 0x50);
+            long pCNavigation = Memory.Read<long>(m_local_ped + 0x30);
+            Vector3 myPosV3 = Memory.Read<Vector3>(pCNavigation + 0x50);
 
             /////////////////////////////////////////////////////////////////////
 
             // 玩家列表
-            long pCNetworkPlayerMgr = GTA5Mem.Read<long>(General.NetworkPlayerMgrPTR);
-            int playerCount = GTA5Mem.Read<int>(pCNetworkPlayerMgr + 0x178);
+            long pCNetworkPlayerMgr = Memory.Read<long>(General.NetworkPlayerMgrPTR);
+            int playerCount = Memory.Read<int>(pCNetworkPlayerMgr + 0x178);
 
             // Ped数量
-            long m_replay = GTA5Mem.Read<long>(General.ReplayInterfacePTR);
-            long m_ped_interface = GTA5Mem.Read<long>(m_replay + 0x18);
-            int m_max_peds = GTA5Mem.Read<int>(m_ped_interface + 0x108);
-            int m_cur_peds = GTA5Mem.Read<int>(m_ped_interface + 0x110);
+            long m_replay = Memory.Read<long>(General.ReplayInterfacePTR);
+            long m_ped_interface = Memory.Read<long>(m_replay + 0x18);
+            int m_max_peds = Memory.Read<int>(m_ped_interface + 0x108);
+            int m_cur_peds = Memory.Read<int>(m_ped_interface + 0x110);
 
             gfx.DrawText(_fonts["Microsoft YaHei"], 12, _brushes["blue"], 10, _window.Height / 3 + 30,
                 $"GTA5线上小助手\n\nX: {myPosV3.X:0.0000}\nY: {myPosV3.Y:0.0000}\nZ: {myPosV3.Z:0.0000}\n\n" +
                 $"玩家数量: {playerCount}\nPed数量: {m_cur_peds}");
 
-            long pAimingPedPTR = GTA5Mem.Read<long>(General.AimingPedPTR);
-            bool isAimPed = GTA5Mem.Read<long>(pAimingPedPTR + 0x280) > 0;
+            long pAimingPedPTR = Memory.Read<long>(General.AimingPedPTR);
+            bool isAimPed = Memory.Read<long>(pAimingPedPTR + 0x280) > 0;
 
             if (Settings.Overlay.ESP_Crosshair)
             {
@@ -167,9 +167,9 @@ public class Overlay : IDisposable
 
             for (int i = 0; i < m_max_peds; i++)
             {
-                long m_ped_list = GTA5Mem.Read<long>(m_ped_interface + 0x100);
-                m_ped_list = GTA5Mem.Read<long>(m_ped_list + i * 0x10);
-                if (!GTA5Mem.IsValid(m_ped_list))
+                long m_ped_list = Memory.Read<long>(m_ped_interface + 0x100);
+                m_ped_list = Memory.Read<long>(m_ped_list + i * 0x10);
+                if (!Memory.IsValid(m_ped_list))
                     continue;
 
                 // 如果是自己，跳过
@@ -177,18 +177,18 @@ public class Overlay : IDisposable
                     continue;
 
                 // 如果ped死亡，跳过
-                float ped_Health = GTA5Mem.Read<float>(m_ped_list + 0x280);
+                float ped_Health = Memory.Read<float>(m_ped_list + 0x280);
                 if (ped_Health <= 0)
                     continue;
 
-                float ped_MaxHealth = GTA5Mem.Read<float>(m_ped_list + 0x284);
+                float ped_MaxHealth = Memory.Read<float>(m_ped_list + 0x284);
                 float ped_HPPercentage = ped_Health / ped_MaxHealth;
 
-                long m_player_info = GTA5Mem.Read<long>(m_ped_list + 0x10A8);
+                long m_player_info = Memory.Read<long>(m_ped_list + 0x10A8);
                 //if (!Memory.IsValid(m_player_info))
                 //    continue;
 
-                string pedName = GTA5Mem.ReadString(m_player_info + 0xA4, 20);
+                string pedName = Memory.ReadString(m_player_info + 0xA4, 20);
 
                 // 绘制玩家
                 if (!Settings.Overlay.ESP_Player)
@@ -200,12 +200,12 @@ public class Overlay : IDisposable
                     if (pedName == "")
                         continue;
 
-                long m_navigation = GTA5Mem.Read<long>(m_ped_list + 0x30);
-                if (!GTA5Mem.IsValid(m_navigation))
+                long m_navigation = Memory.Read<long>(m_ped_list + 0x30);
+                if (!Memory.IsValid(m_navigation))
                     continue;
 
                 // ped坐标
-                var pedPosV3 = GTA5Mem.Read<Vector3>(m_navigation + 0x50);
+                var pedPosV3 = Memory.Read<Vector3>(m_navigation + 0x50);
 
                 // Ped与自己的距离
                 float myToPedDistance = (float)Math.Sqrt(
@@ -217,8 +217,8 @@ public class Overlay : IDisposable
                 // m_heading2   0x24
                 var v2PedSinCos = new Vector2
                 {
-                    X = GTA5Mem.Read<float>(m_navigation + 0x20),
-                    Y = GTA5Mem.Read<float>(m_navigation + 0x30)
+                    X = Memory.Read<float>(m_navigation + 0x20),
+                    Y = Memory.Read<float>(m_navigation + 0x30)
                 };
 
                 if (Settings.Overlay.ESP_3DBox)
@@ -405,7 +405,7 @@ public class Overlay : IDisposable
     /// <param name="gfx"></param>
     private void ResizeWindow(Graphics gfx)
     {
-        windowData = GTA5Mem.GetGameWindowData();
+        windowData = Memory.GetGameWindowData();
 
         if (_window.X != windowData.Left)
         {
@@ -427,51 +427,51 @@ public class Overlay : IDisposable
                 Vector3 aimBot_ViewAngles = new() { X = 0, Y = 0, Z = 0 };
                 Vector3 teleW_pedCoords = new() { X = 0, Y = 0, Z = 0 };
 
-                long pCPedFactory = GTA5Mem.Read<long>(General.WorldPTR);
-                long pCPed = GTA5Mem.Read<long>(pCPedFactory + Offsets.CPed);
-                byte oInVehicle = GTA5Mem.Read<byte>(pCPed + Offsets.CPed_InVehicle);
-                long pCPlayerInfo = GTA5Mem.Read<long>(pCPed + Offsets.CPed_CPlayerInfo);
+                long pCPedFactory = Memory.Read<long>(General.WorldPTR);
+                long pCPed = Memory.Read<long>(pCPedFactory + Offsets.CPed);
+                byte oInVehicle = Memory.Read<byte>(pCPed + Offsets.CPed_InVehicle);
+                long pCPlayerInfo = Memory.Read<long>(pCPed + Offsets.CPed_CPlayerInfo);
 
                 // 玩家自己RID
-                long myRID = GTA5Mem.Read<long>(pCPlayerInfo + Offsets.CPed_CPlayerInfo_RockstarID);
+                long myRID = Memory.Read<long>(pCPlayerInfo + Offsets.CPed_CPlayerInfo_RockstarID);
 
                 // 相机坐标
-                long pCCameraPTR = GTA5Mem.Read<long>(General.CCameraPTR);
-                long pCCameraPTR_0 = GTA5Mem.Read<long>(pCCameraPTR + 0x00);
-                pCCameraPTR_0 = GTA5Mem.Read<long>(pCCameraPTR_0 + 0x3C0);
-                Vector3 cameraV3Pos = GTA5Mem.Read<Vector3>(pCCameraPTR_0 + 0x60);
+                long pCCameraPTR = Memory.Read<long>(General.CCameraPTR);
+                long pCCameraPTR_0 = Memory.Read<long>(pCCameraPTR + 0x00);
+                pCCameraPTR_0 = Memory.Read<long>(pCCameraPTR_0 + 0x3C0);
+                Vector3 cameraV3Pos = Memory.Read<Vector3>(pCCameraPTR_0 + 0x60);
 
                 // 是否是第一人称，当Fov=0为第一人称或者开镜状态，第三人称50
-                long offset = GTA5Mem.Read<long>(pCCameraPTR_0 + 0x10);
-                float isFPP = GTA5Mem.Read<float>(offset + 0x30);
+                long offset = Memory.Read<long>(pCCameraPTR_0 + 0x10);
+                float isFPP = Memory.Read<float>(offset + 0x30);
 
                 // Ped实体
-                long pReplayInterfacePTR = GTA5Mem.Read<long>(General.ReplayInterfacePTR);
-                long my_offset_0x18 = GTA5Mem.Read<long>(pReplayInterfacePTR + 0x18);
+                long pReplayInterfacePTR = Memory.Read<long>(General.ReplayInterfacePTR);
+                long my_offset_0x18 = Memory.Read<long>(pReplayInterfacePTR + 0x18);
 
                 for (int i = 0; i < 128; i++)
                 {
-                    long ped_offset_0 = GTA5Mem.Read<long>(my_offset_0x18 + 0x100);
-                    ped_offset_0 = GTA5Mem.Read<long>(ped_offset_0 + i * 0x10);
+                    long ped_offset_0 = Memory.Read<long>(my_offset_0x18 + 0x100);
+                    ped_offset_0 = Memory.Read<long>(ped_offset_0 + i * 0x10);
                     if (ped_offset_0 == 0)
                     {
                         continue;
                     }
 
-                    float pedHealth = GTA5Mem.Read<float>(ped_offset_0 + 0x280);
+                    float pedHealth = Memory.Read<float>(ped_offset_0 + 0x280);
                     if (pedHealth <= 0)
                     {
                         continue;
                     }
 
-                    long ped_offset_1 = GTA5Mem.Read<long>(ped_offset_0 + 0x10A8);
-                    long pedRID = GTA5Mem.Read<long>(ped_offset_1 + 0x90);
+                    long ped_offset_1 = Memory.Read<long>(ped_offset_0 + 0x10A8);
+                    long pedRID = Memory.Read<long>(ped_offset_1 + 0x90);
                     if (myRID == pedRID)
                     {
                         continue;
                     }
 
-                    string pedName = GTA5Mem.ReadString(ped_offset_1 + 0xA4, 20);
+                    string pedName = Memory.ReadString(ped_offset_1 + 0xA4, 20);
 
                     // 绘制玩家
                     if (!Settings.Overlay.ESP_Player)
@@ -491,7 +491,7 @@ public class Overlay : IDisposable
                         }
                     }
 
-                    Vector3 pedV3Pos = GTA5Mem.Read<Vector3>(ped_offset_0 + 0x90);
+                    Vector3 pedV3Pos = Memory.Read<Vector3>(ped_offset_0 + 0x90);
                     var pedV2Pos = WorldToScreen(pedV3Pos);
 
                     // 自瞄数据
@@ -514,12 +514,12 @@ public class Overlay : IDisposable
                         if (isFPP == 0)
                         {
                             // 第一人称及开镜自瞄
-                            GTA5Mem.Write(pCCameraPTR_0 + 0x40, aimBot_ViewAngles);
+                            Memory.Write(pCCameraPTR_0 + 0x40, aimBot_ViewAngles);
                         }
                         else
                         {
                             // 第三人称及自瞄
-                            GTA5Mem.Write(pCCameraPTR_0 + 0x3D0, aimBot_ViewAngles);
+                            Memory.Write(pCCameraPTR_0 + 0x3D0, aimBot_ViewAngles);
                         }
 
                         if (Convert.ToBoolean(Win32.GetKeyState((int)WinVK.F5) & Win32.KEY_PRESSED))
@@ -867,9 +867,9 @@ public class Overlay : IDisposable
     /// <returns></returns>
     private Vector3 GetBonePosition(long offset, int BoneID)
     {
-        float[] bomematrix = GTA5Mem.ReadMatrix<float>(offset + 0x60, 16);
+        float[] bomematrix = Memory.ReadMatrix<float>(offset + 0x60, 16);
 
-        Vector3 bone_offset_pos = GTA5Mem.Read<Vector3>(offset + 0x410 + BoneID * 0x10);
+        Vector3 bone_offset_pos = Memory.Read<Vector3>(offset + 0x410 + BoneID * 0x10);
 
         Vector3 bone_pos;
         bone_pos.X = bomematrix[0] * bone_offset_pos.X + bomematrix[4] * bone_offset_pos.Y + bomematrix[8] * bone_offset_pos.Z + bomematrix[12];
@@ -917,7 +917,7 @@ public class Overlay : IDisposable
         Vector2 screenV2;
         Vector3 cameraV3;
 
-        float[] viewMatrix = GTA5Mem.ReadMatrix<float>(General.ViewPortPTR + 0xC0, 16);
+        float[] viewMatrix = Memory.ReadMatrix<float>(General.ViewPortPTR + 0xC0, 16);
 
         cameraV3.Z = viewMatrix[2] * posV3.X + viewMatrix[6] * posV3.Y + viewMatrix[10] * posV3.Z + viewMatrix[14];
         if (cameraV3.Z < 0.001f)
@@ -946,7 +946,7 @@ public class Overlay : IDisposable
         Vector2 boxV2;
         Vector3 cameraV3;
 
-        float[] viewMatrix = GTA5Mem.ReadMatrix<float>(General.ViewPortPTR + 0xC0, 16);
+        float[] viewMatrix = Memory.ReadMatrix<float>(General.ViewPortPTR + 0xC0, 16);
 
         cameraV3.Z = viewMatrix[2] * posV3.X + viewMatrix[6] * posV3.Y + viewMatrix[10] * posV3.Z + viewMatrix[14];
         if (cameraV3.Z < 0.001f)

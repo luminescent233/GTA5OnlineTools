@@ -143,7 +143,7 @@ public partial class MainWindow
         WindowClosingEvent();
         LoggerHelper.Info("调用主窗口关闭事件成功");
 
-        GTA5Mem.CloseHandle();
+        Memory.CloseHandle();
         LoggerHelper.Info("释放内存模块进程句柄成功");
 
         ModulesView.ActionCloseAllModulesWindow();
@@ -226,16 +226,16 @@ public partial class MainWindow
             {
                 isExecute = false;
 
-                if (GTA5Mem.GTA5ProHandle == IntPtr.Zero)
+                if (Memory.GTA5ProHandle == IntPtr.Zero)
                 {
-                    if (GTA5Mem.Initialize())
+                    if (Memory.Initialize())
                     {
-                        GTA5Mem.PatternInit();
+                        Memory.PatternInit();
                     }
                 }
                 else
                 {
-                    GTA5Mem.PatternInit();
+                    Memory.PatternInit();
                 }
             }
             else
@@ -245,7 +245,7 @@ public partial class MainWindow
                 {
                     isExecute = true;
 
-                    GTA5Mem.CloseHandle();
+                    Memory.CloseHandle();
                     ModulesView.ActionCloseAllModulesWindow();
                 }
             }

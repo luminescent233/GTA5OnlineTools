@@ -9,13 +9,13 @@ public static class Player
     /// </summary>
     public static void GodMode(bool isEnable)
     {
-        long pCPedFactory = GTA5Mem.Read<long>(General.WorldPTR);
-        long pCPed = GTA5Mem.Read<long>(pCPedFactory + Offsets.CPed);
+        long pCPedFactory = Memory.Read<long>(General.WorldPTR);
+        long pCPed = Memory.Read<long>(pCPedFactory + Offsets.CPed);
 
         if (isEnable)
-            GTA5Mem.Write<byte>(pCPed + Offsets.CPed_God, 0x01);
+            Memory.Write<byte>(pCPed + Offsets.CPed_God, 0x01);
         else
-            GTA5Mem.Write<byte>(pCPed + Offsets.CPed_God, 0x00);
+            Memory.Write<byte>(pCPed + Offsets.CPed_God, 0x00);
     }
 
     /// <summary>
@@ -24,9 +24,9 @@ public static class Player
     /// <param name="value"></param>
     public static void Health(float value)
     {
-        long pCPedFactory = GTA5Mem.Read<long>(General.WorldPTR);
-        long pCPed = GTA5Mem.Read<long>(pCPedFactory + Offsets.CPed);
-        GTA5Mem.Write(pCPed + Offsets.CPed_Health, value);
+        long pCPedFactory = Memory.Read<long>(General.WorldPTR);
+        long pCPed = Memory.Read<long>(pCPedFactory + Offsets.CPed);
+        Memory.Write(pCPed + Offsets.CPed_Health, value);
     }
 
     /// <summary>
@@ -35,9 +35,9 @@ public static class Player
     /// <param name="value"></param>
     public static void HealthMax(float value)
     {
-        long pCPedFactory = GTA5Mem.Read<long>(General.WorldPTR);
-        long pCPed = GTA5Mem.Read<long>(pCPedFactory + Offsets.CPed);
-        GTA5Mem.Write(pCPed + Offsets.CPed_HealthMax, value);
+        long pCPedFactory = Memory.Read<long>(General.WorldPTR);
+        long pCPed = Memory.Read<long>(pCPedFactory + Offsets.CPed);
+        Memory.Write(pCPed + Offsets.CPed_HealthMax, value);
     }
 
     /// <summary>
@@ -46,9 +46,9 @@ public static class Player
     /// <param name="value"></param>
     public static void Armor(float value)
     {
-        long pCPedFactory = GTA5Mem.Read<long>(General.WorldPTR);
-        long pCPed = GTA5Mem.Read<long>(pCPedFactory + Offsets.CPed);
-        GTA5Mem.Write(pCPed + Offsets.CPed_Armor, value);
+        long pCPedFactory = Memory.Read<long>(General.WorldPTR);
+        long pCPed = Memory.Read<long>(pCPedFactory + Offsets.CPed);
+        Memory.Write(pCPed + Offsets.CPed_Armor, value);
     }
 
     /// <summary>
@@ -56,11 +56,11 @@ public static class Player
     /// </summary>
     public static void WantedLevel(byte level)
     {
-        long pCPedFactory = GTA5Mem.Read<long>(General.WorldPTR);
-        long pCPed = GTA5Mem.Read<long>(pCPedFactory + Offsets.CPed);
-        long pCPlayerInfo = GTA5Mem.Read<long>(pCPed + Offsets.CPed_CPlayerInfo);
+        long pCPedFactory = Memory.Read<long>(General.WorldPTR);
+        long pCPed = Memory.Read<long>(pCPedFactory + Offsets.CPed);
+        long pCPlayerInfo = Memory.Read<long>(pCPed + Offsets.CPed_CPlayerInfo);
 
-        GTA5Mem.Write(pCPlayerInfo + Offsets.CPed_CPlayerInfo_WantedLevel, level);
+        Memory.Write(pCPlayerInfo + Offsets.CPed_CPlayerInfo_WantedLevel, level);
     }
 
     /// <summary>
@@ -69,10 +69,10 @@ public static class Player
     /// <param name="value"></param>
     public static void RunSpeed(float value)
     {
-        long pCPedFactory = GTA5Mem.Read<long>(General.WorldPTR);
-        long pCPed = GTA5Mem.Read<long>(pCPedFactory + Offsets.CPed);
-        long pCPlayerInfo = GTA5Mem.Read<long>(pCPed + Offsets.CPed_CPlayerInfo);
-        GTA5Mem.Write(pCPlayerInfo + Offsets.CPed_CPlayerInfo_RunSpeed, value);
+        long pCPedFactory = Memory.Read<long>(General.WorldPTR);
+        long pCPed = Memory.Read<long>(pCPedFactory + Offsets.CPed);
+        long pCPlayerInfo = Memory.Read<long>(pCPed + Offsets.CPed_CPlayerInfo);
+        Memory.Write(pCPlayerInfo + Offsets.CPed_CPlayerInfo_RunSpeed, value);
     }
 
     /// <summary>
@@ -81,10 +81,10 @@ public static class Player
     /// <param name="value"></param>
     public static void SwimSpeed(float value)
     {
-        long pCPedFactory = GTA5Mem.Read<long>(General.WorldPTR);
-        long pCPed = GTA5Mem.Read<long>(pCPedFactory + Offsets.CPed);
-        long pCPlayerInfo = GTA5Mem.Read<long>(pCPed + Offsets.CPed_CPlayerInfo);
-        GTA5Mem.Write(pCPlayerInfo + Offsets.CPed_CPlayerInfo_SwimSpeed, value);
+        long pCPedFactory = Memory.Read<long>(General.WorldPTR);
+        long pCPed = Memory.Read<long>(pCPedFactory + Offsets.CPed);
+        long pCPlayerInfo = Memory.Read<long>(pCPed + Offsets.CPed_CPlayerInfo);
+        Memory.Write(pCPlayerInfo + Offsets.CPed_CPlayerInfo_SwimSpeed, value);
     }
 
     /// <summary>
@@ -93,10 +93,10 @@ public static class Player
     /// <param name="value"></param>
     public static void WalkSpeed(float value)
     {
-        long pCPedFactory = GTA5Mem.Read<long>(General.WorldPTR);
-        long pCPed = GTA5Mem.Read<long>(pCPedFactory + Offsets.CPed);
-        long pCPlayerInfo = GTA5Mem.Read<long>(pCPed + Offsets.CPed_CPlayerInfo);
-        GTA5Mem.Write(pCPlayerInfo + Offsets.CPed_CPlayerInfo_WalkSpeed, value);
+        long pCPedFactory = Memory.Read<long>(General.WorldPTR);
+        long pCPed = Memory.Read<long>(pCPedFactory + Offsets.CPed);
+        long pCPlayerInfo = Memory.Read<long>(pCPed + Offsets.CPed_CPlayerInfo);
+        Memory.Write(pCPlayerInfo + Offsets.CPed_CPlayerInfo_WalkSpeed, value);
     }
 
     /// <summary>
@@ -135,13 +135,13 @@ public static class Player
     /// </summary>
     public static void NoRagdoll(bool isEnable)
     {
-        long pCPedFactory = GTA5Mem.Read<long>(General.WorldPTR);
-        long pCPed = GTA5Mem.Read<long>(pCPedFactory + Offsets.CPed);
+        long pCPedFactory = Memory.Read<long>(General.WorldPTR);
+        long pCPed = Memory.Read<long>(pCPedFactory + Offsets.CPed);
 
         if (isEnable)
-            GTA5Mem.Write<byte>(pCPed + Offsets.CPed_Ragdoll, 0x01);
+            Memory.Write<byte>(pCPed + Offsets.CPed_Ragdoll, 0x01);
         else
-            GTA5Mem.Write<byte>(pCPed + Offsets.CPed_Ragdoll, 0x20);
+            Memory.Write<byte>(pCPed + Offsets.CPed_Ragdoll, 0x20);
     }
 
     /// <summary>
@@ -149,13 +149,13 @@ public static class Player
     /// </summary>
     public static void Invisible(bool isEnable)
     {
-        long pCPedFactory = GTA5Mem.Read<long>(General.WorldPTR);
-        long pCPed = GTA5Mem.Read<long>(pCPedFactory + Offsets.CPed);
+        long pCPedFactory = Memory.Read<long>(General.WorldPTR);
+        long pCPed = Memory.Read<long>(pCPedFactory + Offsets.CPed);
 
         if (isEnable)
-            GTA5Mem.Write<byte>(pCPed + Offsets.CPed_Invisible, 0x01);
+            Memory.Write<byte>(pCPed + Offsets.CPed_Invisible, 0x01);
         else
-            GTA5Mem.Write<byte>(pCPed + Offsets.CPed_Invisible, 0x27);
+            Memory.Write<byte>(pCPed + Offsets.CPed_Invisible, 0x27);
     }
 
     /// <summary>
@@ -163,21 +163,21 @@ public static class Player
     /// </summary>
     public static void FillHealthArmor()
     {
-        long pCPedFactory = GTA5Mem.Read<long>(General.WorldPTR);
-        long pCPed = GTA5Mem.Read<long>(pCPedFactory + Offsets.CPed);
+        long pCPedFactory = Memory.Read<long>(General.WorldPTR);
+        long pCPed = Memory.Read<long>(pCPedFactory + Offsets.CPed);
 
-        float oHealth = GTA5Mem.Read<float>(pCPed + Offsets.CPed_Health);
-        float oHealthMax = GTA5Mem.Read<float>(pCPed + Offsets.CPed_HealthMax);
+        float oHealth = Memory.Read<float>(pCPed + Offsets.CPed_Health);
+        float oHealthMax = Memory.Read<float>(pCPed + Offsets.CPed_HealthMax);
         if (oHealth <= oHealthMax)
         {
-            GTA5Mem.Write(pCPed + Offsets.CPed_Health, oHealthMax);
+            Memory.Write(pCPed + Offsets.CPed_Health, oHealthMax);
         }
         else
         {
-            GTA5Mem.Write(pCPed + Offsets.CPed_Health, 328.0f);
+            Memory.Write(pCPed + Offsets.CPed_Health, 328.0f);
         }
 
-        GTA5Mem.Write(pCPed + Offsets.CPed_Armor, 50.0f);
+        Memory.Write(pCPed + Offsets.CPed_Armor, 50.0f);
     }
 
     /// <summary>
@@ -185,9 +185,9 @@ public static class Player
     /// </summary>
     public static void Suicide()
     {
-        long pCPedFactory = GTA5Mem.Read<long>(General.WorldPTR);
-        long pCPed = GTA5Mem.Read<long>(pCPedFactory + Offsets.CPed);
-        GTA5Mem.Write(pCPed + Offsets.CPed_Health, 1.0f);
+        long pCPedFactory = Memory.Read<long>(General.WorldPTR);
+        long pCPed = Memory.Read<long>(pCPedFactory + Offsets.CPed);
+        Memory.Write(pCPed + Offsets.CPed_Health, 1.0f);
     }
 
     /// <summary>
@@ -195,13 +195,13 @@ public static class Player
     /// </summary>
     public static void UndeadOffRadar(bool isEnable)
     {
-        long pCPedFactory = GTA5Mem.Read<long>(General.WorldPTR);
-        long pCPed = GTA5Mem.Read<long>(pCPedFactory + Offsets.CPed);
+        long pCPedFactory = Memory.Read<long>(General.WorldPTR);
+        long pCPed = Memory.Read<long>(pCPedFactory + Offsets.CPed);
 
         if (isEnable)
-            GTA5Mem.Write(pCPed + Offsets.CPed_HealthMax, 0.0f);
+            Memory.Write(pCPed + Offsets.CPed_HealthMax, 0.0f);
         else
-            GTA5Mem.Write(pCPed + Offsets.CPed_HealthMax, 328.0f);
+            Memory.Write(pCPed + Offsets.CPed_HealthMax, 328.0f);
     }
 
     /// <summary>
@@ -209,14 +209,14 @@ public static class Player
     /// </summary>
     public static void WantedCanChange(bool isEnable)
     {
-        long pCPedFactory = GTA5Mem.Read<long>(General.WorldPTR);
-        long pCPed = GTA5Mem.Read<long>(pCPedFactory + Offsets.CPed);
-        long pCPlayerInfo = GTA5Mem.Read<long>(pCPed + Offsets.CPed_CPlayerInfo);
+        long pCPedFactory = Memory.Read<long>(General.WorldPTR);
+        long pCPed = Memory.Read<long>(pCPedFactory + Offsets.CPed);
+        long pCPlayerInfo = Memory.Read<long>(pCPed + Offsets.CPed_CPlayerInfo);
 
         if (isEnable)
-            GTA5Mem.Write(pCPlayerInfo + Offsets.CPed_CPlayerInfo_WantedCanChange, 1.0f);
+            Memory.Write(pCPlayerInfo + Offsets.CPed_CPlayerInfo_WantedCanChange, 1.0f);
         else
-            GTA5Mem.Write(pCPlayerInfo + Offsets.CPed_CPlayerInfo_WantedCanChange, 0.0f);
+            Memory.Write(pCPlayerInfo + Offsets.CPed_CPlayerInfo_WantedCanChange, 0.0f);
     }
 
     /// <summary>
@@ -225,11 +225,11 @@ public static class Player
     /// <param name="value"></param>
     public static void NPCIgnore(byte value)
     {
-        long pCPedFactory = GTA5Mem.Read<long>(General.WorldPTR);
-        long pCPed = GTA5Mem.Read<long>(pCPedFactory + Offsets.CPed);
-        long pCPlayerInfo = GTA5Mem.Read<long>(pCPed + Offsets.CPed_CPlayerInfo);
+        long pCPedFactory = Memory.Read<long>(General.WorldPTR);
+        long pCPed = Memory.Read<long>(pCPedFactory + Offsets.CPed);
+        long pCPlayerInfo = Memory.Read<long>(pCPed + Offsets.CPed_CPlayerInfo);
 
-        GTA5Mem.Write(pCPlayerInfo + Offsets.CPed_CPlayerInfo_NPCIgnore, value);
+        Memory.Write(pCPlayerInfo + Offsets.CPed_CPlayerInfo_NPCIgnore, value);
     }
 
     /// <summary>
@@ -237,18 +237,18 @@ public static class Player
     /// </summary>
     public static void NoCollision(bool isEnable)
     {
-        long pCPedFactory = GTA5Mem.Read<long>(General.WorldPTR);
-        long pCPed = GTA5Mem.Read<long>(pCPedFactory + Offsets.CPed);
-        long pCNavigation = GTA5Mem.Read<long>(pCPed + Offsets.CPed_CNavigation);
-        long pointer = GTA5Mem.Read<long>(pCNavigation + 0x10);
-        pointer = GTA5Mem.Read<long>(pointer + 0x20);
-        pointer = GTA5Mem.Read<long>(pointer + 0x70);
-        pointer = GTA5Mem.Read<long>(pointer + 0x00);
+        long pCPedFactory = Memory.Read<long>(General.WorldPTR);
+        long pCPed = Memory.Read<long>(pCPedFactory + Offsets.CPed);
+        long pCNavigation = Memory.Read<long>(pCPed + Offsets.CPed_CNavigation);
+        long pointer = Memory.Read<long>(pCNavigation + 0x10);
+        pointer = Memory.Read<long>(pointer + 0x20);
+        pointer = Memory.Read<long>(pointer + 0x70);
+        pointer = Memory.Read<long>(pointer + 0x00);
 
         if (isEnable)
-            GTA5Mem.Write(pointer + 0x2C, -1.0f);
+            Memory.Write(pointer + 0x2C, -1.0f);
         else
-            GTA5Mem.Write(pointer + 0x2C, 0.25f);
+            Memory.Write(pointer + 0x2C, 0.25f);
     }
 
     /// <summary>
@@ -256,12 +256,12 @@ public static class Player
     /// </summary>
     public static void ProofBullet(bool isEnable)
     {
-        long pCPedFactory = GTA5Mem.Read<long>(General.WorldPTR);
-        long pCPed = GTA5Mem.Read<long>(pCPedFactory + Offsets.CPed);
-        uint oProof = GTA5Mem.Read<uint>(pCPed + Offsets.CPed_Proof);
+        long pCPedFactory = Memory.Read<long>(General.WorldPTR);
+        long pCPed = Memory.Read<long>(pCPedFactory + Offsets.CPed);
+        uint oProof = Memory.Read<uint>(pCPed + Offsets.CPed_Proof);
 
         oProof = isEnable ? oProof | (1 << 4) : (uint)(oProof & ~(1 << 4));
-        GTA5Mem.Write(pCPed + Offsets.CPed_Proof, oProof);
+        Memory.Write(pCPed + Offsets.CPed_Proof, oProof);
     }
 
     /// <summary>
@@ -269,12 +269,12 @@ public static class Player
     /// </summary>
     public static void ProofFire(bool isEnable)
     {
-        long pCPedFactory = GTA5Mem.Read<long>(General.WorldPTR);
-        long pCPed = GTA5Mem.Read<long>(pCPedFactory + Offsets.CPed);
-        uint oProof = GTA5Mem.Read<uint>(pCPed + Offsets.CPed_Proof);
+        long pCPedFactory = Memory.Read<long>(General.WorldPTR);
+        long pCPed = Memory.Read<long>(pCPedFactory + Offsets.CPed);
+        uint oProof = Memory.Read<uint>(pCPed + Offsets.CPed_Proof);
 
         oProof = isEnable ? oProof | (1 << 5) : (uint)(oProof & ~(1 << 5));
-        GTA5Mem.Write(pCPed + Offsets.CPed_Proof, oProof);
+        Memory.Write(pCPed + Offsets.CPed_Proof, oProof);
     }
 
     /// <summary>
@@ -282,12 +282,12 @@ public static class Player
     /// </summary>
     public static void ProofCollision(bool isEnable)
     {
-        long pCPedFactory = GTA5Mem.Read<long>(General.WorldPTR);
-        long pCPed = GTA5Mem.Read<long>(pCPedFactory + Offsets.CPed);
-        uint oProof = GTA5Mem.Read<uint>(pCPed + Offsets.CPed_Proof);
+        long pCPedFactory = Memory.Read<long>(General.WorldPTR);
+        long pCPed = Memory.Read<long>(pCPedFactory + Offsets.CPed);
+        uint oProof = Memory.Read<uint>(pCPed + Offsets.CPed_Proof);
 
         oProof = isEnable ? oProof | (1 << 6) : (uint)(oProof & ~(1 << 6));
-        GTA5Mem.Write(pCPed + Offsets.CPed_Proof, oProof);
+        Memory.Write(pCPed + Offsets.CPed_Proof, oProof);
     }
 
     /// <summary>
@@ -295,12 +295,12 @@ public static class Player
     /// </summary>
     public static void ProofMelee(bool isEnable)
     {
-        long pCPedFactory = GTA5Mem.Read<long>(General.WorldPTR);
-        long pCPed = GTA5Mem.Read<long>(pCPedFactory + Offsets.CPed);
-        uint oProof = GTA5Mem.Read<uint>(pCPed + Offsets.CPed_Proof);
+        long pCPedFactory = Memory.Read<long>(General.WorldPTR);
+        long pCPed = Memory.Read<long>(pCPedFactory + Offsets.CPed);
+        uint oProof = Memory.Read<uint>(pCPed + Offsets.CPed_Proof);
 
         oProof = isEnable ? oProof | (1 << 7) : (uint)(oProof & ~(1 << 7));
-        GTA5Mem.Write(pCPed + Offsets.CPed_Proof, oProof);
+        Memory.Write(pCPed + Offsets.CPed_Proof, oProof);
     }
 
     /// <summary>
@@ -308,12 +308,12 @@ public static class Player
     /// </summary>
     public static void ProofGod(bool isEnable)
     {
-        long pCPedFactory = GTA5Mem.Read<long>(General.WorldPTR);
-        long pCPed = GTA5Mem.Read<long>(pCPedFactory + Offsets.CPed);
-        uint oProof = GTA5Mem.Read<uint>(pCPed + Offsets.CPed_Proof);
+        long pCPedFactory = Memory.Read<long>(General.WorldPTR);
+        long pCPed = Memory.Read<long>(pCPedFactory + Offsets.CPed);
+        uint oProof = Memory.Read<uint>(pCPed + Offsets.CPed_Proof);
 
         oProof = isEnable ? oProof | (1 << 8) : (uint)(oProof & ~(1 << 8));
-        GTA5Mem.Write(pCPed + Offsets.CPed_Proof, oProof);
+        Memory.Write(pCPed + Offsets.CPed_Proof, oProof);
     }
 
     /// <summary>
@@ -321,12 +321,12 @@ public static class Player
     /// </summary>
     public static void ProofExplosion(bool isEnable)
     {
-        long pCPedFactory = GTA5Mem.Read<long>(General.WorldPTR);
-        long pCPed = GTA5Mem.Read<long>(pCPedFactory + Offsets.CPed);
-        uint oProof = GTA5Mem.Read<uint>(pCPed + Offsets.CPed_Proof);
+        long pCPedFactory = Memory.Read<long>(General.WorldPTR);
+        long pCPed = Memory.Read<long>(pCPedFactory + Offsets.CPed);
+        uint oProof = Memory.Read<uint>(pCPed + Offsets.CPed_Proof);
 
         oProof = isEnable ? oProof | (1 << 11) : (uint)(oProof & ~(1 << 11));
-        GTA5Mem.Write(pCPed + Offsets.CPed_Proof, oProof);
+        Memory.Write(pCPed + Offsets.CPed_Proof, oProof);
     }
 
     /// <summary>
@@ -334,12 +334,12 @@ public static class Player
     /// </summary>
     public static void ProofSteam(bool isEnable)
     {
-        long pCPedFactory = GTA5Mem.Read<long>(General.WorldPTR);
-        long pCPed = GTA5Mem.Read<long>(pCPedFactory + Offsets.CPed);
-        uint oProof = GTA5Mem.Read<uint>(pCPed + Offsets.CPed_Proof);
+        long pCPedFactory = Memory.Read<long>(General.WorldPTR);
+        long pCPed = Memory.Read<long>(pCPedFactory + Offsets.CPed);
+        uint oProof = Memory.Read<uint>(pCPed + Offsets.CPed_Proof);
 
         oProof = isEnable ? oProof | (1 << 15) : (uint)(oProof & ~(1 << 15));
-        GTA5Mem.Write(pCPed + Offsets.CPed_Proof, oProof);
+        Memory.Write(pCPed + Offsets.CPed_Proof, oProof);
     }
 
     /// <summary>
@@ -347,12 +347,12 @@ public static class Player
     /// </summary>
     public static void ProofDrown(bool isEnable)
     {
-        long pCPedFactory = GTA5Mem.Read<long>(General.WorldPTR);
-        long pCPed = GTA5Mem.Read<long>(pCPedFactory + Offsets.CPed);
-        uint oProof = GTA5Mem.Read<uint>(pCPed + Offsets.CPed_Proof);
+        long pCPedFactory = Memory.Read<long>(General.WorldPTR);
+        long pCPed = Memory.Read<long>(pCPedFactory + Offsets.CPed);
+        uint oProof = Memory.Read<uint>(pCPed + Offsets.CPed_Proof);
 
         oProof = isEnable ? oProof | (1 << 16) : (uint)(oProof & ~(1 << 16));
-        GTA5Mem.Write(pCPed + Offsets.CPed_Proof, oProof);
+        Memory.Write(pCPed + Offsets.CPed_Proof, oProof);
     }
 
     /// <summary>
@@ -360,11 +360,11 @@ public static class Player
     /// </summary>
     public static void ProofWater(bool isEnable)
     {
-        long pCPedFactory = GTA5Mem.Read<long>(General.WorldPTR);
-        long pCPed = GTA5Mem.Read<long>(pCPedFactory + Offsets.CPed);
-        uint oProof = GTA5Mem.Read<uint>(pCPed + Offsets.CPed_Proof);
+        long pCPedFactory = Memory.Read<long>(General.WorldPTR);
+        long pCPed = Memory.Read<long>(pCPedFactory + Offsets.CPed);
+        uint oProof = Memory.Read<uint>(pCPed + Offsets.CPed_Proof);
 
         oProof = isEnable ? oProof | (1 << 24) : (uint)(oProof & ~(1 << 24));
-        GTA5Mem.Write(pCPed + Offsets.CPed_Proof, oProof);
+        Memory.Write(pCPed + Offsets.CPed_Proof, oProof);
     }
 }

@@ -55,38 +55,17 @@
                         Content="补满载具血量" />
                 </WrapPanel>
 
-                <ui:UiLabelEmoji Content="载具附加功能 ❔" ToolTip="提示：E键-载具跳跃，X键-载具加速" />
-                <WrapPanel Margin="5,0,5,0">
-                    <RadioButton
-                        x:Name="RadioButton_VehicleExtras_None"
-                        Click="RadioButton_VehicleExtras_None_Click"
-                        Content="默认"
-                        IsChecked="True" />
-                    <RadioButton
-                        x:Name="RadioButton_VehicleExtras_Jump"
-                        Click="RadioButton_VehicleExtras_None_Click"
-                        Content="跳跃" />
-                    <RadioButton
-                        x:Name="RadioButton_VehicleExtras_Boost"
-                        Click="RadioButton_VehicleExtras_None_Click"
-                        Content="加速" />
-                    <RadioButton
-                        x:Name="RadioButton_VehicleExtras_Both"
-                        Click="RadioButton_VehicleExtras_None_Click"
-                        Content="跳跃和加速" />
-                </WrapPanel>
+                <ui:UiLabelEmoji Content="载具附加功能" />
+                <ComboBox
+                    x:Name="ComboBox_VehicleExtras"
+                    Margin="5"
+                    SelectionChanged="ComboBox_VehicleExtras_SelectionChanged" />
+                <TextBlock Style="{StaticResource TextBlockStyle_Hint}">
+                    提示：E键-载具跳跃，X键-载具加速，Space键-空中开伞
+                </TextBlock>
 
                 <ui:UiLabelEmoji Content="高级" />
                 <WrapPanel Margin="5,0,5,0">
-                    <Button
-                        x:Name="Button_RepairVehicle"
-                        Click="Button_RepairVehicle_Click"
-                        Content="修复载具外观"
-                        ToolTip="如果没效果可以多点几下" />
-                    <Button
-                        x:Name="Button_TurnOffBST"
-                        Click="Button_TurnOffBST_Click"
-                        Content="移除牛鲨睾酮效果" />
                     <Button
                         x:Name="Button_GetInOnlinePV"
                         Click="Button_GetInOnlinePV_Click"

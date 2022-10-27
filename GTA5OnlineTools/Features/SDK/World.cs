@@ -1,5 +1,5 @@
 ﻿using GTA5OnlineTools.Features.Core;
-using GTA5OnlineTools.Features.Data;
+using GTA5OnlineTools.Features.Client;
 
 namespace GTA5OnlineTools.Features.SDK;
 
@@ -29,16 +29,16 @@ public static class World
     {
         if (weatherID == -1)
         {
-            GTA5Mem.Write(General.WeatherPTR + 0x24, -1);
-            GTA5Mem.Write(General.WeatherPTR + 0x104, 13);
+            Memory.Write(General.WeatherPTR + 0x24, -1);
+            Memory.Write(General.WeatherPTR + 0x104, 13);
         }
         if (weatherID == 13)
         {
-            GTA5Mem.Write(General.WeatherPTR + 0x24, 13);
-            GTA5Mem.Write(General.WeatherPTR + 0x104, 13);
+            Memory.Write(General.WeatherPTR + 0x24, 13);
+            Memory.Write(General.WeatherPTR + 0x104, 13);
         }
 
-        GTA5Mem.Write(General.WeatherPTR + 0x104, weatherID);
+        Memory.Write(General.WeatherPTR + 0x104, weatherID);
     }
 
     /// <summary>
@@ -47,34 +47,34 @@ public static class World
     public static void KillNPC(bool isOnlyHostility)
     {
         // Ped实体
-        long m_replay = GTA5Mem.Read<long>(General.ReplayInterfacePTR);
-        long m_ped_interface = GTA5Mem.Read<long>(m_replay + 0x18);
-        int m_max_peds = GTA5Mem.Read<int>(m_ped_interface + 0x108);
+        long m_replay = Memory.Read<long>(General.ReplayInterfacePTR);
+        long m_ped_interface = Memory.Read<long>(m_replay + 0x18);
+        int m_max_peds = Memory.Read<int>(m_ped_interface + 0x108);
 
         for (int i = 0; i < m_max_peds; i++)
         {
-            long m_ped_list = GTA5Mem.Read<long>(m_ped_interface + 0x100);
-            m_ped_list = GTA5Mem.Read<long>(m_ped_list + i * 0x10);
-            if (!GTA5Mem.IsValid(m_ped_list))
+            long m_ped_list = Memory.Read<long>(m_ped_interface + 0x100);
+            m_ped_list = Memory.Read<long>(m_ped_list + i * 0x10);
+            if (!Memory.IsValid(m_ped_list))
                 continue;
 
             // 跳过玩家
-            long m_player_info = GTA5Mem.Read<long>(m_ped_list + 0x10A8);
-            if (GTA5Mem.IsValid(m_player_info))
+            long m_player_info = Memory.Read<long>(m_ped_list + 0x10A8);
+            if (Memory.IsValid(m_player_info))
                 continue;
 
             if (isOnlyHostility)
             {
-                byte oHostility = GTA5Mem.Read<byte>(m_ped_list + 0x18C);
+                byte oHostility = Memory.Read<byte>(m_ped_list + 0x18C);
 
                 if (oHostility > 0x01)
                 {
-                    GTA5Mem.Write(m_ped_list + 0x280, 0.0f);
+                    Memory.Write(m_ped_list + 0x280, 0.0f);
                 }
             }
             else
             {
-                GTA5Mem.Write(m_ped_list + 0x280, 0.0f);
+                Memory.Write(m_ped_list + 0x280, 0.0f);
             }
         }
     }
@@ -85,30 +85,30 @@ public static class World
     public static void KillPolice()
     {
         // Ped实体
-        long m_replay = GTA5Mem.Read<long>(General.ReplayInterfacePTR);
-        long m_ped_interface = GTA5Mem.Read<long>(m_replay + 0x18);
-        int m_max_peds = GTA5Mem.Read<int>(m_ped_interface + 0x108);
+        long m_replay = Memory.Read<long>(General.ReplayInterfacePTR);
+        long m_ped_interface = Memory.Read<long>(m_replay + 0x18);
+        int m_max_peds = Memory.Read<int>(m_ped_interface + 0x108);
 
         for (int i = 0; i < m_max_peds; i++)
         {
-            long m_ped_list = GTA5Mem.Read<long>(m_ped_interface + 0x100);
-            m_ped_list = GTA5Mem.Read<long>(m_ped_list + i * 0x10);
-            if (!GTA5Mem.IsValid(m_ped_list))
+            long m_ped_list = Memory.Read<long>(m_ped_interface + 0x100);
+            m_ped_list = Memory.Read<long>(m_ped_list + i * 0x10);
+            if (!Memory.IsValid(m_ped_list))
                 continue;
 
             // 跳过玩家
-            long m_player_info = GTA5Mem.Read<long>(m_ped_list + 0x10A8);
-            if (GTA5Mem.IsValid(m_player_info))
+            long m_player_info = Memory.Read<long>(m_ped_list + 0x10A8);
+            if (Memory.IsValid(m_player_info))
                 continue;
 
-            int ped_type = GTA5Mem.Read<int>(m_ped_list + 0x10B8);
+            int ped_type = Memory.Read<int>(m_ped_list + 0x10B8);
             ped_type = ped_type << 11 >> 25;
 
             if (ped_type == (int)EnumData.PedTypes.COP ||
                 ped_type == (int)EnumData.PedTypes.SWAT ||
                 ped_type == (int)EnumData.PedTypes.ARMY)
             {
-                GTA5Mem.Write(m_ped_list + 0x280, 0.0f);
+                Memory.Write(m_ped_list + 0x280, 0.0f);
             }
         }
     }
@@ -119,42 +119,42 @@ public static class World
     public static void DestroyNPCVehicles(bool isOnlyHostility)
     {
         // Ped实体
-        long m_replay = GTA5Mem.Read<long>(General.ReplayInterfacePTR);
-        long m_ped_interface = GTA5Mem.Read<long>(m_replay + 0x18);
-        int m_max_peds = GTA5Mem.Read<int>(m_ped_interface + 0x108);
+        long m_replay = Memory.Read<long>(General.ReplayInterfacePTR);
+        long m_ped_interface = Memory.Read<long>(m_replay + 0x18);
+        int m_max_peds = Memory.Read<int>(m_ped_interface + 0x108);
 
         for (int i = 0; i < m_max_peds; i++)
         {
-            long m_ped_list = GTA5Mem.Read<long>(m_ped_interface + 0x100);
-            m_ped_list = GTA5Mem.Read<long>(m_ped_list + i * 0x10);
-            if (!GTA5Mem.IsValid(m_ped_list))
+            long m_ped_list = Memory.Read<long>(m_ped_interface + 0x100);
+            m_ped_list = Memory.Read<long>(m_ped_list + i * 0x10);
+            if (!Memory.IsValid(m_ped_list))
                 continue;
 
             // 跳过玩家
-            long m_player_info = GTA5Mem.Read<long>(m_ped_list + 0x10A8);
-            if (GTA5Mem.IsValid(m_player_info))
+            long m_player_info = Memory.Read<long>(m_ped_list + 0x10A8);
+            if (Memory.IsValid(m_player_info))
                 continue;
 
-            long m_vehicle = GTA5Mem.Read<long>(m_ped_list + 0xD10);
+            long m_vehicle = Memory.Read<long>(m_ped_list + 0xD10);
 
             if (isOnlyHostility)
             {
-                byte oHostility = GTA5Mem.Read<byte>(m_ped_list + 0x18C);
+                byte oHostility = Memory.Read<byte>(m_ped_list + 0x18C);
 
                 if (oHostility > 0x01)
                 {
-                    GTA5Mem.Write(m_vehicle + 0x280, -1.0f);
-                    GTA5Mem.Write(m_vehicle + 0x820, -1.0f);
-                    GTA5Mem.Write(m_vehicle + 0x824, -1.0f);
-                    GTA5Mem.Write(m_vehicle + 0x8E8, -1.0f);
+                    Memory.Write(m_vehicle + 0x280, -1.0f);
+                    Memory.Write(m_vehicle + 0x820, -1.0f);
+                    Memory.Write(m_vehicle + 0x824, -1.0f);
+                    Memory.Write(m_vehicle + 0x8E8, -1.0f);
                 }
             }
             else
             {
-                GTA5Mem.Write(m_vehicle + 0x280, -1.0f);
-                GTA5Mem.Write(m_vehicle + 0x820, -1.0f);
-                GTA5Mem.Write(m_vehicle + 0x824, -1.0f);
-                GTA5Mem.Write(m_vehicle + 0x8E8, -1.0f);
+                Memory.Write(m_vehicle + 0x280, -1.0f);
+                Memory.Write(m_vehicle + 0x820, -1.0f);
+                Memory.Write(m_vehicle + 0x824, -1.0f);
+                Memory.Write(m_vehicle + 0x8E8, -1.0f);
             }
         }
     }
@@ -165,22 +165,22 @@ public static class World
     public static void DestroyAllVehicles()
     {
         // Ped实体
-        long m_replay = GTA5Mem.Read<long>(General.ReplayInterfacePTR);
-        long m_vehicle_interface = GTA5Mem.Read<long>(m_replay + 0x10);
-        long m_ped_interface = GTA5Mem.Read<long>(m_replay + 0x18);
-        int m_max_peds = GTA5Mem.Read<int>(m_ped_interface + 0x108);
+        long m_replay = Memory.Read<long>(General.ReplayInterfacePTR);
+        long m_vehicle_interface = Memory.Read<long>(m_replay + 0x10);
+        long m_ped_interface = Memory.Read<long>(m_replay + 0x18);
+        int m_max_peds = Memory.Read<int>(m_ped_interface + 0x108);
 
         for (int i = 0; i < m_max_peds; i++)
         {
-            long m_vehicle_list = GTA5Mem.Read<long>(m_vehicle_interface + 0x180);
-            m_vehicle_list = GTA5Mem.Read<long>(m_vehicle_list + i * 0x10);
-            if (!GTA5Mem.IsValid(m_vehicle_list))
+            long m_vehicle_list = Memory.Read<long>(m_vehicle_interface + 0x180);
+            m_vehicle_list = Memory.Read<long>(m_vehicle_list + i * 0x10);
+            if (!Memory.IsValid(m_vehicle_list))
                 continue;
 
-            GTA5Mem.Write(m_vehicle_list + 0x280, -1.0f);     // m_health
-            GTA5Mem.Write(m_vehicle_list + 0x820, -1.0f);     // m_body_health
-            GTA5Mem.Write(m_vehicle_list + 0x824, -1.0f);     // m_petrol_tank_health
-            GTA5Mem.Write(m_vehicle_list + 0x8E8, -1.0f);     // m_engine_health
+            Memory.Write(m_vehicle_list + 0x280, -1.0f);     // m_health
+            Memory.Write(m_vehicle_list + 0x820, -1.0f);     // m_body_health
+            Memory.Write(m_vehicle_list + 0x824, -1.0f);     // m_petrol_tank_health
+            Memory.Write(m_vehicle_list + 0x8E8, -1.0f);     // m_engine_health
         }
     }
 
@@ -192,40 +192,40 @@ public static class World
         Vector3 v3MyPos = Teleport.GetPlayerPosition();
 
         // Ped实体
-        long m_replay = GTA5Mem.Read<long>(General.ReplayInterfacePTR);
-        long m_ped_interface = GTA5Mem.Read<long>(m_replay + 0x18);
-        int m_max_peds = GTA5Mem.Read<int>(m_ped_interface + 0x108);
+        long m_replay = Memory.Read<long>(General.ReplayInterfacePTR);
+        long m_ped_interface = Memory.Read<long>(m_replay + 0x18);
+        int m_max_peds = Memory.Read<int>(m_ped_interface + 0x108);
 
         for (int i = 0; i < m_max_peds; i++)
         {
-            long m_ped_list = GTA5Mem.Read<long>(m_ped_interface + 0x100);
-            m_ped_list = GTA5Mem.Read<long>(m_ped_list + i * 0x10);
-            if (!GTA5Mem.IsValid(m_ped_list))
+            long m_ped_list = Memory.Read<long>(m_ped_interface + 0x100);
+            m_ped_list = Memory.Read<long>(m_ped_list + i * 0x10);
+            if (!Memory.IsValid(m_ped_list))
                 continue;
 
             // 跳过玩家
-            long m_player_info = GTA5Mem.Read<long>(m_ped_list + 0x10A8);
-            if (GTA5Mem.IsValid(m_player_info))
+            long m_player_info = Memory.Read<long>(m_ped_list + 0x10A8);
+            if (Memory.IsValid(m_player_info))
                 continue;
 
-            long m_navigation = GTA5Mem.Read<long>(m_ped_list + 0x30);
-            if (!GTA5Mem.IsValid(m_navigation))
+            long m_navigation = Memory.Read<long>(m_ped_list + 0x30);
+            if (!Memory.IsValid(m_navigation))
                 continue;
 
             if (isOnlyHostility)
             {
-                byte oHostility = GTA5Mem.Read<byte>(m_ped_list + 0x18C);
+                byte oHostility = Memory.Read<byte>(m_ped_list + 0x18C);
 
                 if (oHostility > 0x01)
                 {
-                    GTA5Mem.Write(m_navigation + 0x50, v3MyPos);
-                    GTA5Mem.Write(m_ped_list + 0x90, v3MyPos);
+                    Memory.Write(m_navigation + 0x50, v3MyPos);
+                    Memory.Write(m_ped_list + 0x90, v3MyPos);
                 }
             }
             else
             {
-                GTA5Mem.Write(m_navigation + 0x50, v3MyPos);
-                GTA5Mem.Write(m_ped_list + 0x90, v3MyPos);
+                Memory.Write(m_navigation + 0x50, v3MyPos);
+                Memory.Write(m_ped_list + 0x90, v3MyPos);
             }
         }
     }

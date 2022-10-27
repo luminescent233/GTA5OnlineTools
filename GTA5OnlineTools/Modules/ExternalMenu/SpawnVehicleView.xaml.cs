@@ -1,6 +1,7 @@
 ﻿using GTA5OnlineTools.Common.Utils;
 using GTA5OnlineTools.Features.SDK;
 using GTA5OnlineTools.Features.Data;
+using GTA5OnlineTools.Features.Client;
 
 namespace GTA5OnlineTools.Modules.ExternalMenu;
 
@@ -21,11 +22,18 @@ public partial class SpawnVehicleView : UserControl
         ExternalMenuWindow.WindowClosingEvent += ExternalMenuWindow_WindowClosingEvent;
 
         // 载具列表
-        for (int i = 0; i < VehicleData.VehicleClassData.Count; i++)
+        foreach (var item in VehicleData.VehicleClassData)
         {
-            ListBox_VehicleClass.Items.Add(VehicleData.VehicleClassData[i].ClassName);
+            ListBox_VehicleClass.Items.Add(item.ClassName);
         }
         ListBox_VehicleClass.SelectedIndex = 0;
+
+        // 载具附加功能
+        foreach (var item in MiscData.VehicleExtras)
+        {
+            ComboBox_VehicleExtras.Items.Add(item.Name);
+        }
+        ComboBox_VehicleExtras.SelectedIndex = 0;
     }
 
     private void ExternalMenuWindow_WindowClosingEvent()
@@ -113,40 +121,6 @@ public partial class SpawnVehicleView : UserControl
         Vehicle.FillHealth();
     }
 
-    private void RadioButton_VehicleExtras_None_Click(object sender, RoutedEventArgs e)
-    {
-        if (RadioButton_VehicleExtras_None.IsChecked == true)
-        {
-            Vehicle.Extras(0);
-        }
-        else if (RadioButton_VehicleExtras_Jump.IsChecked == true)
-        {
-            Vehicle.Extras(40);
-        }
-        else if (RadioButton_VehicleExtras_Boost.IsChecked == true)
-        {
-            Vehicle.Extras(66);
-        }
-        else if (RadioButton_VehicleExtras_Both.IsChecked == true)
-        {
-            Vehicle.Extras(96);
-        }
-    }
-
-    private void Button_RepairVehicle_Click(object sender, RoutedEventArgs e)
-    {
-        AudioUtil.PlayClickSound();
-
-        Vehicle.Fix1stfoundBST();
-    }
-
-    private void Button_TurnOffBST_Click(object sender, RoutedEventArgs e)
-    {
-        AudioUtil.PlayClickSound();
-
-        Online.InstantBullShark(false);
-    }
-
     private void Button_GetInOnlinePV_Click(object sender, RoutedEventArgs e)
     {
         AudioUtil.PlayClickSound();
@@ -195,13 +169,22 @@ public partial class SpawnVehicleView : UserControl
     {
         AudioUtil.PlayClickSound();
 
-        int index = ListBox_PersonalVehicle.SelectedIndex;
+        var index = ListBox_PersonalVehicle.SelectedIndex;
         if (index != -1)
         {
             Task.Run(() =>
             {
                 Vehicle.SpawnPersonalVehicle(pVInfos[index].Index);
             });
+        }
+    }
+
+    private void ComboBox_VehicleExtras_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        var index = ComboBox_VehicleExtras.SelectedIndex;
+        if (index != -1)
+        {
+            Vehicle.Extras((short)MiscData.VehicleExtras[index].ID);
         }
     }
 }

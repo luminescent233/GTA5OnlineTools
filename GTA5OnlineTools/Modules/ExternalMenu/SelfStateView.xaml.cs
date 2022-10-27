@@ -169,24 +169,24 @@ public partial class SelfStateView : UserControl
     {
         while (Globals.IsAppRunning)
         {
-            long pCPedFactory = GTA5Mem.Read<long>(General.WorldPTR);
-            long pCPed = GTA5Mem.Read<long>(pCPedFactory + Offsets.CPed);
-            long pCPlayerInfo = GTA5Mem.Read<long>(pCPed + Offsets.CPed_CPlayerInfo);
-            long pCNavigation = GTA5Mem.Read<long>(pCPed + Offsets.CPed_CNavigation);
+            long pCPedFactory = Memory.Read<long>(General.WorldPTR);
+            long pCPed = Memory.Read<long>(pCPedFactory + Offsets.CPed);
+            long pCPlayerInfo = Memory.Read<long>(pCPed + Offsets.CPed_CPlayerInfo);
+            long pCNavigation = Memory.Read<long>(pCPed + Offsets.CPed_CNavigation);
 
-            byte oInVehicle = GTA5Mem.Read<byte>(pCPed + Offsets.CPed_InVehicle);
+            byte oInVehicle = Memory.Read<byte>(pCPed + Offsets.CPed_InVehicle);
 
-            byte oGod = GTA5Mem.Read<byte>(pCPed + Offsets.CPed_God);
-            float oHealth = GTA5Mem.Read<float>(pCPed + Offsets.CPed_Health);
-            float oHealthMax = GTA5Mem.Read<float>(pCPed + Offsets.CPed_HealthMax);
-            float oArmor = GTA5Mem.Read<float>(pCPed + Offsets.CPed_Armor);
-            byte oRagdoll = GTA5Mem.Read<byte>(pCPed + Offsets.CPed_Ragdoll);
-            byte oSeatbelt = GTA5Mem.Read<byte>(pCPed + Offsets.CPed_Seatbelt);
+            byte oGod = Memory.Read<byte>(pCPed + Offsets.CPed_God);
+            float oHealth = Memory.Read<float>(pCPed + Offsets.CPed_Health);
+            float oHealthMax = Memory.Read<float>(pCPed + Offsets.CPed_HealthMax);
+            float oArmor = Memory.Read<float>(pCPed + Offsets.CPed_Armor);
+            byte oRagdoll = Memory.Read<byte>(pCPed + Offsets.CPed_Ragdoll);
+            byte oSeatbelt = Memory.Read<byte>(pCPed + Offsets.CPed_Seatbelt);
 
-            byte oWantedLevel = GTA5Mem.Read<byte>(pCPlayerInfo + Offsets.CPed_CPlayerInfo_WantedLevel);
-            float oRunSpeed = GTA5Mem.Read<float>(pCPlayerInfo + Offsets.CPed_CPlayerInfo_RunSpeed);
-            float oSwimSpeed = GTA5Mem.Read<float>(pCPlayerInfo + Offsets.CPed_CPlayerInfo_SwimSpeed);
-            float oWalkSpeed = GTA5Mem.Read<float>(pCPlayerInfo + Offsets.CPed_CPlayerInfo_WalkSpeed);
+            byte oWantedLevel = Memory.Read<byte>(pCPlayerInfo + Offsets.CPed_CPlayerInfo_WantedLevel);
+            float oRunSpeed = Memory.Read<float>(pCPlayerInfo + Offsets.CPed_CPlayerInfo_RunSpeed);
+            float oSwimSpeed = Memory.Read<float>(pCPlayerInfo + Offsets.CPed_CPlayerInfo_SwimSpeed);
+            float oWalkSpeed = Memory.Read<float>(pCPlayerInfo + Offsets.CPed_CPlayerInfo_WalkSpeed);
 
             ////////////////////////////////////////////////////////////////
 
@@ -194,12 +194,12 @@ public partial class SelfStateView : UserControl
             if (Settings.Player.GodMode)
             {
                 if (oGod == 0x00)
-                    GTA5Mem.Write<byte>(pCPed + Offsets.CPed_God, 0x01);
+                    Memory.Write<byte>(pCPed + Offsets.CPed_God, 0x01);
             }
             else
             {
                 if (oGod == 0x01)
-                    GTA5Mem.Write<byte>(pCPed + Offsets.CPed_God, 0x00);
+                    Memory.Write<byte>(pCPed + Offsets.CPed_God, 0x00);
             }
 
             // 挂机防踢
@@ -218,53 +218,53 @@ public partial class SelfStateView : UserControl
             if (Settings.Player.NoRagdoll)
             {
                 if (oRagdoll == 0x20)
-                    GTA5Mem.Write<byte>(pCPed + Offsets.CPed_Ragdoll, 0x01);
+                    Memory.Write<byte>(pCPed + Offsets.CPed_Ragdoll, 0x01);
             }
             else
             {
                 if (oRagdoll == 0x01)
-                    GTA5Mem.Write<byte>(pCPed + Offsets.CPed_Ragdoll, 0x20);
+                    Memory.Write<byte>(pCPed + Offsets.CPed_Ragdoll, 0x20);
             }
 
             // 玩家无碰撞体积
             if (Settings.Player.NoCollision)
             {
-                long pointer = GTA5Mem.Read<long>(pCNavigation + 0x10);
-                pointer = GTA5Mem.Read<long>(pointer + 0x20);
-                pointer = GTA5Mem.Read<long>(pointer + 0x70);
-                pointer = GTA5Mem.Read<long>(pointer + 0x00);
-                GTA5Mem.Write(pointer + 0x2C, -1.0f);
+                long pointer = Memory.Read<long>(pCNavigation + 0x10);
+                pointer = Memory.Read<long>(pointer + 0x20);
+                pointer = Memory.Read<long>(pointer + 0x70);
+                pointer = Memory.Read<long>(pointer + 0x00);
+                Memory.Write(pointer + 0x2C, -1.0f);
             }
 
             // 安全带
             if (Settings.Vehicle.VehicleSeatbelt)
             {
                 if (oSeatbelt == 0xC8)
-                    GTA5Mem.Write<byte>(pCPed + Offsets.CPed_Seatbelt, 0xC9);
+                    Memory.Write<byte>(pCPed + Offsets.CPed_Seatbelt, 0xC9);
             }
             else
             {
                 if (oSeatbelt == 0xC9)
-                    GTA5Mem.Write<byte>(pCPed + Offsets.CPed_Seatbelt, 0xC8);
+                    Memory.Write<byte>(pCPed + Offsets.CPed_Seatbelt, 0xC8);
             }
 
             ////////////////////////////////////////////////////////////////
 
             if (oInVehicle != 0x00)
             {
-                long pCVehicle = GTA5Mem.Read<long>(pCPed + Offsets.CPed_CVehicle);
-                byte oVehicleGod = GTA5Mem.Read<byte>(pCVehicle + Offsets.CPed_CVehicle_God);
+                long pCVehicle = Memory.Read<long>(pCPed + Offsets.CPed_CVehicle);
+                byte oVehicleGod = Memory.Read<byte>(pCVehicle + Offsets.CPed_CVehicle_God);
 
                 // 载具无敌
                 if (Settings.Vehicle.VehicleGodMode)
                 {
                     if (oVehicleGod == 0x00)
-                        GTA5Mem.Write<byte>(pCVehicle + Offsets.CPed_CVehicle_God, 0x01);
+                        Memory.Write<byte>(pCVehicle + Offsets.CPed_CVehicle_God, 0x01);
                 }
                 else
                 {
                     if (oVehicleGod == 0x01)
-                        GTA5Mem.Write<byte>(pCVehicle + Offsets.CPed_CVehicle_God, 0x00);
+                        Memory.Write<byte>(pCVehicle + Offsets.CPed_CVehicle_God, 0x00);
                 }
             }
 

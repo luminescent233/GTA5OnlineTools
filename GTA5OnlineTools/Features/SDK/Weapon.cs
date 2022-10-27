@@ -9,32 +9,32 @@ public static class Weapon
     /// </summary>
     public static void FillCurrentAmmo()
     {
-        long pCPedFactory = GTA5Mem.Read<long>(General.WorldPTR);
-        long pCPed = GTA5Mem.Read<long>(pCPedFactory + Offsets.CPed);
-        long pCPedWeaponManager = GTA5Mem.Read<long>(pCPed + Offsets.CPed_CPedWeaponManager);
-        long pCWeaponInfo = GTA5Mem.Read<long>(pCPedWeaponManager + Offsets.CPed_CPedWeaponManager_CWeaponInfo);
-        long pCAmmoInfo = GTA5Mem.Read<long>(pCWeaponInfo + Offsets.CPed_CPedWeaponManager_CWeaponInfo_CAmmoInfo);
-        if (!GTA5Mem.IsValid(pCAmmoInfo))
+        long pCPedFactory = Memory.Read<long>(General.WorldPTR);
+        long pCPed = Memory.Read<long>(pCPedFactory + Offsets.CPed);
+        long pCPedWeaponManager = Memory.Read<long>(pCPed + Offsets.CPed_CPedWeaponManager);
+        long pCWeaponInfo = Memory.Read<long>(pCPedWeaponManager + Offsets.CPed_CPedWeaponManager_CWeaponInfo);
+        long pCAmmoInfo = Memory.Read<long>(pCWeaponInfo + Offsets.CPed_CPedWeaponManager_CWeaponInfo_CAmmoInfo);
+        if (!Memory.IsValid(pCAmmoInfo))
             return;
 
-        int getMaxAmmo = GTA5Mem.Read<int>(pCAmmoInfo + 0x28);
+        int getMaxAmmo = Memory.Read<int>(pCAmmoInfo + 0x28);
 
         long my_offset_1 = pCAmmoInfo;
         long my_offset_2;
         byte ammo_type;
         do
         {
-            my_offset_1 = GTA5Mem.Read<long>(my_offset_1 + 0x08);
-            my_offset_2 = GTA5Mem.Read<long>(my_offset_1 + 0x00);
+            my_offset_1 = Memory.Read<long>(my_offset_1 + 0x08);
+            my_offset_2 = Memory.Read<long>(my_offset_1 + 0x00);
 
             if (my_offset_1 == 0 || my_offset_2 == 0)
                 return;
 
-            ammo_type = GTA5Mem.Read<byte>(my_offset_2 + 0x0C);
+            ammo_type = Memory.Read<byte>(my_offset_2 + 0x0C);
 
         } while (ammo_type == 0x00);
 
-        GTA5Mem.Write(my_offset_2 + 0x18, getMaxAmmo);
+        Memory.Write(my_offset_2 + 0x18, getMaxAmmo);
     }
 
     /// <summary>
@@ -42,24 +42,24 @@ public static class Weapon
     /// </summary>
     public static void FillAllAmmo()
     {
-        long pCPedFactory = GTA5Mem.Read<long>(General.WorldPTR);
-        long pCPed = GTA5Mem.Read<long>(pCPedFactory + Offsets.CPed);
-        long pCPedInventory = GTA5Mem.Read<long>(pCPed + Offsets.CPed_CPedInventory);
-        long pWeapon = GTA5Mem.Read<long>(pCPedInventory + 0x48);
+        long pCPedFactory = Memory.Read<long>(General.WorldPTR);
+        long pCPed = Memory.Read<long>(pCPedFactory + Offsets.CPed);
+        long pCPedInventory = Memory.Read<long>(pCPed + Offsets.CPed_CPedInventory);
+        long pWeapon = Memory.Read<long>(pCPedInventory + 0x48);
 
         int count = 0;
-        long offset_1 = GTA5Mem.Read<long>(pWeapon + count * 0x08);
-        long offset_2 = GTA5Mem.Read<long>(offset_1 + 0x08);
+        long offset_1 = Memory.Read<long>(pWeapon + count * 0x08);
+        long offset_2 = Memory.Read<long>(offset_1 + 0x08);
         while (offset_1 != 0 && offset_2 != 0)
         {
-            int ammo_1 = GTA5Mem.Read<int>(offset_2 + 0x28);
-            int ammo_2 = GTA5Mem.Read<int>(offset_2 + 0x34);
+            int ammo_1 = Memory.Read<int>(offset_2 + 0x28);
+            int ammo_2 = Memory.Read<int>(offset_2 + 0x34);
             int max_ammo = Math.Max(ammo_1, ammo_2);
-            GTA5Mem.Write(offset_1 + 0x20, max_ammo);
+            Memory.Write(offset_1 + 0x20, max_ammo);
 
             count++;
-            offset_1 = GTA5Mem.Read<long>(pWeapon + count * 0x08);
-            offset_2 = GTA5Mem.Read<long>(offset_1 + 0x08);
+            offset_1 = Memory.Read<long>(pWeapon + count * 0x08);
+            offset_2 = Memory.Read<long>(offset_1 + 0x08);
         }
     }
 
@@ -70,21 +70,21 @@ public static class Weapon
     {
         if (isEnable)
         {
-            long addrAmmo = GTA5Mem.FindPattern("41 2B D1 E8");
+            long addrAmmo = Memory.FindPattern("41 2B D1 E8");
             if (addrAmmo == 0)
             {
-                addrAmmo = GTA5Mem.FindPattern("90 90 90 E8");
+                addrAmmo = Memory.FindPattern("90 90 90 E8");
             }
-            GTA5Mem.WriteBytes(addrAmmo, new byte[] { 0x90, 0x90, 0x90 });
+            Memory.WriteBytes(addrAmmo, new byte[] { 0x90, 0x90, 0x90 });
         }
         else
         {
-            long addrAmmo = GTA5Mem.FindPattern("41 2B D1 E8");
+            long addrAmmo = Memory.FindPattern("41 2B D1 E8");
             if (addrAmmo == 0)
             {
-                addrAmmo = GTA5Mem.FindPattern("90 90 90 E8");
+                addrAmmo = Memory.FindPattern("90 90 90 E8");
             }
-            GTA5Mem.WriteBytes(addrAmmo, new byte[] { 0x41, 0x2B, 0xD1 });
+            Memory.WriteBytes(addrAmmo, new byte[] { 0x41, 0x2B, 0xD1 });
         }
     }
 
@@ -95,21 +95,21 @@ public static class Weapon
     {
         if (isEnable)
         {
-            long addrAmmo = GTA5Mem.FindPattern("41 2B C9 3B C8 0F");
+            long addrAmmo = Memory.FindPattern("41 2B C9 3B C8 0F");
             if (addrAmmo == 0)
             {
-                addrAmmo = GTA5Mem.FindPattern("90 90 90 3B C8 0F");
+                addrAmmo = Memory.FindPattern("90 90 90 3B C8 0F");
             }
-            GTA5Mem.WriteBytes(addrAmmo, new byte[] { 0x90, 0x90, 0x90 });
+            Memory.WriteBytes(addrAmmo, new byte[] { 0x90, 0x90, 0x90 });
         }
         else
         {
-            long addrAmmo = GTA5Mem.FindPattern("41 2B C9 3B C8 0F");
+            long addrAmmo = Memory.FindPattern("41 2B C9 3B C8 0F");
             if (addrAmmo == 0)
             {
-                addrAmmo = GTA5Mem.FindPattern("90 90 90 3B C8 0F");
+                addrAmmo = Memory.FindPattern("90 90 90 3B C8 0F");
             }
-            GTA5Mem.WriteBytes(addrAmmo, new byte[] { 0x41, 0x2B, 0xC9 });
+            Memory.WriteBytes(addrAmmo, new byte[] { 0x41, 0x2B, 0xC9 });
         }
     }
 
@@ -118,11 +118,11 @@ public static class Weapon
     /// </summary>
     public static void AmmoModifier(byte flag)
     {
-        long pCPedFactory = GTA5Mem.Read<long>(General.WorldPTR);
-        long pCPed = GTA5Mem.Read<long>(pCPedFactory + Offsets.CPed);
-        long pCPedInventory = GTA5Mem.Read<long>(pCPed + Offsets.CPed_CPedInventory);
+        long pCPedFactory = Memory.Read<long>(General.WorldPTR);
+        long pCPed = Memory.Read<long>(pCPedFactory + Offsets.CPed);
+        long pCPedInventory = Memory.Read<long>(pCPed + Offsets.CPed_CPedInventory);
 
-        GTA5Mem.Write(pCPedInventory + Offsets.CPed_CPedInventory_AmmoModifier, flag);
+        Memory.Write(pCPedInventory + Offsets.CPed_CPedInventory_AmmoModifier, flag);
     }
 
     /// <summary>
@@ -130,12 +130,12 @@ public static class Weapon
     /// </summary>
     public static void NoRecoil()
     {
-        long pCPedFactory = GTA5Mem.Read<long>(General.WorldPTR);
-        long pCPed = GTA5Mem.Read<long>(pCPedFactory + Offsets.CPed);
-        long pCPedWeaponManager = GTA5Mem.Read<long>(pCPed + Offsets.CPed_CPedWeaponManager);
-        long pCWeaponInfo = GTA5Mem.Read<long>(pCPedWeaponManager + Offsets.CPed_CPedWeaponManager_CWeaponInfo);
+        long pCPedFactory = Memory.Read<long>(General.WorldPTR);
+        long pCPed = Memory.Read<long>(pCPedFactory + Offsets.CPed);
+        long pCPedWeaponManager = Memory.Read<long>(pCPed + Offsets.CPed_CPedWeaponManager);
+        long pCWeaponInfo = Memory.Read<long>(pCPedWeaponManager + Offsets.CPed_CPedWeaponManager_CWeaponInfo);
 
-        GTA5Mem.Write(pCWeaponInfo + Offsets.CPed_CPedWeaponManager_CWeaponInfo_Recoil, 0.0f);
+        Memory.Write(pCWeaponInfo + Offsets.CPed_CPedWeaponManager_CWeaponInfo_Recoil, 0.0f);
     }
 
     /// <summary>
@@ -143,12 +143,12 @@ public static class Weapon
     /// </summary>
     public static void NoSpread()
     {
-        long pCPedFactory = GTA5Mem.Read<long>(General.WorldPTR);
-        long pCPed = GTA5Mem.Read<long>(pCPedFactory + Offsets.CPed);
-        long pCPedWeaponManager = GTA5Mem.Read<long>(pCPed + Offsets.CPed_CPedWeaponManager);
-        long pCWeaponInfo = GTA5Mem.Read<long>(pCPedWeaponManager + Offsets.CPed_CPedWeaponManager_CWeaponInfo);
+        long pCPedFactory = Memory.Read<long>(General.WorldPTR);
+        long pCPed = Memory.Read<long>(pCPedFactory + Offsets.CPed);
+        long pCPedWeaponManager = Memory.Read<long>(pCPed + Offsets.CPed_CPedWeaponManager);
+        long pCWeaponInfo = Memory.Read<long>(pCPedWeaponManager + Offsets.CPed_CPedWeaponManager_CWeaponInfo);
 
-        GTA5Mem.Write(pCWeaponInfo + Offsets.CPed_CPedWeaponManager_CWeaponInfo_Spread, 0.0f);
+        Memory.Write(pCWeaponInfo + Offsets.CPed_CPedWeaponManager_CWeaponInfo_Spread, 0.0f);
     }
 
     /// <summary>
@@ -156,12 +156,12 @@ public static class Weapon
     /// </summary>
     public static void ImpactType(byte type)
     {
-        long pCPedFactory = GTA5Mem.Read<long>(General.WorldPTR);
-        long pCPed = GTA5Mem.Read<long>(pCPedFactory + Offsets.CPed);
-        long pCPedWeaponManager = GTA5Mem.Read<long>(pCPed + Offsets.CPed_CPedWeaponManager);
-        long pCWeaponInfo = GTA5Mem.Read<long>(pCPedWeaponManager + Offsets.CPed_CPedWeaponManager_CWeaponInfo);
+        long pCPedFactory = Memory.Read<long>(General.WorldPTR);
+        long pCPed = Memory.Read<long>(pCPedFactory + Offsets.CPed);
+        long pCPedWeaponManager = Memory.Read<long>(pCPed + Offsets.CPed_CPedWeaponManager);
+        long pCWeaponInfo = Memory.Read<long>(pCPedWeaponManager + Offsets.CPed_CPedWeaponManager_CWeaponInfo);
 
-        GTA5Mem.Write(pCWeaponInfo + Offsets.CPed_CPedWeaponManager_CWeaponInfo_ImpactType, type);
+        Memory.Write(pCWeaponInfo + Offsets.CPed_CPedWeaponManager_CWeaponInfo_ImpactType, type);
     }
 
     /// <summary>
@@ -169,12 +169,12 @@ public static class Weapon
     /// </summary>
     public static void ImpactExplosion(int id)
     {
-        long pCPedFactory = GTA5Mem.Read<long>(General.WorldPTR);
-        long pCPed = GTA5Mem.Read<long>(pCPedFactory + Offsets.CPed);
-        long pCPedWeaponManager = GTA5Mem.Read<long>(pCPed + Offsets.CPed_CPedWeaponManager);
-        long pCWeaponInfo = GTA5Mem.Read<long>(pCPedWeaponManager + Offsets.CPed_CPedWeaponManager_CWeaponInfo);
+        long pCPedFactory = Memory.Read<long>(General.WorldPTR);
+        long pCPed = Memory.Read<long>(pCPedFactory + Offsets.CPed);
+        long pCPedWeaponManager = Memory.Read<long>(pCPed + Offsets.CPed_CPedWeaponManager);
+        long pCWeaponInfo = Memory.Read<long>(pCPedWeaponManager + Offsets.CPed_CPedWeaponManager_CWeaponInfo);
 
-        GTA5Mem.Write(pCWeaponInfo + Offsets.CPed_CPedWeaponManager_CWeaponInfo_ImpactExplosion, id);
+        Memory.Write(pCWeaponInfo + Offsets.CPed_CPedWeaponManager_CWeaponInfo_ImpactExplosion, id);
     }
 
     /// <summary>
@@ -182,13 +182,13 @@ public static class Weapon
     /// </summary>
     public static void Range()
     {
-        long pCPedFactory = GTA5Mem.Read<long>(General.WorldPTR);
-        long pCPed = GTA5Mem.Read<long>(pCPedFactory + Offsets.CPed);
-        long pCPedWeaponManager = GTA5Mem.Read<long>(pCPed + Offsets.CPed_CPedWeaponManager);
-        long pCWeaponInfo = GTA5Mem.Read<long>(pCPedWeaponManager + Offsets.CPed_CPedWeaponManager_CWeaponInfo);
+        long pCPedFactory = Memory.Read<long>(General.WorldPTR);
+        long pCPed = Memory.Read<long>(pCPedFactory + Offsets.CPed);
+        long pCPedWeaponManager = Memory.Read<long>(pCPed + Offsets.CPed_CPedWeaponManager);
+        long pCWeaponInfo = Memory.Read<long>(pCPedWeaponManager + Offsets.CPed_CPedWeaponManager_CWeaponInfo);
 
-        GTA5Mem.Write(pCWeaponInfo + Offsets.CPed_CPedWeaponManager_CWeaponInfo_LockRange, 1000.0f);
-        GTA5Mem.Write(pCWeaponInfo + Offsets.CPed_CPedWeaponManager_CWeaponInfo_Range, 2000.0f);
+        Memory.Write(pCWeaponInfo + Offsets.CPed_CPedWeaponManager_CWeaponInfo_LockRange, 1000.0f);
+        Memory.Write(pCWeaponInfo + Offsets.CPed_CPedWeaponManager_CWeaponInfo_Range, 2000.0f);
     }
 
     /// <summary>
@@ -196,14 +196,14 @@ public static class Weapon
     /// </summary>
     public static void ReloadMult(bool isEnable)
     {
-        long pCPedFactory = GTA5Mem.Read<long>(General.WorldPTR);
-        long pCPed = GTA5Mem.Read<long>(pCPedFactory + Offsets.CPed);
-        long pCPedWeaponManager = GTA5Mem.Read<long>(pCPed + Offsets.CPed_CPedWeaponManager);
-        long pCWeaponInfo = GTA5Mem.Read<long>(pCPedWeaponManager + Offsets.CPed_CPedWeaponManager_CWeaponInfo);
+        long pCPedFactory = Memory.Read<long>(General.WorldPTR);
+        long pCPed = Memory.Read<long>(pCPedFactory + Offsets.CPed);
+        long pCPedWeaponManager = Memory.Read<long>(pCPed + Offsets.CPed_CPedWeaponManager);
+        long pCWeaponInfo = Memory.Read<long>(pCPedWeaponManager + Offsets.CPed_CPedWeaponManager_CWeaponInfo);
 
         if (isEnable)
-            GTA5Mem.Write(pCWeaponInfo + Offsets.CPed_CPedWeaponManager_CWeaponInfo_ReloadMult, 4.0f);
+            Memory.Write(pCWeaponInfo + Offsets.CPed_CPedWeaponManager_CWeaponInfo_ReloadMult, 4.0f);
         else
-            GTA5Mem.Write(pCWeaponInfo + Offsets.CPed_CPedWeaponManager_CWeaponInfo_ReloadMult, 1.0f);
+            Memory.Write(pCWeaponInfo + Offsets.CPed_CPedWeaponManager_CWeaponInfo_ReloadMult, 1.0f);
     }
 }

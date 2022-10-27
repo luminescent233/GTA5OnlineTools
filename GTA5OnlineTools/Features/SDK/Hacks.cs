@@ -11,7 +11,7 @@ public static class Hacks
     /// <returns></returns>
     public static long GlobalAddress(int index)
     {
-        return GTA5Mem.Read<long>(General.GlobalPTR + 0x8 * ((index >> 0x12) & 0x3F)) + 8 * (index & 0x3FFFF);
+        return Memory.Read<long>(General.GlobalPTR + 0x8 * ((index >> 0x12) & 0x3F)) + 8 * (index & 0x3FFFF);
     }
 
     /// <summary>
@@ -22,7 +22,7 @@ public static class Hacks
     /// <returns></returns>
     public static T ReadGA<T>(int index) where T : struct
     {
-        return GTA5Mem.Read<T>(GlobalAddress(index));
+        return Memory.Read<T>(GlobalAddress(index));
     }
 
     /// <summary>
@@ -33,7 +33,7 @@ public static class Hacks
     /// <param name="vaule"></param>
     public static void WriteGA<T>(int index, T vaule) where T : struct
     {
-        GTA5Mem.Write(GlobalAddress(index), vaule);
+        Memory.Write(GlobalAddress(index), vaule);
     }
 
     /// <summary>
@@ -43,7 +43,7 @@ public static class Hacks
     /// <returns></returns>
     public static string ReadGAString(int index)
     {
-        return GTA5Mem.ReadString(GlobalAddress(index), null, 20);
+        return Memory.ReadString(GlobalAddress(index), null, 20);
     }
 
     /// <summary>
@@ -53,7 +53,7 @@ public static class Hacks
     /// <param name="str"></param>
     public static void WriteGAString(int index, string str)
     {
-        GTA5Mem.WriteString(GlobalAddress(index), null, str);
+        Memory.WriteString(GlobalAddress(index), null, str);
     }
 
     /////////////////////////////////////////////////////
@@ -151,20 +151,20 @@ public static class Hacks
 
         Thread.Sleep(150);
 
-        long pReplayInterface = GTA5Mem.Read<long>(General.ReplayInterfacePTR);
-        long m_dwpPickUpInterface = GTA5Mem.Read<long>(pReplayInterface + 0x20);
+        long pReplayInterface = Memory.Read<long>(General.ReplayInterfacePTR);
+        long m_dwpPickUpInterface = Memory.Read<long>(pReplayInterface + 0x20);
 
-        long dw_curPickUpNum = GTA5Mem.Read<long>(m_dwpPickUpInterface + 0x110);
-        long m_dwpPedList = GTA5Mem.Read<long>(m_dwpPickUpInterface + 0x100);
+        long dw_curPickUpNum = Memory.Read<long>(m_dwpPickUpInterface + 0x110);
+        long m_dwpPedList = Memory.Read<long>(m_dwpPickUpInterface + 0x100);
 
         for (long i = 0; i < dw_curPickUpNum; i++)
         {
-            long dwpPickup = GTA5Mem.Read<long>(m_dwpPedList + i * 0x10);
-            uint dwPickupHash = GTA5Mem.Read<uint>(dwpPickup + 0x488);
+            long dwpPickup = Memory.Read<long>(m_dwpPedList + i * 0x10);
+            uint dwPickupHash = Memory.Read<uint>(dwpPickup + 0x488);
 
             if (dwPickupHash == 4263048111)
             {
-                GTA5Mem.Write(dwpPickup + 0x488, pickupHash);
+                Memory.Write(dwpPickup + 0x488, pickupHash);
                 break;
             }
         }

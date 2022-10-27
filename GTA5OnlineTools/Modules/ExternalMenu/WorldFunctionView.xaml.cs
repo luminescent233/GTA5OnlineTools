@@ -3,6 +3,7 @@ using GTA5OnlineTools.Common.Helper;
 using GTA5OnlineTools.Features.SDK;
 using GTA5OnlineTools.Features.Core;
 using GTA5OnlineTools.Features.Data;
+using GTA5OnlineTools.Features.Client;
 
 namespace GTA5OnlineTools.Modules.ExternalMenu;
 
@@ -202,7 +203,7 @@ public partial class WorldFunctionView : UserControl
     {
         AudioUtil.PlayClickSound();
 
-        Vector3 vector3 = GTA5Mem.Read<Vector3>(General.WorldPTR, Offsets.PlayerPositionX);
+        Vector3 vector3 = Memory.Read<Vector3>(General.WorldPTR, Offsets.PlayerPositionX);
 
         TeleportData.CustomTeleport.Add(new TeleportData.TeleportInfo()
         {

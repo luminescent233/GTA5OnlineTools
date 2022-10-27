@@ -26,10 +26,10 @@ public static class Locals
     {
         for (int i = 0; i < 54; i++)
         {
-            long pointer = GTA5Mem.Read<long>(General.LocalScriptsPTR);
-            pointer = GTA5Mem.Read<long>(pointer + i * 0x8);
+            long pointer = Memory.Read<long>(General.LocalScriptsPTR);
+            pointer = Memory.Read<long>(pointer + i * 0x8);
 
-            string str = GTA5Mem.ReadString(pointer + 0xD4, name.Length + 1);
+            string str = Memory.ReadString(pointer + 0xD4, name.Length + 1);
             if (str.ToLower() == name.ToLower())
                 return pointer + 0xB0;
         }
@@ -41,11 +41,11 @@ public static class Locals
     {
         for (int i = 0; i < 54; i++)
         {
-            long pointer = GTA5Mem.Read<long>(General.LocalScriptsPTR);
-            pointer = GTA5Mem.Read<long>(pointer + i * 0x8);
+            long pointer = Memory.Read<long>(General.LocalScriptsPTR);
+            pointer = Memory.Read<long>(pointer + i * 0x8);
 
-            long address = GTA5Mem.Read<long>(pointer + 0xB0);
-            string str = GTA5Mem.ReadString(pointer + 0xD0, name.Length + 1);
+            long address = Memory.Read<long>(pointer + 0xB0);
+            string str = Memory.ReadString(pointer + 0xD0, name.Length + 1);
             if (str == name && pointer != 0)
                 return address + index * 8;
         }
@@ -55,11 +55,11 @@ public static class Locals
 
     public static T ReadLocalAddress<T>(string name, int index) where T : struct
     {
-        return GTA5Mem.Read<T>(LocalAddress(name, index));
+        return Memory.Read<T>(LocalAddress(name, index));
     }
 
     public static void WriteLocalAddress<T>(string name, int index, T value) where T : struct
     {
-        GTA5Mem.Write(LocalAddress(name, index), value);
+        Memory.Write(LocalAddress(name, index), value);
     }
 }

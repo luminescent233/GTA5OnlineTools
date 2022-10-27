@@ -1,7 +1,7 @@
 ﻿using GTA5OnlineTools.Common.Utils;
 using GTA5OnlineTools.Common.Helper;
 using GTA5OnlineTools.Features.Core;
-using GTA5OnlineTools.Features.Data;
+using GTA5OnlineTools.Features.Client;
 
 namespace GTA5OnlineTools.Modules;
 

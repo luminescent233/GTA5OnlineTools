@@ -223,6 +223,9 @@ public static class Offsets
     public const int CPed_CVehicle_God = 0x189;             // int8 0:false 1:true
     public const int CPed_CVehicle_Health = 0x280;          // float
     public const int CPed_CVehicle_HealthMax = 0x284;
+    public const int CPed_CVehicle_HealthBody = 0x840;
+    public const int CPed_CVehicle_HealthPetrolTank = 0x844;
+    public const int CPed_CVehicle_HealthEngine = 0x908;
     public const int CPed_CVehicle_Passenger = 0xC42;       // byte 载具座位人数
 
     // CPed CVehicle CModelInfo Offsets

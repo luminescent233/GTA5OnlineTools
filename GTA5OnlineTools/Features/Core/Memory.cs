@@ -3,7 +3,7 @@ using GTA5OnlineTools.Common.Helper;
 
 namespace GTA5OnlineTools.Features.Core;
 
-public static class GTA5Mem
+public static class Memory
 {
     /// <summary>
     /// GTA5进程类
@@ -459,8 +459,8 @@ public static class GTA5Mem
     /// <returns></returns>
     public static float[] ReadMatrix<T>(long address, int MatrixSize) where T : struct
     {
-        int ByteSize = Marshal.SizeOf(typeof(T));
-        byte[] buffer = new byte[ByteSize * MatrixSize];
+        var ByteSize = Marshal.SizeOf(typeof(T));
+        var buffer = new byte[ByteSize * MatrixSize];
         Win32.ReadProcessMemory(GTA5ProHandle, address, buffer, buffer.Length, out _);
         return ConvertToFloatArray(buffer);
     }

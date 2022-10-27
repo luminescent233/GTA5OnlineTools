@@ -284,7 +284,7 @@ public partial class ExternalOverlayView : UserControl
 
     private void RadioButton_AimbotFov_Height_Click(object sender, RoutedEventArgs e)
     {
-        var windowData = GTA5Mem.GetGameWindowData();
+        var windowData = Memory.GetGameWindowData();
 
         if (RadioButton_Crosshair_NearBy.IsChecked == true)
         {

@@ -23,7 +23,7 @@ public partial class SpeedMeterWindow
         {
             this.Dispatcher.Invoke((Delegate)(() =>
             {
-                var windowData = GTA5Mem.GetGameWindowData();
+                var windowData = Memory.GetGameWindowData();
 
                 TextBlock_ScreenResolution.Text = $"屏幕分辨率 {SystemParameters.PrimaryScreenWidth} x {SystemParameters.PrimaryScreenHeight}";
                 TextBlock_GameResolution.Text = $"游戏分辨率 {windowData.Width} x {windowData.Height}";
@@ -45,7 +45,7 @@ public partial class SpeedMeterWindow
     {
         AudioUtil.PlayClickSound();
 
-        GTA5Mem.SetForegroundWindow();
+        Memory.SetForegroundWindow();
 
         if (DrawWindow == null)
         {
@@ -53,7 +53,7 @@ public partial class SpeedMeterWindow
             DrawWindow.Show();
         }
 
-        var windowData = GTA5Mem.GetGameWindowData();
+        var windowData = Memory.GetGameWindowData();
 
         TextBlock_ScreenResolution.Text = $"屏幕分辨率 {SystemParameters.PrimaryScreenWidth} x {SystemParameters.PrimaryScreenHeight}";
         TextBlock_GameResolution.Text = $"游戏分辨率 {windowData.Width} x {windowData.Height}";
@@ -70,7 +70,7 @@ public partial class SpeedMeterWindow
             DrawWindow = null;
         }
 
-        var windowData = GTA5Mem.GetGameWindowData();
+        var windowData = Memory.GetGameWindowData();
 
         TextBlock_ScreenResolution.Text = $"屏幕分辨率 {SystemParameters.PrimaryScreenWidth} x {SystemParameters.PrimaryScreenHeight}";
         TextBlock_GameResolution.Text = $"游戏分辨率 {windowData.Width} x {windowData.Height}";

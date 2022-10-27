@@ -330,7 +330,7 @@ public partial class CheatsView : UserControl
             return;
         }
 
-        foreach (ProcessModule module in Process.GetProcessById(GTA5Mem.GTA5ProId).Modules)
+        foreach (ProcessModule module in Process.GetProcessById(Memory.GTA5ProId).Modules)
         {
             if (module.FileName == _DLLPath)
             {
@@ -341,8 +341,8 @@ public partial class CheatsView : UserControl
 
         try
         {
-            BaseInjector.DLLInjector(GTA5Mem.GTA5ProId, _DLLPath);
-            GTA5Mem.SetForegroundWindow();
+            BaseInjector.DLLInjector(Memory.GTA5ProId, _DLLPath);
+            Memory.SetForegroundWindow();
             NotifierHelper.Show(NotifierType.Success, "YimMenu注入成功，请前往游戏查看");
         }
         catch (Exception ex)

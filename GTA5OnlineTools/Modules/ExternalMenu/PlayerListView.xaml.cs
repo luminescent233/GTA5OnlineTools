@@ -61,39 +61,39 @@ public partial class PlayerListView : UserControl
 
         for (int i = 0; i < 32; i++)
         {
-            long pCNetGamePlayer = GTA5Mem.Read<long>(General.NetworkPlayerMgrPTR, new int[] { 0x180 + (i * 8) });
-            if (!GTA5Mem.IsValid(pCNetGamePlayer))
+            long pCNetGamePlayer = Memory.Read<long>(General.NetworkPlayerMgrPTR, new int[] { 0x180 + (i * 8) });
+            if (!Memory.IsValid(pCNetGamePlayer))
                 continue;
 
-            long pCPlayerInfo = GTA5Mem.Read<long>(pCNetGamePlayer + 0xA0);
-            if (!GTA5Mem.IsValid(pCPlayerInfo))
+            long pCPlayerInfo = Memory.Read<long>(pCNetGamePlayer + 0xA0);
+            if (!Memory.IsValid(pCPlayerInfo))
                 continue;
 
-            long pCPed = GTA5Mem.Read<long>(pCPlayerInfo + 0x01E8);
-            if (!GTA5Mem.IsValid(pCPed))
+            long pCPed = Memory.Read<long>(pCPlayerInfo + 0x01E8);
+            if (!Memory.IsValid(pCPed))
                 continue;
 
-            long pCNavigation = GTA5Mem.Read<long>(pCPed + 0x30, null);
-            if (!GTA5Mem.IsValid(pCNavigation))
+            long pCNavigation = Memory.Read<long>(pCPed + 0x30, null);
+            if (!Memory.IsValid(pCNavigation))
                 continue;
 
             ////////////////////////////////////////////
 
             playerData.Add(new PlayerData()
             {
-                RID = GTA5Mem.Read<long>(pCPlayerInfo + 0x90),
-                Name = GTA5Mem.ReadString(pCPlayerInfo + 0xA4, null, 20),
+                RID = Memory.Read<long>(pCPlayerInfo + 0x90),
+                Name = Memory.ReadString(pCPlayerInfo + 0xA4, null, 20),
 
                 PlayerInfo = new PlayerInfo()
                 {
                     Host = Hacks.ReadGA<int>(1892703 + (i * 599) + 10) == 1 ? true : false,
-                    Health = GTA5Mem.Read<float>(pCPed + 0x280),
-                    MaxHealth = GTA5Mem.Read<float>(pCPed + 0x2A0),
-                    GodMode = GTA5Mem.Read<byte>(pCPed + 0x189) == 0x01 ? true : false,
-                    NoRagdoll = GTA5Mem.Read<byte>(pCPed + 0x10B8) == 0x01 ? true : false,
-                    WantedLevel = GTA5Mem.Read<byte>(pCPlayerInfo + 0x888),
-                    RunSpeed = GTA5Mem.Read<float>(pCPlayerInfo + 0xCF0),
-                    V3Pos = GTA5Mem.Read<Vector3>(pCNavigation + 0x50)
+                    Health = Memory.Read<float>(pCPed + 0x280),
+                    MaxHealth = Memory.Read<float>(pCPed + 0x2A0),
+                    GodMode = Memory.Read<byte>(pCPed + 0x189) == 0x01 ? true : false,
+                    NoRagdoll = Memory.Read<byte>(pCPed + 0x10B8) == 0x01 ? true : false,
+                    WantedLevel = Memory.Read<byte>(pCPlayerInfo + 0x888),
+                    RunSpeed = Memory.Read<float>(pCPlayerInfo + 0xCF0),
+                    V3Pos = Memory.Read<Vector3>(pCNavigation + 0x50)
                 },
             });
         }
