@@ -1,5 +1,4 @@
 ﻿using GTA5OnlineTools.Features.Core;
-using GTA5OnlineTools.Features.Data;
 
 namespace GTA5OnlineTools.Features.SDK;
 
@@ -188,7 +187,8 @@ public static class Teleport
     /// <summary>
     /// 坐标向前微调
     /// </summary>
-    public static void MovingFoward()
+    /// <param name="forward">微调距离</param>
+    public static void MovingFoward(float forward)
     {
         long pCPedFactory = Memory.Read<long>(Globals.WorldPTR);
         long pCPed = Memory.Read<long>(pCPedFactory + Offsets.CPed);
@@ -204,8 +204,8 @@ public static class Teleport
             float x = Memory.Read<float>(pCPed + Offsets.CPed_VisualX);
             float y = Memory.Read<float>(pCPed + Offsets.CPed_VisualY);
 
-            x += Settings.Forward * cos;
-            y += Settings.Forward * sin;
+            x += forward * cos;
+            y += forward * sin;
 
             Memory.Write(pCPed + Offsets.CPed_VisualX, x);
             Memory.Write(pCPed + Offsets.CPed_VisualY, y);
@@ -221,8 +221,8 @@ public static class Teleport
             float x = Memory.Read<float>(pCVehicle + Offsets.CPed_CVehicle_VisualX);
             float y = Memory.Read<float>(pCVehicle + Offsets.CPed_CVehicle_VisualY);
 
-            x += Settings.Forward * cos;
-            y += Settings.Forward * sin;
+            x += forward * cos;
+            y += forward * sin;
 
             Memory.Write(pCVehicle + Offsets.CPed_CVehicle_VisualX, x);
             Memory.Write(pCVehicle + Offsets.CPed_CVehicle_VisualY, y);

@@ -58,11 +58,11 @@ public static class BaseInjector
     [DllImport("kernel32.dll")]
     public static extern bool CloseHandle(IntPtr hObject);
 
-    [DllImport("kernel32", CharSet = CharSet.Ansi, ExactSpelling = true)]
-    public static extern IntPtr GetProcAddress(IntPtr hModule, string procName);
-
     [DllImport("kernel32.dll", CharSet = CharSet.Auto)]
     public static extern IntPtr GetModuleHandle(string lpModuleName);
+
+    [DllImport("kernel32", CharSet = CharSet.Ansi)]
+    public static extern IntPtr GetProcAddress(IntPtr hModule, string procName);
 
     [DllImport("kernel32.dll", ExactSpelling = true)]
     public static extern bool VirtualFreeEx(IntPtr hProcess, IntPtr lpAddress, int dwSize, AllocationType dwFreeType);
@@ -82,44 +82,41 @@ public static class BaseInjector
     /// <summary>
     /// 根据进程id注入dll
     /// </summary>
-    /// <param name="ProcId"></param>
-    /// <param name="DllPath"></param>
-    public static void DLLInjector(int ProcId, string DllPath)
+    /// <param name="procId">目标进程Id</param>
+    /// <param name="dllPath">DLL路径</param>
+    public static void DLLInjector(int procId, string dllPath)
     {
-        IntPtr Size = (IntPtr)DllPath.Length;
+        IntPtr size = (IntPtr)dllPath.Length;
 
-        IntPtr ProcHandle = OpenProcess(ProcessAccessFlags.All, false, ProcId);
+        IntPtr procHandle = OpenProcess(ProcessAccessFlags.All, false, procId);
+        IntPtr dllSpace = VirtualAllocEx(procHandle, IntPtr.Zero, size, AllocationType.Reserve | AllocationType.Commit, MemoryProtection.ExecuteReadWrite);
 
-        IntPtr DllSpace = VirtualAllocEx(ProcHandle, IntPtr.Zero, Size, AllocationType.Reserve | AllocationType.Commit, MemoryProtection.ExecuteReadWrite);
+        byte[] bytes = Encoding.ASCII.GetBytes(dllPath);
+        WriteProcessMemory(procHandle, dllSpace, bytes, bytes.Length, out _);
 
-        byte[] bytes = Encoding.ASCII.GetBytes(DllPath);
-        bool DllWrite = WriteProcessMemory(ProcHandle, DllSpace, bytes, (int)bytes.Length, out _);
+        IntPtr kernel32Handle = GetModuleHandle("Kernel32.dll");
+        IntPtr loadLibraryAAddress = GetProcAddress(kernel32Handle, "LoadLibraryA");
 
-        IntPtr Kernel32Handle = GetModuleHandle("Kernel32.dll");
-        IntPtr LoadLibraryAAddress = GetProcAddress(Kernel32Handle, "LoadLibraryA");
+        IntPtr remoteThreadHandle = CreateRemoteThread(procHandle, IntPtr.Zero, 0, loadLibraryAAddress, dllSpace, 0, IntPtr.Zero);
 
-        IntPtr RemoteThreadHandle = CreateRemoteThread(ProcHandle, IntPtr.Zero, 0, LoadLibraryAAddress, DllSpace, 0, IntPtr.Zero);
-
-        //bool FreeDllSpace = VirtualFreeEx(ProcHandle, DllSpace, 0, AllocationType.Release);
-
-        CloseHandle(RemoteThreadHandle);
-
-        CloseHandle(ProcHandle);
+        VirtualFreeEx(procHandle, dllSpace, 0, AllocationType.Release);
+        CloseHandle(remoteThreadHandle);
+        CloseHandle(procHandle);
     }
 }
 
 public class ProcessList
 {
-    public int PID { get; set; }
-    public string PName { get; set; }
-    public string MWindowTitle { get; set; }
-    public IntPtr MWindowHandle { get; set; }
+    public int ProcID { get; set; }
+    public string ProcName { get; set; }
+    public string MainWindowTitle { get; set; }
+    public IntPtr MainWindowHandle { get; set; }
 }
 
 public class InjectInfo
 {
-    public int PID { get; set; }
+    public int ProcID { get; set; }
     public string DLLPath { get; set; }
-    public string PName { get; set; }
-    public IntPtr MWindowHandle { get; set; }
+    public string ProcName { get; set; }
+    public IntPtr MainWindowHandle { get; set; }
 }

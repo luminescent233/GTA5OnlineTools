@@ -136,7 +136,9 @@ public static class Hacks
     /// </summary>
     public static void CreateAmbientPickup(string pickup)
     {
-        //uint modelHash = Joaat("prop_cash_pile_01");
+        if (string.IsNullOrEmpty(pickup))
+            return;
+
         uint pickupHash = Joaat(pickup);
 
         Vector3 vector3 = Teleport.GetPlayerPosition();

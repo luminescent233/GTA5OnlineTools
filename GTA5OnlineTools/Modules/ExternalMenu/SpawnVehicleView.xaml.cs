@@ -1,6 +1,5 @@
 ﻿using GTA5OnlineTools.Common.Utils;
 using GTA5OnlineTools.Features.SDK;
-using GTA5OnlineTools.Features.Data;
 using GTA5OnlineTools.Features.Client;
 
 namespace GTA5OnlineTools.Modules.ExternalMenu;
@@ -90,14 +89,12 @@ public partial class SpawnVehicleView : UserControl
 
     private void CheckBox_VehicleGodMode_Click(object sender, RoutedEventArgs e)
     {
-        Vehicle.GodMode(Settings.Vehicle.VehicleGodMode = true);
-        Settings.Vehicle.VehicleGodMode = CheckBox_VehicleGodMode.IsChecked == true;
+        Vehicle.GodMode(CheckBox_VehicleGodMode.IsChecked == true);
     }
 
     private void CheckBox_VehicleSeatbelt_Click(object sender, RoutedEventArgs e)
     {
         Vehicle.Seatbelt(CheckBox_VehicleSeatbelt.IsChecked == true);
-        Settings.Vehicle.VehicleSeatbelt = CheckBox_VehicleSeatbelt.IsChecked == true;
     }
 
     private void CheckBox_VehicleParachute_Click(object sender, RoutedEventArgs e)

@@ -1,6 +1,5 @@
 ﻿using GTA5OnlineTools.Common.Data;
 using GTA5OnlineTools.Features.Core;
-using GTA5OnlineTools.Features.Data;
 using GTA5OnlineTools.Modules.ExternalMenu;
 
 using CommunityToolkit.Mvvm.Input;
@@ -22,7 +21,6 @@ public partial class ExternalMenuWindow
     public RelayCommand<MenuBar> NavigateCommand { get; private set; }
 
     private readonly ReadMeView ReadMeView = new();
-
     private readonly SelfStateView SelfStateView = new();
     private readonly WorldFunctionView WorldFunctionView = new();
     private readonly OnlineOptionView OnlineOptionView = new();
@@ -34,11 +32,6 @@ public partial class ExternalMenuWindow
     private readonly JobHelperView JobHelperView = new();
 
     ///////////////////////////////////////////////////////////////
-
-    /// <summary>
-    /// 主程序是否在运行，用于结束线程内循环
-    /// </summary>
-    public static bool IsAppRunning = true;
 
     /// <summary>
     /// 主窗口关闭委托
@@ -55,6 +48,11 @@ public partial class ExternalMenuWindow
     /// 主窗口 鼠标坐标数据
     /// </summary>
     private POINT ThisWinPOINT;
+
+    /// <summary>
+    /// 是否线上外置窗口菜单
+    /// </summary>
+    private bool IsShowExternalMenu = true;
 
     public ExternalMenuWindow()
     {
@@ -90,7 +88,6 @@ public partial class ExternalMenuWindow
     /// <param name="e"></param>
     private void Window_ExternalMenu_Closing(object sender, CancelEventArgs e)
     {
-        IsAppRunning = false;
         WindowClosingEvent();
 
         HotKeys.ClearKeys();
@@ -194,8 +191,8 @@ public partial class ExternalMenuWindow
     /// </summary>
     private void ShowWindow()
     {
-        Settings.ShowWindow = !Settings.ShowWindow;
-        if (Settings.ShowWindow)
+        IsShowExternalMenu = !IsShowExternalMenu;
+        if (IsShowExternalMenu)
         {
             this.WindowState = WindowState.Normal;
 

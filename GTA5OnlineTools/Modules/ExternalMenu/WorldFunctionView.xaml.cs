@@ -11,6 +11,11 @@ namespace GTA5OnlineTools.Modules.ExternalMenu;
 /// </summary>
 public partial class WorldFunctionView : UserControl
 {
+    /// <summary>
+    /// 临时传送坐标
+    /// </summary>
+    private Vector3 tempVector3 = Vector3.Zero;
+
     public WorldFunctionView()
     {
         InitializeComponent();
@@ -167,7 +172,7 @@ public partial class WorldFunctionView : UserControl
         var index2 = ListBox_TeleportInfo.SelectedIndex;
         if (index1 != -1 && index2 != -1)
         {
-            TempData.TCode = TeleportData.TeleportDataClass[index1].TeleportInfo[index2].Position;
+            tempVector3 = TeleportData.TeleportDataClass[index1].TeleportInfo[index2].Position;
 
             if (index1 == 0)
             {
@@ -292,7 +297,7 @@ public partial class WorldFunctionView : UserControl
     {
         AudioUtil.PlayClickSound();
 
-        Teleport.SetTeleportPosition(TempData.TCode);
+        Teleport.SetTeleportPosition(tempVector3);
     }
 
     private void Button_Teleport_SaveCustom_Click(object sender, RoutedEventArgs e)

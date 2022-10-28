@@ -10,6 +10,11 @@ namespace GTA5OnlineTools.Modules.ExternalMenu;
 /// </summary>
 public partial class SpawnWeaponView : UserControl
 {
+    /// <summary>
+    /// 临时特殊字符串
+    /// </summary>
+    private string tempWeaponPickup = string.Empty;
+
     public SpawnWeaponView()
     {
         InitializeComponent();
@@ -58,7 +63,7 @@ public partial class SpawnWeaponView : UserControl
         var index2 = ListBox_WeaponInfo.SelectedIndex;
         if (index1 != -1 && index2 != -1)
         {
-            TempData.WPickup = "pickup_" + WeaponData.WeaponDataClass[index1].WeaponInfo[index2].Name;
+            tempWeaponPickup = "pickup_" + WeaponData.WeaponDataClass[index1].WeaponInfo[index2].Name;
         }
     }
 
@@ -66,7 +71,7 @@ public partial class SpawnWeaponView : UserControl
     {
         AudioUtil.PlayClickSound();
 
-        Hacks.CreateAmbientPickup(TempData.WPickup);
+        Hacks.CreateAmbientPickup(tempWeaponPickup);
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////

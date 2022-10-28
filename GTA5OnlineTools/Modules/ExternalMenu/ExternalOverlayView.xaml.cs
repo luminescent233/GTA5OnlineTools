@@ -1,8 +1,8 @@
 ﻿using GTA5OnlineTools.Common.Utils;
 using GTA5OnlineTools.Common.Helper;
 using GTA5OnlineTools.Features.SDK;
-using GTA5OnlineTools.Features.Data;
 using GTA5OnlineTools.Features.Core;
+using GTA5OnlineTools.Features.Settings;
 
 namespace GTA5OnlineTools.Modules.ExternalMenu;
 
@@ -65,14 +65,14 @@ public partial class ExternalOverlayView : UserControl
     {
         if (CheckBox_ESP_2DBox.IsChecked == true)
         {
-            Settings.Overlay.ESP_2DBox = true;
+            MenuSetting.Overlay.ESP_2DBox = true;
 
-            Settings.Overlay.ESP_3DBox = false;
+            MenuSetting.Overlay.ESP_3DBox = false;
             CheckBox_ESP_3DBox.IsChecked = false;
         }
         else
         {
-            Settings.Overlay.ESP_2DBox = false;
+            MenuSetting.Overlay.ESP_2DBox = false;
         }
     }
 
@@ -80,14 +80,14 @@ public partial class ExternalOverlayView : UserControl
     {
         if (CheckBox_ESP_3DBox.IsChecked == true)
         {
-            Settings.Overlay.ESP_3DBox = true;
+            MenuSetting.Overlay.ESP_3DBox = true;
 
-            Settings.Overlay.ESP_2DBox = false;
+            MenuSetting.Overlay.ESP_2DBox = false;
             CheckBox_ESP_2DBox.IsChecked = false;
         }
         else
         {
-            Settings.Overlay.ESP_3DBox = false;
+            MenuSetting.Overlay.ESP_3DBox = false;
         }
     }
 
@@ -95,11 +95,11 @@ public partial class ExternalOverlayView : UserControl
     {
         if (CheckBox_ESP_2DLine.IsChecked == true)
         {
-            Settings.Overlay.ESP_2DLine = true;
+            MenuSetting.Overlay.ESP_2DLine = true;
         }
         else
         {
-            Settings.Overlay.ESP_2DLine = false;
+            MenuSetting.Overlay.ESP_2DLine = false;
         }
     }
 
@@ -107,11 +107,11 @@ public partial class ExternalOverlayView : UserControl
     {
         if (CheckBox_ESP_Bone.IsChecked == true)
         {
-            Settings.Overlay.ESP_Bone = true;
+            MenuSetting.Overlay.ESP_Bone = true;
         }
         else
         {
-            Settings.Overlay.ESP_Bone = false;
+            MenuSetting.Overlay.ESP_Bone = false;
         }
     }
 
@@ -119,11 +119,11 @@ public partial class ExternalOverlayView : UserControl
     {
         if (CheckBox_ESP_2DHealthBar.IsChecked == true)
         {
-            Settings.Overlay.ESP_2DHealthBar = true;
+            MenuSetting.Overlay.ESP_2DHealthBar = true;
         }
         else
         {
-            Settings.Overlay.ESP_2DHealthBar = false;
+            MenuSetting.Overlay.ESP_2DHealthBar = false;
         }
     }
 
@@ -131,11 +131,11 @@ public partial class ExternalOverlayView : UserControl
     {
         if (CheckBox_ESP_HealthText.IsChecked == true)
         {
-            Settings.Overlay.ESP_HealthText = true;
+            MenuSetting.Overlay.ESP_HealthText = true;
         }
         else
         {
-            Settings.Overlay.ESP_HealthText = false;
+            MenuSetting.Overlay.ESP_HealthText = false;
         }
     }
 
@@ -143,11 +143,11 @@ public partial class ExternalOverlayView : UserControl
     {
         if (CheckBox_ESP_NameText.IsChecked == true)
         {
-            Settings.Overlay.ESP_NameText = true;
+            MenuSetting.Overlay.ESP_NameText = true;
         }
         else
         {
-            Settings.Overlay.ESP_NameText = false;
+            MenuSetting.Overlay.ESP_NameText = false;
         }
     }
 
@@ -155,11 +155,11 @@ public partial class ExternalOverlayView : UserControl
     {
         if (CheckBox_AimBot_Enabled.IsChecked == true)
         {
-            Settings.Overlay.AimBot_Enabled = true;
+            MenuSetting.Overlay.AimBot_Enabled = true;
         }
         else
         {
-            Settings.Overlay.AimBot_Enabled = false;
+            MenuSetting.Overlay.AimBot_Enabled = false;
         }
     }
 
@@ -167,11 +167,11 @@ public partial class ExternalOverlayView : UserControl
     {
         if (CheckBox_ESP_Player.IsChecked == true)
         {
-            Settings.Overlay.ESP_Player = true;
+            MenuSetting.Overlay.ESP_Player = true;
         }
         else
         {
-            Settings.Overlay.ESP_Player = false;
+            MenuSetting.Overlay.ESP_Player = false;
         }
     }
 
@@ -179,11 +179,11 @@ public partial class ExternalOverlayView : UserControl
     {
         if (CheckBox_ESP_NPC.IsChecked == true)
         {
-            Settings.Overlay.ESP_NPC = true;
+            MenuSetting.Overlay.ESP_NPC = true;
         }
         else
         {
-            Settings.Overlay.ESP_NPC = false;
+            MenuSetting.Overlay.ESP_NPC = false;
         }
     }
 
@@ -191,36 +191,36 @@ public partial class ExternalOverlayView : UserControl
     {
         if (RadioButton_Overlay_RunMode0.IsChecked == true)
         {
-            Settings.Overlay.VSync = true;
-            Settings.Overlay.FPS = 300;
+            MenuSetting.Overlay.VSync = true;
+            MenuSetting.Overlay.FPS = 300;
 
             CloseESP();
         }
         else if (RadioButton_Overlay_RunMode1.IsChecked == true)
         {
-            Settings.Overlay.VSync = false;
-            Settings.Overlay.FPS = 300;
+            MenuSetting.Overlay.VSync = false;
+            MenuSetting.Overlay.FPS = 300;
 
             CloseESP();
         }
         else if (RadioButton_Overlay_RunMode2.IsChecked == true)
         {
-            Settings.Overlay.VSync = false;
-            Settings.Overlay.FPS = 144;
+            MenuSetting.Overlay.VSync = false;
+            MenuSetting.Overlay.FPS = 144;
 
             CloseESP();
         }
         else if (RadioButton_Overlay_RunMode3.IsChecked == true)
         {
-            Settings.Overlay.VSync = false;
-            Settings.Overlay.FPS = 90;
+            MenuSetting.Overlay.VSync = false;
+            MenuSetting.Overlay.FPS = 90;
 
             CloseESP();
         }
         else if (RadioButton_Overlay_RunMode4.IsChecked == true)
         {
-            Settings.Overlay.VSync = false;
-            Settings.Overlay.FPS = 60;
+            MenuSetting.Overlay.VSync = false;
+            MenuSetting.Overlay.FPS = 60;
 
             CloseESP();
         }
@@ -230,11 +230,11 @@ public partial class ExternalOverlayView : UserControl
     {
         if (CheckBox_ESP_Crosshair.IsChecked == true)
         {
-            Settings.Overlay.ESP_Crosshair = true;
+            MenuSetting.Overlay.ESP_Crosshair = true;
         }
         else
         {
-            Settings.Overlay.ESP_Crosshair = false;
+            MenuSetting.Overlay.ESP_Crosshair = false;
         }
     }
 
@@ -242,27 +242,27 @@ public partial class ExternalOverlayView : UserControl
     {
         if (RadioButton_AimbotKey_CONTROL.IsChecked == true)
         {
-            Settings.Overlay.AimBot_Key = WinVK.CONTROL;
+            MenuSetting.Overlay.AimBot_Key = WinVK.CONTROL;
         }
         else if (RadioButton_AimbotKey_SHIFT.IsChecked == true)
         {
-            Settings.Overlay.AimBot_Key = WinVK.SHIFT;
+            MenuSetting.Overlay.AimBot_Key = WinVK.SHIFT;
         }
         else if (RadioButton_AimbotKey_LBUTTON.IsChecked == true)
         {
-            Settings.Overlay.AimBot_Key = WinVK.LBUTTON;
+            MenuSetting.Overlay.AimBot_Key = WinVK.LBUTTON;
         }
         else if (RadioButton_AimbotKey_RBUTTON.IsChecked == true)
         {
-            Settings.Overlay.AimBot_Key = WinVK.RBUTTON;
+            MenuSetting.Overlay.AimBot_Key = WinVK.RBUTTON;
         }
         else if (RadioButton_AimbotKey_XBUTTON1.IsChecked == true)
         {
-            Settings.Overlay.AimBot_Key = WinVK.XBUTTON1;
+            MenuSetting.Overlay.AimBot_Key = WinVK.XBUTTON1;
         }
         else if (RadioButton_AimbotKey_XBUTTON2.IsChecked == true)
         {
-            Settings.Overlay.AimBot_Key = WinVK.XBUTTON2;
+            MenuSetting.Overlay.AimBot_Key = WinVK.XBUTTON2;
         }
     }
 
@@ -270,15 +270,15 @@ public partial class ExternalOverlayView : UserControl
     {
         if (RadioButton_AimBot_BoneIndex_0.IsChecked == true)
         {
-            Settings.Overlay.AimBot_BoneIndex = 0;
+            MenuSetting.Overlay.AimBot_BoneIndex = 0;
         }
         else if (RadioButton_AimBot_BoneIndex_7.IsChecked == true)
         {
-            Settings.Overlay.AimBot_BoneIndex = 7;
+            MenuSetting.Overlay.AimBot_BoneIndex = 7;
         }
         else if (RadioButton_AimBot_BoneIndex_8.IsChecked == true)
         {
-            Settings.Overlay.AimBot_BoneIndex = 8;
+            MenuSetting.Overlay.AimBot_BoneIndex = 8;
         }
     }
 
@@ -288,32 +288,32 @@ public partial class ExternalOverlayView : UserControl
 
         if (RadioButton_Crosshair_NearBy.IsChecked == true)
         {
-            Settings.Overlay.AimBot_Fov = 250.0f;
+            MenuSetting.Overlay.AimBot_Fov = 250.0f;
         }
         else if (RadioButton_AimbotFov_14Height.IsChecked == true)
         {
-            Settings.Overlay.AimBot_Fov = windowData.Height / 4.0f;
+            MenuSetting.Overlay.AimBot_Fov = windowData.Height / 4.0f;
         }
         else if (RadioButton_AimbotFov_12Height.IsChecked == true)
         {
-            Settings.Overlay.AimBot_Fov = windowData.Height / 2.0f;
+            MenuSetting.Overlay.AimBot_Fov = windowData.Height / 2.0f;
         }
         else if (RadioButton_AimbotFov_Height.IsChecked == true)
         {
-            Settings.Overlay.AimBot_Fov = windowData.Height;
+            MenuSetting.Overlay.AimBot_Fov = windowData.Height;
         }
         else if (RadioButton_AimbotFov_Width.IsChecked == true)
         {
-            Settings.Overlay.AimBot_Fov = windowData.Width;
+            MenuSetting.Overlay.AimBot_Fov = windowData.Width;
         }
         else if (RadioButton_AimbotFov_All.IsChecked == true)
         {
-            Settings.Overlay.AimBot_Fov = 8848.0f;
+            MenuSetting.Overlay.AimBot_Fov = 8848.0f;
         }
     }
 
     private void CheckBox_NoTOPMostHide_Click(object sender, RoutedEventArgs e)
     {
-        Settings.Overlay.IsNoTOPMostHide = CheckBox_NoTOPMostHide.IsChecked == true;
+        MenuSetting.Overlay.NoTOPMostHide = CheckBox_NoTOPMostHide.IsChecked == true;
     }
 }

@@ -29,10 +29,10 @@ public partial class InjectorWindow
                 {
                     ProcessLists.Add(new ProcessList()
                     {
-                        PID = process.Id,
-                        PName = process.ProcessName,
-                        MWindowTitle = process.MainWindowTitle,
-                        MWindowHandle = process.MainWindowHandle,
+                        ProcID = process.Id,
+                        ProcName = process.ProcessName,
+                        MainWindowTitle = process.MainWindowTitle,
+                        MainWindowHandle = process.MainWindowHandle,
                     });
                 });
             }
@@ -59,13 +59,13 @@ public partial class InjectorWindow
             return;
         }
 
-        if (InjectInfo.PID == 0)
+        if (InjectInfo.ProcID == 0)
         {
             TextBlock_Status.Text = "请选择目标进程";
             return;
         }
 
-        foreach (ProcessModule module in Process.GetProcessById(InjectInfo.PID).Modules)
+        foreach (ProcessModule module in Process.GetProcessById(InjectInfo.ProcID).Modules)
         {
             if (module.FileName == InjectInfo.DLLPath)
             {
@@ -76,9 +76,9 @@ public partial class InjectorWindow
 
         try
         {
-            BaseInjector.DLLInjector(InjectInfo.PID, InjectInfo.DLLPath);
-            BaseInjector.SetForegroundWindow(InjectInfo.MWindowHandle);
-            TextBlock_Status.Text = $"DLL注入到进程 {InjectInfo.PName} 成功";
+            BaseInjector.DLLInjector(InjectInfo.ProcID, InjectInfo.DLLPath);
+            BaseInjector.SetForegroundWindow(InjectInfo.MainWindowHandle);
+            TextBlock_Status.Text = $"DLL注入到进程 {InjectInfo.ProcName} 成功";
         }
         catch (Exception ex)
         {
@@ -95,9 +95,9 @@ public partial class InjectorWindow
     {
         ProcessLists.Clear();
 
-        InjectInfo.PID = 0;
-        InjectInfo.PName = string.Empty;
-        InjectInfo.MWindowHandle = IntPtr.Zero;
+        InjectInfo.ProcID = 0;
+        InjectInfo.ProcName = string.Empty;
+        InjectInfo.MainWindowHandle = IntPtr.Zero;
 
         if (CheckBox_OnlyShowWindowProcess.IsChecked == true)
         {
@@ -111,10 +111,10 @@ public partial class InjectorWindow
                         {
                             ProcessLists.Add(new ProcessList()
                             {
-                                PID = process.Id,
-                                PName = process.ProcessName,
-                                MWindowTitle = process.MainWindowTitle,
-                                MWindowHandle = process.MainWindowHandle,
+                                ProcID = process.Id,
+                                ProcName = process.ProcessName,
+                                MainWindowTitle = process.MainWindowTitle,
+                                MainWindowHandle = process.MainWindowHandle,
                             });
                         });
                     }
@@ -131,10 +131,10 @@ public partial class InjectorWindow
                     {
                         ProcessLists.Add(new ProcessList()
                         {
-                            PID = process.Id,
-                            PName = process.ProcessName,
-                            MWindowTitle = process.MainWindowTitle,
-                            MWindowHandle = process.MainWindowHandle,
+                            ProcID = process.Id,
+                            ProcName = process.ProcessName,
+                            MainWindowTitle = process.MainWindowTitle,
+                            MainWindowHandle = process.MainWindowHandle,
                         });
                     });
                 }
@@ -167,9 +167,9 @@ public partial class InjectorWindow
     {
         if (DataGrid_Process.SelectedItem is ProcessList temp)
         {
-            InjectInfo.PID = temp.PID;
-            InjectInfo.PName = temp.PName;
-            InjectInfo.MWindowHandle = temp.MWindowHandle;
+            InjectInfo.ProcID = temp.ProcID;
+            InjectInfo.ProcName = temp.ProcName;
+            InjectInfo.MainWindowHandle = temp.MainWindowHandle;
         }
     }
 }
