@@ -30,16 +30,16 @@ public static class World
     {
         if (weatherID == -1)
         {
-            Memory.Write(General.WeatherPTR + 0x24, -1);
-            Memory.Write(General.WeatherPTR + 0x104, 13);
+            Memory.Write(Globals.WeatherPTR + 0x24, -1);
+            Memory.Write(Globals.WeatherPTR + 0x104, 13);
         }
         if (weatherID == 13)
         {
-            Memory.Write(General.WeatherPTR + 0x24, 13);
-            Memory.Write(General.WeatherPTR + 0x104, 13);
+            Memory.Write(Globals.WeatherPTR + 0x24, 13);
+            Memory.Write(Globals.WeatherPTR + 0x104, 13);
         }
 
-        Memory.Write(General.WeatherPTR + 0x104, weatherID);
+        Memory.Write(Globals.WeatherPTR + 0x104, weatherID);
     }
 
     /// <summary>
@@ -47,7 +47,7 @@ public static class World
     /// </summary>
     public static void KillAllNPC(bool isOnlyKillHostility)
     {
-        long pCReplayInterface = Memory.Read<long>(General.ReplayInterfacePTR);
+        long pCReplayInterface = Memory.Read<long>(Globals.ReplayInterfacePTR);
         long pCPedInterface = Memory.Read<long>(pCReplayInterface + Offsets.CReplayInterface_CPedInterface);
         int oMaxPeds = Memory.Read<int>(pCPedInterface + Offsets.CReplayInterface_CPedInterface_MaxPeds);
 
@@ -84,7 +84,7 @@ public static class World
     /// </summary>
     public static void KillAllPolice()
     {
-        long pCReplayInterface = Memory.Read<long>(General.ReplayInterfacePTR);
+        long pCReplayInterface = Memory.Read<long>(Globals.ReplayInterfacePTR);
         long pCPedInterface = Memory.Read<long>(pCReplayInterface + Offsets.CReplayInterface_CPedInterface);
         int oMaxPeds = Memory.Read<int>(pCPedInterface + Offsets.CReplayInterface_CPedInterface_MaxPeds);
 
@@ -118,7 +118,7 @@ public static class World
     /// </summary>
     public static void DestroyAllNPCVehicles(bool isOnlyKillHostility)
     {
-        long pCReplayInterface = Memory.Read<long>(General.ReplayInterfacePTR);
+        long pCReplayInterface = Memory.Read<long>(Globals.ReplayInterfacePTR);
         long pCPedInterface = Memory.Read<long>(pCReplayInterface + Offsets.CReplayInterface_CPedInterface);
         int oMaxPeds = Memory.Read<int>(pCPedInterface + Offsets.CReplayInterface_CPedInterface_MaxPeds);
 
@@ -165,7 +165,7 @@ public static class World
     /// </summary>
     public static void DestroyAllVehicles()
     {
-        long pCReplayInterface = Memory.Read<long>(General.ReplayInterfacePTR);
+        long pCReplayInterface = Memory.Read<long>(Globals.ReplayInterfacePTR);
         long pCVehicleInterface = Memory.Read<long>(pCReplayInterface + Offsets.CReplayInterface_CVehicleInterface);
         long pCPedInterface = Memory.Read<long>(pCReplayInterface + Offsets.CReplayInterface_CPedInterface);
         int oMaxPeds = Memory.Read<int>(pCPedInterface + Offsets.CReplayInterface_CPedInterface_MaxPeds);
@@ -191,7 +191,7 @@ public static class World
     {
         Vector3 v3MyPos = Teleport.GetPlayerPosition();
 
-        long pCReplayInterface = Memory.Read<long>(General.ReplayInterfacePTR);
+        long pCReplayInterface = Memory.Read<long>(Globals.ReplayInterfacePTR);
         long pCPedInterface = Memory.Read<long>(pCReplayInterface + Offsets.CReplayInterface_CPedInterface);
         int oMaxPeds = Memory.Read<int>(pCPedInterface + Offsets.CReplayInterface_CPedInterface_MaxPeds);
 

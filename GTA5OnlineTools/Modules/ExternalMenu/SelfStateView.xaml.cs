@@ -168,9 +168,9 @@ public partial class SelfStateView : UserControl
 
     private void SelfStateMainThread()
     {
-        while (Globals.IsAppRunning)
+        while (ExternalMenuWindow.IsAppRunning)
         {
-            long pCPedFactory = Memory.Read<long>(General.WorldPTR);
+            long pCPedFactory = Memory.Read<long>(Globals.WorldPTR);
             long pCPed = Memory.Read<long>(pCPedFactory + Offsets.CPed);
             long pCPlayerInfo = Memory.Read<long>(pCPed + Offsets.CPed_CPlayerInfo);
             long pCNavigation = Memory.Read<long>(pCPed + Offsets.CPed_CNavigation);
@@ -271,7 +271,7 @@ public partial class SelfStateView : UserControl
 
             ////////////////////////////////////////////////////////////////
 
-            this.Dispatcher.BeginInvoke(() =>
+            this.Dispatcher.Invoke(() =>
             {
                 if (Slider_Health.Value != oHealth)
                     Slider_Health.Value = oHealth;
@@ -301,13 +301,13 @@ public partial class SelfStateView : UserControl
 
     private void SelfStateCommonThread()
     {
-        while (Globals.IsAppRunning)
+        while (ExternalMenuWindow.IsAppRunning)
         {
             // 自动消星
             if (Settings.Common.AutoClearWanted)
                 Player.WantedLevel(0x00);
 
-            long pCReplayInterface = Memory.Read<long>(General.ReplayInterfacePTR);
+            long pCReplayInterface = Memory.Read<long>(Globals.ReplayInterfacePTR);
             long pCPedInterface = Memory.Read<long>(pCReplayInterface + Offsets.CReplayInterface_CPedInterface);
             int oMaxPeds = Memory.Read<int>(pCPedInterface + Offsets.CReplayInterface_CPedInterface_MaxPeds);
 

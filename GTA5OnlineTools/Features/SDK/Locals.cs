@@ -5,6 +5,7 @@ namespace GTA5OnlineTools.Features.SDK;
 public static class Locals
 {
     public const string Casino_Script_Name = "fm_mission_controller";
+
     public const int Take_Casino_Script_Index = 19652 + 2685;
     public const int Casino_Mission_Life_Script_Index = 26077 + 1322 + 1;
     public const int Vault_Door_Script_Index = 10068 + 7;
@@ -15,6 +16,7 @@ public static class Locals
     ////////////////////////////////////////////////////////////////////////
 
     public const string Cayo_Script_Name = "fm_mission_controller_2020";
+
     public const int Take_Cayo_Script_Index = 40004 + 1392 + 53;
     public const int Cayo_Mission_Life_Script_Index = 43059 + 865 + 1;
     public const int Plasma_Cutter_Progress_Script_Index = 28269 + 3;
@@ -24,10 +26,11 @@ public static class Locals
 
     public static long LocalAddress(string name)
     {
+        long pLocalScripts = Memory.Read<long>(Globals.LocalScriptsPTR);
+
         for (int i = 0; i < 54; i++)
         {
-            long pointer = Memory.Read<long>(General.LocalScriptsPTR);
-            pointer = Memory.Read<long>(pointer + i * 0x8);
+            long pointer = Memory.Read<long>(pLocalScripts + i * 0x8);
 
             string str = Memory.ReadString(pointer + 0xD4, name.Length + 1);
             if (str.ToLower() == name.ToLower())
@@ -39,10 +42,11 @@ public static class Locals
 
     public static long LocalAddress(string name, int index)
     {
+        long pLocalScripts = Memory.Read<long>(Globals.LocalScriptsPTR);
+
         for (int i = 0; i < 54; i++)
         {
-            long pointer = Memory.Read<long>(General.LocalScriptsPTR);
-            pointer = Memory.Read<long>(pointer + i * 0x8);
+            long pointer = Memory.Read<long>(pLocalScripts + i * 0x8);
 
             long address = Memory.Read<long>(pointer + 0xB0);
             string str = Memory.ReadString(pointer + 0xD0, name.Length + 1);

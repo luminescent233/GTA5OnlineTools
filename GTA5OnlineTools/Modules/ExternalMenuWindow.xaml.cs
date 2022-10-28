@@ -36,6 +36,11 @@ public partial class ExternalMenuWindow
     ///////////////////////////////////////////////////////////////
 
     /// <summary>
+    /// 主程序是否在运行，用于结束线程内循环
+    /// </summary>
+    public static bool IsAppRunning = true;
+
+    /// <summary>
     /// 主窗口关闭委托
     /// </summary>
     public delegate void WindowClosingDelegate();
@@ -46,10 +51,6 @@ public partial class ExternalMenuWindow
 
     ///////////////////////////////////////////////////////////////
 
-    /// <summary>
-    /// 主窗口 窗口句柄
-    /// </summary>
-    private IntPtr ThisWinHandle;
     /// <summary>
     /// 主窗口 鼠标坐标数据
     /// </summary>
@@ -76,11 +77,7 @@ public partial class ExternalMenuWindow
         // 设置主页
         ContentControl_Main.Content = SelfStateView;
 
-        ///////////////////////////////////////////////////////////////
-
-        // 获取自身窗口句柄
-        ThisWinHandle = new WindowInteropHelper(this).Handle;
-        Win32.GetCursorPos(out ThisWinPOINT);
+        ///////////////////////////////////////////////////////////////;
 
         HotKeys.AddKey(WinVK.DELETE);
         HotKeys.KeyDownEvent += HotKeys_KeyDownEvent;
@@ -93,7 +90,10 @@ public partial class ExternalMenuWindow
     /// <param name="e"></param>
     private void Window_ExternalMenu_Closing(object sender, CancelEventArgs e)
     {
+        IsAppRunning = false;
         WindowClosingEvent();
+
+        HotKeys.ClearKeys();
     }
 
     /// <summary>
@@ -178,7 +178,7 @@ public partial class ExternalMenuWindow
     /// <exception cref="NotImplementedException"></exception>
     private void HotKeys_KeyDownEvent(WinVK vK)
     {
-        this.Dispatcher.BeginInvoke(() =>
+        this.Dispatcher.Invoke(() =>
         {
             switch (vK)
             {
@@ -197,9 +197,7 @@ public partial class ExternalMenuWindow
         Settings.ShowWindow = !Settings.ShowWindow;
         if (Settings.ShowWindow)
         {
-            //Show();
             this.WindowState = WindowState.Normal;
-            this.Focus();
 
             if (CheckBox_IsTopMost.IsChecked == false)
             {
@@ -208,11 +206,9 @@ public partial class ExternalMenuWindow
             }
 
             Win32.SetCursorPos(ThisWinPOINT.X, ThisWinPOINT.Y);
-            Win32.SetForegroundWindow(ThisWinHandle);
         }
         else
         {
-            //Hide();
             this.WindowState = WindowState.Minimized;
 
             Win32.GetCursorPos(out ThisWinPOINT);

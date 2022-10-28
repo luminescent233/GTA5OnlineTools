@@ -172,7 +172,7 @@ public partial class DrawWindow : Window
     /// <returns></returns>
     private int GetVehicleSpeed()
     {
-        long pCPedFactory = Memory.Read<long>(General.WorldPTR);
+        long pCPedFactory = Memory.Read<long>(Globals.WorldPTR);
         long pCPed = Memory.Read<long>(pCPedFactory + Offsets.CPed);
         byte oInVehicle = Memory.Read<byte>(pCPed + Offsets.CPed_InVehicle);
 
@@ -203,7 +203,7 @@ public partial class DrawWindow : Window
     /// <returns></returns>
     private double GetVehicleMaxSpeed()
     {
-        long pUnk = Memory.Read<long>(General.UnkPTR);
+        long pUnk = Memory.Read<long>(Globals.UnkPTR);
         long offset = Memory.Read<long>(pUnk + 0x08);
         offset = Memory.Read<long>(pUnk + 0xD10);
 
@@ -216,7 +216,7 @@ public partial class DrawWindow : Window
     /// <returns></returns>
     private string GetVehicleGear()
     {
-        long pUnk = Memory.Read<long>(General.UnkPTR);
+        long pUnk = Memory.Read<long>(Globals.UnkPTR);
         int gear = Memory.Read<int>(pUnk + 0xFD4);
 
         return gear == 0 ? "R" : gear.ToString();
@@ -228,7 +228,7 @@ public partial class DrawWindow : Window
     /// <returns></returns>
     private float GetVehicleRPM()
     {
-        long pUnk = Memory.Read<long>(General.UnkPTR);
+        long pUnk = Memory.Read<long>(Globals.UnkPTR);
 
         return Memory.Read<float>(pUnk + 0xE50);
     }

@@ -42,7 +42,7 @@ public partial class CasinoHackWindow
 
     private void CasinoHackMainThread()
     {
-        while (Globals.IsAppRunning)
+        while (MainWindow.IsAppRunning)
         {
             // 黑杰克（21点）
             if (CasinoHackModel.BlackjackIsCheck)

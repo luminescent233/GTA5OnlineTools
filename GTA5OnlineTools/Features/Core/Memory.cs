@@ -121,19 +121,19 @@ public static class Memory
             GTA5ProBaseAddress = 0;
             GTA5ProHandle = IntPtr.Zero;
 
-            General.WorldPTR = 0;
-            General.BlipPTR = 0;
-            General.GlobalPTR = 0;
-            General.NetworkPlayerMgrPTR = 0;
-            General.ReplayInterfacePTR = 0;
-            General.WeatherPTR = 0;
-            General.UnkModelPTR = 0;
-            General.PickupDataPTR = 0;
-            General.ViewPortPTR = 0;
-            General.AimingPedPTR = 0;
-            General.CCameraPTR = 0;
-            General.UnkPTR = 0;
-            General.LocalScriptsPTR = 0;
+            Globals.WorldPTR = 0;
+            Globals.BlipPTR = 0;
+            Globals.GlobalPTR = 0;
+            Globals.NetworkPlayerMgrPTR = 0;
+            Globals.ReplayInterfacePTR = 0;
+            Globals.WeatherPTR = 0;
+            Globals.UnkModelPTR = 0;
+            Globals.PickupDataPTR = 0;
+            Globals.ViewPortPTR = 0;
+            Globals.AimingPedPTR = 0;
+            Globals.CCameraPTR = 0;
+            Globals.UnkPTR = 0;
+            Globals.LocalScriptsPTR = 0;
         }
     }
 
@@ -142,95 +142,95 @@ public static class Memory
     /// </summary>
     public static void PatternInit()
     {
-        if (General.WorldPTR == 0)
+        if (Globals.WorldPTR == 0)
         {
-            General.WorldPTR = FindPattern(Offsets.Mask.WorldMask);
-            General.WorldPTR = Rip_37(General.WorldPTR);
-            LoggerHelper.Info($"《GTA5》WorldPTR 0x{General.WorldPTR:x}");
+            Globals.WorldPTR = FindPattern(Offsets.Mask.WorldMask);
+            Globals.WorldPTR = Rip_37(Globals.WorldPTR);
+            LoggerHelper.Info($"《GTA5》WorldPTR 0x{Globals.WorldPTR:x}");
         }
 
-        if (General.BlipPTR == 0)
+        if (Globals.BlipPTR == 0)
         {
-            General.BlipPTR = FindPattern(Offsets.Mask.BlipMask);
-            General.BlipPTR = Rip_37(General.BlipPTR);
-            LoggerHelper.Info($"《GTA5》BlipPTR 0x{General.BlipPTR:x}");
+            Globals.BlipPTR = FindPattern(Offsets.Mask.BlipMask);
+            Globals.BlipPTR = Rip_37(Globals.BlipPTR);
+            LoggerHelper.Info($"《GTA5》BlipPTR 0x{Globals.BlipPTR:x}");
         }
 
-        if (General.GlobalPTR == 0)
+        if (Globals.GlobalPTR == 0)
         {
-            General.GlobalPTR = FindPattern(Offsets.Mask.GlobalMask);
-            General.GlobalPTR = Rip_37(General.GlobalPTR);
-            LoggerHelper.Info($"《GTA5》GlobalPTR 0x{General.GlobalPTR:x}");
+            Globals.GlobalPTR = FindPattern(Offsets.Mask.GlobalMask);
+            Globals.GlobalPTR = Rip_37(Globals.GlobalPTR);
+            LoggerHelper.Info($"《GTA5》GlobalPTR 0x{Globals.GlobalPTR:x}");
         }
 
-        if (General.NetworkPlayerMgrPTR == 0)
+        if (Globals.NetworkPlayerMgrPTR == 0)
         {
-            General.NetworkPlayerMgrPTR = FindPattern(Offsets.Mask.NetworkPlayerMgrMask);
-            General.NetworkPlayerMgrPTR = Rip_37(General.NetworkPlayerMgrPTR);
-            LoggerHelper.Info($"《GTA5》NetworkPlayerMgrPTR 0x{General.NetworkPlayerMgrPTR:x}");
+            Globals.NetworkPlayerMgrPTR = FindPattern(Offsets.Mask.NetworkPlayerMgrMask);
+            Globals.NetworkPlayerMgrPTR = Rip_37(Globals.NetworkPlayerMgrPTR);
+            LoggerHelper.Info($"《GTA5》NetworkPlayerMgrPTR 0x{Globals.NetworkPlayerMgrPTR:x}");
         }
 
-        if (General.ReplayInterfacePTR == 0)
+        if (Globals.ReplayInterfacePTR == 0)
         {
-            General.ReplayInterfacePTR = FindPattern(Offsets.Mask.ReplayInterfaceMask);
-            General.ReplayInterfacePTR = Rip_37(General.ReplayInterfacePTR);
-            LoggerHelper.Info($"《GTA5》ReplayInterfacePTR 0x{General.ReplayInterfacePTR:x}");
+            Globals.ReplayInterfacePTR = FindPattern(Offsets.Mask.ReplayInterfaceMask);
+            Globals.ReplayInterfacePTR = Rip_37(Globals.ReplayInterfacePTR);
+            LoggerHelper.Info($"《GTA5》ReplayInterfacePTR 0x{Globals.ReplayInterfacePTR:x}");
         }
 
-        if (General.WeatherPTR == 0)
+        if (Globals.WeatherPTR == 0)
         {
-            General.WeatherPTR = FindPattern(Offsets.Mask.WeatherMask);
-            General.WeatherPTR = Rip_6A(General.WeatherPTR);
-            LoggerHelper.Info($"《GTA5》WeatherPTR 0x{General.WeatherPTR:x}");
+            Globals.WeatherPTR = FindPattern(Offsets.Mask.WeatherMask);
+            Globals.WeatherPTR = Rip_6A(Globals.WeatherPTR);
+            LoggerHelper.Info($"《GTA5》WeatherPTR 0x{Globals.WeatherPTR:x}");
         }
 
-        if (General.UnkModelPTR == 0)
+        if (Globals.UnkModelPTR == 0)
         {
-            General.UnkModelPTR = FindPattern(Offsets.Mask.UnkModelMask);
-            General.UnkModelPTR = Rip_37(General.UnkModelPTR);
-            LoggerHelper.Info($"《GTA5》UnkModelPTR 0x{General.UnkModelPTR:x}");
+            Globals.UnkModelPTR = FindPattern(Offsets.Mask.UnkModelMask);
+            Globals.UnkModelPTR = Rip_37(Globals.UnkModelPTR);
+            LoggerHelper.Info($"《GTA5》UnkModelPTR 0x{Globals.UnkModelPTR:x}");
         }
 
-        if (General.PickupDataPTR == 0)
+        if (Globals.PickupDataPTR == 0)
         {
-            General.PickupDataPTR = FindPattern(Offsets.Mask.PickupDataMask);
-            General.PickupDataPTR = Rip_37(General.PickupDataPTR);
-            LoggerHelper.Info($"《GTA5》PickupDataPTR 0x{General.PickupDataPTR:x}");
+            Globals.PickupDataPTR = FindPattern(Offsets.Mask.PickupDataMask);
+            Globals.PickupDataPTR = Rip_37(Globals.PickupDataPTR);
+            LoggerHelper.Info($"《GTA5》PickupDataPTR 0x{Globals.PickupDataPTR:x}");
         }
 
-        if (General.ViewPortPTR == 0)
+        if (Globals.ViewPortPTR == 0)
         {
-            General.ViewPortPTR = FindPattern(Offsets.Mask.ViewPortMask);
-            General.ViewPortPTR = Rip_37(General.ViewPortPTR);
-            LoggerHelper.Info($"《GTA5》ViewPortPTR 0x{General.ViewPortPTR:x}");
+            Globals.ViewPortPTR = FindPattern(Offsets.Mask.ViewPortMask);
+            Globals.ViewPortPTR = Rip_37(Globals.ViewPortPTR);
+            LoggerHelper.Info($"《GTA5》ViewPortPTR 0x{Globals.ViewPortPTR:x}");
         }
 
-        if (General.AimingPedPTR == 0)
+        if (Globals.AimingPedPTR == 0)
         {
-            General.AimingPedPTR = FindPattern(Offsets.Mask.AimingPedMask);
-            General.AimingPedPTR = Rip_37(General.AimingPedPTR);
-            LoggerHelper.Info($"《GTA5》AimingPedPTR 0x{General.AimingPedPTR:x}");
+            Globals.AimingPedPTR = FindPattern(Offsets.Mask.AimingPedMask);
+            Globals.AimingPedPTR = Rip_37(Globals.AimingPedPTR);
+            LoggerHelper.Info($"《GTA5》AimingPedPTR 0x{Globals.AimingPedPTR:x}");
         }
 
-        if (General.CCameraPTR == 0)
+        if (Globals.CCameraPTR == 0)
         {
-            General.CCameraPTR = FindPattern(Offsets.Mask.CCameraMask);
-            General.CCameraPTR = Rip_37(General.CCameraPTR);
-            LoggerHelper.Info($"《GTA5》CCameraPTR 0x{General.CCameraPTR:x}");
+            Globals.CCameraPTR = FindPattern(Offsets.Mask.CCameraMask);
+            Globals.CCameraPTR = Rip_37(Globals.CCameraPTR);
+            LoggerHelper.Info($"《GTA5》CCameraPTR 0x{Globals.CCameraPTR:x}");
         }
 
-        if (General.UnkPTR == 0)
+        if (Globals.UnkPTR == 0)
         {
-            General.UnkPTR = FindPattern(Offsets.Mask.UnkMask);
-            General.UnkPTR = Rip_37(General.UnkPTR);
-            LoggerHelper.Info($"《GTA5》UnkPTR 0x{General.UnkPTR:x}");
+            Globals.UnkPTR = FindPattern(Offsets.Mask.UnkMask);
+            Globals.UnkPTR = Rip_37(Globals.UnkPTR);
+            LoggerHelper.Info($"《GTA5》UnkPTR 0x{Globals.UnkPTR:x}");
         }
 
-        if (General.LocalScriptsPTR == 0)
+        if (Globals.LocalScriptsPTR == 0)
         {
-            General.LocalScriptsPTR = FindPattern(Offsets.Mask.LocalScriptsMask);
-            General.LocalScriptsPTR = Rip_37(General.LocalScriptsPTR);
-            LoggerHelper.Info($"《GTA5》LocalScriptsPTR 0x{General.LocalScriptsPTR:x}");
+            Globals.LocalScriptsPTR = FindPattern(Offsets.Mask.LocalScriptsMask);
+            Globals.LocalScriptsPTR = Rip_37(Globals.LocalScriptsPTR);
+            LoggerHelper.Info($"《GTA5》LocalScriptsPTR 0x{Globals.LocalScriptsPTR:x}");
         }
     }
 

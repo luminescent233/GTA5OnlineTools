@@ -1,12 +1,10 @@
 ﻿using GTA5OnlineTools.Views;
 using GTA5OnlineTools.Models;
 using GTA5OnlineTools.Windows;
-using GTA5OnlineTools.Features;
-using GTA5OnlineTools.Features.SDK;
-using GTA5OnlineTools.Features.Core;
 using GTA5OnlineTools.Common.Data;
 using GTA5OnlineTools.Common.Utils;
 using GTA5OnlineTools.Common.Helper;
+using GTA5OnlineTools.Features.Core;
 
 using RestSharp;
 using CommunityToolkit.Mvvm.Input;
@@ -48,6 +46,11 @@ public partial class MainWindow
     ///////////////////////////////////////////////////////////////
 
     /// <summary>
+    /// 主程序是否在运行，用于结束线程内循环
+    /// </summary>
+    public static bool IsAppRunning = true;
+
+    /// <summary>
     /// 主窗口关闭委托
     /// </summary>
     public delegate void WindowClosingDelegate();
@@ -69,7 +72,7 @@ public partial class MainWindow
     /// <summary>
     /// 存储软件开始运行的时间
     /// </summary>
-    private DateTime Origin_DateTime;
+    private DateTime OriginDateTime;
 
     ///////////////////////////////////////////////////////////////
 
@@ -96,7 +99,7 @@ public partial class MainWindow
         Navigate("HomeView");
 
         // 获取当前时间，存储到对于变量中
-        Origin_DateTime = DateTime.Now;
+        OriginDateTime = DateTime.Now;
 
         ///////////////////////////////////////////////////////////////
 
@@ -138,7 +141,7 @@ public partial class MainWindow
     private void Window_Main_Closing(object sender, CancelEventArgs e)
     {
         // 终止线程内循环
-        Globals.IsAppRunning = false;
+        IsAppRunning = false;
 
         WindowClosingEvent();
         LoggerHelper.Info("调用主窗口关闭事件成功");
@@ -201,10 +204,10 @@ public partial class MainWindow
     /// </summary>
     private void UpdateUiThread()
     {
-        while (Globals.IsAppRunning)
+        while (MainWindow.IsAppRunning)
         {
             // 获取软件运行时间
-            MainModel.AppRunTime = CoreUtil.ExecDateDiff(Origin_DateTime, DateTime.Now);
+            MainModel.AppRunTime = CoreUtil.ExecDateDiff(OriginDateTime, DateTime.Now);
 
             Thread.Sleep(1000);
         }
@@ -217,7 +220,7 @@ public partial class MainWindow
     {
         bool isExecute = true;
 
-        while (Globals.IsAppRunning)
+        while (MainWindow.IsAppRunning)
         {
             // 判断 GTA5 是否运行
             MainModel.IsGTA5Run = ProcessUtil.IsGTA5Run();

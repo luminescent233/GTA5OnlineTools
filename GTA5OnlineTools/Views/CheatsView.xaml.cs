@@ -1,9 +1,8 @@
 ﻿using GTA5OnlineTools.Models;
 using GTA5OnlineTools.Views.Cheats;
-using GTA5OnlineTools.Features;
-using GTA5OnlineTools.Features.Core;
 using GTA5OnlineTools.Common.Utils;
 using GTA5OnlineTools.Common.Helper;
+using GTA5OnlineTools.Features.Core;
 
 using CommunityToolkit.Mvvm.Input;
 
@@ -63,7 +62,7 @@ public partial class CheatsView : UserControl
     /// </summary>
     private void CheckCheatsIsRun()
     {
-        while (Globals.IsAppRunning)
+        while (MainWindow.IsAppRunning)
         {
             // 判断 Kiddion 是否运行
             CheatsModel.KiddionIsRun = ProcessUtil.IsAppRun("Kiddion");

@@ -10,7 +10,7 @@ public static class Vehicle
     /// </summary>
     public static bool IsInVehicle()
     {
-        long pCPedFactory = Memory.Read<long>(General.WorldPTR);
+        long pCPedFactory = Memory.Read<long>(Globals.WorldPTR);
         long pCPed = Memory.Read<long>(pCPedFactory + Offsets.CPed);
         byte oInVehicle = Memory.Read<byte>(pCPed + Offsets.CPed_InVehicle);
 
@@ -22,7 +22,7 @@ public static class Vehicle
     /// </summary>
     public static void GodMode(bool isEnable)
     {
-        long pCPedFactory = Memory.Read<long>(General.WorldPTR);
+        long pCPedFactory = Memory.Read<long>(Globals.WorldPTR);
         long pCPed = Memory.Read<long>(pCPedFactory + Offsets.CPed);
         byte oInVehicle = Memory.Read<byte>(pCPed + Offsets.CPed_InVehicle);
 
@@ -41,7 +41,7 @@ public static class Vehicle
     /// </summary>
     public static void Seatbelt(bool isEnable)
     {
-        long pCPedFactory = Memory.Read<long>(General.WorldPTR);
+        long pCPedFactory = Memory.Read<long>(Globals.WorldPTR);
         long pCPed = Memory.Read<long>(pCPedFactory + Offsets.CPed);
 
         if (isEnable)
@@ -55,7 +55,7 @@ public static class Vehicle
     /// </summary>
     public static void Invisible(bool isEnable)
     {
-        long pCPedFactory = Memory.Read<long>(General.WorldPTR);
+        long pCPedFactory = Memory.Read<long>(Globals.WorldPTR);
         long pCPed = Memory.Read<long>(pCPedFactory + Offsets.CPed);
         byte oInVehicle = Memory.Read<byte>(pCPed + Offsets.CPed_InVehicle);
 
@@ -75,7 +75,7 @@ public static class Vehicle
     /// </summary>
     public static void Extras(short flag)
     {
-        long pCPedFactory = Memory.Read<long>(General.WorldPTR);
+        long pCPedFactory = Memory.Read<long>(Globals.WorldPTR);
         long pCPed = Memory.Read<long>(pCPedFactory + Offsets.CPed);
         byte oInVehicle = Memory.Read<byte>(pCPed + Offsets.CPed_InVehicle);
 
@@ -92,7 +92,7 @@ public static class Vehicle
     /// </summary>
     public static void Parachute(bool isEnable)
     {
-        long pCPedFactory = Memory.Read<long>(General.WorldPTR);
+        long pCPedFactory = Memory.Read<long>(Globals.WorldPTR);
         long pCPed = Memory.Read<long>(pCPedFactory + Offsets.CPed);
         byte oInVehicle = Memory.Read<byte>(pCPed + Offsets.CPed_InVehicle);
 
@@ -112,7 +112,7 @@ public static class Vehicle
     /// </summary>
     public static void FillHealth()
     {
-        long pCPedFactory = Memory.Read<long>(General.WorldPTR);
+        long pCPedFactory = Memory.Read<long>(Globals.WorldPTR);
         long pCPed = Memory.Read<long>(pCPedFactory + Offsets.CPed);
         byte oInVehicle = Memory.Read<byte>(pCPed + Offsets.CPed_InVehicle);
 
@@ -152,7 +152,7 @@ public static class Vehicle
         {
             if (hash != 0)
             {
-                long pCPedFactory = Memory.Read<long>(General.WorldPTR);
+                long pCPedFactory = Memory.Read<long>(Globals.WorldPTR);
                 long pCPed = Memory.Read<long>(pCPedFactory + Offsets.CPed);
                 Vector3 vector3 = Memory.Read<Vector3>(pCPed + Offsets.CPed_VisualX);
 
@@ -232,7 +232,7 @@ public static class Vehicle
 
                 const int pegasus = 0;
 
-                long pCPedFactory = Memory.Read<long>(General.WorldPTR);
+                long pCPedFactory = Memory.Read<long>(Globals.WorldPTR);
                 long pCPed = Memory.Read<long>(pCPedFactory + Offsets.CPed);
                 Vector3 vector3 = Memory.Read<Vector3>(pCPed + Offsets.CPed_VisualX);
 

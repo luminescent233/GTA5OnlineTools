@@ -2,7 +2,7 @@
 
 public static class HotKeys
 {
-    private static Dictionary<int, WinKey> WinHotKeys;
+    private static Dictionary<int, WinKey> WinHotKeys = new();
 
     public delegate void KeyHandler(WinVK vK);
     public static event KeyHandler KeyUpEvent;
@@ -13,12 +13,32 @@ public static class HotKeys
     /// </summary>
     static HotKeys()
     {
-        WinHotKeys = new();
         new Thread(UpdateHotKeyThread)
         {
             Name = "UpdateHotKeyThread",
             IsBackground = true
         }.Start();
+    }
+
+    /// <summary>
+    /// 增加快捷按键（自动过滤重复按键）
+    /// </summary>
+    /// <param name="key"></param>
+    public static void AddKey(WinVK key)
+    {
+        int keyId = (int)key;
+        if (!WinHotKeys.ContainsKey(keyId))
+        {
+            WinHotKeys.Add(keyId, new WinKey() { Key = key });
+        }
+    }
+
+    /// <summary>
+    /// 清空全部快捷键
+    /// </summary>
+    public static void ClearKeys()
+    {
+        WinHotKeys.Clear();
     }
 
     /// <summary>
@@ -42,25 +62,12 @@ public static class HotKeys
     }
 
     /// <summary>
-    /// 增加快捷按键（自动过滤重复按键）
-    /// </summary>
-    /// <param name="key"></param>
-    public static void AddKey(WinVK key)
-    {
-        int keyId = (int)key;
-        if (!WinHotKeys.ContainsKey(keyId))
-        {
-            WinHotKeys.Add(keyId, new WinKey() { Key = key });
-        }
-    }
-
-    /// <summary>
     /// 按键监听线程
     /// </summary>
     /// <param name="sender"></param>
     private static void UpdateHotKeyThread(object sender)
     {
-        while (Globals.IsAppRunning)
+        while (MainWindow.IsAppRunning)
         {
             if (WinHotKeys.Count > 0)
             {

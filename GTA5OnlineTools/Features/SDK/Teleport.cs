@@ -35,7 +35,7 @@ public static class Teleport
     /// <returns></returns>
     public static Vector3 GetPlayerPosition()
     {
-        long pCPedFactory = Memory.Read<long>(General.WorldPTR);
+        long pCPedFactory = Memory.Read<long>(Globals.WorldPTR);
         long pCPed = Memory.Read<long>(pCPedFactory + Offsets.CPed);
         return Memory.Read<Vector3>(pCPed + Offsets.CPed_VisualX);
     }
@@ -47,7 +47,7 @@ public static class Teleport
     {
         if (vector3 != Vector3.Zero)
         {
-            long pCPedFactory = Memory.Read<long>(General.WorldPTR);
+            long pCPedFactory = Memory.Read<long>(Globals.WorldPTR);
             long pCPed = Memory.Read<long>(pCPedFactory + Offsets.CPed);
 
             if (Memory.Read<int>(pCPed + Offsets.CPed_InVehicle) == 0)
@@ -78,7 +78,7 @@ public static class Teleport
 
         for (int i = 2000; i > 1; i--)
         {
-            long pBlip = Memory.Read<long>(General.BlipPTR + i * 0x08);
+            long pBlip = Memory.Read<long>(Globals.BlipPTR + i * 0x08);
             if (pBlip <= 0)
                 continue;
 
@@ -107,7 +107,7 @@ public static class Teleport
 
         for (int i = 2000; i > 1; i--)
         {
-            long pBlip = Memory.Read<long>(General.BlipPTR + i * 0x08);
+            long pBlip = Memory.Read<long>(Globals.BlipPTR + i * 0x08);
 
             dwIcon = Memory.Read<int>(pBlip + 0x40);
             dwColor = Memory.Read<int>(pBlip + 0x48);
@@ -124,7 +124,7 @@ public static class Teleport
 
         for (int i = 2000; i > 1; i--)
         {
-            long pBlip = Memory.Read<long>(General.BlipPTR + i * 0x08);
+            long pBlip = Memory.Read<long>(Globals.BlipPTR + i * 0x08);
 
             dwIcon = Memory.Read<int>(pBlip + 0x40);
             dwColor = Memory.Read<int>(pBlip + 0x48);
@@ -141,7 +141,7 @@ public static class Teleport
 
         for (int i = 2000; i > 1; i--)
         {
-            long pBlip = Memory.Read<long>(General.BlipPTR + i * 0x08);
+            long pBlip = Memory.Read<long>(Globals.BlipPTR + i * 0x08);
 
             dwIcon = Memory.Read<int>(pBlip + 0x40);
             dwColor = Memory.Read<int>(pBlip + 0x48);
@@ -169,7 +169,7 @@ public static class Teleport
 
         for (int i = 2000; i > 1; i--)
         {
-            long pBlip = Memory.Read<long>(General.BlipPTR + i * 0x08);
+            long pBlip = Memory.Read<long>(Globals.BlipPTR + i * 0x08);
 
             dwIcon = Memory.Read<int>(pBlip + 0x40);
 
@@ -190,7 +190,7 @@ public static class Teleport
     /// </summary>
     public static void MovingFoward()
     {
-        long pCPedFactory = Memory.Read<long>(General.WorldPTR);
+        long pCPedFactory = Memory.Read<long>(Globals.WorldPTR);
         long pCPed = Memory.Read<long>(pCPedFactory + Offsets.CPed);
         long pCNavigation = Memory.Read<long>(pCPed + Offsets.CPed_CNavigation);
 

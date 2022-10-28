@@ -23,13 +23,6 @@ public static class Settings
         public static bool VehicleSeatbelt = false;
     }
 
-    public static class Special
-    {
-        public static bool FireAmmo = false;
-        public static bool ExplosiveAmmo = false;
-        public static bool SuperJump = false;
-    }
-
     public static class Common
     {
         public static bool AutoClearWanted = false;

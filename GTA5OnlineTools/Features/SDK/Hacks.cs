@@ -11,7 +11,7 @@ public static class Hacks
     /// <returns></returns>
     public static long GlobalAddress(int index)
     {
-        return Memory.Read<long>(General.GlobalPTR + 0x8 * ((index >> 0x12) & 0x3F)) + 8 * (index & 0x3FFFF);
+        return Memory.Read<long>(Globals.GlobalPTR + 0x8 * ((index >> 0x12) & 0x3F)) + 8 * (index & 0x3FFFF);
     }
 
     /// <summary>
@@ -43,7 +43,7 @@ public static class Hacks
     /// <returns></returns>
     public static string ReadGAString(int index)
     {
-        return Memory.ReadString(GlobalAddress(index), null, 20);
+        return Memory.ReadString(GlobalAddress(index), 20);
     }
 
     /// <summary>
@@ -53,7 +53,7 @@ public static class Hacks
     /// <param name="str"></param>
     public static void WriteGAString(int index, string str)
     {
-        Memory.WriteString(GlobalAddress(index), null, str);
+        Memory.WriteString(GlobalAddress(index), str);
     }
 
     /////////////////////////////////////////////////////
@@ -116,19 +116,19 @@ public static class Hacks
     {
         if (hash.IndexOf("_") == 0)
         {
-            int Stat_MP = ReadGA<int>(1574918);
-            hash = $"MP{Stat_MP}{hash}";
+            int stat_MP = ReadGA<int>(1574918);
+            hash = $"MP{stat_MP}{hash}";
         }
 
-        uint Stat_ResotreHash = ReadGA<uint>(1655453 + 4);
-        int Stat_ResotreValue = ReadGA<int>(1020252 + 5526);
+        uint stat_resotreHash = ReadGA<uint>(1655453 + 4);
+        int stat_resotreValue = ReadGA<int>(1020252 + 5526);
 
         WriteGA(1659575 + 4, Joaat(hash));
         WriteGA(1020252 + 5526, value);
         WriteGA(1648034 + 1139, -1);
         Thread.Sleep(1000);
-        WriteGA(1659575 + 4, Stat_ResotreHash);
-        WriteGA(1020252 + 5526, Stat_ResotreValue);
+        WriteGA(1659575 + 4, stat_resotreHash);
+        WriteGA(1020252 + 5526, stat_resotreValue);
     }
 
     /// <summary>
@@ -151,7 +151,7 @@ public static class Hacks
 
         Thread.Sleep(150);
 
-        long pReplayInterface = Memory.Read<long>(General.ReplayInterfacePTR);
+        long pReplayInterface = Memory.Read<long>(Globals.ReplayInterfacePTR);
         long m_dwpPickUpInterface = Memory.Read<long>(pReplayInterface + 0x20);
 
         long dw_curPickUpNum = Memory.Read<long>(m_dwpPickUpInterface + 0x110);
