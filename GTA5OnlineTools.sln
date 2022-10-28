@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GTA5OnlineTools", "GTA5Onli
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GTA5OnlineTools.UI", "GTA5OnlineTools.UI\GTA5OnlineTools.UI.csproj", "{C91AC3ED-7804-4E71-9553-BA40F9FCFB95}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GTA5OnlineTools.GA", "GTA5OnlineTools.GA\GTA5OnlineTools.GA.csproj", "{60F0B258-2EB3-4F4D-BB0B-0F31437D08C2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,6 +23,10 @@ Global
 		{C91AC3ED-7804-4E71-9553-BA40F9FCFB95}.Debug|x64.Build.0 = Debug|x64
 		{C91AC3ED-7804-4E71-9553-BA40F9FCFB95}.Release|x64.ActiveCfg = Release|x64
 		{C91AC3ED-7804-4E71-9553-BA40F9FCFB95}.Release|x64.Build.0 = Release|x64
+		{60F0B258-2EB3-4F4D-BB0B-0F31437D08C2}.Debug|x64.ActiveCfg = Debug|x64
+		{60F0B258-2EB3-4F4D-BB0B-0F31437D08C2}.Debug|x64.Build.0 = Debug|x64
+		{60F0B258-2EB3-4F4D-BB0B-0F31437D08C2}.Release|x64.ActiveCfg = Release|x64
+		{60F0B258-2EB3-4F4D-BB0B-0F31437D08C2}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
