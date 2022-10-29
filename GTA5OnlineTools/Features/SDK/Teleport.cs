@@ -34,8 +34,7 @@ public static class Teleport
     /// <returns></returns>
     public static Vector3 GetPlayerPosition()
     {
-        long pCPedFactory = Memory.Read<long>(Pointers.WorldPTR);
-        long pCPed = Memory.Read<long>(pCPedFactory + Offsets.CPed);
+        long pCPed = Globals.GetCPed();
         return Memory.Read<Vector3>(pCPed + Offsets.CPed_VisualX);
     }
 
@@ -46,8 +45,7 @@ public static class Teleport
     {
         if (vector3 != Vector3.Zero)
         {
-            long pCPedFactory = Memory.Read<long>(Pointers.WorldPTR);
-            long pCPed = Memory.Read<long>(pCPedFactory + Offsets.CPed);
+            long pCPed = Globals.GetCPed();
 
             if (Memory.Read<int>(pCPed + Offsets.CPed_InVehicle) == 0)
             {
@@ -190,8 +188,7 @@ public static class Teleport
     /// <param name="forward">微调距离</param>
     public static void MovingFoward(float forward)
     {
-        long pCPedFactory = Memory.Read<long>(Pointers.WorldPTR);
-        long pCPed = Memory.Read<long>(pCPedFactory + Offsets.CPed);
+        long pCPed = Globals.GetCPed();
         long pCNavigation = Memory.Read<long>(pCPed + Offsets.CPed_CNavigation);
 
         float sin = Memory.Read<float>(pCNavigation + Offsets.CPed_CNavigation_RightX);

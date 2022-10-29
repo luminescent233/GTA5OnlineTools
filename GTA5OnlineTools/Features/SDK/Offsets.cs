@@ -34,6 +34,8 @@ public static class Offsets
 
     ////////////////////////////////////////////////////////////////////
 
+    public const int oMaxPeds = 256;
+
     // Vehicle Menus Globals
     public const int oVMCreate = 2725439;       // Create any vehicle.
     public const int oVMYCar = 2815059;         // Get my car.

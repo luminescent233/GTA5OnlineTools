@@ -59,6 +59,17 @@ public static class Hacks
     /////////////////////////////////////////////////////
 
     /// <summary>
+    /// 判断是否在线上模式
+    /// </summary>
+    /// <returns></returns>
+    public static bool IsOnlineMode()
+    {
+        int character_slot = ReadGA<int>(113386 + 2363 + 539 + 4321);
+
+        return character_slot != 0 || character_slot != 1 || character_slot != 2;
+    }
+
+    /// <summary>
     /// 获取网络时间
     /// </summary>
     /// <returns></returns>

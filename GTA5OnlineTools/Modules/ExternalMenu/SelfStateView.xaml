@@ -274,9 +274,13 @@
                     Click="Button_ToObjective_Click"
                     Content="传送到目标点" />
                 <Button
-                    x:Name="Button_FillHealthArmor"
-                    Click="Button_FillHealthArmor_Click"
-                    Content="补满血量和护甲" />
+                    x:Name="Button_FillHealth"
+                    Click="Button_FillHealth_Click"
+                    Content="补满血量" />
+                <Button
+                    x:Name="Button_FillArmor"
+                    Click="Button_FillArmor_Click"
+                    Content="补满护甲" />
                 <Button
                     x:Name="Button_ClearWanted"
                     Click="Button_ClearWanted_Click"

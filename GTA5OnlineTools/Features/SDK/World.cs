@@ -1,6 +1,5 @@
 ﻿using GTA5OnlineTools.Features.Core;
 using GTA5OnlineTools.Features.Client;
-using System.Numerics;
 
 namespace GTA5OnlineTools.Features.SDK;
 
@@ -47,14 +46,10 @@ public static class World
     /// </summary>
     public static void KillAllNPC(bool isOnlyKillHostility)
     {
-        long pCReplayInterface = Memory.Read<long>(Pointers.ReplayInterfacePTR);
-        long pCPedInterface = Memory.Read<long>(pCReplayInterface + Offsets.CReplayInterface_CPedInterface);
-        int oMaxPeds = Memory.Read<int>(pCPedInterface + Offsets.CReplayInterface_CPedInterface_MaxPeds);
+        long pCPedList = Globals.GetCPedList();
 
-        for (int i = 0; i < oMaxPeds; i++)
+        for (int i = 0; i < Offsets.oMaxPeds; i++)
         {
-            long pCPedList = Memory.Read<long>(pCPedInterface + Offsets.CReplayInterface_CPedInterface_CPedList);
-
             long pCPed = Memory.Read<long>(pCPedList + i * 0x10);
             if (!Memory.IsValid(pCPed))
                 continue;
@@ -84,14 +79,10 @@ public static class World
     /// </summary>
     public static void KillAllPolice()
     {
-        long pCReplayInterface = Memory.Read<long>(Pointers.ReplayInterfacePTR);
-        long pCPedInterface = Memory.Read<long>(pCReplayInterface + Offsets.CReplayInterface_CPedInterface);
-        int oMaxPeds = Memory.Read<int>(pCPedInterface + Offsets.CReplayInterface_CPedInterface_MaxPeds);
+        long pCPedList = Globals.GetCPedList();
 
-        for (int i = 0; i < oMaxPeds; i++)
+        for (int i = 0; i < Offsets.oMaxPeds; i++)
         {
-            long pCPedList = Memory.Read<long>(pCPedInterface + Offsets.CReplayInterface_CPedInterface_CPedList);
-
             long pCPed = Memory.Read<long>(pCPedList + i * 0x10);
             if (!Memory.IsValid(pCPed))
                 continue;
@@ -118,14 +109,10 @@ public static class World
     /// </summary>
     public static void DestroyAllNPCVehicles(bool isOnlyKillHostility)
     {
-        long pCReplayInterface = Memory.Read<long>(Pointers.ReplayInterfacePTR);
-        long pCPedInterface = Memory.Read<long>(pCReplayInterface + Offsets.CReplayInterface_CPedInterface);
-        int oMaxPeds = Memory.Read<int>(pCPedInterface + Offsets.CReplayInterface_CPedInterface_MaxPeds);
+        long pCPedList = Globals.GetCPedList();
 
-        for (int i = 0; i < oMaxPeds; i++)
+        for (int i = 0; i < Offsets.oMaxPeds; i++)
         {
-            long pCPedList = Memory.Read<long>(pCPedInterface + Offsets.CReplayInterface_CPedInterface_CPedList);
-
             long pCPed = Memory.Read<long>(pCPedList + i * 0x10);
             if (!Memory.IsValid(pCPed))
                 continue;
@@ -165,14 +152,10 @@ public static class World
     /// </summary>
     public static void DestroyAllVehicles()
     {
-        long pCReplayInterface = Memory.Read<long>(Pointers.ReplayInterfacePTR);
-        long pCVehicleInterface = Memory.Read<long>(pCReplayInterface + Offsets.CReplayInterface_CVehicleInterface);
-        long pCPedInterface = Memory.Read<long>(pCReplayInterface + Offsets.CReplayInterface_CPedInterface);
-        int oMaxPeds = Memory.Read<int>(pCPedInterface + Offsets.CReplayInterface_CPedInterface_MaxPeds);
+        long pCVehicleList = Globals.GetCVehicleList();
 
-        for (int i = 0; i < oMaxPeds; i++)
+        for (int i = 0; i < Offsets.oMaxPeds; i++)
         {
-            long pCVehicleList = Memory.Read<long>(pCVehicleInterface + Offsets.CReplayInterface_CVehicleInterface_CVehicleList);
             long pCVehicle = Memory.Read<long>(pCVehicleList + i * 0x10);
             if (!Memory.IsValid(pCVehicle))
                 continue;
@@ -191,14 +174,10 @@ public static class World
     {
         Vector3 v3MyPos = Teleport.GetPlayerPosition();
 
-        long pCReplayInterface = Memory.Read<long>(Pointers.ReplayInterfacePTR);
-        long pCPedInterface = Memory.Read<long>(pCReplayInterface + Offsets.CReplayInterface_CPedInterface);
-        int oMaxPeds = Memory.Read<int>(pCPedInterface + Offsets.CReplayInterface_CPedInterface_MaxPeds);
+        long pCPedList = Globals.GetCPedList();
 
-        for (int i = 0; i < oMaxPeds; i++)
+        for (int i = 0; i < Offsets.oMaxPeds; i++)
         {
-            long pCPedList = Memory.Read<long>(pCPedInterface + Offsets.CReplayInterface_CPedInterface_CPedList);
-
             long pCPed = Memory.Read<long>(pCPedList + i * 0x10);
             if (!Memory.IsValid(pCPed))
                 continue;

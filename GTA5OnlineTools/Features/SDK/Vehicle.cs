@@ -10,11 +10,8 @@ public static class Vehicle
     /// </summary>
     public static bool IsInVehicle()
     {
-        long pCPedFactory = Memory.Read<long>(Pointers.WorldPTR);
-        long pCPed = Memory.Read<long>(pCPedFactory + Offsets.CPed);
-        byte oInVehicle = Memory.Read<byte>(pCPed + Offsets.CPed_InVehicle);
-
-        return oInVehicle == 0x01;
+        long pCPed = Globals.GetCPed();
+        return Memory.Read<byte>(pCPed + Offsets.CPed_InVehicle) == 0x01;
     }
 
     /// <summary>
@@ -22,18 +19,8 @@ public static class Vehicle
     /// </summary>
     public static void GodMode(bool isEnable)
     {
-        long pCPedFactory = Memory.Read<long>(Pointers.WorldPTR);
-        long pCPed = Memory.Read<long>(pCPedFactory + Offsets.CPed);
-        byte oInVehicle = Memory.Read<byte>(pCPed + Offsets.CPed_InVehicle);
-
-        if (oInVehicle == 0x01)
-        {
-            long pCVehicle = Memory.Read<long>(pCPed + Offsets.CPed_CVehicle);
-            if (isEnable)
-                Memory.Write<byte>(pCVehicle + Offsets.CPed_CVehicle_God, 0x01);
-            else
-                Memory.Write<byte>(pCVehicle + Offsets.CPed_CVehicle_God, 0x00);
-        }
+        if (Globals.GetCVehicle(out long pCVehicle))
+            Memory.Write(pCVehicle + Offsets.CPed_CVehicle_God, (byte)(isEnable ? 0x01 : 0x00));
     }
 
     /// <summary>
@@ -41,13 +28,8 @@ public static class Vehicle
     /// </summary>
     public static void Seatbelt(bool isEnable)
     {
-        long pCPedFactory = Memory.Read<long>(Pointers.WorldPTR);
-        long pCPed = Memory.Read<long>(pCPedFactory + Offsets.CPed);
-
-        if (isEnable)
-            Memory.Write<byte>(pCPed + Offsets.CPed_Seatbelt, 0xC9);
-        else
-            Memory.Write<byte>(pCPed + Offsets.CPed_Seatbelt, 0xC8);
+        long pCPed = Globals.GetCPed();
+        Memory.Write(pCPed + Offsets.CPed_Seatbelt, (byte)(isEnable ? 0xC9 : 0xC8));
     }
 
     /// <summary>
@@ -55,19 +37,8 @@ public static class Vehicle
     /// </summary>
     public static void Invisible(bool isEnable)
     {
-        long pCPedFactory = Memory.Read<long>(Pointers.WorldPTR);
-        long pCPed = Memory.Read<long>(pCPedFactory + Offsets.CPed);
-        byte oInVehicle = Memory.Read<byte>(pCPed + Offsets.CPed_InVehicle);
-
-        if (oInVehicle == 0x01)
-        {
-            long pCVehicle = Memory.Read<long>(pCPed + Offsets.CPed_CVehicle);
-
-            if (isEnable)
-                Memory.Write<byte>(pCVehicle + Offsets.CPed_CVehicle_Invisible, 0x01);
-            else
-                Memory.Write<byte>(pCVehicle + Offsets.CPed_CVehicle_Invisible, 0x27);
-        }
+        if (Globals.GetCVehicle(out long pCVehicle))
+            Memory.Write(pCVehicle + Offsets.CPed_CVehicle_Invisible, (byte)(isEnable ? 0x01 : 0x27));
     }
 
     /// <summary>
@@ -75,13 +46,8 @@ public static class Vehicle
     /// </summary>
     public static void Extras(short flag)
     {
-        long pCPedFactory = Memory.Read<long>(Pointers.WorldPTR);
-        long pCPed = Memory.Read<long>(pCPedFactory + Offsets.CPed);
-        byte oInVehicle = Memory.Read<byte>(pCPed + Offsets.CPed_InVehicle);
-
-        if (oInVehicle == 0x01)
+        if (Globals.GetCVehicle(out long pCVehicle))
         {
-            long pCVehicle = Memory.Read<long>(pCPed + Offsets.CPed_CVehicle);
             long pCModelInfo = Memory.Read<long>(pCVehicle + Offsets.CPed_CVehicle_CModelInfo);
             Memory.Write(pCModelInfo + Offsets.CPed_CVehicle_CModelInfo_Extras, flag);
         }
@@ -92,18 +58,10 @@ public static class Vehicle
     /// </summary>
     public static void Parachute(bool isEnable)
     {
-        long pCPedFactory = Memory.Read<long>(Pointers.WorldPTR);
-        long pCPed = Memory.Read<long>(pCPedFactory + Offsets.CPed);
-        byte oInVehicle = Memory.Read<byte>(pCPed + Offsets.CPed_InVehicle);
-
-        if (oInVehicle == 0x01)
+        if (Globals.GetCVehicle(out long pCVehicle))
         {
-            long pCVehicle = Memory.Read<long>(pCPed + Offsets.CPed_CVehicle);
             long pCModelInfo = Memory.Read<long>(pCVehicle + Offsets.CPed_CVehicle_CModelInfo);
-            if (isEnable)
-                Memory.Write<byte>(pCModelInfo + Offsets.CPed_CVehicle_CModelInfo_Parachute, 0x01);
-            else
-                Memory.Write<byte>(pCModelInfo + Offsets.CPed_CVehicle_CModelInfo_Parachute, 0x00);
+            Memory.Write(pCModelInfo + Offsets.CPed_CVehicle_CModelInfo_Parachute, (byte)(isEnable ? 0x01 : 0x00));
         }
     }
 
@@ -112,14 +70,8 @@ public static class Vehicle
     /// </summary>
     public static void FillHealth()
     {
-        long pCPedFactory = Memory.Read<long>(Pointers.WorldPTR);
-        long pCPed = Memory.Read<long>(pCPedFactory + Offsets.CPed);
-        byte oInVehicle = Memory.Read<byte>(pCPed + Offsets.CPed_InVehicle);
-
-        if (oInVehicle == 0x01)
+        if (Globals.GetCVehicle(out long pCVehicle))
         {
-            long pCVehicle = Memory.Read<long>(pCPed + Offsets.CPed_CVehicle);
-
             float oVHealth = Memory.Read<float>(pCVehicle + Offsets.CPed_CVehicle_Health);
             float oVHealthMax = Memory.Read<float>(pCVehicle + Offsets.CPed_CVehicle_HealthMax);
             if (oVHealth <= oVHealthMax)
@@ -152,8 +104,7 @@ public static class Vehicle
         {
             if (hash != 0)
             {
-                long pCPedFactory = Memory.Read<long>(Pointers.WorldPTR);
-                long pCPed = Memory.Read<long>(pCPedFactory + Offsets.CPed);
+                long pCPed = Globals.GetCPed();
                 Vector3 vector3 = Memory.Read<Vector3>(pCPed + Offsets.CPed_VisualX);
 
                 long pCNavigation = Memory.Read<long>(pCPed + Offsets.CPed_CNavigation);
@@ -232,8 +183,7 @@ public static class Vehicle
 
                 const int pegasus = 0;
 
-                long pCPedFactory = Memory.Read<long>(Pointers.WorldPTR);
-                long pCPed = Memory.Read<long>(pCPedFactory + Offsets.CPed);
+                long pCPed = Globals.GetCPed();
                 Vector3 vector3 = Memory.Read<Vector3>(pCPed + Offsets.CPed_VisualX);
 
                 long pCNavigation = Memory.Read<long>(pCPed + Offsets.CPed_CNavigation);

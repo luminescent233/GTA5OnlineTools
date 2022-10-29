@@ -1,11 +1,11 @@
 ﻿using GTA5OnlineTools.Common.Data;
+using GTA5OnlineTools.Features.SDK;
 using GTA5OnlineTools.Features.Core;
+using GTA5OnlineTools.Features.Client;
+using GTA5OnlineTools.Features.Settings;
 using GTA5OnlineTools.Modules.ExternalMenu;
 
 using CommunityToolkit.Mvvm.Input;
-using GTA5OnlineTools.Features.SDK;
-using GTA5OnlineTools.Features.Settings;
-using GTA5OnlineTools.Features.Client;
 
 namespace GTA5OnlineTools.Modules;
 
@@ -244,9 +244,7 @@ public partial class ExternalMenuWindow
     {
         while (IsAppRunning)
         {
-            long pCPedFactory = Memory.Read<long>(Pointers.WorldPTR);
-            long pCPed = Memory.Read<long>(pCPedFactory + Offsets.CPed);
-            long pCPlayerInfo = Memory.Read<long>(pCPed + Offsets.CPed_CPlayerInfo);
+            long pCPed = Globals.GetCPed();
             long pCNavigation = Memory.Read<long>(pCPed + Offsets.CPed_CNavigation);
 
             byte oInVehicle = Memory.Read<byte>(pCPed + Offsets.CPed_InVehicle);
@@ -273,12 +271,12 @@ public partial class ExternalMenuWindow
             if (MenuSetting.Player.AntiAFK)
             {
                 if (Hacks.ReadGA<int>(262145 + 87) == 120000)
-                    Player.AntiAFK(true);
+                    Online.AntiAFK(true);
             }
             else
             {
                 if (Hacks.ReadGA<int>(262145 + 87) == 99999999)
-                    Player.AntiAFK(false);
+                    Online.AntiAFK(false);
             }
 
             // 无布娃娃
@@ -347,14 +345,10 @@ public partial class ExternalMenuWindow
             if (MenuSetting.Auto.ClearWanted)
                 Player.WantedLevel(0x00);
 
-            long pCReplayInterface = Memory.Read<long>(Pointers.ReplayInterfacePTR);
-            long pCPedInterface = Memory.Read<long>(pCReplayInterface + Offsets.CReplayInterface_CPedInterface);
-            int oMaxPeds = Memory.Read<int>(pCPedInterface + Offsets.CReplayInterface_CPedInterface_MaxPeds);
+            long pCPedList = Globals.GetCPedList();
 
-            for (int i = 0; i < oMaxPeds; i++)
+            for (int i = 0; i < Offsets.oMaxPeds; i++)
             {
-                long pCPedList = Memory.Read<long>(pCPedInterface + Offsets.CReplayInterface_CPedInterface_CPedList);
-
                 long pCPed = Memory.Read<long>(pCPedList + i * 0x10);
                 if (!Memory.IsValid(pCPed))
                     continue;

@@ -57,6 +57,37 @@ public static class Online
     }
 
     /// <summary>
+    /// 挂机防踢
+    /// </summary>
+    /// <param name="isEnable"></param>
+    public static void AntiAFK(bool isEnable)
+    {
+        /*
+         idleKick: {('262145', '87')}    GLOBAL IDLEKICK_WARNING1 
+         idleKick: {('262145', '88')}    GLOBAL IDLEKICK_WARNING2 
+         idleKick: {('262145', '89')}    GLOBAL IDLEKICK_WARNING3 
+         idleKick: {('262145', '90')}    GLOBAL IDLEKICK_KICK 
+         idleKick: {('262145', '8248')}    GLOBAL ConstrainedKick_Warning1 
+         idleKick: {('262145', '8249')}    GLOBAL ConstrainedKick_Warning2 
+         idleKick: {('262145', '8250')}    GLOBAL ConstrainedKick_Warning3 
+         idleKick: {('262145', '8251')}    GLOBAL ConstrainedKick_Kick 
+         timeStoodIdle: {('1648034', '1156')}    GLOBAL time in ms  
+         idleKick: {('1648034', '1172')}    GLOBAL
+         */
+
+        // joaat("weapon_minigun");
+        Hacks.WriteGA(262145 + 87, isEnable ? 99999999 : 120000);        // 120000     GLOBAL IDLEKICK_WARNING1 
+        Hacks.WriteGA(262145 + 88, isEnable ? 99999999 : 300000);        // 300000     GLOBAL IDLEKICK_WARNING2 
+        Hacks.WriteGA(262145 + 89, isEnable ? 99999999 : 600000);        // 600000     GLOBAL IDLEKICK_WARNING3
+        Hacks.WriteGA(262145 + 90, isEnable ? 99999999 : 900000);        // 900000     GLOBAL IDLEKICK_KICK 
+        // 742014
+        Hacks.WriteGA(262145 + 8248, isEnable ? 2000000000 : 30000);     // 30000      GLOBAL ConstrainedKick_Warning1
+        Hacks.WriteGA(262145 + 8249, isEnable ? 2000000000 : 60000);     // 60000      GLOBAL ConstrainedKick_Warning2
+        Hacks.WriteGA(262145 + 8250, isEnable ? 2000000000 : 90000);     // 90000      GLOBAL ConstrainedKick_Warning3
+        Hacks.WriteGA(262145 + 8251, isEnable ? 2000000000 : 120000);    // 120000     GLOBAL ConstrainedKick_Kick
+    }
+
+    /// <summary>
     /// 模型变更
     /// </summary>
     /// <param name="hash"></param>

@@ -10,11 +10,7 @@ public static class Player
     public static void GodMode(bool isEnable)
     {
         long pCPed = Globals.GetCPed();
-
-        if (isEnable)
-            Memory.Write<byte>(pCPed + Offsets.CPed_God, 0x01);
-        else
-            Memory.Write<byte>(pCPed + Offsets.CPed_God, 0x00);
+        Memory.Write(pCPed + Offsets.CPed_God, (byte)(isEnable ? 0x01 : 0x00));
     }
 
     /// <summary>
@@ -87,47 +83,12 @@ public static class Player
     }
 
     /// <summary>
-    /// 挂机防踢
-    /// </summary>
-    /// <param name="isEnable"></param>
-    public static void AntiAFK(bool isEnable)
-    {
-        /*
-         idleKick: {('262145', '87')}    GLOBAL IDLEKICK_WARNING1 
-         idleKick: {('262145', '88')}    GLOBAL IDLEKICK_WARNING2 
-         idleKick: {('262145', '89')}    GLOBAL IDLEKICK_WARNING3 
-         idleKick: {('262145', '90')}    GLOBAL IDLEKICK_KICK 
-         idleKick: {('262145', '8248')}    GLOBAL ConstrainedKick_Warning1 
-         idleKick: {('262145', '8249')}    GLOBAL ConstrainedKick_Warning2 
-         idleKick: {('262145', '8250')}    GLOBAL ConstrainedKick_Warning3 
-         idleKick: {('262145', '8251')}    GLOBAL ConstrainedKick_Kick 
-         timeStoodIdle: {('1648034', '1156')}    GLOBAL time in ms  
-         idleKick: {('1648034', '1172')}    GLOBAL
-         */
-
-        // joaat("weapon_minigun");
-        Hacks.WriteGA(262145 + 87, isEnable ? 99999999 : 120000);        // 120000     GLOBAL IDLEKICK_WARNING1 
-        Hacks.WriteGA(262145 + 88, isEnable ? 99999999 : 300000);        // 300000     GLOBAL IDLEKICK_WARNING2 
-        Hacks.WriteGA(262145 + 89, isEnable ? 99999999 : 600000);        // 600000     GLOBAL IDLEKICK_WARNING3
-        Hacks.WriteGA(262145 + 90, isEnable ? 99999999 : 900000);        // 900000     GLOBAL IDLEKICK_KICK 
-        // 742014
-        Hacks.WriteGA(262145 + 8248, isEnable ? 2000000000 : 30000);     // 30000      GLOBAL ConstrainedKick_Warning1
-        Hacks.WriteGA(262145 + 8249, isEnable ? 2000000000 : 60000);     // 60000      GLOBAL ConstrainedKick_Warning2
-        Hacks.WriteGA(262145 + 8250, isEnable ? 2000000000 : 90000);     // 90000      GLOBAL ConstrainedKick_Warning3
-        Hacks.WriteGA(262145 + 8251, isEnable ? 2000000000 : 120000);    // 120000     GLOBAL ConstrainedKick_Kick
-    }
-
-    /// <summary>
     /// 无布娃娃
     /// </summary>
     public static void NoRagdoll(bool isEnable)
     {
         long pCPed = Globals.GetCPed();
-
-        if (isEnable)
-            Memory.Write<byte>(pCPed + Offsets.CPed_Ragdoll, 0x01);
-        else
-            Memory.Write<byte>(pCPed + Offsets.CPed_Ragdoll, 0x20);
+        Memory.Write<byte>(pCPed + Offsets.CPed_Ragdoll, (byte)(isEnable ? 0x01 : 0x20));
     }
 
     /// <summary>
@@ -136,17 +97,13 @@ public static class Player
     public static void Invisible(bool isEnable)
     {
         long pCPed = Globals.GetCPed();
-
-        if (isEnable)
-            Memory.Write<byte>(pCPed + Offsets.CPed_Invisible, 0x01);
-        else
-            Memory.Write<byte>(pCPed + Offsets.CPed_Invisible, 0x27);
+        Memory.Write(pCPed + Offsets.CPed_Invisible, (byte)(isEnable ? 0x01 : 0x27));
     }
 
     /// <summary>
-    /// 补满血量和护甲
+    /// 补满血量
     /// </summary>
-    public static void FillHealthArmor()
+    public static void FillHealth()
     {
         long pCPed = Globals.GetCPed();
 
@@ -160,8 +117,15 @@ public static class Player
         {
             Memory.Write(pCPed + Offsets.CPed_Health, 328.0f);
         }
+    }
 
-        Memory.Write(pCPed + Offsets.CPed_Armor, 50.0f);
+    /// <summary>
+    /// 补满护甲
+    /// </summary>
+    public static void FillArmor()
+    {
+        long pCPed = Globals.GetCPed();
+        Memory.Write(pCPed + Offsets.CPed_Armor, Hacks.IsOnlineMode() ? 50.0f : 100.0f);
     }
 
     /// <summary>
@@ -174,16 +138,12 @@ public static class Player
     }
 
     /// <summary>
-    /// 雷达影踪（最大生命值为0）
+    /// 雷达影踪（最大生命值为0，以线上模式最大生命值为准）
     /// </summary>
     public static void UndeadOffRadar(bool isEnable)
     {
         long pCPed = Globals.GetCPed();
-
-        if (isEnable)
-            Memory.Write(pCPed + Offsets.CPed_HealthMax, 0.0f);
-        else
-            Memory.Write(pCPed + Offsets.CPed_HealthMax, 328.0f);
+        Memory.Write(pCPed + Offsets.CPed_HealthMax, isEnable ? 0.0f : 328.0f);
     }
 
     /// <summary>
@@ -192,11 +152,7 @@ public static class Player
     public static void WantedCanChange(bool isEnable)
     {
         long pCPlayerInfo = Globals.GetCPlayerInfo();
-
-        if (isEnable)
-            Memory.Write(pCPlayerInfo + Offsets.CPed_CPlayerInfo_WantedCanChange, 1.0f);
-        else
-            Memory.Write(pCPlayerInfo + Offsets.CPed_CPlayerInfo_WantedCanChange, 0.0f);
+        Memory.Write(pCPlayerInfo + Offsets.CPed_CPlayerInfo_WantedCanChange, isEnable ? 1.0f : 0.0f);
     }
 
     /// <summary>
@@ -222,10 +178,7 @@ public static class Player
         pointer = Memory.Read<long>(pointer + 0x70);
         pointer = Memory.Read<long>(pointer + 0x00);
 
-        if (isEnable)
-            Memory.Write(pointer + 0x2C, -1.0f);
-        else
-            Memory.Write(pointer + 0x2C, 0.25f);
+        Memory.Write(pointer + 0x2C, isEnable ? -1.0f : 0.25f);
     }
 
     /// <summary>

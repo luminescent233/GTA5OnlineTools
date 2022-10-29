@@ -3,7 +3,6 @@ using GTA5OnlineTools.Config.Modules;
 using GTA5OnlineTools.Models.Modules;
 using GTA5OnlineTools.Features.SDK;
 using GTA5OnlineTools.Features.Core;
-using GTA5OnlineTools.Features.Client;
 using GTA5OnlineTools.Features.Settings;
 
 namespace GTA5OnlineTools.Modules.ExternalMenu;
@@ -149,7 +148,8 @@ public partial class SelfStateView : UserControl
             case WinVK.F7:
                 if (SelfStateModel.IsHotKeyFillHealthArmor)
                 {
-                    Player.FillHealthArmor();
+                    Player.FillHealth();
+                    Player.FillArmor();
                 }
                 break;
             case WinVK.F8:
@@ -257,6 +257,11 @@ public partial class SelfStateView : UserControl
         Player.WalkSpeed((float)Slider_WalkSpeed.Value);
     }
 
+    private void Slider_MovingFoward_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+    {
+        Forward_Distance = (float)Slider_MovingFoward.Value;
+    }
+
     private void CheckBox_PlayerGodMode_Click(object sender, RoutedEventArgs e)
     {
         Player.GodMode(CheckBox_PlayerGodMode.IsChecked == true);
@@ -265,7 +270,7 @@ public partial class SelfStateView : UserControl
 
     private void CheckBox_AntiAFK_Click(object sender, RoutedEventArgs e)
     {
-        Player.AntiAFK(CheckBox_AntiAFK.IsChecked == true);
+        Online.AntiAFK(CheckBox_AntiAFK.IsChecked == true);
         MenuSetting.Player.AntiAFK = CheckBox_AntiAFK.IsChecked == true;
     }
 
@@ -343,11 +348,18 @@ public partial class SelfStateView : UserControl
         Teleport.ToObjective();
     }
 
-    private void Button_FillHealthArmor_Click(object sender, RoutedEventArgs e)
+    private void Button_FillHealth_Click(object sender, RoutedEventArgs e)
     {
         AudioUtil.PlayClickSound();
 
-        Player.FillHealthArmor();
+        Player.FillHealth();
+    }
+
+    private void Button_FillArmor_Click(object sender, RoutedEventArgs e)
+    {
+        AudioUtil.PlayClickSound();
+
+        Player.FillArmor();
     }
 
     private void Button_ClearWanted_Click(object sender, RoutedEventArgs e)
@@ -362,11 +374,6 @@ public partial class SelfStateView : UserControl
         AudioUtil.PlayClickSound();
 
         Player.Suicide();
-    }
-
-    private void Slider_MovingFoward_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-    {
-        Forward_Distance = (float)Slider_MovingFoward.Value;
     }
 
     private void CheckBox_ProofBullet_Click(object sender, RoutedEventArgs e)
