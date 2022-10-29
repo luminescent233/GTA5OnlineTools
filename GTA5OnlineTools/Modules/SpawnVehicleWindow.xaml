@@ -61,15 +61,16 @@
                                         Height="140"
                                         Margin="3"
                                         BorderBrush="Gray"
-                                        BorderThickness="1">
+                                        BorderThickness="0.5"
+                                        SnapsToDevicePixels="True">
                                         <ContentPresenter />
                                     </Border>
                                     <ControlTemplate.Triggers>
                                         <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter TargetName="border" Property="Background" Value="#AA1E88E5" />
+                                            <Setter TargetName="border" Property="Background" Value="#D9D9D9" />
                                         </Trigger>
                                         <Trigger Property="IsSelected" Value="True">
-                                            <Setter TargetName="border" Property="Background" Value="#FF1E88E5" />
+                                            <Setter TargetName="border" Property="Background" Value="#1E88E5" />
                                         </Trigger>
                                     </ControlTemplate.Triggers>
                                 </ControlTemplate>
@@ -81,10 +82,7 @@
             <Setter Property="ItemTemplate">
                 <Setter.Value>
                     <DataTemplate>
-                        <DockPanel Background="Transparent" LastChildFill="True">
-                            <DockPanel.ToolTip>
-                                <Image Source="{Binding VehicleImage, Converter={StaticResource StringToImageSourceConverter}}" />
-                            </DockPanel.ToolTip>
+                        <DockPanel>
                             <TextBlock
                                 Margin="5"
                                 DockPanel.Dock="Bottom"
@@ -126,7 +124,23 @@
             Margin="0,5,5,5"
             Style="{StaticResource ListBoxStyle_VehiclePreview}" />
         <!--  ###################  -->
-        <StackPanel Grid.Column="2" />
+        <StackPanel Grid.Column="2">
+            <TextBlock
+                Margin="5"
+                FontWeight="Bold"
+                Text="载具名称" />
+            <TextBlock Margin="10,5,5,5" Text="{Binding ElementName=ListBox_VehicleInfo, Path=SelectedItem.VehicleName}" />
+            <TextBlock
+                Margin="5"
+                FontWeight="Bold"
+                Text="载具ID" />
+            <TextBlock Margin="10,5,5,5" Text="{Binding ElementName=ListBox_VehicleInfo, Path=SelectedItem.VehicleId}" />
+            <TextBlock
+                Margin="5"
+                FontWeight="Bold"
+                Text="载具预览图" />
+            <Image Margin="10,5,5,5" Source="{Binding ElementName=ListBox_VehicleInfo, Path=SelectedItem.VehicleImage}" />
+        </StackPanel>
     </Grid>
 
 </ui:UiWindow>
