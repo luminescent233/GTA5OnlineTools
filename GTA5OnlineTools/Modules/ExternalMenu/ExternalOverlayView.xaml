@@ -34,7 +34,7 @@
                 <CheckBox
                     x:Name="CheckBox_ESP_Bone"
                     Click="CheckBox_ESP_Bone_Click"
-                    Content="显示骨骼 ★"
+                    Content="显示骨骼*"
                     IsChecked="False" />
                 <CheckBox
                     x:Name="CheckBox_ESP_2DHealthBar"
@@ -44,12 +44,12 @@
                 <CheckBox
                     x:Name="CheckBox_ESP_HealthText"
                     Click="CheckBox_ESP_HealthText_Click"
-                    Content="显示数字血量 ★"
+                    Content="显示数字血量*"
                     IsChecked="False" />
                 <CheckBox
                     x:Name="CheckBox_ESP_NameText"
                     Click="CheckBox_ESP_NameText_Click"
-                    Content="显示玩家姓名 ★"
+                    Content="显示玩家姓名*"
                     IsChecked="False" />
                 <CheckBox
                     x:Name="CheckBox_ESP_Player"
@@ -80,7 +80,7 @@
 
                 <TextBlock />
                 <TextBlock Style="{StaticResource TextBlockStyle_Hint}">
-                    提示：★ 代表该功能比较影响绘制帧数
+                    提示：* 代表该功能比较影响绘制帧数
                 </TextBlock>
                 <TextBlock Style="{StaticResource TextBlockStyle_Hint}">
                     提示：部分功能改动后需要重新开启ESP功能

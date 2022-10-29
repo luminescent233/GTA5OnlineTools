@@ -34,7 +34,10 @@
                     注意事项
                 </Paragraph>
                 <Paragraph Style="{StaticResource ParagraphStyle_Content}">
-                    最新版本YimMenu文件使用了游戏缓存来获取载具、Ped等数据，第一次使用请先清空BigBaseV2目录的旧版配置文件，然后进入线上模式后注入YimMenu，让其更新缓存，否则可能会导致游戏崩溃
+                    最新版本YimMenu文件使用了游戏缓存来获取载具、Ped等数据，第一次使用（若游戏更新同理）请先清空BigBaseV2目录的旧版配置文件，然后进入线上模式后注入YimMenu，让其更新缓存，否则可能会导致游戏崩溃
+                </Paragraph>
+                <Paragraph Style="{StaticResource ParagraphStyle_Content}">
+                    如果发生崩溃问题，请清空配置目录全部文件后重新注入，然后按照提示在线上模式更新游戏缓存
                 </Paragraph>
 
             </FlowDocument>

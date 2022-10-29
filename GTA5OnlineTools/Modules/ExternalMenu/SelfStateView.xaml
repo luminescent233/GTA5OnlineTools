@@ -197,24 +197,24 @@
                 <CheckBox
                     x:Name="CheckBox_PlayerGodMode"
                     Click="CheckBox_PlayerGodMode_Click"
-                    Content="玩家无敌" />
+                    Content="玩家无敌 ★" />
                 <CheckBox
                     x:Name="CheckBox_AntiAFK"
                     Click="CheckBox_AntiAFK_Click"
-                    Content="挂机防踢" />
+                    Content="挂机防踢 ★" />
                 <CheckBox
-                    x:Name="CheckBox_Invisibility"
-                    Click="CheckBox_Invisibility_Click"
-                    Content="玩家隐身（虚假）" />
+                    x:Name="CheckBox_NoRagdoll"
+                    Click="CheckBox_NoRagdoll_Click"
+                    Content="无布娃娃 ★" />
                 <TextBlock />
                 <CheckBox
                     x:Name="CheckBox_UndeadOffRadar"
                     Click="CheckBox_UndeadOffRadar_Click"
                     Content="雷达影踪（假死）" />
                 <CheckBox
-                    x:Name="CheckBox_NoRagdoll"
-                    Click="CheckBox_NoRagdoll_Click"
-                    Content="无布娃娃" />
+                    x:Name="CheckBox_Invisibility"
+                    Click="CheckBox_Invisibility_Click"
+                    Content="玩家隐身（虚假）" />
                 <CheckBox
                     x:Name="CheckBox_NPCIgnore"
                     Click="CheckBox_NPCIgnore_Click"
@@ -259,7 +259,7 @@
                 <CheckBox
                     x:Name="CheckBox_NoCollision"
                     Click="CheckBox_NoCollision_Click"
-                    Content="[数字0] 玩家无碰撞体积（穿墙）"
+                    Content="[数字0] 玩家无碰撞体积（穿墙）★"
                     IsChecked="{Binding SelfStateModel.IsHotKeyNoCollision, UpdateSourceTrigger=PropertyChanged}" />
             </StackPanel>
 
@@ -295,19 +295,19 @@
                 <CheckBox
                     x:Name="CheckBox_AutoClearWanted"
                     Click="CheckBox_AutoClearWanted_Click"
-                    Content="自动消星" />
+                    Content="自动消星 ★" />
                 <CheckBox
                     x:Name="CheckBox_AutoKillNPC"
                     Click="CheckBox_AutoKillNPC_Click"
-                    Content="自动击杀NPC" />
+                    Content="自动击杀NPC ★" />
                 <CheckBox
                     x:Name="CheckBox_AutoKillHostilityNPC"
                     Click="CheckBox_AutoKillHostilityNPC_Click"
-                    Content="自动击杀敌对NPC" />
+                    Content="自动击杀敌对NPC ★" />
                 <CheckBox
                     x:Name="CheckBox_AutoKillPolice"
                     Click="CheckBox_AutoKillPolice_Click"
-                    Content="自动击杀警察" />
+                    Content="自动击杀警察 ★" />
             </StackPanel>
 
             <ui:UiLabelEmoji Content="高级" />

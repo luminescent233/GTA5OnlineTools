@@ -1,25 +1,26 @@
-﻿namespace GTA5OnlineTools.Features.SDK;
+﻿using GTA5OnlineTools.Features.Core;
+
+namespace GTA5OnlineTools.Features.SDK;
 
 public static class Globals
 {
-    public static long WorldPTR = 0;
-    public static long BlipPTR = 0;
-    public static long GlobalPTR = 0;
+    /// <summary>
+    /// 获取 CPed 指针
+    /// </summary>
+    /// <returns></returns>
+    public static long GetCPed()
+    {
+        long pCPedFactory = Memory.Read<long>(Pointers.WorldPTR);
+        return Memory.Read<long>(pCPedFactory + Offsets.CPed);
+    }
 
-    public static long ReplayInterfacePTR = 0;
-    public static long NetworkPlayerMgrPTR = 0;
-
-    public static long ViewPortPTR = 0;
-    public static long AimingPedPTR = 0;
-    public static long CCameraPTR = 0;
-
-    public static long WeatherPTR = 0;
-
-    public static long UnkModelPTR = 0;
-    public static long PickupDataPTR = 0;
-
-    public static long LocalScriptsPTR = 0;
-
-    public static long UnkPTR = 0;
-
+    /// <summary>
+    /// 获取 CPlayerInfo 指针
+    /// </summary>
+    /// <returns></returns>
+    public static long GetCPlayerInfo()
+    {
+        long pCPed = GetCPed();
+        return Memory.Read<long>(pCPed + Offsets.CPed_CPlayerInfo);
+    }
 }

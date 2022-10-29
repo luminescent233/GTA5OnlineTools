@@ -9,8 +9,7 @@ public static class Player
     /// </summary>
     public static void GodMode(bool isEnable)
     {
-        long pCPedFactory = Memory.Read<long>(Globals.WorldPTR);
-        long pCPed = Memory.Read<long>(pCPedFactory + Offsets.CPed);
+        long pCPed = Globals.GetCPed();
 
         if (isEnable)
             Memory.Write<byte>(pCPed + Offsets.CPed_God, 0x01);
@@ -24,8 +23,7 @@ public static class Player
     /// <param name="value"></param>
     public static void Health(float value)
     {
-        long pCPedFactory = Memory.Read<long>(Globals.WorldPTR);
-        long pCPed = Memory.Read<long>(pCPedFactory + Offsets.CPed);
+        long pCPed = Globals.GetCPed();
         Memory.Write(pCPed + Offsets.CPed_Health, value);
     }
 
@@ -35,8 +33,7 @@ public static class Player
     /// <param name="value"></param>
     public static void HealthMax(float value)
     {
-        long pCPedFactory = Memory.Read<long>(Globals.WorldPTR);
-        long pCPed = Memory.Read<long>(pCPedFactory + Offsets.CPed);
+        long pCPed = Globals.GetCPed();
         Memory.Write(pCPed + Offsets.CPed_HealthMax, value);
     }
 
@@ -46,8 +43,7 @@ public static class Player
     /// <param name="value"></param>
     public static void Armor(float value)
     {
-        long pCPedFactory = Memory.Read<long>(Globals.WorldPTR);
-        long pCPed = Memory.Read<long>(pCPedFactory + Offsets.CPed);
+        long pCPed = Globals.GetCPed();
         Memory.Write(pCPed + Offsets.CPed_Armor, value);
     }
 
@@ -56,10 +52,7 @@ public static class Player
     /// </summary>
     public static void WantedLevel(byte level)
     {
-        long pCPedFactory = Memory.Read<long>(Globals.WorldPTR);
-        long pCPed = Memory.Read<long>(pCPedFactory + Offsets.CPed);
-        long pCPlayerInfo = Memory.Read<long>(pCPed + Offsets.CPed_CPlayerInfo);
-
+        long pCPlayerInfo = Globals.GetCPlayerInfo();
         Memory.Write(pCPlayerInfo + Offsets.CPed_CPlayerInfo_WantedLevel, level);
     }
 
@@ -69,9 +62,7 @@ public static class Player
     /// <param name="value"></param>
     public static void RunSpeed(float value)
     {
-        long pCPedFactory = Memory.Read<long>(Globals.WorldPTR);
-        long pCPed = Memory.Read<long>(pCPedFactory + Offsets.CPed);
-        long pCPlayerInfo = Memory.Read<long>(pCPed + Offsets.CPed_CPlayerInfo);
+        long pCPlayerInfo = Globals.GetCPlayerInfo();
         Memory.Write(pCPlayerInfo + Offsets.CPed_CPlayerInfo_RunSpeed, value);
     }
 
@@ -81,9 +72,7 @@ public static class Player
     /// <param name="value"></param>
     public static void SwimSpeed(float value)
     {
-        long pCPedFactory = Memory.Read<long>(Globals.WorldPTR);
-        long pCPed = Memory.Read<long>(pCPedFactory + Offsets.CPed);
-        long pCPlayerInfo = Memory.Read<long>(pCPed + Offsets.CPed_CPlayerInfo);
+        long pCPlayerInfo = Globals.GetCPlayerInfo();
         Memory.Write(pCPlayerInfo + Offsets.CPed_CPlayerInfo_SwimSpeed, value);
     }
 
@@ -93,9 +82,7 @@ public static class Player
     /// <param name="value"></param>
     public static void WalkSpeed(float value)
     {
-        long pCPedFactory = Memory.Read<long>(Globals.WorldPTR);
-        long pCPed = Memory.Read<long>(pCPedFactory + Offsets.CPed);
-        long pCPlayerInfo = Memory.Read<long>(pCPed + Offsets.CPed_CPlayerInfo);
+        long pCPlayerInfo = Globals.GetCPlayerInfo();
         Memory.Write(pCPlayerInfo + Offsets.CPed_CPlayerInfo_WalkSpeed, value);
     }
 
@@ -119,15 +106,15 @@ public static class Player
          */
 
         // joaat("weapon_minigun");
-        Hacks.WriteGA<int>(262145 + 87, isEnable ? 99999999 : 120000);        // 120000     GLOBAL IDLEKICK_WARNING1 
-        Hacks.WriteGA<int>(262145 + 88, isEnable ? 99999999 : 300000);        // 300000     GLOBAL IDLEKICK_WARNING2 
-        Hacks.WriteGA<int>(262145 + 89, isEnable ? 99999999 : 600000);        // 600000     GLOBAL IDLEKICK_WARNING3
-        Hacks.WriteGA<int>(262145 + 90, isEnable ? 99999999 : 900000);        // 900000     GLOBAL IDLEKICK_KICK 
+        Hacks.WriteGA(262145 + 87, isEnable ? 99999999 : 120000);        // 120000     GLOBAL IDLEKICK_WARNING1 
+        Hacks.WriteGA(262145 + 88, isEnable ? 99999999 : 300000);        // 300000     GLOBAL IDLEKICK_WARNING2 
+        Hacks.WriteGA(262145 + 89, isEnable ? 99999999 : 600000);        // 600000     GLOBAL IDLEKICK_WARNING3
+        Hacks.WriteGA(262145 + 90, isEnable ? 99999999 : 900000);        // 900000     GLOBAL IDLEKICK_KICK 
         // 742014
-        Hacks.WriteGA<int>(262145 + 8248, isEnable ? 2000000000 : 30000);     // 30000      GLOBAL ConstrainedKick_Warning1
-        Hacks.WriteGA<int>(262145 + 8249, isEnable ? 2000000000 : 60000);     // 60000      GLOBAL ConstrainedKick_Warning2
-        Hacks.WriteGA<int>(262145 + 8250, isEnable ? 2000000000 : 90000);     // 90000      GLOBAL ConstrainedKick_Warning3
-        Hacks.WriteGA<int>(262145 + 8251, isEnable ? 2000000000 : 120000);    // 120000     GLOBAL ConstrainedKick_Kick
+        Hacks.WriteGA(262145 + 8248, isEnable ? 2000000000 : 30000);     // 30000      GLOBAL ConstrainedKick_Warning1
+        Hacks.WriteGA(262145 + 8249, isEnable ? 2000000000 : 60000);     // 60000      GLOBAL ConstrainedKick_Warning2
+        Hacks.WriteGA(262145 + 8250, isEnable ? 2000000000 : 90000);     // 90000      GLOBAL ConstrainedKick_Warning3
+        Hacks.WriteGA(262145 + 8251, isEnable ? 2000000000 : 120000);    // 120000     GLOBAL ConstrainedKick_Kick
     }
 
     /// <summary>
@@ -135,8 +122,7 @@ public static class Player
     /// </summary>
     public static void NoRagdoll(bool isEnable)
     {
-        long pCPedFactory = Memory.Read<long>(Globals.WorldPTR);
-        long pCPed = Memory.Read<long>(pCPedFactory + Offsets.CPed);
+        long pCPed = Globals.GetCPed();
 
         if (isEnable)
             Memory.Write<byte>(pCPed + Offsets.CPed_Ragdoll, 0x01);
@@ -149,8 +135,7 @@ public static class Player
     /// </summary>
     public static void Invisible(bool isEnable)
     {
-        long pCPedFactory = Memory.Read<long>(Globals.WorldPTR);
-        long pCPed = Memory.Read<long>(pCPedFactory + Offsets.CPed);
+        long pCPed = Globals.GetCPed();
 
         if (isEnable)
             Memory.Write<byte>(pCPed + Offsets.CPed_Invisible, 0x01);
@@ -163,8 +148,7 @@ public static class Player
     /// </summary>
     public static void FillHealthArmor()
     {
-        long pCPedFactory = Memory.Read<long>(Globals.WorldPTR);
-        long pCPed = Memory.Read<long>(pCPedFactory + Offsets.CPed);
+        long pCPed = Globals.GetCPed();
 
         float oHealth = Memory.Read<float>(pCPed + Offsets.CPed_Health);
         float oHealthMax = Memory.Read<float>(pCPed + Offsets.CPed_HealthMax);
@@ -185,8 +169,7 @@ public static class Player
     /// </summary>
     public static void Suicide()
     {
-        long pCPedFactory = Memory.Read<long>(Globals.WorldPTR);
-        long pCPed = Memory.Read<long>(pCPedFactory + Offsets.CPed);
+        long pCPed = Globals.GetCPed();
         Memory.Write(pCPed + Offsets.CPed_Health, 1.0f);
     }
 
@@ -195,8 +178,7 @@ public static class Player
     /// </summary>
     public static void UndeadOffRadar(bool isEnable)
     {
-        long pCPedFactory = Memory.Read<long>(Globals.WorldPTR);
-        long pCPed = Memory.Read<long>(pCPedFactory + Offsets.CPed);
+        long pCPed = Globals.GetCPed();
 
         if (isEnable)
             Memory.Write(pCPed + Offsets.CPed_HealthMax, 0.0f);
@@ -209,9 +191,7 @@ public static class Player
     /// </summary>
     public static void WantedCanChange(bool isEnable)
     {
-        long pCPedFactory = Memory.Read<long>(Globals.WorldPTR);
-        long pCPed = Memory.Read<long>(pCPedFactory + Offsets.CPed);
-        long pCPlayerInfo = Memory.Read<long>(pCPed + Offsets.CPed_CPlayerInfo);
+        long pCPlayerInfo = Globals.GetCPlayerInfo();
 
         if (isEnable)
             Memory.Write(pCPlayerInfo + Offsets.CPed_CPlayerInfo_WantedCanChange, 1.0f);
@@ -225,10 +205,7 @@ public static class Player
     /// <param name="value"></param>
     public static void NPCIgnore(int value)
     {
-        long pCPedFactory = Memory.Read<long>(Globals.WorldPTR);
-        long pCPed = Memory.Read<long>(pCPedFactory + Offsets.CPed);
-        long pCPlayerInfo = Memory.Read<long>(pCPed + Offsets.CPed_CPlayerInfo);
-
+        long pCPlayerInfo = Globals.GetCPlayerInfo();
         Memory.Write(pCPlayerInfo + Offsets.CPed_CPlayerInfo_NPCIgnore, value);
     }
 
@@ -237,8 +214,8 @@ public static class Player
     /// </summary>
     public static void NoCollision(bool isEnable)
     {
-        long pCPedFactory = Memory.Read<long>(Globals.WorldPTR);
-        long pCPed = Memory.Read<long>(pCPedFactory + Offsets.CPed);
+        long pCPed = Globals.GetCPed();
+
         long pCNavigation = Memory.Read<long>(pCPed + Offsets.CPed_CNavigation);
         long pointer = Memory.Read<long>(pCNavigation + 0x10);
         pointer = Memory.Read<long>(pointer + 0x20);
@@ -256,8 +233,7 @@ public static class Player
     /// </summary>
     public static void ProofBullet(bool isEnable)
     {
-        long pCPedFactory = Memory.Read<long>(Globals.WorldPTR);
-        long pCPed = Memory.Read<long>(pCPedFactory + Offsets.CPed);
+        long pCPed = Globals.GetCPed();
         uint oProof = Memory.Read<uint>(pCPed + Offsets.CPed_Proof);
 
         oProof = isEnable ? oProof | (1 << 4) : (uint)(oProof & ~(1 << 4));
@@ -269,8 +245,7 @@ public static class Player
     /// </summary>
     public static void ProofFire(bool isEnable)
     {
-        long pCPedFactory = Memory.Read<long>(Globals.WorldPTR);
-        long pCPed = Memory.Read<long>(pCPedFactory + Offsets.CPed);
+        long pCPed = Globals.GetCPed();
         uint oProof = Memory.Read<uint>(pCPed + Offsets.CPed_Proof);
 
         oProof = isEnable ? oProof | (1 << 5) : (uint)(oProof & ~(1 << 5));
@@ -282,8 +257,7 @@ public static class Player
     /// </summary>
     public static void ProofCollision(bool isEnable)
     {
-        long pCPedFactory = Memory.Read<long>(Globals.WorldPTR);
-        long pCPed = Memory.Read<long>(pCPedFactory + Offsets.CPed);
+        long pCPed = Globals.GetCPed();
         uint oProof = Memory.Read<uint>(pCPed + Offsets.CPed_Proof);
 
         oProof = isEnable ? oProof | (1 << 6) : (uint)(oProof & ~(1 << 6));
@@ -295,8 +269,7 @@ public static class Player
     /// </summary>
     public static void ProofMelee(bool isEnable)
     {
-        long pCPedFactory = Memory.Read<long>(Globals.WorldPTR);
-        long pCPed = Memory.Read<long>(pCPedFactory + Offsets.CPed);
+        long pCPed = Globals.GetCPed();
         uint oProof = Memory.Read<uint>(pCPed + Offsets.CPed_Proof);
 
         oProof = isEnable ? oProof | (1 << 7) : (uint)(oProof & ~(1 << 7));
@@ -308,8 +281,7 @@ public static class Player
     /// </summary>
     public static void ProofGod(bool isEnable)
     {
-        long pCPedFactory = Memory.Read<long>(Globals.WorldPTR);
-        long pCPed = Memory.Read<long>(pCPedFactory + Offsets.CPed);
+        long pCPed = Globals.GetCPed();
         uint oProof = Memory.Read<uint>(pCPed + Offsets.CPed_Proof);
 
         oProof = isEnable ? oProof | (1 << 8) : (uint)(oProof & ~(1 << 8));
@@ -321,8 +293,7 @@ public static class Player
     /// </summary>
     public static void ProofExplosion(bool isEnable)
     {
-        long pCPedFactory = Memory.Read<long>(Globals.WorldPTR);
-        long pCPed = Memory.Read<long>(pCPedFactory + Offsets.CPed);
+        long pCPed = Globals.GetCPed();
         uint oProof = Memory.Read<uint>(pCPed + Offsets.CPed_Proof);
 
         oProof = isEnable ? oProof | (1 << 11) : (uint)(oProof & ~(1 << 11));
@@ -334,8 +305,7 @@ public static class Player
     /// </summary>
     public static void ProofSteam(bool isEnable)
     {
-        long pCPedFactory = Memory.Read<long>(Globals.WorldPTR);
-        long pCPed = Memory.Read<long>(pCPedFactory + Offsets.CPed);
+        long pCPed = Globals.GetCPed();
         uint oProof = Memory.Read<uint>(pCPed + Offsets.CPed_Proof);
 
         oProof = isEnable ? oProof | (1 << 15) : (uint)(oProof & ~(1 << 15));
@@ -347,8 +317,7 @@ public static class Player
     /// </summary>
     public static void ProofDrown(bool isEnable)
     {
-        long pCPedFactory = Memory.Read<long>(Globals.WorldPTR);
-        long pCPed = Memory.Read<long>(pCPedFactory + Offsets.CPed);
+        long pCPed = Globals.GetCPed();
         uint oProof = Memory.Read<uint>(pCPed + Offsets.CPed_Proof);
 
         oProof = isEnable ? oProof | (1 << 16) : (uint)(oProof & ~(1 << 16));
@@ -360,8 +329,7 @@ public static class Player
     /// </summary>
     public static void ProofWater(bool isEnable)
     {
-        long pCPedFactory = Memory.Read<long>(Globals.WorldPTR);
-        long pCPed = Memory.Read<long>(pCPedFactory + Offsets.CPed);
+        long pCPed = Globals.GetCPed();
         uint oProof = Memory.Read<uint>(pCPed + Offsets.CPed_Proof);
 
         oProof = isEnable ? oProof | (1 << 24) : (uint)(oProof & ~(1 << 24));

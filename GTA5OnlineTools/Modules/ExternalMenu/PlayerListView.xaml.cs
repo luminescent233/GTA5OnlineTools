@@ -59,7 +59,7 @@ public partial class PlayerListView : UserControl
         PlayerDatas.Clear();
         ListBox_PlayerList.Items.Clear();
 
-        long pCNetworkPlayerMgr = Memory.Read<long>(Globals.NetworkPlayerMgrPTR);
+        long pCNetworkPlayerMgr = Memory.Read<long>(Pointers.NetworkPlayerMgrPTR);
 
         long pCNetGamePlayerLocal = Memory.Read<long>(pCNetworkPlayerMgr + Offsets.CNetworkPlayerMgr_CNetGamePlayerLocal);
         long pCPlayerInfoLocal = Memory.Read<long>(pCNetGamePlayerLocal + Offsets.CNetworkPlayerMgr_CNetGamePlayer_CPlayerInfo);

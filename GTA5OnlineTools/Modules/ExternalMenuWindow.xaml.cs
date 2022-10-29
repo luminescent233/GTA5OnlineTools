@@ -3,6 +3,9 @@ using GTA5OnlineTools.Features.Core;
 using GTA5OnlineTools.Modules.ExternalMenu;
 
 using CommunityToolkit.Mvvm.Input;
+using GTA5OnlineTools.Features.SDK;
+using GTA5OnlineTools.Features.Settings;
+using GTA5OnlineTools.Features.Client;
 
 namespace GTA5OnlineTools.Modules;
 
@@ -54,6 +57,13 @@ public partial class ExternalMenuWindow
     /// </summary>
     private bool IsShowExternalMenu = true;
 
+    /// <summary>
+    /// 判断程序是否在运行，用于结束线程
+    /// </summary>
+    private bool IsAppRunning = true;
+
+    ///////////////////////////////////////////////////////////////
+
     public ExternalMenuWindow()
     {
         InitializeComponent();
@@ -79,6 +89,18 @@ public partial class ExternalMenuWindow
 
         HotKeys.AddKey(WinVK.DELETE);
         HotKeys.KeyDownEvent += HotKeys_KeyDownEvent;
+
+        new Thread(CPedThread)
+        {
+            Name = "CPedThread",
+            IsBackground = true
+        }.Start();
+
+        new Thread(CommonThread)
+        {
+            Name = "CommonThread",
+            IsBackground = true
+        }.Start();
     }
 
     /// <summary>
@@ -90,6 +112,11 @@ public partial class ExternalMenuWindow
     {
         WindowClosingEvent();
 
+        IsAppRunning = false;
+        MenuSetting.Player.Reset();
+        MenuSetting.Vehicle.Reset();
+        MenuSetting.Auto.Reset();
+        MenuSetting.Overlay.Reset();
         HotKeys.ClearKeys();
     }
 
@@ -210,6 +237,163 @@ public partial class ExternalMenuWindow
 
             Win32.GetCursorPos(out ThisWinPOINT);
             Memory.SetForegroundWindow();
+        }
+    }
+
+    private void CPedThread()
+    {
+        while (IsAppRunning)
+        {
+            long pCPedFactory = Memory.Read<long>(Pointers.WorldPTR);
+            long pCPed = Memory.Read<long>(pCPedFactory + Offsets.CPed);
+            long pCPlayerInfo = Memory.Read<long>(pCPed + Offsets.CPed_CPlayerInfo);
+            long pCNavigation = Memory.Read<long>(pCPed + Offsets.CPed_CNavigation);
+
+            byte oInVehicle = Memory.Read<byte>(pCPed + Offsets.CPed_InVehicle);
+
+            byte oGod = Memory.Read<byte>(pCPed + Offsets.CPed_God);
+            byte oRagdoll = Memory.Read<byte>(pCPed + Offsets.CPed_Ragdoll);
+            byte oSeatbelt = Memory.Read<byte>(pCPed + Offsets.CPed_Seatbelt);
+
+            ////////////////////////////////////////////////////////////////
+
+            // 玩家无敌
+            if (MenuSetting.Player.GodMode)
+            {
+                if (oGod == 0x00)
+                    Memory.Write<byte>(pCPed + Offsets.CPed_God, 0x01);
+            }
+            else
+            {
+                if (oGod == 0x01)
+                    Memory.Write<byte>(pCPed + Offsets.CPed_God, 0x00);
+            }
+
+            // 挂机防踢
+            if (MenuSetting.Player.AntiAFK)
+            {
+                if (Hacks.ReadGA<int>(262145 + 87) == 120000)
+                    Player.AntiAFK(true);
+            }
+            else
+            {
+                if (Hacks.ReadGA<int>(262145 + 87) == 99999999)
+                    Player.AntiAFK(false);
+            }
+
+            // 无布娃娃
+            if (MenuSetting.Player.NoRagdoll)
+            {
+                if (oRagdoll == 0x20)
+                    Memory.Write<byte>(pCPed + Offsets.CPed_Ragdoll, 0x01);
+            }
+            else
+            {
+                if (oRagdoll == 0x01)
+                    Memory.Write<byte>(pCPed + Offsets.CPed_Ragdoll, 0x20);
+            }
+
+            // 玩家无碰撞体积
+            if (MenuSetting.Player.NoCollision)
+            {
+                long pointer = Memory.Read<long>(pCNavigation + 0x10);
+                pointer = Memory.Read<long>(pointer + 0x20);
+                pointer = Memory.Read<long>(pointer + 0x70);
+                pointer = Memory.Read<long>(pointer + 0x00);
+                Memory.Write(pointer + 0x2C, -1.0f);
+            }
+
+            // 安全带
+            if (MenuSetting.Vehicle.Seatbelt)
+            {
+                if (oSeatbelt == 0xC8)
+                    Memory.Write<byte>(pCPed + Offsets.CPed_Seatbelt, 0xC9);
+            }
+            else
+            {
+                if (oSeatbelt == 0xC9)
+                    Memory.Write<byte>(pCPed + Offsets.CPed_Seatbelt, 0xC8);
+            }
+
+            ////////////////////////////////////////////////////////////////
+
+            if (oInVehicle != 0x00)
+            {
+                long pCVehicle = Memory.Read<long>(pCPed + Offsets.CPed_CVehicle);
+                byte oVehicleGod = Memory.Read<byte>(pCVehicle + Offsets.CPed_CVehicle_God);
+
+                // 载具无敌
+                if (MenuSetting.Vehicle.GodMode)
+                {
+                    if (oVehicleGod == 0x00)
+                        Memory.Write<byte>(pCVehicle + Offsets.CPed_CVehicle_God, 0x01);
+                }
+                else
+                {
+                    if (oVehicleGod == 0x01)
+                        Memory.Write<byte>(pCVehicle + Offsets.CPed_CVehicle_God, 0x00);
+                }
+            }
+
+            Thread.Sleep(1000);
+        }
+    }
+
+    private void CommonThread()
+    {
+        while (IsAppRunning)
+        {
+            // 自动消星
+            if (MenuSetting.Auto.ClearWanted)
+                Player.WantedLevel(0x00);
+
+            long pCReplayInterface = Memory.Read<long>(Pointers.ReplayInterfacePTR);
+            long pCPedInterface = Memory.Read<long>(pCReplayInterface + Offsets.CReplayInterface_CPedInterface);
+            int oMaxPeds = Memory.Read<int>(pCPedInterface + Offsets.CReplayInterface_CPedInterface_MaxPeds);
+
+            for (int i = 0; i < oMaxPeds; i++)
+            {
+                long pCPedList = Memory.Read<long>(pCPedInterface + Offsets.CReplayInterface_CPedInterface_CPedList);
+
+                long pCPed = Memory.Read<long>(pCPedList + i * 0x10);
+                if (!Memory.IsValid(pCPed))
+                    continue;
+
+                // 跳过玩家
+                long pCPlayerInfo = Memory.Read<long>(pCPed + Offsets.CPed_CPlayerInfo);
+                if (Memory.IsValid(pCPlayerInfo))
+                    continue;
+
+                // 自动击杀NPC
+                if (MenuSetting.Auto.KillNPC)
+                    Memory.Write(pCPed + Offsets.CPed_Health, 0.0f);
+
+                // 自动击杀敌对NPC
+                if (MenuSetting.Auto.KillHostilityNPC)
+                {
+                    byte oHostility = Memory.Read<byte>(pCPed + Offsets.CPed_Hostility);
+                    if (oHostility > 0x01)
+                    {
+                        Memory.Write(pCPed + Offsets.CPed_Health, 0.0f);
+                    }
+                }
+
+                // 自动击杀警察
+                if (MenuSetting.Auto.KillPolice)
+                {
+                    int ped_type = Memory.Read<int>(pCPed + Offsets.CPed_Ragdoll);
+                    ped_type = ped_type << 11 >> 25;
+
+                    if (ped_type == (int)EnumData.PedTypes.COP ||
+                        ped_type == (int)EnumData.PedTypes.SWAT ||
+                        ped_type == (int)EnumData.PedTypes.ARMY)
+                    {
+                        Memory.Write(pCPed + Offsets.CPed_Health, 0.0f);
+                    }
+                }
+            }
+
+            Thread.Sleep(200);
         }
     }
 }

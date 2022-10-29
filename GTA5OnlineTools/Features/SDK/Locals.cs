@@ -26,7 +26,7 @@ public static class Locals
 
     public static long LocalAddress(string name)
     {
-        long pLocalScripts = Memory.Read<long>(Globals.LocalScriptsPTR);
+        long pLocalScripts = Memory.Read<long>(Pointers.LocalScriptsPTR);
 
         for (int i = 0; i < 54; i++)
         {
@@ -42,7 +42,7 @@ public static class Locals
 
     public static long LocalAddress(string name, int index)
     {
-        long pLocalScripts = Memory.Read<long>(Globals.LocalScriptsPTR);
+        long pLocalScripts = Memory.Read<long>(Pointers.LocalScriptsPTR);
 
         for (int i = 0; i < 54; i++)
         {

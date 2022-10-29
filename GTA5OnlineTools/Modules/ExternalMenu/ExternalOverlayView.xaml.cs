@@ -45,6 +45,13 @@ public partial class ExternalOverlayView : UserControl
         }
     }
 
+    private void Button_Overaly_Exit_Click(object sender, RoutedEventArgs e)
+    {
+        AudioUtil.PlayClickSound();
+
+        CloseESP();
+    }
+
     private void CloseESP()
     {
         if (overlay != null)
@@ -52,13 +59,6 @@ public partial class ExternalOverlayView : UserControl
             overlay.Dispose();
             overlay = null;
         }
-    }
-
-    private void Button_Overaly_Exit_Click(object sender, RoutedEventArgs e)
-    {
-        AudioUtil.PlayClickSound();
-
-        CloseESP();
     }
 
     private void CheckBox_ESP_2DBox_Click(object sender, RoutedEventArgs e)

@@ -1,9 +1,10 @@
-﻿using GTA5OnlineTools.Features.SDK;
-using GTA5OnlineTools.Features.Core;
-using GTA5OnlineTools.Features.Client;
-using GTA5OnlineTools.Common.Utils;
+﻿using GTA5OnlineTools.Common.Utils;
 using GTA5OnlineTools.Config.Modules;
 using GTA5OnlineTools.Models.Modules;
+using GTA5OnlineTools.Features.SDK;
+using GTA5OnlineTools.Features.Core;
+using GTA5OnlineTools.Features.Client;
+using GTA5OnlineTools.Features.Settings;
 
 namespace GTA5OnlineTools.Modules.ExternalMenu;
 
@@ -29,21 +30,15 @@ public partial class SelfStateView : UserControl
     /// </summary>
     private bool IsAppRunning = true;
 
+    /// <summary>
+    /// 穿墙开关切换
+    /// </summary>
     private bool Toggle_NoCollision = false;
 
+    /// <summary>
+    /// 坐标微调距离
+    /// </summary>
     private float Forward_Distance = 1.5f;
-    private bool Player_GodMode = false;
-    private bool Player_AntiAFK = false;
-    private bool Player_NoRagdoll = false;
-    private bool Player_NoCollision = false;
-
-    private bool Vehicle_GodMode = false;
-    private bool Vehicle_Seatbelt = false;
-
-    private bool Auto_ClearWanted = false;
-    private bool Auto_KillNPC = false;
-    private bool Auto_KillHostilityNPC = false;
-    private bool Auto_KillPolice = false;
 
     /////////////////////////////////////////////////////////
 
@@ -53,15 +48,9 @@ public partial class SelfStateView : UserControl
         this.DataContext = this;
         ExternalMenuWindow.WindowClosingEvent += ExternalMenuWindow_WindowClosingEvent;
 
-        new Thread(SelfStateMainThread)
+        new Thread(SelfStateUpdateThread)
         {
-            Name = "SelfStateMainThread",
-            IsBackground = true
-        }.Start();
-
-        new Thread(SelfStateCommonThread)
-        {
-            Name = "SelfStateCommonThread",
+            Name = "SelfStateUpdateThread",
             IsBackground = true
         }.Start();
 
@@ -175,7 +164,7 @@ public partial class SelfStateView : UserControl
                     Toggle_NoCollision = !Toggle_NoCollision;
 
                     Player.NoCollision(Toggle_NoCollision);
-                    Player_NoCollision = Toggle_NoCollision;
+                    MenuSetting.Player.NoCollision = Toggle_NoCollision;
 
                     if (Toggle_NoCollision)
                         Console.Beep(600, 75);
@@ -186,108 +175,22 @@ public partial class SelfStateView : UserControl
         }
     }
 
-    private void SelfStateMainThread()
+    private void SelfStateUpdateThread()
     {
         while (IsAppRunning)
         {
-            long pCPedFactory = Memory.Read<long>(Globals.WorldPTR);
+            long pCPedFactory = Memory.Read<long>(Pointers.WorldPTR);
             long pCPed = Memory.Read<long>(pCPedFactory + Offsets.CPed);
             long pCPlayerInfo = Memory.Read<long>(pCPed + Offsets.CPed_CPlayerInfo);
-            long pCNavigation = Memory.Read<long>(pCPed + Offsets.CPed_CNavigation);
 
-            byte oInVehicle = Memory.Read<byte>(pCPed + Offsets.CPed_InVehicle);
-
-            byte oGod = Memory.Read<byte>(pCPed + Offsets.CPed_God);
             float oHealth = Memory.Read<float>(pCPed + Offsets.CPed_Health);
             float oHealthMax = Memory.Read<float>(pCPed + Offsets.CPed_HealthMax);
             float oArmor = Memory.Read<float>(pCPed + Offsets.CPed_Armor);
-            byte oRagdoll = Memory.Read<byte>(pCPed + Offsets.CPed_Ragdoll);
-            byte oSeatbelt = Memory.Read<byte>(pCPed + Offsets.CPed_Seatbelt);
 
             byte oWantedLevel = Memory.Read<byte>(pCPlayerInfo + Offsets.CPed_CPlayerInfo_WantedLevel);
             float oRunSpeed = Memory.Read<float>(pCPlayerInfo + Offsets.CPed_CPlayerInfo_RunSpeed);
             float oSwimSpeed = Memory.Read<float>(pCPlayerInfo + Offsets.CPed_CPlayerInfo_SwimSpeed);
             float oWalkSpeed = Memory.Read<float>(pCPlayerInfo + Offsets.CPed_CPlayerInfo_WalkSpeed);
-
-            ////////////////////////////////////////////////////////////////
-
-            // 玩家无敌
-            if (Player_GodMode)
-            {
-                if (oGod == 0x00)
-                    Memory.Write<byte>(pCPed + Offsets.CPed_God, 0x01);
-            }
-            else
-            {
-                if (oGod == 0x01)
-                    Memory.Write<byte>(pCPed + Offsets.CPed_God, 0x00);
-            }
-
-            // 挂机防踢
-            if (Player_AntiAFK)
-            {
-                if (Hacks.ReadGA<int>(262145 + 87) == 120000)
-                    Player.AntiAFK(true);
-            }
-            else
-            {
-                if (Hacks.ReadGA<int>(262145 + 87) == 99999999)
-                    Player.AntiAFK(false);
-            }
-
-            // 无布娃娃
-            if (Player_NoRagdoll)
-            {
-                if (oRagdoll == 0x20)
-                    Memory.Write<byte>(pCPed + Offsets.CPed_Ragdoll, 0x01);
-            }
-            else
-            {
-                if (oRagdoll == 0x01)
-                    Memory.Write<byte>(pCPed + Offsets.CPed_Ragdoll, 0x20);
-            }
-
-            // 玩家无碰撞体积
-            if (Player_NoCollision)
-            {
-                long pointer = Memory.Read<long>(pCNavigation + 0x10);
-                pointer = Memory.Read<long>(pointer + 0x20);
-                pointer = Memory.Read<long>(pointer + 0x70);
-                pointer = Memory.Read<long>(pointer + 0x00);
-                Memory.Write(pointer + 0x2C, -1.0f);
-            }
-
-            // 安全带
-            if (Vehicle_Seatbelt)
-            {
-                if (oSeatbelt == 0xC8)
-                    Memory.Write<byte>(pCPed + Offsets.CPed_Seatbelt, 0xC9);
-            }
-            else
-            {
-                if (oSeatbelt == 0xC9)
-                    Memory.Write<byte>(pCPed + Offsets.CPed_Seatbelt, 0xC8);
-            }
-
-            ////////////////////////////////////////////////////////////////
-
-            if (oInVehicle != 0x00)
-            {
-                long pCVehicle = Memory.Read<long>(pCPed + Offsets.CPed_CVehicle);
-                byte oVehicleGod = Memory.Read<byte>(pCVehicle + Offsets.CPed_CVehicle_God);
-
-                // 载具无敌
-                if (Vehicle_GodMode)
-                {
-                    if (oVehicleGod == 0x00)
-                        Memory.Write<byte>(pCVehicle + Offsets.CPed_CVehicle_God, 0x01);
-                }
-                else
-                {
-                    if (oVehicleGod == 0x01)
-                        Memory.Write<byte>(pCVehicle + Offsets.CPed_CVehicle_God, 0x00);
-                }
-            }
 
             ////////////////////////////////////////////////////////////////
 
@@ -316,64 +219,6 @@ public partial class SelfStateView : UserControl
             });
 
             Thread.Sleep(1000);
-        }
-    }
-
-    private void SelfStateCommonThread()
-    {
-        while (IsAppRunning)
-        {
-            // 自动消星
-            if (Auto_ClearWanted)
-                Player.WantedLevel(0x00);
-
-            long pCReplayInterface = Memory.Read<long>(Globals.ReplayInterfacePTR);
-            long pCPedInterface = Memory.Read<long>(pCReplayInterface + Offsets.CReplayInterface_CPedInterface);
-            int oMaxPeds = Memory.Read<int>(pCPedInterface + Offsets.CReplayInterface_CPedInterface_MaxPeds);
-
-            for (int i = 0; i < oMaxPeds; i++)
-            {
-                long pCPedList = Memory.Read<long>(pCPedInterface + Offsets.CReplayInterface_CPedInterface_CPedList);
-
-                long pCPed = Memory.Read<long>(pCPedList + i * 0x10);
-                if (!Memory.IsValid(pCPed))
-                    continue;
-
-                // 跳过玩家
-                long pCPlayerInfo = Memory.Read<long>(pCPed + Offsets.CPed_CPlayerInfo);
-                if (Memory.IsValid(pCPlayerInfo))
-                    continue;
-
-                // 自动击杀NPC
-                if (Auto_KillNPC)
-                    Memory.Write(pCPed + Offsets.CPed_Health, 0.0f);
-
-                // 自动击杀敌对NPC
-                if (Auto_KillHostilityNPC)
-                {
-                    byte oHostility = Memory.Read<byte>(pCPed + Offsets.CPed_Hostility);
-                    if (oHostility > 0x01)
-                    {
-                        Memory.Write(pCPed + Offsets.CPed_Health, 0.0f);
-                    }
-                }
-
-                // 自动击杀警察
-                if (Auto_KillPolice)
-                {
-                    int ped_type = Memory.Read<int>(pCPed + Offsets.CPed_Ragdoll);
-                    ped_type = ped_type << 11 >> 25;
-
-                    if (ped_type == (int)EnumData.PedTypes.COP ||
-                        ped_type == (int)EnumData.PedTypes.SWAT ||
-                        ped_type == (int)EnumData.PedTypes.ARMY)
-                    {
-                        Memory.Write(pCPed + Offsets.CPed_Health, 0.0f);
-                    }
-                }
-            }
-
-            Thread.Sleep(200);
         }
     }
 
@@ -415,13 +260,13 @@ public partial class SelfStateView : UserControl
     private void CheckBox_PlayerGodMode_Click(object sender, RoutedEventArgs e)
     {
         Player.GodMode(CheckBox_PlayerGodMode.IsChecked == true);
-        Player_GodMode = CheckBox_PlayerGodMode.IsChecked == true;
+        MenuSetting.Player.GodMode = CheckBox_PlayerGodMode.IsChecked == true;
     }
 
     private void CheckBox_AntiAFK_Click(object sender, RoutedEventArgs e)
     {
         Player.AntiAFK(CheckBox_AntiAFK.IsChecked == true);
-        Player_AntiAFK = CheckBox_AntiAFK.IsChecked == true;
+        MenuSetting.Player.AntiAFK = CheckBox_AntiAFK.IsChecked == true;
     }
 
     private void CheckBox_Invisibility_Click(object sender, RoutedEventArgs e)
@@ -437,7 +282,7 @@ public partial class SelfStateView : UserControl
     private void CheckBox_NoRagdoll_Click(object sender, RoutedEventArgs e)
     {
         Player.NoRagdoll(CheckBox_NoRagdoll.IsChecked == true);
-        Player_NoRagdoll = CheckBox_NoRagdoll.IsChecked == true;
+        MenuSetting.Player.NoRagdoll = CheckBox_NoRagdoll.IsChecked == true;
     }
 
     private void CheckBox_NPCIgnore_Click(object sender, RoutedEventArgs e)
@@ -463,25 +308,25 @@ public partial class SelfStateView : UserControl
     private void CheckBox_AutoClearWanted_Click(object sender, RoutedEventArgs e)
     {
         Player.WantedLevel(0x00);
-        Auto_ClearWanted = CheckBox_AutoClearWanted.IsChecked == true;
+        MenuSetting.Auto.ClearWanted = CheckBox_AutoClearWanted.IsChecked == true;
     }
 
     private void CheckBox_AutoKillNPC_Click(object sender, RoutedEventArgs e)
     {
         World.KillAllNPC(false);
-        Auto_KillNPC = CheckBox_AutoKillNPC.IsChecked == true;
+        MenuSetting.Auto.KillNPC = CheckBox_AutoKillNPC.IsChecked == true;
     }
 
     private void CheckBox_AutoKillHostilityNPC_Click(object sender, RoutedEventArgs e)
     {
         World.KillAllNPC(true);
-        Auto_KillHostilityNPC = CheckBox_AutoKillHostilityNPC.IsChecked == true;
+        MenuSetting.Auto.KillHostilityNPC = CheckBox_AutoKillHostilityNPC.IsChecked == true;
     }
 
     private void CheckBox_AutoKillPolice_Click(object sender, RoutedEventArgs e)
     {
         World.KillAllPolice();
-        Auto_KillPolice = CheckBox_AutoKillPolice.IsChecked == true;
+        MenuSetting.Auto.KillPolice = CheckBox_AutoKillPolice.IsChecked == true;
     }
 
     private void Button_ToWaypoint_Click(object sender, RoutedEventArgs e)
@@ -569,6 +414,6 @@ public partial class SelfStateView : UserControl
         Toggle_NoCollision = SelfStateModel.IsHotKeyNoCollision;
 
         Player.NoCollision(Toggle_NoCollision);
-        Player_NoCollision = Toggle_NoCollision;
+        MenuSetting.Player.NoCollision = Toggle_NoCollision;
     }
 }

@@ -34,11 +34,11 @@
                     <CheckBox
                         x:Name="CheckBox_VehicleGodMode"
                         Click="CheckBox_VehicleGodMode_Click"
-                        Content="载具无敌" />
+                        Content="载具无敌 ★" />
                     <CheckBox
                         x:Name="CheckBox_VehicleSeatbelt"
                         Click="CheckBox_VehicleSeatbelt_Click"
-                        Content="载具安全带" />
+                        Content="载具安全带 ★" />
                     <CheckBox
                         x:Name="CheckBox_VehicleParachute"
                         Click="CheckBox_VehicleParachute_Click"

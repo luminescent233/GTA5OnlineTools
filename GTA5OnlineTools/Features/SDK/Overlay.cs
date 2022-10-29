@@ -130,7 +130,7 @@ public class Overlay : IDisposable
             gview_width = windowData.Width / 2;
             gview_height = windowData.Height / 2;
 
-            long m_ped_factory = Memory.Read<long>(Globals.WorldPTR);
+            long m_ped_factory = Memory.Read<long>(Pointers.WorldPTR);
             long m_local_ped = Memory.Read<long>(m_ped_factory + 0x08);
 
             // 自己坐标
@@ -140,11 +140,11 @@ public class Overlay : IDisposable
             /////////////////////////////////////////////////////////////////////
 
             // 玩家列表
-            long pCNetworkPlayerMgr = Memory.Read<long>(Globals.NetworkPlayerMgrPTR);
+            long pCNetworkPlayerMgr = Memory.Read<long>(Pointers.NetworkPlayerMgrPTR);
             int playerCount = Memory.Read<int>(pCNetworkPlayerMgr + 0x178);
 
             // Ped数量
-            long m_replay = Memory.Read<long>(Globals.ReplayInterfacePTR);
+            long m_replay = Memory.Read<long>(Pointers.ReplayInterfacePTR);
             long m_ped_interface = Memory.Read<long>(m_replay + 0x18);
             int m_max_peds = Memory.Read<int>(m_ped_interface + 0x108);
             int m_cur_peds = Memory.Read<int>(m_ped_interface + 0x110);
@@ -153,7 +153,7 @@ public class Overlay : IDisposable
                 $"GTA5线上小助手\n\nX: {myPosV3.X:0.0000}\nY: {myPosV3.Y:0.0000}\nZ: {myPosV3.Z:0.0000}\n\n" +
                 $"玩家数量: {playerCount}\nPed数量: {m_cur_peds}");
 
-            long pAimingPedPTR = Memory.Read<long>(Globals.AimingPedPTR);
+            long pAimingPedPTR = Memory.Read<long>(Pointers.AimingPedPTR);
             bool isAimPed = Memory.Read<long>(pAimingPedPTR + 0x280) > 0;
 
             if (MenuSetting.Overlay.ESP_Crosshair)
@@ -429,7 +429,7 @@ public class Overlay : IDisposable
                 Vector3 aimBot_ViewAngles = new() { X = 0, Y = 0, Z = 0 };
                 Vector3 teleW_pedCoords = new() { X = 0, Y = 0, Z = 0 };
 
-                long pCPedFactory = Memory.Read<long>(Globals.WorldPTR);
+                long pCPedFactory = Memory.Read<long>(Pointers.WorldPTR);
                 long pCPed = Memory.Read<long>(pCPedFactory + Offsets.CPed);
                 byte oInVehicle = Memory.Read<byte>(pCPed + Offsets.CPed_InVehicle);
                 long pCPlayerInfo = Memory.Read<long>(pCPed + Offsets.CPed_CPlayerInfo);
@@ -438,7 +438,7 @@ public class Overlay : IDisposable
                 long myRID = Memory.Read<long>(pCPlayerInfo + Offsets.CPed_CPlayerInfo_RockstarID);
 
                 // 相机坐标
-                long pCCameraPTR = Memory.Read<long>(Globals.CCameraPTR);
+                long pCCameraPTR = Memory.Read<long>(Pointers.CCameraPTR);
                 long pCCameraPTR_0 = Memory.Read<long>(pCCameraPTR + 0x00);
                 pCCameraPTR_0 = Memory.Read<long>(pCCameraPTR_0 + 0x3C0);
                 Vector3 cameraV3Pos = Memory.Read<Vector3>(pCCameraPTR_0 + 0x60);
@@ -448,7 +448,7 @@ public class Overlay : IDisposable
                 float isFPP = Memory.Read<float>(offset + 0x30);
 
                 // Ped实体
-                long pReplayInterfacePTR = Memory.Read<long>(Globals.ReplayInterfacePTR);
+                long pReplayInterfacePTR = Memory.Read<long>(Pointers.ReplayInterfacePTR);
                 long my_offset_0x18 = Memory.Read<long>(pReplayInterfacePTR + 0x18);
 
                 for (int i = 0; i < 128; i++)
@@ -919,7 +919,7 @@ public class Overlay : IDisposable
         Vector2 screenV2;
         Vector3 cameraV3;
 
-        float[] viewMatrix = Memory.ReadMatrix<float>(Globals.ViewPortPTR + 0xC0, 16);
+        float[] viewMatrix = Memory.ReadMatrix<float>(Pointers.ViewPortPTR + 0xC0, 16);
 
         cameraV3.Z = viewMatrix[2] * posV3.X + viewMatrix[6] * posV3.Y + viewMatrix[10] * posV3.Z + viewMatrix[14];
         if (cameraV3.Z < 0.001f)
@@ -948,7 +948,7 @@ public class Overlay : IDisposable
         Vector2 boxV2;
         Vector3 cameraV3;
 
-        float[] viewMatrix = Memory.ReadMatrix<float>(Globals.ViewPortPTR + 0xC0, 16);
+        float[] viewMatrix = Memory.ReadMatrix<float>(Pointers.ViewPortPTR + 0xC0, 16);
 
         cameraV3.Z = viewMatrix[2] * posV3.X + viewMatrix[6] * posV3.Y + viewMatrix[10] * posV3.Z + viewMatrix[14];
         if (cameraV3.Z < 0.001f)

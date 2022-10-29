@@ -11,7 +11,7 @@ public static class Hacks
     /// <returns></returns>
     public static long GlobalAddress(int index)
     {
-        return Memory.Read<long>(Globals.GlobalPTR + 0x8 * ((index >> 0x12) & 0x3F)) + 8 * (index & 0x3FFFF);
+        return Memory.Read<long>(Pointers.GlobalPTR + 0x8 * ((index >> 0x12) & 0x3F)) + 8 * (index & 0x3FFFF);
     }
 
     /// <summary>
@@ -131,6 +131,8 @@ public static class Hacks
         WriteGA(1020252 + 5526, stat_resotreValue);
     }
 
+    /////////////////////////////////////////
+
     /// <summary>
     /// 掉落物品
     /// </summary>
@@ -153,7 +155,7 @@ public static class Hacks
 
         Thread.Sleep(150);
 
-        long pReplayInterface = Memory.Read<long>(Globals.ReplayInterfacePTR);
+        long pReplayInterface = Memory.Read<long>(Pointers.ReplayInterfacePTR);
         long m_dwpPickUpInterface = Memory.Read<long>(pReplayInterface + 0x20);
 
         long dw_curPickUpNum = Memory.Read<long>(m_dwpPickUpInterface + 0x110);
