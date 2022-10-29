@@ -25,7 +25,7 @@ public partial class InjectorWindow
         {
             foreach (Process process in Process.GetProcesses())
             {
-                this.Dispatcher.Invoke(() =>
+                this.Dispatcher.BeginInvoke(DispatcherPriority.Background, () =>
                 {
                     ProcessLists.Add(new ProcessList()
                     {
@@ -107,7 +107,7 @@ public partial class InjectorWindow
                 {
                     if (!string.IsNullOrEmpty(process.MainWindowTitle))
                     {
-                        this.Dispatcher.Invoke(() =>
+                        this.Dispatcher.BeginInvoke(DispatcherPriority.Background, () =>
                         {
                             ProcessLists.Add(new ProcessList()
                             {
@@ -127,7 +127,7 @@ public partial class InjectorWindow
             {
                 foreach (Process process in Process.GetProcesses())
                 {
-                    this.Dispatcher.Invoke(() =>
+                    this.Dispatcher.BeginInvoke(DispatcherPriority.Background, () =>
                     {
                         ProcessLists.Add(new ProcessList()
                         {
@@ -163,9 +163,9 @@ public partial class InjectorWindow
         }
     }
 
-    private void DataGrid_Process_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    private void ListView_Process_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        if (DataGrid_Process.SelectedItem is ProcessList temp)
+        if (ListView_Process.SelectedItem is ProcessList temp)
         {
             InjectInfo.ProcID = temp.ProcID;
             InjectInfo.ProcName = temp.ProcName;

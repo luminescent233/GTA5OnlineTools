@@ -67,31 +67,33 @@
                 Text="等待用户操作..." />
         </DockPanel>
         <!--  ##########  -->
-        <DataGrid
-            x:Name="DataGrid_Process"
+        <ListView
+            x:Name="ListView_Process"
             Margin="5"
             DockPanel.Dock="Bottom"
             ItemsSource="{Binding ProcessLists}"
-            SelectionChanged="DataGrid_Process_SelectionChanged">
-            <DataGrid.Columns>
-                <DataGridTextColumn
-                    Binding="{Binding PID}"
-                    ElementStyle="{StaticResource DataGridTextColumnStyle_C1}"
-                    Header="PID" />
-                <DataGridTextColumn
-                    Binding="{Binding PName}"
-                    ElementStyle="{StaticResource DataGridTextColumnStyle_C1}"
-                    Header="进程名称" />
-                <DataGridTextColumn
-                    Binding="{Binding MWindowTitle}"
-                    ElementStyle="{StaticResource DataGridTextColumnStyle_C1}"
-                    Header="进程主窗口名称" />
-                <DataGridTextColumn
-                    Binding="{Binding MWindowHandle}"
-                    ElementStyle="{StaticResource DataGridTextColumnStyle_C1}"
-                    Header="进程主窗口句柄" />
-            </DataGrid.Columns>
-        </DataGrid>
+            SelectionChanged="ListView_Process_SelectionChanged">
+            <ListView.View>
+                <GridView ColumnHeaderContainerStyle="{StaticResource GridViewColumnHeaderStyle}">
+                    <GridViewColumn
+                        Width="Auto"
+                        DisplayMemberBinding="{Binding ProcID}"
+                        Header="PID" />
+                    <GridViewColumn
+                        Width="Auto"
+                        DisplayMemberBinding="{Binding ProcName}"
+                        Header="进程名称" />
+                    <GridViewColumn
+                        Width="Auto"
+                        DisplayMemberBinding="{Binding MainWindowTitle}"
+                        Header="进程主窗口名称" />
+                    <GridViewColumn
+                        Width="Auto"
+                        DisplayMemberBinding="{Binding MainWindowHandle}"
+                        Header="进程主窗口句柄" />
+                </GridView>
+            </ListView.View>
+        </ListView>
     </DockPanel>
 
 </ui:UiWindow>

@@ -20,11 +20,11 @@
             Style="{StaticResource ButtonStyle_FuncModule}" />
 
         <ui:UiButtonIcon
-            Title="Inject Menu"
+            Title="Spawn Vehicle"
             Command="{Binding ModelsClickCommand}"
-            CommandParameter="InjectMenu"
-            Content="小助手注入式菜单"
-            Icon="&#xe63d;"
+            CommandParameter="SpawnVehicle"
+            Content="刷出线上载具"
+            Icon="&#xe629;"
             Style="{StaticResource ButtonStyle_FuncModule}" />
 
         <ui:UiButtonIcon

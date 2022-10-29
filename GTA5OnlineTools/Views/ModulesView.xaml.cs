@@ -12,7 +12,7 @@ namespace GTA5OnlineTools.Views;
 public partial class ModulesView : UserControl
 {
     private ExternalMenuWindow ExternalMenuWindow = null;
-    private InjectMenuWindow InjectMenuWindow = null;
+    private SpawnVehicleWindow SpawnVehicleWindow = null;
     private GTAHaxWindow GTAHaxWindow = null;
     private OutfitsEditWindow OutfitsEditWindow = null;
     private HeistCutWindow HeistCutWindow = null;
@@ -49,8 +49,8 @@ public partial class ModulesView : UserControl
                 case "ExternalMenu":
                     ExternalMenuClick();
                     break;
-                case "InjectMenu":
-                    InjectMenuClick();
+                case "SpawnVehicle":
+                    SpawnVehicleClick();
                     break;
                 case "GTAHax":
                     GTAHaxClick();
@@ -110,26 +110,26 @@ public partial class ModulesView : UserControl
         }
     }
 
-    private void InjectMenuClick()
+    private void SpawnVehicleClick()
     {
-        if (InjectMenuWindow == null)
+        if (SpawnVehicleWindow == null)
         {
-            InjectMenuWindow = new InjectMenuWindow();
-            InjectMenuWindow.Show();
+            SpawnVehicleWindow = new SpawnVehicleWindow();
+            SpawnVehicleWindow.Show();
         }
         else
         {
-            if (InjectMenuWindow.IsVisible)
+            if (SpawnVehicleWindow.IsVisible)
             {
-                InjectMenuWindow.Topmost = true;
-                InjectMenuWindow.Topmost = false;
-                InjectMenuWindow.WindowState = WindowState.Normal;
+                SpawnVehicleWindow.Topmost = true;
+                SpawnVehicleWindow.Topmost = false;
+                SpawnVehicleWindow.WindowState = WindowState.Normal;
             }
             else
             {
-                InjectMenuWindow = null;
-                InjectMenuWindow = new InjectMenuWindow();
-                InjectMenuWindow.Show();
+                SpawnVehicleWindow = null;
+                SpawnVehicleWindow = new SpawnVehicleWindow();
+                SpawnVehicleWindow.Show();
             }
         }
     }
@@ -318,10 +318,10 @@ public partial class ModulesView : UserControl
                 ExternalMenuWindow = null;
             }
 
-            if (InjectMenuWindow != null)
+            if (SpawnVehicleWindow != null)
             {
-                InjectMenuWindow.Close();
-                InjectMenuWindow = null;
+                SpawnVehicleWindow.Close();
+                SpawnVehicleWindow = null;
             }
 
             if (GTAHaxWindow != null)

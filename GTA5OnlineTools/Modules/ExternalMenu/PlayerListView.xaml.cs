@@ -67,8 +67,7 @@ public partial class PlayerListView : UserControl
 
         for (int i = 0; i < 32; i++)
         {
-            long pCNetGamePlayer = Memory.Read<long>(pCNetworkPlayerMgr + Offsets.CNetworkPlayerMgr_CNetGamePlayer + i * 8);
-
+            long pCNetGamePlayer = Memory.Read<long>(pCNetworkPlayerMgr + Offsets.CNetworkPlayerMgr_CNetGamePlayer + i * 0x08);
             if (!Memory.IsValid(pCNetGamePlayer))
                 continue;
 

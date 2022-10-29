@@ -330,7 +330,8 @@ public static class Memory
         var patternByteArray = tempArray.ToArray();
 
         var moduleSize = GTA5Process.MainModule.ModuleMemorySize;
-        if (moduleSize == 0) throw new Exception($"模块 {GTA5Process.MainModule.ModuleName} 大小无效");
+        if (moduleSize == 0) 
+            throw new Exception($"模块 {GTA5Process.MainModule.ModuleName} 大小无效");
 
         var localModulebytes = new byte[moduleSize];
         Win32.ReadProcessMemory(GTA5ProHandle, GTA5ProBaseAddress, localModulebytes, moduleSize, out _);
@@ -382,21 +383,16 @@ public static class Memory
     /// <param name="offset"></param>
     private static long GetPtrAddress(long pointer, int[] offset)
     {
-        if (offset != null)
+        var buffer = new byte[8];
+        Win32.ReadProcessMemory(GTA5ProHandle, pointer, buffer, buffer.Length, out _);
+
+        for (int i = 0; i < (offset.Length - 1); i++)
         {
-            var buffer = new byte[8];
+            pointer = BitConverter.ToInt64(buffer, 0) + offset[i];
             Win32.ReadProcessMemory(GTA5ProHandle, pointer, buffer, buffer.Length, out _);
-
-            for (int i = 0; i < (offset.Length - 1); i++)
-            {
-                pointer = BitConverter.ToInt64(buffer, 0) + offset[i];
-                Win32.ReadProcessMemory(GTA5ProHandle, pointer, buffer, buffer.Length, out _);
-            }
-
-            pointer = BitConverter.ToInt64(buffer, 0) + offset[offset.Length - 1];
         }
 
-        return pointer;
+        return BitConverter.ToInt64(buffer, 0) + offset[^1];
     }
 
     /// <summary>
