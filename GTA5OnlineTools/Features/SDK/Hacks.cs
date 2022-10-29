@@ -65,8 +65,7 @@ public static class Hacks
     public static bool IsOnlineMode()
     {
         int character_slot = ReadGA<int>(113386 + 2363 + 539 + 4321);
-
-        return character_slot != 0 || character_slot != 1 || character_slot != 2;
+        return (character_slot == 0 || character_slot == 1 || character_slot == 2) == false;
     }
 
     /// <summary>
