@@ -99,7 +99,6 @@ public static class BaseInjector
 
         IntPtr remoteThreadHandle = CreateRemoteThread(procHandle, IntPtr.Zero, 0, loadLibraryAAddress, dllSpace, 0, IntPtr.Zero);
 
-        VirtualFreeEx(procHandle, dllSpace, 0, AllocationType.Release);
         CloseHandle(remoteThreadHandle);
         CloseHandle(procHandle);
     }
