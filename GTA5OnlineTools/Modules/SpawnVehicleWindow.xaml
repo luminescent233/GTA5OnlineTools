@@ -139,7 +139,11 @@
                 Margin="5"
                 FontWeight="Bold"
                 Text="载具预览图" />
-            <Image Margin="10,5,5,5" Source="{Binding ElementName=ListBox_VehicleInfo, Path=SelectedItem.VehicleImage}" />
+            <Image
+                Height="100"
+                Margin="10,5,5,5"
+                HorizontalAlignment="Left"
+                Source="{Binding ElementName=ListBox_VehicleInfo, Path=SelectedItem.VehicleImage}" />
         </StackPanel>
     </Grid>
 

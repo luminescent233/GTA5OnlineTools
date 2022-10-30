@@ -29,33 +29,39 @@ public partial class SpawnVehicleWindow
 
     private void ListBox_VehicleClass_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        var index = ListBox_VehicleClass.SelectedIndex;
-        if (index != -1)
+        lock (this)
         {
-            ListBox_VehicleInfo.Items.Clear();
-
-            Task.Run(() =>
+            var index = ListBox_VehicleClass.SelectedIndex;
+            if (index != -1)
             {
-                var className = VehicleData.VehicleClassData[index].ClassName;
+                ListBox_VehicleInfo.Items.Clear();
 
-                for (int i = 0; i < VehicleData.VehicleClassData[index].VehicleInfo.Count; i++)
+                Task.Run(() =>
                 {
-                    var name = VehicleData.VehicleClassData[index].VehicleInfo[i].Name;
-                    var displayName = VehicleData.VehicleClassData[index].VehicleInfo[i].DisplayName;
+                    var className = VehicleData.VehicleClassData[index].ClassName;
 
-                    this.Dispatcher.BeginInvoke(DispatcherPriority.Background,() =>
+                    for (int i = 0; i < VehicleData.VehicleClassData[index].VehicleInfo.Count; i++)
                     {
-                        ListBox_VehicleInfo.Items.Add(new VehiclePreview()
-                        {
-                            VehicleId = name,
-                            VehicleName = displayName,
-                            VehicleImage = $"\\Assets\\Images\\Client\\Vehicles\\{name}.png"
-                        });
-                    });
-                }
-            });
+                        var name = VehicleData.VehicleClassData[index].VehicleInfo[i].Name;
+                        var displayName = VehicleData.VehicleClassData[index].VehicleInfo[i].DisplayName;
 
-            ListBox_VehicleInfo.SelectedIndex = 0;
+                        this.Dispatcher.BeginInvoke(DispatcherPriority.Background, () =>
+                        {
+                            if (index == ListBox_VehicleClass.SelectedIndex)
+                            {
+                                ListBox_VehicleInfo.Items.Add(new VehiclePreview()
+                                {
+                                    VehicleId = name,
+                                    VehicleName = displayName,
+                                    VehicleImage = $"\\Assets\\Images\\Client\\Vehicles\\{name}.png"
+                                });
+                            }
+                        });
+                    }
+                });
+
+                ListBox_VehicleInfo.SelectedIndex = 0;
+            }
         }
     }
 }

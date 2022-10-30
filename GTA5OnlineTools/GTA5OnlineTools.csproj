@@ -42,6 +42,7 @@
     <None Remove="Assets\Images\Client\Vehicles\Asea.png" />
     <None Remove="Assets\Images\Client\Vehicles\Asea2.png" />
     <None Remove="Assets\Images\Client\Vehicles\Asterope.png" />
+    <None Remove="Assets\Images\Client\Vehicles\Astron.png" />
     <None Remove="Assets\Images\Client\Vehicles\Autarch.png" />
     <None Remove="Assets\Images\Client\Vehicles\Avarus.png" />
     <None Remove="Assets\Images\Client\Vehicles\Avenger.png" />
@@ -55,6 +56,7 @@
     <None Remove="Assets\Images\Client\Vehicles\Baller4.png" />
     <None Remove="Assets\Images\Client\Vehicles\Baller5.png" />
     <None Remove="Assets\Images\Client\Vehicles\Baller6.png" />
+    <None Remove="Assets\Images\Client\Vehicles\Baller7.png" />
     <None Remove="Assets\Images\Client\Vehicles\Banshee.png" />
     <None Remove="Assets\Images\Client\Vehicles\Banshee2.png" />
     <None Remove="Assets\Images\Client\Vehicles\Barracks.png" />
@@ -68,6 +70,7 @@
     <None Remove="Assets\Images\Client\Vehicles\Bestiagts.png" />
     <None Remove="Assets\Images\Client\Vehicles\BF400.png" />
     <None Remove="Assets\Images\Client\Vehicles\Bfinject.png" />
+    <None Remove="Assets\Images\Client\Vehicles\BfInjection.png" />
     <None Remove="Assets\Images\Client\Vehicles\Biff.png" />
     <None Remove="Assets\Images\Client\Vehicles\Bifta.png" />
     <None Remove="Assets\Images\Client\Vehicles\Bison.png" />
@@ -100,6 +103,7 @@
     <None Remove="Assets\Images\Client\Vehicles\Brickade.png" />
     <None Remove="Assets\Images\Client\Vehicles\Brioso.png" />
     <None Remove="Assets\Images\Client\Vehicles\Brioso2.png" />
+    <None Remove="Assets\Images\Client\Vehicles\Brioso3.png" />
     <None Remove="Assets\Images\Client\Vehicles\Bruiser.png" />
     <None Remove="Assets\Images\Client\Vehicles\Bruiser2.png" />
     <None Remove="Assets\Images\Client\Vehicles\Bruiser3.png" />
@@ -114,9 +118,11 @@
     <None Remove="Assets\Images\Client\Vehicles\Buffalo.png" />
     <None Remove="Assets\Images\Client\Vehicles\Buffalo2.png" />
     <None Remove="Assets\Images\Client\Vehicles\Buffalo3.png" />
+    <None Remove="Assets\Images\Client\Vehicles\Buffalo4.png" />
     <None Remove="Assets\Images\Client\Vehicles\Bulldozer.png" />
     <None Remove="Assets\Images\Client\Vehicles\Bullet.png" />
     <None Remove="Assets\Images\Client\Vehicles\Burrito.png" />
+    <None Remove="Assets\Images\Client\Vehicles\Burrito1.png" />
     <None Remove="Assets\Images\Client\Vehicles\Burrito2.png" />
     <None Remove="Assets\Images\Client\Vehicles\Burrito3.png" />
     <None Remove="Assets\Images\Client\Vehicles\Burrito4.png" />
@@ -128,6 +134,7 @@
     <None Remove="Assets\Images\Client\Vehicles\Caddy.png" />
     <None Remove="Assets\Images\Client\Vehicles\Caddy2.png" />
     <None Remove="Assets\Images\Client\Vehicles\Caddy3.png" />
+    <None Remove="Assets\Images\Client\Vehicles\Calico.png" />
     <None Remove="Assets\Images\Client\Vehicles\CalicoGTF.png" />
     <None Remove="Assets\Images\Client\Vehicles\Camper.png" />
     <None Remove="Assets\Images\Client\Vehicles\Caracara.png" />
@@ -145,6 +152,7 @@
     <None Remove="Assets\Images\Client\Vehicles\Cerberus.png" />
     <None Remove="Assets\Images\Client\Vehicles\Cerberus2.png" />
     <None Remove="Assets\Images\Client\Vehicles\Cerberus3.png" />
+    <None Remove="Assets\Images\Client\Vehicles\Champion.png" />
     <None Remove="Assets\Images\Client\Vehicles\Cheburek.png" />
     <None Remove="Assets\Images\Client\Vehicles\Cheetah.png" />
     <None Remove="Assets\Images\Client\Vehicles\Cheetah2.png" />
@@ -152,6 +160,7 @@
     <None Remove="Assets\Images\Client\Vehicles\Chimera.png" />
     <None Remove="Assets\Images\Client\Vehicles\Chino.png" />
     <None Remove="Assets\Images\Client\Vehicles\Chino2.png" />
+    <None Remove="Assets\Images\Client\Vehicles\Cinquemila.png" />
     <None Remove="Assets\Images\Client\Vehicles\Cliffhanger.png" />
     <None Remove="Assets\Images\Client\Vehicles\Clique.png" />
     <None Remove="Assets\Images\Client\Vehicles\Club.png" />
@@ -165,12 +174,16 @@
     <None Remove="Assets\Images\Client\Vehicles\Comet3.png" />
     <None Remove="Assets\Images\Client\Vehicles\Comet4.png" />
     <None Remove="Assets\Images\Client\Vehicles\Comet5.png" />
+    <None Remove="Assets\Images\Client\Vehicles\Comet6.png" />
+    <None Remove="Assets\Images\Client\Vehicles\Comet7.png" />
     <None Remove="Assets\Images\Client\Vehicles\CometS2.png" />
+    <None Remove="Assets\Images\Client\Vehicles\Conada.png" />
     <None Remove="Assets\Images\Client\Vehicles\Contender.png" />
     <None Remove="Assets\Images\Client\Vehicles\Coquette.png" />
     <None Remove="Assets\Images\Client\Vehicles\Coquette2.png" />
     <None Remove="Assets\Images\Client\Vehicles\Coquette3.png" />
     <None Remove="Assets\Images\Client\Vehicles\Coquette4.png" />
+    <None Remove="Assets\Images\Client\Vehicles\Corsita.png" />
     <None Remove="Assets\Images\Client\Vehicles\Cruiser.png" />
     <None Remove="Assets\Images\Client\Vehicles\Crusader.png" />
     <None Remove="Assets\Images\Client\Vehicles\Cuban800.png" />
@@ -183,6 +196,7 @@
     <None Remove="Assets\Images\Client\Vehicles\Deathbike2.png" />
     <None Remove="Assets\Images\Client\Vehicles\Deathbike3.png" />
     <None Remove="Assets\Images\Client\Vehicles\Defiler.png" />
+    <None Remove="Assets\Images\Client\Vehicles\Deity.png" />
     <None Remove="Assets\Images\Client\Vehicles\Deluxo.png" />
     <None Remove="Assets\Images\Client\Vehicles\Deveste.png" />
     <None Remove="Assets\Images\Client\Vehicles\Deviant.png" />
@@ -205,12 +219,16 @@
     <None Remove="Assets\Images\Client\Vehicles\Dominator4.png" />
     <None Remove="Assets\Images\Client\Vehicles\Dominator5.png" />
     <None Remove="Assets\Images\Client\Vehicles\Dominator6.png" />
+    <None Remove="Assets\Images\Client\Vehicles\Dominator7.png" />
+    <None Remove="Assets\Images\Client\Vehicles\Dominator8.png" />
     <None Remove="Assets\Images\Client\Vehicles\DominatorASP.png" />
     <None Remove="Assets\Images\Client\Vehicles\Double.png" />
     <None Remove="Assets\Images\Client\Vehicles\Drafter.png" />
+    <None Remove="Assets\Images\Client\Vehicles\Draugur.png" />
     <None Remove="Assets\Images\Client\Vehicles\Dubsta.png" />
     <None Remove="Assets\Images\Client\Vehicles\Dubsta2.png" />
     <None Remove="Assets\Images\Client\Vehicles\Dubsta3.png" />
+    <None Remove="Assets\Images\Client\Vehicles\Duke2.png" />
     <None Remove="Assets\Images\Client\Vehicles\Dukes.png" />
     <None Remove="Assets\Images\Client\Vehicles\Dukes2.png" />
     <None Remove="Assets\Images\Client\Vehicles\Dukes3.png" />
@@ -232,6 +250,7 @@
     <None Remove="Assets\Images\Client\Vehicles\Enduro.png" />
     <None Remove="Assets\Images\Client\Vehicles\Entity2.png" />
     <None Remove="Assets\Images\Client\Vehicles\Entityxf.png" />
+    <None Remove="Assets\Images\Client\Vehicles\EntityXXR.png" />
     <None Remove="Assets\Images\Client\Vehicles\Esskey.png" />
     <None Remove="Assets\Images\Client\Vehicles\Euros.png" />
     <None Remove="Assets\Images\Client\Vehicles\Everon.png" />
@@ -264,6 +283,7 @@
     <None Remove="Assets\Images\Client\Vehicles\Freecrawler.png" />
     <None Remove="Assets\Images\Client\Vehicles\Freight.png" />
     <None Remove="Assets\Images\Client\Vehicles\FreightCar.png" />
+    <None Remove="Assets\Images\Client\Vehicles\FreightCar2.png" />
     <None Remove="Assets\Images\Client\Vehicles\FreightCont1.png" />
     <None Remove="Assets\Images\Client\Vehicles\FreightCont2.png" />
     <None Remove="Assets\Images\Client\Vehicles\FreightGrain.png" />
@@ -275,6 +295,7 @@
     <None Remove="Assets\Images\Client\Vehicles\Furoregt.png" />
     <None Remove="Assets\Images\Client\Vehicles\Fusilade.png" />
     <None Remove="Assets\Images\Client\Vehicles\Futo.png" />
+    <None Remove="Assets\Images\Client\Vehicles\Futo2.png" />
     <None Remove="Assets\Images\Client\Vehicles\FutoGTX.png" />
     <None Remove="Assets\Images\Client\Vehicles\Gargoyle.png" />
     <None Remove="Assets\Images\Client\Vehicles\Gauntlet.png" />
@@ -290,6 +311,8 @@
     <None Remove="Assets\Images\Client\Vehicles\Gp1.png" />
     <None Remove="Assets\Images\Client\Vehicles\GrainTrailer.png" />
     <None Remove="Assets\Images\Client\Vehicles\Granger.png" />
+    <None Remove="Assets\Images\Client\Vehicles\Granger2.png" />
+    <None Remove="Assets\Images\Client\Vehicles\Greenwood.png" />
     <None Remove="Assets\Images\Client\Vehicles\Gresley.png" />
     <None Remove="Assets\Images\Client\Vehicles\Growler.png" />
     <None Remove="Assets\Images\Client\Vehicles\Gt500.png" />
@@ -307,11 +330,14 @@
     <None Remove="Assets\Images\Client\Vehicles\Hexer.png" />
     <None Remove="Assets\Images\Client\Vehicles\Hotknife.png" />
     <None Remove="Assets\Images\Client\Vehicles\Hotring.png" />
+    <None Remove="Assets\Images\Client\Vehicles\HotringSabre.png" />
     <None Remove="Assets\Images\Client\Vehicles\Howard.png" />
     <None Remove="Assets\Images\Client\Vehicles\Hunt.png" />
+    <None Remove="Assets\Images\Client\Vehicles\Hunter.png" />
     <None Remove="Assets\Images\Client\Vehicles\Huntley.png" />
     <None Remove="Assets\Images\Client\Vehicles\Hustler.png" />
     <None Remove="Assets\Images\Client\Vehicles\Hydra.png" />
+    <None Remove="Assets\Images\Client\Vehicles\Ignus.png" />
     <None Remove="Assets\Images\Client\Vehicles\Imorgon.png" />
     <None Remove="Assets\Images\Client\Vehicles\Impaler.png" />
     <None Remove="Assets\Images\Client\Vehicles\Impaler2.png" />
@@ -338,20 +364,24 @@
     <None Remove="Assets\Images\Client\Vehicles\Italigtb2.png" />
     <None Remove="Assets\Images\Client\Vehicles\ItaliGTO.png" />
     <None Remove="Assets\Images\Client\Vehicles\Italirsx.png" />
+    <None Remove="Assets\Images\Client\Vehicles\IWagen.png" />
     <None Remove="Assets\Images\Client\Vehicles\Jackal.png" />
     <None Remove="Assets\Images\Client\Vehicles\Jb700.png" />
     <None Remove="Assets\Images\Client\Vehicles\Jb7002.png" />
     <None Remove="Assets\Images\Client\Vehicles\Jester.png" />
     <None Remove="Assets\Images\Client\Vehicles\Jester2.png" />
     <None Remove="Assets\Images\Client\Vehicles\Jester3.png" />
+    <None Remove="Assets\Images\Client\Vehicles\Jester4.png" />
     <None Remove="Assets\Images\Client\Vehicles\JesterRR.png" />
     <None Remove="Assets\Images\Client\Vehicles\Jet.png" />
     <None Remove="Assets\Images\Client\Vehicles\Jetmax.png" />
     <None Remove="Assets\Images\Client\Vehicles\Journey.png" />
+    <None Remove="Assets\Images\Client\Vehicles\Jubilee.png" />
     <None Remove="Assets\Images\Client\Vehicles\Jugular.png" />
     <None Remove="Assets\Images\Client\Vehicles\Kalahari.png" />
     <None Remove="Assets\Images\Client\Vehicles\Kamacho.png" />
     <None Remove="Assets\Images\Client\Vehicles\Kanjo.png" />
+    <None Remove="Assets\Images\Client\Vehicles\KanjoSJ.png" />
     <None Remove="Assets\Images\Client\Vehicles\Khamelion.png" />
     <None Remove="Assets\Images\Client\Vehicles\Khanjali.png" />
     <None Remove="Assets\Images\Client\Vehicles\Komoda.png" />
@@ -366,11 +396,13 @@
     <None Remove="Assets\Images\Client\Vehicles\Lectro.png" />
     <None Remove="Assets\Images\Client\Vehicles\LGuard.png" />
     <None Remove="Assets\Images\Client\Vehicles\Limo2.png" />
+    <None Remove="Assets\Images\Client\Vehicles\LM87.png" />
     <None Remove="Assets\Images\Client\Vehicles\Locust.png" />
     <None Remove="Assets\Images\Client\Vehicles\Longfin.png" />
     <None Remove="Assets\Images\Client\Vehicles\Lurcher.png" />
     <None Remove="Assets\Images\Client\Vehicles\Luxor.png" />
     <None Remove="Assets\Images\Client\Vehicles\Luxor2.png" />
+    <None Remove="Assets\Images\Client\Vehicles\Lynx.png" />
     <None Remove="Assets\Images\Client\Vehicles\Lynx2.png" />
     <None Remove="Assets\Images\Client\Vehicles\Mamba.png" />
     <None Remove="Assets\Images\Client\Vehicles\Mammatus.png" />
@@ -410,6 +442,7 @@
     <None Remove="Assets\Images\Client\Vehicles\Mule2.png" />
     <None Remove="Assets\Images\Client\Vehicles\Mule3.png" />
     <None Remove="Assets\Images\Client\Vehicles\Mule4.png" />
+    <None Remove="Assets\Images\Client\Vehicles\Mule5.png" />
     <None Remove="Assets\Images\Client\Vehicles\Nebula.png" />
     <None Remove="Assets\Images\Client\Vehicles\Nemesis.png" />
     <None Remove="Assets\Images\Client\Vehicles\Neo.png" />
@@ -425,6 +458,7 @@
     <None Remove="Assets\Images\Client\Vehicles\Nokota.png" />
     <None Remove="Assets\Images\Client\Vehicles\Novak.png" />
     <None Remove="Assets\Images\Client\Vehicles\Omnis.png" />
+    <None Remove="Assets\Images\Client\Vehicles\OmniseGT.png" />
     <None Remove="Assets\Images\Client\Vehicles\Openwheel1.png" />
     <None Remove="Assets\Images\Client\Vehicles\Openwheel2.png" />
     <None Remove="Assets\Images\Client\Vehicles\Oppressor.png" />
@@ -441,6 +475,7 @@
     <None Remove="Assets\Images\Client\Vehicles\Pariah.png" />
     <None Remove="Assets\Images\Client\Vehicles\Patriot.png" />
     <None Remove="Assets\Images\Client\Vehicles\Patriot2.png" />
+    <None Remove="Assets\Images\Client\Vehicles\Patriot3.png" />
     <None Remove="Assets\Images\Client\Vehicles\Patrolboat.png" />
     <None Remove="Assets\Images\Client\Vehicles\PBus.png" />
     <None Remove="Assets\Images\Client\Vehicles\Pbus2.png" />
@@ -456,6 +491,7 @@
     <None Remove="Assets\Images\Client\Vehicles\Phantom2.png" />
     <None Remove="Assets\Images\Client\Vehicles\Phantom3.png" />
     <None Remove="Assets\Images\Client\Vehicles\Pheonix.png" />
+    <None Remove="Assets\Images\Client\Vehicles\Phoenix.png" />
     <None Remove="Assets\Images\Client\Vehicles\Picador.png" />
     <None Remove="Assets\Images\Client\Vehicles\Pigalle.png" />
     <None Remove="Assets\Images\Client\Vehicles\Police.png" />
@@ -469,6 +505,7 @@
     <None Remove="Assets\Images\Client\Vehicles\Polmav.png" />
     <None Remove="Assets\Images\Client\Vehicles\Pony.png" />
     <None Remove="Assets\Images\Client\Vehicles\Pony2.png" />
+    <None Remove="Assets\Images\Client\Vehicles\Postlude.png" />
     <None Remove="Assets\Images\Client\Vehicles\Pounder.png" />
     <None Remove="Assets\Images\Client\Vehicles\Pounder2.png" />
     <None Remove="Assets\Images\Client\Vehicles\Prairie.png" />
@@ -495,10 +532,12 @@
     <None Remove="Assets\Images\Client\Vehicles\Ratloader.png" />
     <None Remove="Assets\Images\Client\Vehicles\Ratloader2.png" />
     <None Remove="Assets\Images\Client\Vehicles\RCBandito.png" />
+    <None Remove="Assets\Images\Client\Vehicles\RE7B.png" />
     <None Remove="Assets\Images\Client\Vehicles\Reaper.png" />
     <None Remove="Assets\Images\Client\Vehicles\Rebel.png" />
     <None Remove="Assets\Images\Client\Vehicles\Rebel2.png" />
     <None Remove="Assets\Images\Client\Vehicles\Rebla.png" />
+    <None Remove="Assets\Images\Client\Vehicles\Reever.png" />
     <None Remove="Assets\Images\Client\Vehicles\Regina.png" />
     <None Remove="Assets\Images\Client\Vehicles\Remus.png" />
     <None Remove="Assets\Images\Client\Vehicles\Rentalbus.png" />
@@ -506,6 +545,7 @@
     <None Remove="Assets\Images\Client\Vehicles\Retinue2.png" />
     <None Remove="Assets\Images\Client\Vehicles\Revolter.png" />
     <None Remove="Assets\Images\Client\Vehicles\Rhapsody.png" />
+    <None Remove="Assets\Images\Client\Vehicles\Rhinehart.png" />
     <None Remove="Assets\Images\Client\Vehicles\Rhino.png" />
     <None Remove="Assets\Images\Client\Vehicles\Riata.png" />
     <None Remove="Assets\Images\Client\Vehicles\Riot.png" />
@@ -521,6 +561,7 @@
     <None Remove="Assets\Images\Client\Vehicles\Ruiner.png" />
     <None Remove="Assets\Images\Client\Vehicles\Ruiner2.png" />
     <None Remove="Assets\Images\Client\Vehicles\Ruiner3.png" />
+    <None Remove="Assets\Images\Client\Vehicles\Ruiner4.png" />
     <None Remove="Assets\Images\Client\Vehicles\Rumpo.png" />
     <None Remove="Assets\Images\Client\Vehicles\Rumpo2.png" />
     <None Remove="Assets\Images\Client\Vehicles\Rumpo3.png" />
@@ -563,12 +604,14 @@
     <None Remove="Assets\Images\Client\Vehicles\Sentinel.png" />
     <None Remove="Assets\Images\Client\Vehicles\Sentinel2.png" />
     <None Remove="Assets\Images\Client\Vehicles\Sentinel3.png" />
+    <None Remove="Assets\Images\Client\Vehicles\Sentinel4.png" />
     <None Remove="Assets\Images\Client\Vehicles\Serrano.png" />
     <None Remove="Assets\Images\Client\Vehicles\Seven70.png" />
     <None Remove="Assets\Images\Client\Vehicles\Shamal.png" />
     <None Remove="Assets\Images\Client\Vehicles\Sheava.png" />
     <None Remove="Assets\Images\Client\Vehicles\Sheriff.png" />
     <None Remove="Assets\Images\Client\Vehicles\Sheriff2.png" />
+    <None Remove="Assets\Images\Client\Vehicles\Shinobi.png" />
     <None Remove="Assets\Images\Client\Vehicles\Shotaro.png" />
     <None Remove="Assets\Images\Client\Vehicles\Skylift.png" />
     <None Remove="Assets\Images\Client\Vehicles\Slamtruck.png" />
@@ -578,6 +621,7 @@
     <None Remove="Assets\Images\Client\Vehicles\SlamVan4.png" />
     <None Remove="Assets\Images\Client\Vehicles\SlamVan5.png" />
     <None Remove="Assets\Images\Client\Vehicles\SlamVan6.png" />
+    <None Remove="Assets\Images\Client\Vehicles\SM722.png" />
     <None Remove="Assets\Images\Client\Vehicles\Sovereign.png" />
     <None Remove="Assets\Images\Client\Vehicles\Specter.png" />
     <None Remove="Assets\Images\Client\Vehicles\Specter2.png" />
@@ -591,6 +635,8 @@
     <None Remove="Assets\Images\Client\Vehicles\Stafford.png" />
     <None Remove="Assets\Images\Client\Vehicles\Stalion.png" />
     <None Remove="Assets\Images\Client\Vehicles\Stalion2.png" />
+    <None Remove="Assets\Images\Client\Vehicles\Stallion.png" />
+    <None Remove="Assets\Images\Client\Vehicles\Stallion2.png" />
     <None Remove="Assets\Images\Client\Vehicles\Stanier.png" />
     <None Remove="Assets\Images\Client\Vehicles\Starling.png" />
     <None Remove="Assets\Images\Client\Vehicles\Stinger.png" />
@@ -609,6 +655,7 @@
     <None Remove="Assets\Images\Client\Vehicles\Sugoi.png" />
     <None Remove="Assets\Images\Client\Vehicles\Sultan.png" />
     <None Remove="Assets\Images\Client\Vehicles\Sultan2.png" />
+    <None Remove="Assets\Images\Client\Vehicles\Sultan3.png" />
     <None Remove="Assets\Images\Client\Vehicles\Sultanrs.png" />
     <None Remove="Assets\Images\Client\Vehicles\SultanRSC.png" />
     <None Remove="Assets\Images\Client\Vehicles\Suntrap.png" />
@@ -625,6 +672,7 @@
     <None Remove="Assets\Images\Client\Vehicles\T20.png" />
     <None Remove="Assets\Images\Client\Vehicles\Taco.png" />
     <None Remove="Assets\Images\Client\Vehicles\Tailgater.png" />
+    <None Remove="Assets\Images\Client\Vehicles\Tailgater2.png" />
     <None Remove="Assets\Images\Client\Vehicles\TailgaterS.png" />
     <None Remove="Assets\Images\Client\Vehicles\Taipan.png" />
     <None Remove="Assets\Images\Client\Vehicles\Tampa.png" />
@@ -638,7 +686,10 @@
     <None Remove="Assets\Images\Client\Vehicles\Technical2.png" />
     <None Remove="Assets\Images\Client\Vehicles\Technical3.png" />
     <None Remove="Assets\Images\Client\Vehicles\Tempesta.png" />
+    <None Remove="Assets\Images\Client\Vehicles\TenF.png" />
+    <None Remove="Assets\Images\Client\Vehicles\TenF2.png" />
     <None Remove="Assets\Images\Client\Vehicles\Terbyte.png" />
+    <None Remove="Assets\Images\Client\Vehicles\Terrorbyte.png" />
     <None Remove="Assets\Images\Client\Vehicles\Tezeract.png" />
     <None Remove="Assets\Images\Client\Vehicles\Thrax.png" />
     <None Remove="Assets\Images\Client\Vehicles\Thrust.png" />
@@ -649,6 +700,7 @@
     <None Remove="Assets\Images\Client\Vehicles\Titan.png" />
     <None Remove="Assets\Images\Client\Vehicles\Toreador.png" />
     <None Remove="Assets\Images\Client\Vehicles\Torero.png" />
+    <None Remove="Assets\Images\Client\Vehicles\Torero2.png" />
     <None Remove="Assets\Images\Client\Vehicles\Tornado.png" />
     <None Remove="Assets\Images\Client\Vehicles\Tornado2.png" />
     <None Remove="Assets\Images\Client\Vehicles\Tornado3.png" />
@@ -694,6 +746,9 @@
     <None Remove="Assets\Images\Client\Vehicles\TVTrailer.png" />
     <None Remove="Assets\Images\Client\Vehicles\Tyrant.png" />
     <None Remove="Assets\Images\Client\Vehicles\Tyrus.png" />
+    <None Remove="Assets\Images\Client\Vehicles\UtilityTruck.png" />
+    <None Remove="Assets\Images\Client\Vehicles\UtilityTruck2.png" />
+    <None Remove="Assets\Images\Client\Vehicles\UtilityTruck3.png" />
     <None Remove="Assets\Images\Client\Vehicles\Utillitruck.png" />
     <None Remove="Assets\Images\Client\Vehicles\Utillitruck2.png" />
     <None Remove="Assets\Images\Client\Vehicles\Utillitruck3.png" />
@@ -714,6 +769,7 @@
     <None Remove="Assets\Images\Client\Vehicles\Veto.png" />
     <None Remove="Assets\Images\Client\Vehicles\Veto2.png" />
     <None Remove="Assets\Images\Client\Vehicles\Vigero.png" />
+    <None Remove="Assets\Images\Client\Vehicles\Vigero2.png" />
     <None Remove="Assets\Images\Client\Vehicles\Vigilante.png" />
     <None Remove="Assets\Images\Client\Vehicles\Vindicator.png" />
     <None Remove="Assets\Images\Client\Vehicles\Virgo.png" />
@@ -730,9 +786,11 @@
     <None Remove="Assets\Images\Client\Vehicles\Vortex.png" />
     <None Remove="Assets\Images\Client\Vehicles\Vstr.png" />
     <None Remove="Assets\Images\Client\Vehicles\Warrener.png" />
+    <None Remove="Assets\Images\Client\Vehicles\Warrener2.png" />
     <None Remove="Assets\Images\Client\Vehicles\Washington.png" />
     <None Remove="Assets\Images\Client\Vehicles\Wastelander.png" />
     <None Remove="Assets\Images\Client\Vehicles\Weevil.png" />
+    <None Remove="Assets\Images\Client\Vehicles\Weevil2.png" />
     <None Remove="Assets\Images\Client\Vehicles\Windsor.png" />
     <None Remove="Assets\Images\Client\Vehicles\Windsor2.png" />
     <None Remove="Assets\Images\Client\Vehicles\Winky.png" />
@@ -746,7 +804,9 @@
     <None Remove="Assets\Images\Client\Vehicles\Youga.png" />
     <None Remove="Assets\Images\Client\Vehicles\Youga2.png" />
     <None Remove="Assets\Images\Client\Vehicles\Youga3.png" />
+    <None Remove="Assets\Images\Client\Vehicles\Youga4.png" />
     <None Remove="Assets\Images\Client\Vehicles\Z190.png" />
+    <None Remove="Assets\Images\Client\Vehicles\Zeno.png" />
     <None Remove="Assets\Images\Client\Vehicles\Zentorno.png" />
     <None Remove="Assets\Images\Client\Vehicles\Zhaba.png" />
     <None Remove="Assets\Images\Client\Vehicles\Zion.png" />
@@ -846,6 +906,7 @@
     <Resource Include="Assets\Images\Client\Vehicles\Asea.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Asea2.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Asterope.png" />
+    <Resource Include="Assets\Images\Client\Vehicles\Astron.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Autarch.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Avarus.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Avenger.png" />
@@ -859,6 +920,7 @@
     <Resource Include="Assets\Images\Client\Vehicles\Baller4.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Baller5.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Baller6.png" />
+    <Resource Include="Assets\Images\Client\Vehicles\Baller7.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Banshee.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Banshee2.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Barracks.png" />
@@ -872,6 +934,7 @@
     <Resource Include="Assets\Images\Client\Vehicles\Bestiagts.png" />
     <Resource Include="Assets\Images\Client\Vehicles\BF400.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Bfinject.png" />
+    <Resource Include="Assets\Images\Client\Vehicles\BfInjection.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Biff.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Bifta.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Bison.png" />
@@ -904,6 +967,7 @@
     <Resource Include="Assets\Images\Client\Vehicles\Brickade.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Brioso.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Brioso2.png" />
+    <Resource Include="Assets\Images\Client\Vehicles\Brioso3.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Bruiser.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Bruiser2.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Bruiser3.png" />
@@ -918,9 +982,11 @@
     <Resource Include="Assets\Images\Client\Vehicles\Buffalo.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Buffalo2.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Buffalo3.png" />
+    <Resource Include="Assets\Images\Client\Vehicles\Buffalo4.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Bulldozer.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Bullet.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Burrito.png" />
+    <Resource Include="Assets\Images\Client\Vehicles\Burrito1.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Burrito2.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Burrito3.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Burrito4.png" />
@@ -932,6 +998,7 @@
     <Resource Include="Assets\Images\Client\Vehicles\Caddy.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Caddy2.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Caddy3.png" />
+    <Resource Include="Assets\Images\Client\Vehicles\Calico.png" />
     <Resource Include="Assets\Images\Client\Vehicles\CalicoGTF.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Camper.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Caracara.png" />
@@ -949,6 +1016,7 @@
     <Resource Include="Assets\Images\Client\Vehicles\Cerberus.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Cerberus2.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Cerberus3.png" />
+    <Resource Include="Assets\Images\Client\Vehicles\Champion.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Cheburek.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Cheetah.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Cheetah2.png" />
@@ -956,6 +1024,7 @@
     <Resource Include="Assets\Images\Client\Vehicles\Chimera.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Chino.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Chino2.png" />
+    <Resource Include="Assets\Images\Client\Vehicles\Cinquemila.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Cliffhanger.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Clique.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Club.png" />
@@ -969,12 +1038,16 @@
     <Resource Include="Assets\Images\Client\Vehicles\Comet3.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Comet4.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Comet5.png" />
+    <Resource Include="Assets\Images\Client\Vehicles\Comet6.png" />
+    <Resource Include="Assets\Images\Client\Vehicles\Comet7.png" />
     <Resource Include="Assets\Images\Client\Vehicles\CometS2.png" />
+    <Resource Include="Assets\Images\Client\Vehicles\Conada.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Contender.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Coquette.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Coquette2.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Coquette3.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Coquette4.png" />
+    <Resource Include="Assets\Images\Client\Vehicles\Corsita.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Cruiser.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Crusader.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Cuban800.png" />
@@ -987,6 +1060,7 @@
     <Resource Include="Assets\Images\Client\Vehicles\Deathbike2.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Deathbike3.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Defiler.png" />
+    <Resource Include="Assets\Images\Client\Vehicles\Deity.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Deluxo.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Deveste.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Deviant.png" />
@@ -1009,12 +1083,16 @@
     <Resource Include="Assets\Images\Client\Vehicles\Dominator4.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Dominator5.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Dominator6.png" />
+    <Resource Include="Assets\Images\Client\Vehicles\Dominator7.png" />
+    <Resource Include="Assets\Images\Client\Vehicles\Dominator8.png" />
     <Resource Include="Assets\Images\Client\Vehicles\DominatorASP.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Double.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Drafter.png" />
+    <Resource Include="Assets\Images\Client\Vehicles\Draugur.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Dubsta.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Dubsta2.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Dubsta3.png" />
+    <Resource Include="Assets\Images\Client\Vehicles\Duke2.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Dukes.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Dukes2.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Dukes3.png" />
@@ -1036,6 +1114,7 @@
     <Resource Include="Assets\Images\Client\Vehicles\Enduro.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Entity2.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Entityxf.png" />
+    <Resource Include="Assets\Images\Client\Vehicles\EntityXXR.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Esskey.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Euros.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Everon.png" />
@@ -1068,6 +1147,7 @@
     <Resource Include="Assets\Images\Client\Vehicles\Freecrawler.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Freight.png" />
     <Resource Include="Assets\Images\Client\Vehicles\FreightCar.png" />
+    <Resource Include="Assets\Images\Client\Vehicles\FreightCar2.png" />
     <Resource Include="Assets\Images\Client\Vehicles\FreightCont1.png" />
     <Resource Include="Assets\Images\Client\Vehicles\FreightCont2.png" />
     <Resource Include="Assets\Images\Client\Vehicles\FreightGrain.png" />
@@ -1079,6 +1159,7 @@
     <Resource Include="Assets\Images\Client\Vehicles\Furoregt.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Fusilade.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Futo.png" />
+    <Resource Include="Assets\Images\Client\Vehicles\Futo2.png" />
     <Resource Include="Assets\Images\Client\Vehicles\FutoGTX.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Gargoyle.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Gauntlet.png" />
@@ -1094,6 +1175,8 @@
     <Resource Include="Assets\Images\Client\Vehicles\Gp1.png" />
     <Resource Include="Assets\Images\Client\Vehicles\GrainTrailer.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Granger.png" />
+    <Resource Include="Assets\Images\Client\Vehicles\Granger2.png" />
+    <Resource Include="Assets\Images\Client\Vehicles\Greenwood.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Gresley.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Growler.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Gt500.png" />
@@ -1111,11 +1194,14 @@
     <Resource Include="Assets\Images\Client\Vehicles\Hexer.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Hotknife.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Hotring.png" />
+    <Resource Include="Assets\Images\Client\Vehicles\HotringSabre.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Howard.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Hunt.png" />
+    <Resource Include="Assets\Images\Client\Vehicles\Hunter.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Huntley.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Hustler.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Hydra.png" />
+    <Resource Include="Assets\Images\Client\Vehicles\Ignus.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Imorgon.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Impaler.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Impaler2.png" />
@@ -1142,20 +1228,24 @@
     <Resource Include="Assets\Images\Client\Vehicles\Italigtb2.png" />
     <Resource Include="Assets\Images\Client\Vehicles\ItaliGTO.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Italirsx.png" />
+    <Resource Include="Assets\Images\Client\Vehicles\IWagen.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Jackal.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Jb700.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Jb7002.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Jester.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Jester2.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Jester3.png" />
+    <Resource Include="Assets\Images\Client\Vehicles\Jester4.png" />
     <Resource Include="Assets\Images\Client\Vehicles\JesterRR.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Jet.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Jetmax.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Journey.png" />
+    <Resource Include="Assets\Images\Client\Vehicles\Jubilee.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Jugular.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Kalahari.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Kamacho.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Kanjo.png" />
+    <Resource Include="Assets\Images\Client\Vehicles\KanjoSJ.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Khamelion.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Khanjali.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Komoda.png" />
@@ -1170,11 +1260,13 @@
     <Resource Include="Assets\Images\Client\Vehicles\Lectro.png" />
     <Resource Include="Assets\Images\Client\Vehicles\LGuard.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Limo2.png" />
+    <Resource Include="Assets\Images\Client\Vehicles\LM87.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Locust.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Longfin.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Lurcher.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Luxor.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Luxor2.png" />
+    <Resource Include="Assets\Images\Client\Vehicles\Lynx.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Lynx2.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Mamba.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Mammatus.png" />
@@ -1214,6 +1306,7 @@
     <Resource Include="Assets\Images\Client\Vehicles\Mule2.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Mule3.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Mule4.png" />
+    <Resource Include="Assets\Images\Client\Vehicles\Mule5.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Nebula.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Nemesis.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Neo.png" />
@@ -1229,6 +1322,7 @@
     <Resource Include="Assets\Images\Client\Vehicles\Nokota.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Novak.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Omnis.png" />
+    <Resource Include="Assets\Images\Client\Vehicles\OmniseGT.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Openwheel1.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Openwheel2.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Oppressor.png" />
@@ -1245,6 +1339,7 @@
     <Resource Include="Assets\Images\Client\Vehicles\Pariah.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Patriot.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Patriot2.png" />
+    <Resource Include="Assets\Images\Client\Vehicles\Patriot3.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Patrolboat.png" />
     <Resource Include="Assets\Images\Client\Vehicles\PBus.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Pbus2.png" />
@@ -1260,6 +1355,7 @@
     <Resource Include="Assets\Images\Client\Vehicles\Phantom2.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Phantom3.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Pheonix.png" />
+    <Resource Include="Assets\Images\Client\Vehicles\Phoenix.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Picador.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Pigalle.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Police.png" />
@@ -1273,6 +1369,7 @@
     <Resource Include="Assets\Images\Client\Vehicles\Polmav.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Pony.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Pony2.png" />
+    <Resource Include="Assets\Images\Client\Vehicles\Postlude.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Pounder.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Pounder2.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Prairie.png" />
@@ -1299,10 +1396,12 @@
     <Resource Include="Assets\Images\Client\Vehicles\Ratloader.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Ratloader2.png" />
     <Resource Include="Assets\Images\Client\Vehicles\RCBandito.png" />
+    <Resource Include="Assets\Images\Client\Vehicles\RE7B.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Reaper.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Rebel.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Rebel2.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Rebla.png" />
+    <Resource Include="Assets\Images\Client\Vehicles\Reever.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Regina.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Remus.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Rentalbus.png" />
@@ -1310,6 +1409,7 @@
     <Resource Include="Assets\Images\Client\Vehicles\Retinue2.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Revolter.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Rhapsody.png" />
+    <Resource Include="Assets\Images\Client\Vehicles\Rhinehart.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Rhino.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Riata.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Riot.png" />
@@ -1325,6 +1425,7 @@
     <Resource Include="Assets\Images\Client\Vehicles\Ruiner.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Ruiner2.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Ruiner3.png" />
+    <Resource Include="Assets\Images\Client\Vehicles\Ruiner4.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Rumpo.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Rumpo2.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Rumpo3.png" />
@@ -1367,12 +1468,14 @@
     <Resource Include="Assets\Images\Client\Vehicles\Sentinel.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Sentinel2.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Sentinel3.png" />
+    <Resource Include="Assets\Images\Client\Vehicles\Sentinel4.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Serrano.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Seven70.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Shamal.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Sheava.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Sheriff.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Sheriff2.png" />
+    <Resource Include="Assets\Images\Client\Vehicles\Shinobi.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Shotaro.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Skylift.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Slamtruck.png" />
@@ -1382,6 +1485,7 @@
     <Resource Include="Assets\Images\Client\Vehicles\SlamVan4.png" />
     <Resource Include="Assets\Images\Client\Vehicles\SlamVan5.png" />
     <Resource Include="Assets\Images\Client\Vehicles\SlamVan6.png" />
+    <Resource Include="Assets\Images\Client\Vehicles\SM722.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Sovereign.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Specter.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Specter2.png" />
@@ -1395,6 +1499,8 @@
     <Resource Include="Assets\Images\Client\Vehicles\Stafford.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Stalion.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Stalion2.png" />
+    <Resource Include="Assets\Images\Client\Vehicles\Stallion.png" />
+    <Resource Include="Assets\Images\Client\Vehicles\Stallion2.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Stanier.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Starling.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Stinger.png" />
@@ -1413,6 +1519,7 @@
     <Resource Include="Assets\Images\Client\Vehicles\Sugoi.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Sultan.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Sultan2.png" />
+    <Resource Include="Assets\Images\Client\Vehicles\Sultan3.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Sultanrs.png" />
     <Resource Include="Assets\Images\Client\Vehicles\SultanRSC.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Suntrap.png" />
@@ -1429,6 +1536,7 @@
     <Resource Include="Assets\Images\Client\Vehicles\T20.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Taco.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Tailgater.png" />
+    <Resource Include="Assets\Images\Client\Vehicles\Tailgater2.png" />
     <Resource Include="Assets\Images\Client\Vehicles\TailgaterS.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Taipan.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Tampa.png" />
@@ -1442,7 +1550,10 @@
     <Resource Include="Assets\Images\Client\Vehicles\Technical2.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Technical3.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Tempesta.png" />
+    <Resource Include="Assets\Images\Client\Vehicles\TenF.png" />
+    <Resource Include="Assets\Images\Client\Vehicles\TenF2.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Terbyte.png" />
+    <Resource Include="Assets\Images\Client\Vehicles\Terrorbyte.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Tezeract.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Thrax.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Thrust.png" />
@@ -1453,6 +1564,7 @@
     <Resource Include="Assets\Images\Client\Vehicles\Titan.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Toreador.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Torero.png" />
+    <Resource Include="Assets\Images\Client\Vehicles\Torero2.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Tornado.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Tornado2.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Tornado3.png" />
@@ -1498,6 +1610,9 @@
     <Resource Include="Assets\Images\Client\Vehicles\TVTrailer.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Tyrant.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Tyrus.png" />
+    <Resource Include="Assets\Images\Client\Vehicles\UtilityTruck.png" />
+    <Resource Include="Assets\Images\Client\Vehicles\UtilityTruck2.png" />
+    <Resource Include="Assets\Images\Client\Vehicles\UtilityTruck3.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Utillitruck.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Utillitruck2.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Utillitruck3.png" />
@@ -1518,6 +1633,7 @@
     <Resource Include="Assets\Images\Client\Vehicles\Veto.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Veto2.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Vigero.png" />
+    <Resource Include="Assets\Images\Client\Vehicles\Vigero2.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Vigilante.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Vindicator.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Virgo.png" />
@@ -1534,9 +1650,11 @@
     <Resource Include="Assets\Images\Client\Vehicles\Vortex.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Vstr.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Warrener.png" />
+    <Resource Include="Assets\Images\Client\Vehicles\Warrener2.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Washington.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Wastelander.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Weevil.png" />
+    <Resource Include="Assets\Images\Client\Vehicles\Weevil2.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Windsor.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Windsor2.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Winky.png" />
@@ -1550,7 +1668,9 @@
     <Resource Include="Assets\Images\Client\Vehicles\Youga.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Youga2.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Youga3.png" />
+    <Resource Include="Assets\Images\Client\Vehicles\Youga4.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Z190.png" />
+    <Resource Include="Assets\Images\Client\Vehicles\Zeno.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Zentorno.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Zhaba.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Zion.png" />
