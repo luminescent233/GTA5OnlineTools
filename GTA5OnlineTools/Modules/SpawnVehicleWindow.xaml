@@ -88,17 +88,17 @@
                             <TextBlock
                                 Margin="10,2,5,5"
                                 DockPanel.Dock="Bottom"
-                                Text="{Binding VehicleId}" />
+                                Text="{Binding Id}" />
                             <TextBlock
                                 Margin="10,0,5,0"
                                 DockPanel.Dock="Bottom"
                                 FontSize="14"
                                 FontWeight="Bold"
-                                Text="{Binding VehicleName}" />
+                                Text="{Binding Name}" />
                             <Image
                                 Margin="5"
                                 DockPanel.Dock="Top"
-                                Source="{Binding VehicleImage, Converter={StaticResource StringToImageSourceConverter}}"
+                                Source="{Binding Image, Converter={StaticResource StringToImageSourceConverter}}"
                                 Style="{StaticResource ImageStyle_HighQuality}" />
                         </DockPanel>
                     </DataTemplate>
@@ -145,12 +145,12 @@
                 Margin="5"
                 FontWeight="Bold"
                 Text="载具名称" />
-            <TextBlock Margin="10,5,5,5" Text="{Binding ElementName=ListBox_VehicleInfo, Path=SelectedItem.VehicleName}" />
+            <TextBlock Margin="10,5,5,5" Text="{Binding ElementName=ListBox_VehicleInfo, Path=SelectedItem.Name}" />
             <TextBlock
                 Margin="5"
                 FontWeight="Bold"
                 Text="载具ID" />
-            <TextBlock Margin="10,5,5,5" Text="{Binding ElementName=ListBox_VehicleInfo, Path=SelectedItem.VehicleId}" />
+            <TextBlock Margin="10,5,5,5" Text="{Binding ElementName=ListBox_VehicleInfo, Path=SelectedItem.Id}" />
             <TextBlock
                 Margin="5"
                 FontWeight="Bold"
@@ -159,7 +159,7 @@
                 Height="100"
                 Margin="10,5,5,5"
                 HorizontalAlignment="Left"
-                Source="{Binding ElementName=ListBox_VehicleInfo, Path=SelectedItem.VehicleImage}"
+                Source="{Binding ElementName=ListBox_VehicleInfo, Path=SelectedItem.Image}"
                 Style="{StaticResource ImageStyle_HighQuality}" />
 
             <StackPanel Margin="5">

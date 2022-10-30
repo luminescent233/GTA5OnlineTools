@@ -61,9 +61,9 @@
                         <StackPanel Orientation="Horizontal">
                             <Image
                                 Margin="5,5,10,5"
-                                Source="{Binding VehicleImage, Converter={StaticResource StringToImageSourceConverter}}"
+                                Source="{Binding Image, Converter={StaticResource StringToImageSourceConverter}}"
                                 Style="{StaticResource ImageStyle_HighQuality}" />
-                            <TextBlock VerticalAlignment="Center" Text="{Binding VehicleName}" />
+                            <TextBlock VerticalAlignment="Center" Text="{Binding Name}" />
                         </StackPanel>
                     </DataTemplate>
                 </Setter.Value>
@@ -155,8 +155,8 @@
             <TextBlock Margin="5,5,5,10" DockPanel.Dock="Bottom">
                 <TextBlock.Text>
                     <MultiBinding StringFormat="{}{0} - {1}">
-                        <Binding ElementName="ListBox_VehicleInfo" Path="SelectedItem.VehicleName" />
-                        <Binding ElementName="ListBox_VehicleInfo" Path="SelectedItem.VehicleId" />
+                        <Binding ElementName="ListBox_VehicleInfo" Path="SelectedItem.Name" />
+                        <Binding ElementName="ListBox_VehicleInfo" Path="SelectedItem.Id" />
                     </MultiBinding>
                 </TextBlock.Text>
             </TextBlock>
@@ -164,7 +164,7 @@
                 Margin="5"
                 HorizontalAlignment="Left"
                 DockPanel.Dock="Bottom"
-                Source="{Binding ElementName=ListBox_VehicleInfo, Path=SelectedItem.VehicleImage}"
+                Source="{Binding ElementName=ListBox_VehicleInfo, Path=SelectedItem.Image}"
                 Style="{StaticResource ImageStyle_HighQuality}" />
         </DockPanel>
         <!--  面板3  -->

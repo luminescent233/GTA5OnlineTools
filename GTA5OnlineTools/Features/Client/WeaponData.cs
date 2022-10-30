@@ -4,7 +4,8 @@ public static class WeaponData
 {
     public struct WeaponClass
     {
-        public string ClassName;
+        public string Name;
+        public string Emoji;
         public List<WeaponInfo> WeaponInfo;
     }
 
@@ -192,17 +193,17 @@ public static class WeaponData
     /// <summary>
     /// 武器分类
     /// </summary>
-    public static List<WeaponClass> WeaponDataClass = new()
+    public static List<WeaponClass> WeaponClassData = new()
     {
-        new WeaponClass(){ ClassName="近战", WeaponInfo=Melee },
-        new WeaponClass(){ ClassName="手枪", WeaponInfo=Handguns },
-        new WeaponClass(){ ClassName="冲锋枪", WeaponInfo=SubmachineGuns },
-        new WeaponClass(){ ClassName="霰弹枪", WeaponInfo=Shotguns },
-        new WeaponClass(){ ClassName="突击步枪", WeaponInfo=AssaultRifles },
-        new WeaponClass(){ ClassName="轻机枪", WeaponInfo=LightMachineGuns },
-        new WeaponClass(){ ClassName="狙击枪", WeaponInfo=SniperRifles },
-        new WeaponClass(){ ClassName="重武器", WeaponInfo=HeavyWeapons },
-        new WeaponClass(){ ClassName="投掷物", WeaponInfo=Throwables },
-        new WeaponClass(){ ClassName="杂项", WeaponInfo=Miscellaneous }
+        new WeaponClass(){ Name="近战", Emoji="🏂", WeaponInfo=Melee },
+        new WeaponClass(){ Name="手枪", Emoji="🏋", WeaponInfo=Handguns },
+        new WeaponClass(){ Name="冲锋枪", Emoji="🤸‍♂️", WeaponInfo=SubmachineGuns },
+        new WeaponClass(){ Name="霰弹枪", Emoji="⛹", WeaponInfo=Shotguns },
+        new WeaponClass(){ Name="突击步枪", Emoji="🤺", WeaponInfo=AssaultRifles },
+        new WeaponClass(){ Name="轻机枪", Emoji="🤾‍♀️", WeaponInfo=LightMachineGuns },
+        new WeaponClass(){ Name="狙击枪", Emoji="🏌", WeaponInfo=SniperRifles },
+        new WeaponClass(){ Name="重武器", Emoji="🏇", WeaponInfo=HeavyWeapons },
+        new WeaponClass(){ Name="投掷物", Emoji="🏄", WeaponInfo=Throwables },
+        new WeaponClass(){ Name="杂项", Emoji="🏊", WeaponInfo=Miscellaneous }
     };
 }

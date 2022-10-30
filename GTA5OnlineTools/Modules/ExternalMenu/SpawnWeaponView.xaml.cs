@@ -22,48 +22,74 @@ public partial class SpawnWeaponView : UserControl
         ExternalMenuWindow.WindowClosingEvent += ExternalMenuWindow_WindowClosingEvent;
 
         // 武器列表
-        for (int i = 0; i < WeaponData.WeaponDataClass.Count; i++)
+        foreach (var item in WeaponData.WeaponClassData)
         {
-            ComboBox_WeaponList.Items.Add(WeaponData.WeaponDataClass[i].ClassName);
+            ComboBox_WeaponClass.Items.Add(new EmojiMenu()
+            {
+                Emoji = item.Emoji,
+                Title = item.Name
+            });
         }
-        ComboBox_WeaponList.SelectedIndex = 0;
+        ComboBox_WeaponClass.SelectedIndex = 0;
 
         // 子弹类型
-        for (int i = 0; i < MiscData.ImpactExplosions.Count; i++)
+        foreach (var item in MiscData.ImpactExplosions)
         {
-            ComboBox_ImpactExplosion.Items.Add(MiscData.ImpactExplosions[i].Name);
+            ComboBox_ImpactExplosion.Items.Add(item.Name);
         }
         ComboBox_ImpactExplosion.SelectedIndex = 0;
     }
 
     private void ExternalMenuWindow_WindowClosingEvent()
     {
-        
+
     }
 
-    private void ComboBox_WeaponList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    private void ComboBox_WeaponClass_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        var index = ComboBox_WeaponList.SelectedIndex;
-        if (index != -1)
+        lock (this)
         {
-            ListBox_WeaponInfo.Items.Clear();
-
-            for (int i = 0; i < WeaponData.WeaponDataClass[index].WeaponInfo.Count; i++)
+            var index = ComboBox_WeaponClass.SelectedIndex;
+            if (index != -1)
             {
-                ListBox_WeaponInfo.Items.Add(WeaponData.WeaponDataClass[index].WeaponInfo[i].DisplayName);
-            }
+                ListBox_WeaponInfo.Items.Clear();
 
-            ListBox_WeaponInfo.SelectedIndex = 0;
+                Task.Run(() =>
+                {
+                    var className = WeaponData.WeaponClassData[index].Name;
+
+                    for (int i = 0; i < WeaponData.WeaponClassData[index].WeaponInfo.Count; i++)
+                    {
+                        var name = WeaponData.WeaponClassData[index].WeaponInfo[i].Name;
+                        var displayName = WeaponData.WeaponClassData[index].WeaponInfo[i].DisplayName;
+
+                        this.Dispatcher.BeginInvoke(DispatcherPriority.Background, () =>
+                        {
+                            if (index == ComboBox_WeaponClass.SelectedIndex)
+                            {
+                                ListBox_WeaponInfo.Items.Add(new ModelPreview()
+                                {
+                                    Id = name,
+                                    Name = displayName,
+                                    Image = $"\\Assets\\Images\\Client\\Weapons\\{name}.png"
+                                });
+                            }
+                        });
+                    }
+                });
+
+                ListBox_WeaponInfo.SelectedIndex = 0;
+            }
         }
     }
 
     private void ListBox_WeaponInfo_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        var index1 = ComboBox_WeaponList.SelectedIndex;
+        var index1 = ComboBox_WeaponClass.SelectedIndex;
         var index2 = ListBox_WeaponInfo.SelectedIndex;
         if (index1 != -1 && index2 != -1)
         {
-            tempWeaponPickup = "pickup_" + WeaponData.WeaponDataClass[index1].WeaponInfo[index2].Name;
+            tempWeaponPickup = "pickup_" + WeaponData.WeaponClassData[index1].WeaponInfo[index2].Name;
         }
     }
 

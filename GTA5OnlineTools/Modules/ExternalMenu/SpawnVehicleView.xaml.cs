@@ -67,11 +67,11 @@ public partial class SpawnVehicleView : UserControl
                         {
                             if (index == ComboBox_VehicleClass.SelectedIndex)
                             {
-                                ListBox_VehicleInfo.Items.Add(new VehiclePreview()
+                                ListBox_VehicleInfo.Items.Add(new ModelPreview()
                                 {
-                                    VehicleId = name,
-                                    VehicleName = displayName,
-                                    VehicleImage = $"\\Assets\\Images\\Client\\Vehicles\\{name}.png"
+                                    Id = name,
+                                    Name = displayName,
+                                    Image = $"\\Assets\\Images\\Client\\Vehicles\\{name}.png"
                                 });
                             }
                         });
