@@ -13,12 +13,11 @@
         <!--  面板1  -->
         <DockPanel LastChildFill="True">
             <ui:UiLabelEmoji Content="武器分类" DockPanel.Dock="Top" />
-            <ListBox
-                x:Name="ListBox_WeaponList"
-                Height="200"
+            <ComboBox
+                x:Name="ComboBox_WeaponList"
                 Margin="5"
                 DockPanel.Dock="Top"
-                SelectionChanged="ListBox_WeaponList_SelectionChanged" />
+                SelectionChanged="ComboBox_WeaponList_SelectionChanged" />
             <ui:UiLabelEmoji Content="武器列表" DockPanel.Dock="Top" />
             <ListBox
                 x:Name="ListBox_WeaponInfo"

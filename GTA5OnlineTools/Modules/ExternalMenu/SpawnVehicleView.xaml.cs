@@ -1,5 +1,6 @@
 ﻿using GTA5OnlineTools.Common.Utils;
 using GTA5OnlineTools.Features.SDK;
+using GTA5OnlineTools.Features.Data;
 using GTA5OnlineTools.Features.Client;
 using GTA5OnlineTools.Features.Settings;
 
@@ -10,10 +11,9 @@ namespace GTA5OnlineTools.Modules.ExternalMenu;
 /// </summary>
 public partial class SpawnVehicleView : UserControl
 {
-    private long SpawnVehicleHash = 0;
-    private int[] SpawnVehicleMod;
+    private VehicleSpawn vehicleSpawn = new();
 
-    private List<PVInfo> pVInfos = new();
+    private List<PerVehInfo> perVehInfos = new();
 
     public SpawnVehicleView()
     {
@@ -24,9 +24,13 @@ public partial class SpawnVehicleView : UserControl
         // 载具列表
         foreach (var item in VehicleData.VehicleClassData)
         {
-            ListBox_VehicleClass.Items.Add(item.ClassName);
+            ComboBox_VehicleClass.Items.Add(new EmojiMenu()
+            {
+                Emoji = item.Emoji,
+                Title = item.Name
+            });
         }
-        ListBox_VehicleClass.SelectedIndex = 0;
+        ComboBox_VehicleClass.SelectedIndex = 0;
 
         // 载具附加功能
         foreach (var item in MiscData.VehicleExtras)
@@ -41,32 +45,54 @@ public partial class SpawnVehicleView : UserControl
 
     }
 
-    private void ListBox_VehicleClass_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    private void ComboBox_VehicleClass_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        var index = ListBox_VehicleClass.SelectedIndex;
-        if (index != -1)
+        lock (this)
         {
-            ListBox_VehicleInfo.Items.Clear();
-
-            for (int i = 0; i < VehicleData.VehicleClassData[index].VehicleInfo.Count; i++)
+            var index = ComboBox_VehicleClass.SelectedIndex;
+            if (index != -1)
             {
-                ListBox_VehicleInfo.Items.Add(VehicleData.VehicleClassData[index].VehicleInfo[i].DisplayName);
-            }
+                ListBox_VehicleInfo.Items.Clear();
 
-            ListBox_VehicleInfo.SelectedIndex = 0;
+                Task.Run(() =>
+                {
+                    var className = VehicleData.VehicleClassData[index].Name;
+
+                    for (int i = 0; i < VehicleData.VehicleClassData[index].VehicleInfo.Count; i++)
+                    {
+                        var name = VehicleData.VehicleClassData[index].VehicleInfo[i].Name;
+                        var displayName = VehicleData.VehicleClassData[index].VehicleInfo[i].DisplayName;
+
+                        this.Dispatcher.BeginInvoke(DispatcherPriority.Background, () =>
+                        {
+                            if (index == ComboBox_VehicleClass.SelectedIndex)
+                            {
+                                ListBox_VehicleInfo.Items.Add(new VehiclePreview()
+                                {
+                                    VehicleId = name,
+                                    VehicleName = displayName,
+                                    VehicleImage = $"\\Assets\\Images\\Client\\Vehicles\\{name}.png"
+                                });
+                            }
+                        });
+                    }
+                });
+
+                ListBox_VehicleInfo.SelectedIndex = 0;
+            }
         }
     }
 
     private void ListBox_VehicleInfo_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        SpawnVehicleHash = 0;
+        vehicleSpawn.VehicleHash = 0;
 
-        var index1 = ListBox_VehicleClass.SelectedIndex;
+        var index1 = ComboBox_VehicleClass.SelectedIndex;
         var index2 = ListBox_VehicleInfo.SelectedIndex;
         if (index1 != -1 && index2 != -1)
         {
-            SpawnVehicleHash = VehicleData.VehicleClassData[index1].VehicleInfo[index2].Hash;
-            SpawnVehicleMod = VehicleData.VehicleClassData[index1].VehicleInfo[index2].Mod;
+            vehicleSpawn.VehicleHash = VehicleData.VehicleClassData[index1].VehicleInfo[index2].Hash;
+            vehicleSpawn.VehicleMod = VehicleData.VehicleClassData[index1].VehicleInfo[index2].Mod;
         }
     }
 
@@ -74,16 +100,16 @@ public partial class SpawnVehicleView : UserControl
     {
         AudioUtil.PlayClickSound();
 
-        Vehicle.SpawnVehicle(SpawnVehicleHash, -255.0f, 5, SpawnVehicleMod);
-        //Vehicle.SpawnVehicle(SpawnVehicleHash, -255.0f);
+        Vehicle.SpawnVehicle(vehicleSpawn.VehicleHash, -255.0f, 5, vehicleSpawn.VehicleMod);
+        //Vehicle.SpawnVehicle(vehicleSpawn.VehicleHash, -255.0f);
     }
 
     private void Button_SpawnOnlineVehicleB_Click(object sender, RoutedEventArgs e)
     {
         AudioUtil.PlayClickSound();
 
-        Vehicle.SpawnVehicle(SpawnVehicleHash, 0.0f, 5, SpawnVehicleMod);
-        //Vehicle.SpawnVehicle(SpawnVehicleHash, -255.0f);
+        Vehicle.SpawnVehicle(vehicleSpawn.VehicleHash, 0.0f, 5, vehicleSpawn.VehicleMod);
+        //Vehicle.SpawnVehicle(vehicleSpawn.VehicleHash, -255.0f);
     }
 
     /////////////////////////////////////////////////////////////////////////////////
@@ -129,7 +155,7 @@ public partial class SpawnVehicleView : UserControl
         AudioUtil.PlayClickSound();
 
         ListBox_PersonalVehicle.Items.Clear();
-        pVInfos.Clear();
+        perVehInfos.Clear();
 
         Task.Run(() =>
         {
@@ -142,20 +168,20 @@ public partial class SpawnVehicleView : UserControl
 
                 string plate = Hacks.ReadGAString(1585857 + 1 + (i * 142) + 1);
 
-                pVInfos.Add(new PVInfo()
+                perVehInfos.Add(new PerVehInfo()
                 {
                     Index = i,
                     Name = Vehicle.FindVehicleDisplayName(hash, true),
-                    hash = hash,
-                    plate = plate
+                    Hash = hash,
+                    Plate = plate
                 });
             }
 
-            foreach (var item in pVInfos)
+            foreach (var item in perVehInfos)
             {
                 this.Dispatcher.Invoke(() =>
                 {
-                    ListBox_PersonalVehicle.Items.Add($"[{item.plate}]\t{item.Name}");
+                    ListBox_PersonalVehicle.Items.Add($"[{item.Plate}]\t{item.Name}");
                 });
             }
         });
@@ -170,7 +196,7 @@ public partial class SpawnVehicleView : UserControl
         {
             Task.Run(() =>
             {
-                Vehicle.SpawnPersonalVehicle(pVInfos[index].Index);
+                Vehicle.SpawnPersonalVehicle(perVehInfos[index].Index);
             });
         }
     }
@@ -183,12 +209,4 @@ public partial class SpawnVehicleView : UserControl
             Vehicle.Extras((short)MiscData.VehicleExtras[index].ID);
         }
     }
-}
-
-public struct PVInfo
-{
-    public int Index;
-    public string Name;
-    public long hash;
-    public string plate;
 }

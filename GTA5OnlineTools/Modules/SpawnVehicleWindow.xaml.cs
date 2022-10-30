@@ -1,4 +1,7 @@
-﻿using GTA5OnlineTools.Features.Client;
+﻿using GTA5OnlineTools.Common.Utils;
+using GTA5OnlineTools.Features.SDK;
+using GTA5OnlineTools.Features.Data;
+using GTA5OnlineTools.Features.Client;
 
 namespace GTA5OnlineTools.Modules;
 
@@ -7,6 +10,8 @@ namespace GTA5OnlineTools.Modules;
 /// </summary>
 public partial class SpawnVehicleWindow
 {
+    private VehicleSpawn vehicleSpawn = new();
+
     public SpawnVehicleWindow()
     {
         InitializeComponent();
@@ -17,7 +22,11 @@ public partial class SpawnVehicleWindow
         // 载具列表
         foreach (var item in VehicleData.VehicleClassData)
         {
-            ListBox_VehicleClass.Items.Add(item.ClassName);
+            ListBox_VehicleClass.Items.Add(new EmojiMenu()
+            {
+                Emoji = item.Emoji,
+                Title = item.Name
+            });
         }
         ListBox_VehicleClass.SelectedIndex = 0;
     }
@@ -38,7 +47,7 @@ public partial class SpawnVehicleWindow
 
                 Task.Run(() =>
                 {
-                    var className = VehicleData.VehicleClassData[index].ClassName;
+                    var className = VehicleData.VehicleClassData[index].Name;
 
                     for (int i = 0; i < VehicleData.VehicleClassData[index].VehicleInfo.Count; i++)
                     {
@@ -64,11 +73,33 @@ public partial class SpawnVehicleWindow
             }
         }
     }
-}
 
-public class VehiclePreview
-{
-    public string VehicleId { get; set; }
-    public string VehicleName { get; set; }
-    public string VehicleImage { get; set; }
+    private void ListBox_VehicleInfo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        vehicleSpawn.VehicleHash = 0;
+
+        var index1 = ListBox_VehicleClass.SelectedIndex;
+        var index2 = ListBox_VehicleInfo.SelectedIndex;
+        if (index1 != -1 && index2 != -1)
+        {
+            vehicleSpawn.VehicleHash = VehicleData.VehicleClassData[index1].VehicleInfo[index2].Hash;
+            vehicleSpawn.VehicleMod = VehicleData.VehicleClassData[index1].VehicleInfo[index2].Mod;
+        }
+    }
+
+    private void Button_SpawnOnlineVehicleA_Click(object sender, RoutedEventArgs e)
+    {
+        AudioUtil.PlayClickSound();
+
+        Vehicle.SpawnVehicle(vehicleSpawn.VehicleHash, -255.0f, 5, vehicleSpawn.VehicleMod);
+        //Vehicle.SpawnVehicle(vehicleSpawn.VehicleHash, -255.0f);
+    }
+
+    private void Button_SpawnOnlineVehicleB_Click(object sender, RoutedEventArgs e)
+    {
+        AudioUtil.PlayClickSound();
+
+        Vehicle.SpawnVehicle(vehicleSpawn.VehicleHash, 0.0f, 5, vehicleSpawn.VehicleMod);
+        //Vehicle.SpawnVehicle(vehicleSpawn.VehicleHash, -255.0f);
+    }
 }

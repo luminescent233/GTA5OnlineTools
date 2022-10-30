@@ -4,7 +4,8 @@ public static class VehicleData
 {
     public struct VehicleClass
     {
-        public string ClassName;
+        public string Name;
+        public string Emoji;
         public List<VehicleInfo> VehicleInfo;
     }
 
@@ -1046,29 +1047,29 @@ public static class VehicleData
             21 当前分类: 火车
             22 当前分类: 开轮式
          */
-        new VehicleClass(){ ClassName="★常用载具", VehicleInfo=CommonVehicle },
-        new VehicleClass(){ ClassName="小型汽车", VehicleInfo=Compacts },
-        new VehicleClass(){ ClassName="轿车", VehicleInfo=Sedans },
-        new VehicleClass(){ ClassName="SUV", VehicleInfo=SUVs },
-        new VehicleClass(){ ClassName="轿跑车", VehicleInfo=Coupes },
-        new VehicleClass(){ ClassName="肌肉车", VehicleInfo=Muscle },
-        new VehicleClass(){ ClassName="经典跑车", VehicleInfo=SportsClassics },
-        new VehicleClass(){ ClassName="跑车", VehicleInfo=Sports },
-        new VehicleClass(){ ClassName="超级跑车", VehicleInfo=Super },
-        new VehicleClass(){ ClassName="摩托车", VehicleInfo=Motorcycles },
-        new VehicleClass(){ ClassName="越野车", VehicleInfo=Offroad },
-        new VehicleClass(){ ClassName="工业用车", VehicleInfo=Industrial },
-        new VehicleClass(){ ClassName="公共事业用车", VehicleInfo=Utility },
-        new VehicleClass(){ ClassName="厢型车", VehicleInfo=Vans },
-        new VehicleClass(){ ClassName="自行车", VehicleInfo=Cycles },
-        new VehicleClass(){ ClassName="船", VehicleInfo=Boats },
-        new VehicleClass(){ ClassName="直升机", VehicleInfo=Helicopters },
-        new VehicleClass(){ ClassName="飞机", VehicleInfo=Planes },
-        new VehicleClass(){ ClassName="服务用车", VehicleInfo=Service },
-        new VehicleClass(){ ClassName="特种车", VehicleInfo=Emergency },
-        new VehicleClass(){ ClassName="军用车", VehicleInfo=Military },
-        new VehicleClass(){ ClassName="商用车", VehicleInfo=Commercial },
-        new VehicleClass(){ ClassName="火车", VehicleInfo=Trains },
-        new VehicleClass(){ ClassName="开轮式", VehicleInfo=OpenWheel }
+        new VehicleClass(){ Name="常用载具", Emoji="⭐", VehicleInfo=CommonVehicle },
+        new VehicleClass(){ Name="小型汽车", Emoji="🚗", VehicleInfo=Compacts },
+        new VehicleClass(){ Name="轿车", Emoji="🚕", VehicleInfo=Sedans },
+        new VehicleClass(){ Name="SUV", Emoji="🚙", VehicleInfo=SUVs },
+        new VehicleClass(){ Name="轿跑车", Emoji="🚘", VehicleInfo=Coupes },
+        new VehicleClass(){ Name="肌肉车", Emoji="🚖", VehicleInfo=Muscle },
+        new VehicleClass(){ Name="经典跑车", Emoji="🚝", VehicleInfo=SportsClassics },
+        new VehicleClass(){ Name="跑车", Emoji="🚄", VehicleInfo=Sports },
+        new VehicleClass(){ Name="超级跑车", Emoji="🚅", VehicleInfo=Super },
+        new VehicleClass(){ Name="摩托车", Emoji="🏍", VehicleInfo=Motorcycles },
+        new VehicleClass(){ Name="越野车", Emoji="🚙", VehicleInfo=Offroad },
+        new VehicleClass(){ Name="工业用车", Emoji="🚛", VehicleInfo=Industrial },
+        new VehicleClass(){ Name="公共事业用车", Emoji="🚜", VehicleInfo=Utility },
+        new VehicleClass(){ Name="厢型车", Emoji="🚐", VehicleInfo=Vans },
+        new VehicleClass(){ Name="自行车", Emoji="🚲", VehicleInfo=Cycles },
+        new VehicleClass(){ Name="船", Emoji="⛵", VehicleInfo=Boats },
+        new VehicleClass(){ Name="直升机", Emoji="🚁", VehicleInfo=Helicopters },
+        new VehicleClass(){ Name="飞机", Emoji="✈", VehicleInfo=Planes },
+        new VehicleClass(){ Name="服务用车", Emoji="🚒", VehicleInfo=Service },
+        new VehicleClass(){ Name="特种车", Emoji="🚓", VehicleInfo=Emergency },
+        new VehicleClass(){ Name="军用车", Emoji="🚀", VehicleInfo=Military },
+        new VehicleClass(){ Name="商用车", Emoji="🚚", VehicleInfo=Commercial },
+        new VehicleClass(){ Name="火车", Emoji="🚂", VehicleInfo=Trains },
+        new VehicleClass(){ Name="开轮式", Emoji="🏎", VehicleInfo=OpenWheel }
     };
 }

@@ -383,7 +383,7 @@
     <None Remove="Assets\Images\Client\Vehicles\Kanjo.png" />
     <None Remove="Assets\Images\Client\Vehicles\KanjoSJ.png" />
     <None Remove="Assets\Images\Client\Vehicles\Khamelion.png" />
-    <None Remove="Assets\Images\Client\Vehicles\Khanjali.png" />
+    <None Remove="Assets\Images\Client\Vehicles\Khanjari.png" />
     <None Remove="Assets\Images\Client\Vehicles\Komoda.png" />
     <None Remove="Assets\Images\Client\Vehicles\Kosatka.png" />
     <None Remove="Assets\Images\Client\Vehicles\Krieger.png" />
@@ -1247,7 +1247,7 @@
     <Resource Include="Assets\Images\Client\Vehicles\Kanjo.png" />
     <Resource Include="Assets\Images\Client\Vehicles\KanjoSJ.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Khamelion.png" />
-    <Resource Include="Assets\Images\Client\Vehicles\Khanjali.png" />
+    <Resource Include="Assets\Images\Client\Vehicles\Khanjari.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Komoda.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Kosatka.png" />
     <Resource Include="Assets\Images\Client\Vehicles\Krieger.png" />

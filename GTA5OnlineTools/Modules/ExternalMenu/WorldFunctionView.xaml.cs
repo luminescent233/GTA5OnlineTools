@@ -45,7 +45,7 @@ public partial class WorldFunctionView : UserControl
 
         UpdateTeleportList();
 
-        ListBox_TeleportClass.SelectedIndex = 0;
+        ComboBox_TeleportClass.SelectedIndex = 0;
         ListBox_TeleportInfo.SelectedIndex = 0;
     }
 
@@ -138,21 +138,21 @@ public partial class WorldFunctionView : UserControl
     /// </summary>
     private void UpdateTeleportList()
     {
-        ListBox_TeleportClass.Items.Clear();
+        ComboBox_TeleportClass.Items.Clear();
 
         // 传送列表
         foreach (var item in TeleportData.TeleportDataClass)
         {
-            ListBox_TeleportClass.Items.Add(item.ClassName);
+            ComboBox_TeleportClass.Items.Add(item.ClassName);
         }
 
-        ListBox_TeleportClass.Items.Refresh();
+        ComboBox_TeleportClass.Items.Refresh();
         ListBox_TeleportInfo.Items.Refresh();
     }
 
-    private void ListBox_TeleportClass_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    private void ComboBox_TeleportClass_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        var index = ListBox_TeleportClass.SelectedIndex;
+        var index = ComboBox_TeleportClass.SelectedIndex;
         if (index != -1)
         {
             ListBox_TeleportInfo.Items.Clear();
@@ -168,7 +168,7 @@ public partial class WorldFunctionView : UserControl
 
     private void ListBox_TeleportInfo_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        var index1 = ListBox_TeleportClass.SelectedIndex;
+        var index1 = ComboBox_TeleportClass.SelectedIndex;
         var index2 = ListBox_TeleportInfo.SelectedIndex;
         if (index1 != -1 && index2 != -1)
         {
@@ -217,7 +217,7 @@ public partial class WorldFunctionView : UserControl
 
         UpdateTeleportList();
 
-        ListBox_TeleportClass.SelectedIndex = 0;
+        ComboBox_TeleportClass.SelectedIndex = 0;
         ListBox_TeleportInfo.SelectedIndex = ListBox_TeleportInfo.Items.Count - 1;
     }
 
@@ -225,7 +225,7 @@ public partial class WorldFunctionView : UserControl
     {
         AudioUtil.PlayClickSound();
 
-        int index1 = ListBox_TeleportClass.SelectedIndex;
+        int index1 = ComboBox_TeleportClass.SelectedIndex;
         int index2 = ListBox_TeleportInfo.SelectedIndex;
         if (index1 == 0 && index2 != -1)
         {
@@ -240,7 +240,7 @@ public partial class WorldFunctionView : UserControl
 
             UpdateTeleportList();
 
-            ListBox_TeleportClass.SelectedIndex = 0;
+            ComboBox_TeleportClass.SelectedIndex = 0;
             ListBox_TeleportInfo.SelectedIndex = index2; ;
 
             NotifierHelper.Show(NotifierType.Success, "修改自定义传送坐标成功");
@@ -255,7 +255,7 @@ public partial class WorldFunctionView : UserControl
     {
         AudioUtil.PlayClickSound();
 
-        int index1 = ListBox_TeleportClass.SelectedIndex;
+        int index1 = ComboBox_TeleportClass.SelectedIndex;
         int index2 = ListBox_TeleportInfo.SelectedIndex;
         if (index1 == 0 && index2 != -1)
         {
@@ -263,7 +263,7 @@ public partial class WorldFunctionView : UserControl
 
             UpdateTeleportList();
 
-            ListBox_TeleportClass.SelectedIndex = 0;
+            ComboBox_TeleportClass.SelectedIndex = 0;
             ListBox_TeleportInfo.SelectedIndex = ListBox_TeleportInfo.Items.Count - 1;
 
             NotifierHelper.Show(NotifierType.Success, "删除自定义传送坐标成功");

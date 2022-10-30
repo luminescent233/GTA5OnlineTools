@@ -79,10 +79,10 @@
         </Setter>
         <Setter Property="ItemContainerStyle">
             <Setter.Value>
-                <Style TargetType="ListBoxItem">
+                <Style TargetType="{x:Type ListBoxItem}">
                     <Setter Property="Template">
                         <Setter.Value>
-                            <ControlTemplate TargetType="ListBoxItem">
+                            <ControlTemplate TargetType="{x:Type ListBoxItem}">
                                 <Grid Height="30" Background="Transparent">
                                     <Border Name="border" />
                                     <Border Padding="10,0,0,0">

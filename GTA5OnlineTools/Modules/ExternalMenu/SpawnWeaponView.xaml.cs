@@ -24,9 +24,9 @@ public partial class SpawnWeaponView : UserControl
         // 武器列表
         for (int i = 0; i < WeaponData.WeaponDataClass.Count; i++)
         {
-            ListBox_WeaponList.Items.Add(WeaponData.WeaponDataClass[i].ClassName);
+            ComboBox_WeaponList.Items.Add(WeaponData.WeaponDataClass[i].ClassName);
         }
-        ListBox_WeaponList.SelectedIndex = 0;
+        ComboBox_WeaponList.SelectedIndex = 0;
 
         // 子弹类型
         for (int i = 0; i < MiscData.ImpactExplosions.Count; i++)
@@ -41,9 +41,9 @@ public partial class SpawnWeaponView : UserControl
         
     }
 
-    private void ListBox_WeaponList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    private void ComboBox_WeaponList_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        var index = ListBox_WeaponList.SelectedIndex;
+        var index = ComboBox_WeaponList.SelectedIndex;
         if (index != -1)
         {
             ListBox_WeaponInfo.Items.Clear();
@@ -59,7 +59,7 @@ public partial class SpawnWeaponView : UserControl
 
     private void ListBox_WeaponInfo_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        var index1 = ListBox_WeaponList.SelectedIndex;
+        var index1 = ComboBox_WeaponList.SelectedIndex;
         var index2 = ListBox_WeaponInfo.SelectedIndex;
         if (index1 != -1 && index2 != -1)
         {

@@ -71,12 +71,11 @@
         <!--  面板2  -->
         <DockPanel LastChildFill="True">
             <ui:UiLabelEmoji Content="传送分类" DockPanel.Dock="Top" />
-            <ListBox
-                x:Name="ListBox_TeleportClass"
-                Height="200"
+            <ComboBox
+                x:Name="ComboBox_TeleportClass"
                 Margin="5"
                 DockPanel.Dock="Top"
-                SelectionChanged="ListBox_TeleportClass_SelectionChanged" />
+                SelectionChanged="ComboBox_TeleportClass_SelectionChanged" />
             <ui:UiLabelEmoji Content="传送列表" DockPanel.Dock="Top" />
             <ListBox
                 x:Name="ListBox_TeleportInfo"

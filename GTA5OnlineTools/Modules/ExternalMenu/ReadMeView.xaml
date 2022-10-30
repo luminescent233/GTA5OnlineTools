@@ -96,6 +96,9 @@
                     ● 有些功能可能需要退出游戏电脑程序进入才有效（比如重新进入CEO电脑），或者是需要重新加载场景才有效（比如重新进入地堡），
                     请大家灵活使用
                 </Paragraph>
+                <Paragraph>
+                    ● 带 ★ 的功能代表会进入线程循环修改，这样切换战局也不会失效，其余功能仅在点击时修改内存
+                </Paragraph>
             </FlowDocument>
         </RichTextBox>
     </UniformGrid>
