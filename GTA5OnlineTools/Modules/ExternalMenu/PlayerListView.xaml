@@ -9,13 +9,95 @@
     d:DesignWidth="900"
     mc:Ignorable="d">
 
+    <UserControl.Resources>
+        <Style x:Key="ListBoxStyle_NetPlayer" TargetType="{x:Type ListBox}">
+            <Setter Property="OverridesDefaultStyle" Value="True" />
+            <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+            <Setter Property="VirtualizingPanel.IsVirtualizing" Value="True" />
+            <Setter Property="VirtualizingPanel.VirtualizationMode" Value="Recycling" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ListBox}">
+                        <Border BorderBrush="#808080" BorderThickness="1">
+                            <ScrollViewer>
+                                <StackPanel IsItemsHost="true" />
+                            </ScrollViewer>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="ItemContainerStyle">
+                <Setter.Value>
+                    <Style TargetType="{x:Type ListBoxItem}">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                                    <Grid Height="50" Background="Transparent">
+                                        <Border Name="border" />
+                                        <Border>
+                                            <ContentPresenter VerticalAlignment="Center" />
+                                        </Border>
+                                    </Grid>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter TargetName="border" Property="Background" Value="#CCCCCC" />
+                                            <Setter Property="TextElement.Foreground" Value="White" />
+                                        </Trigger>
+                                        <Trigger Property="IsSelected" Value="True">
+                                            <Setter TargetName="border" Property="Background" Value="#808080" />
+                                            <Setter Property="TextElement.Foreground" Value="White" />
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="ItemTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <DockPanel>
+                            <TextBlock
+                                Width="20"
+                                VerticalAlignment="Center"
+                                DockPanel.Dock="Left"
+                                Text="{Binding Index}"
+                                TextAlignment="Right" />
+                            <Border
+                                Width="45"
+                                Height="45"
+                                Margin="10,1,10,1"
+                                BorderBrush="Gray"
+                                BorderThickness="1"
+                                DockPanel.Dock="Left"
+                                SnapsToDevicePixels="True">
+                                <Image
+                                    Source="{Binding Avatar, Converter={StaticResource StringToImageSourceConverter}}"
+                                    Stretch="Uniform"
+                                    Style="{StaticResource ImageStyle_HighQuality}" />
+                            </Border>
+                            <StackPanel VerticalAlignment="Center" DockPanel.Dock="Right">
+                                <TextBlock
+                                    Margin="0,0,0,3"
+                                    VerticalAlignment="Bottom"
+                                    Text="{Binding Name}" />
+                                <TextBlock VerticalAlignment="Top" Text="{Binding RID}" />
+                            </StackPanel>
+                        </DockPanel>
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+
     <UniformGrid Columns="3">
         <!--  面板1  -->
         <ListBox
             x:Name="ListBox_PlayerList"
             Margin="5,5,2.5,5"
-            SelectedIndex="0"
-            SelectionChanged="ListBox_PlayerList_SelectionChanged" />
+            SelectionChanged="ListBox_PlayerList_SelectionChanged"
+            Style="{StaticResource ListBoxStyle_NetPlayer}" />
         <!--  面板2  -->
         <TextBox
             x:Name="TextBox_PlayerInfo"

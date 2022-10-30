@@ -77,8 +77,6 @@ public partial class SessionChatView : UserControl
 
                 Memory.SetForegroundWindow();
                 SendMessageToGTA5(TextBox_InputMessage.Text);
-
-                NotifierHelper.Show(NotifierType.Success, "发生文本到GTA5聊天栏成功");
             }
         }
         catch (Exception ex)

@@ -86,7 +86,7 @@
                     <DataTemplate>
                         <DockPanel>
                             <TextBlock
-                                Margin="10,2,5,5"
+                                Margin="10,3,5,5"
                                 DockPanel.Dock="Bottom"
                                 Text="{Binding Id}" />
                             <TextBlock
