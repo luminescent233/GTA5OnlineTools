@@ -45,7 +45,11 @@ public partial class WorldFunctionView : UserControl
 
         foreach (var item in TeleportData.TeleportClassData)
         {
-            ComboBox_TeleportClass.Items.Add(item.Name);
+            ComboBox_TeleportClass.Items.Add(new EmojiMenu()
+            {
+                Emoji = item.Emoji,
+                Title = item.Name
+            });
         }
         ComboBox_TeleportClass.SelectedIndex = 0;
     }
