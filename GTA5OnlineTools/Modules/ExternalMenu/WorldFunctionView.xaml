@@ -96,7 +96,18 @@
                         Margin="5,0,0,0"
                         VerticalAlignment="Center"
                         Text="X坐标" />
-                    <TextBox x:Name="TextBox_Position_X" />
+                    <TextBox x:Name="TextBox_Position_X">
+                        <TextBox.Resources>
+                            <Style BasedOn="{StaticResource TextBoxStyle_Base}" TargetType="{x:Type TextBox}">
+                                <Setter Property="IsEnabled" Value="False" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ElementName=ComboBox_TeleportClass, Path=SelectedIndex}" Value="0">
+                                        <Setter Property="IsEnabled" Value="True" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBox.Resources>
+                    </TextBox>
                 </DockPanel>
                 <!--  Y坐标  -->
                 <DockPanel>
@@ -105,7 +116,18 @@
                         Margin="5,0,0,0"
                         VerticalAlignment="Center"
                         Text="Y坐标" />
-                    <TextBox x:Name="TextBox_Position_Y" />
+                    <TextBox x:Name="TextBox_Position_Y">
+                        <TextBox.Resources>
+                            <Style BasedOn="{StaticResource TextBoxStyle_Base}" TargetType="{x:Type TextBox}">
+                                <Setter Property="IsEnabled" Value="False" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ElementName=ComboBox_TeleportClass, Path=SelectedIndex}" Value="0">
+                                        <Setter Property="IsEnabled" Value="True" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBox.Resources>
+                    </TextBox>
                 </DockPanel>
                 <!--  Z坐标  -->
                 <DockPanel>
@@ -114,7 +136,18 @@
                         Margin="5,0,0,0"
                         VerticalAlignment="Center"
                         Text="Z坐标" />
-                    <TextBox x:Name="TextBox_Position_Z" />
+                    <TextBox x:Name="TextBox_Position_Z">
+                        <TextBox.Resources>
+                            <Style BasedOn="{StaticResource TextBoxStyle_Base}" TargetType="{x:Type TextBox}">
+                                <Setter Property="IsEnabled" Value="False" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ElementName=ComboBox_TeleportClass, Path=SelectedIndex}" Value="0">
+                                        <Setter Property="IsEnabled" Value="True" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBox.Resources>
+                    </TextBox>
                 </DockPanel>
                 <!--  坐标名称  -->
                 <DockPanel>
@@ -123,21 +156,65 @@
                         Margin="5,0,0,0"
                         VerticalAlignment="Center"
                         Text="坐标名称" />
-                    <TextBox x:Name="TextBox_Position_Name" />
+                    <TextBox x:Name="TextBox_CustomTeleportName">
+                        <TextBox.Resources>
+                            <Style BasedOn="{StaticResource TextBoxStyle_Base}" TargetType="{x:Type TextBox}">
+                                <Setter Property="IsEnabled" Value="False" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ElementName=ComboBox_TeleportClass, Path=SelectedIndex}" Value="0">
+                                        <Setter Property="IsEnabled" Value="True" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBox.Resources>
+                    </TextBox>
                 </DockPanel>
                 <WrapPanel>
                     <Button
-                        x:Name="Button_Teleport_AddCustom"
-                        Click="Button_Teleport_AddCustom_Click"
-                        Content="添加当前位置" />
+                        x:Name="Button_AddCustomTeleport"
+                        Click="Button_AddCustomTeleport_Click"
+                        Content="添加当前位置">
+                        <Button.Resources>
+                            <Style BasedOn="{StaticResource ButtonStyle_Base}" TargetType="{x:Type Button}">
+                                <Setter Property="IsEnabled" Value="False" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ElementName=ComboBox_TeleportClass, Path=SelectedIndex}" Value="0">
+                                        <Setter Property="IsEnabled" Value="True" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
                     <Button
-                        x:Name="Button_Teleport_EditCustom"
-                        Click="Button_Teleport_EditCustom_Click"
-                        Content="修改选中数据" />
+                        x:Name="Button_EditCustomTeleport"
+                        Click="Button_EditCustomTeleport_Click"
+                        Content="修改选中数据">
+                        <Button.Resources>
+                            <Style BasedOn="{StaticResource ButtonStyle_Base}" TargetType="{x:Type Button}">
+                                <Setter Property="IsEnabled" Value="False" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ElementName=ComboBox_TeleportClass, Path=SelectedIndex}" Value="0">
+                                        <Setter Property="IsEnabled" Value="True" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
                     <Button
-                        x:Name="Button_Teleport_DeleteCustom"
-                        Click="Button_Teleport_DeleteCustom_Click"
-                        Content="删除选中数据" />
+                        x:Name="Button_DeleteCustomTeleport"
+                        Click="Button_DeleteCustomTeleport_Click"
+                        Content="删除选中数据">
+                        <Button.Resources>
+                            <Style BasedOn="{StaticResource ButtonStyle_Base}" TargetType="{x:Type Button}">
+                                <Setter Property="IsEnabled" Value="False" />
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ElementName=ComboBox_TeleportClass, Path=SelectedIndex}" Value="0">
+                                        <Setter Property="IsEnabled" Value="True" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Resources>
+                    </Button>
                 </WrapPanel>
             </StackPanel>
 
@@ -157,7 +234,7 @@
                     Content="传送到选中位置" />
                 <Button
                     x:Name="Button_Teleport_SaveCustom"
-                    Click="Button_Teleport_SaveCustom_Click"
+                    Click="Button_SaveCustomTeleport_Click"
                     Content="保存自定义传送数据" />
             </UniformGrid>
 

@@ -4,7 +4,7 @@ public class TeleportData
 {
     public class TeleportClass
     {
-        public string ClassName;
+        public string Name;
         public List<TeleportInfo> TeleportInfo;
     }
 
@@ -57,11 +57,11 @@ public class TeleportData
         new TeleportInfo(){ Name="海洋安全场所", Position=new Vector3 { X=4771.792f, Y=-6166.055f, Z=-40.266f } },
     };
 
-    public static List<TeleportClass> TeleportDataClass = new()
+    public static List<TeleportClass> TeleportClassData = new()
     {
-        new TeleportClass(){ ClassName="自定义地点", TeleportInfo = CustomTeleport },
-        new TeleportClass(){ ClassName="常用地点", TeleportInfo = CommonTP },
-        new TeleportClass(){ ClassName="室内场景", TeleportInfo = IndoorTP },
-        new TeleportClass(){ ClassName="任务地点", TeleportInfo = MissionTP },
+        new TeleportClass(){ Name="自定义地点", TeleportInfo = CustomTeleport },
+        new TeleportClass(){ Name="预设-常用地点", TeleportInfo = CommonTP },
+        new TeleportClass(){ Name="预设-室内场景", TeleportInfo = IndoorTP },
+        new TeleportClass(){ Name="预设-任务地点", TeleportInfo = MissionTP },
     };
 }

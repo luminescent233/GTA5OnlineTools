@@ -43,10 +43,11 @@ public partial class WorldFunctionView : UserControl
             }
         }
 
-        UpdateTeleportList();
-
+        foreach (var item in TeleportData.TeleportClassData)
+        {
+            ComboBox_TeleportClass.Items.Add(item.Name);
+        }
         ComboBox_TeleportClass.SelectedIndex = 0;
-        ListBox_TeleportInfo.SelectedIndex = 0;
     }
 
     private void ExternalMenuWindow_WindowClosingEvent()
@@ -133,21 +134,16 @@ public partial class WorldFunctionView : UserControl
     /////////////////////////////////////////////////////////////////////////////
 
     #region 自定义传送
-    /// <summary>
-    /// 更新传送列表
-    /// </summary>
-    private void UpdateTeleportList()
+    private void UpdateCustonTeleportList()
     {
-        ComboBox_TeleportClass.Items.Clear();
+        ListBox_TeleportInfo.Items.Clear();
 
-        // 传送列表
-        foreach (var item in TeleportData.TeleportDataClass)
+        foreach (var item in TeleportData.TeleportClassData[0].TeleportInfo)
         {
-            ComboBox_TeleportClass.Items.Add(item.ClassName);
+            ListBox_TeleportInfo.Items.Add(item.Name);
         }
 
-        ComboBox_TeleportClass.Items.Refresh();
-        ListBox_TeleportInfo.Items.Refresh();
+        ListBox_TeleportInfo.SelectedIndex = 0;
     }
 
     private void ComboBox_TeleportClass_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -157,7 +153,7 @@ public partial class WorldFunctionView : UserControl
         {
             ListBox_TeleportInfo.Items.Clear();
 
-            foreach (var item in TeleportData.TeleportDataClass[index].TeleportInfo)
+            foreach (var item in TeleportData.TeleportClassData[index].TeleportInfo)
             {
                 ListBox_TeleportInfo.Items.Add(item.Name);
             }
@@ -172,38 +168,23 @@ public partial class WorldFunctionView : UserControl
         var index2 = ListBox_TeleportInfo.SelectedIndex;
         if (index1 != -1 && index2 != -1)
         {
-            tempVector3 = TeleportData.TeleportDataClass[index1].TeleportInfo[index2].Position;
+            tempVector3 = TeleportData.TeleportClassData[index1].TeleportInfo[index2].Position;
 
-            if (index1 == 0)
-            {
-                TextBox_Position_X.IsEnabled = true;
-                TextBox_Position_Y.IsEnabled = true;
-                TextBox_Position_Z.IsEnabled = true;
-
-                TextBox_Position_Name.IsEnabled = true;
-
-                TextBox_Position_Name.Text = TeleportData.TeleportDataClass[index1].TeleportInfo[index2].Name;
-                TextBox_Position_X.Text = TeleportData.TeleportDataClass[index1].TeleportInfo[index2].Position.X.ToString();
-                TextBox_Position_Y.Text = TeleportData.TeleportDataClass[index1].TeleportInfo[index2].Position.Y.ToString();
-                TextBox_Position_Z.Text = TeleportData.TeleportDataClass[index1].TeleportInfo[index2].Position.Z.ToString();
-            }
-            else
-            {
-                TextBox_Position_X.IsEnabled = false;
-                TextBox_Position_Y.IsEnabled = false;
-                TextBox_Position_Z.IsEnabled = false;
-
-                TextBox_Position_Name.IsEnabled = false;
-
-                TextBox_Position_Name.Text = TeleportData.TeleportDataClass[index1].TeleportInfo[index2].Name;
-                TextBox_Position_X.Text = TeleportData.TeleportDataClass[index1].TeleportInfo[index2].Position.X.ToString();
-                TextBox_Position_Y.Text = TeleportData.TeleportDataClass[index1].TeleportInfo[index2].Position.Y.ToString();
-                TextBox_Position_Z.Text = TeleportData.TeleportDataClass[index1].TeleportInfo[index2].Position.Z.ToString();
-            }
+            TextBox_CustomTeleportName.Text = TeleportData.TeleportClassData[index1].TeleportInfo[index2].Name;
+            TextBox_Position_X.Text = $"{tempVector3.X:0.000}";
+            TextBox_Position_Y.Text = $"{tempVector3.Y:0.000}";
+            TextBox_Position_Z.Text = $"{tempVector3.Z:0.000}";
+        }
+        else if (index2 == -1)
+        {
+            TextBox_CustomTeleportName.Clear();
+            TextBox_Position_X.Clear();
+            TextBox_Position_Y.Clear();
+            TextBox_Position_Z.Clear();
         }
     }
 
-    private void Button_Teleport_AddCustom_Click(object sender, RoutedEventArgs e)
+    private void Button_AddCustomTeleport_Click(object sender, RoutedEventArgs e)
     {
         AudioUtil.PlayClickSound();
 
@@ -211,47 +192,62 @@ public partial class WorldFunctionView : UserControl
 
         TeleportData.CustomTeleport.Add(new TeleportData.TeleportInfo()
         {
-            Name = $"保存点 : {DateTime.Now:yyyyMMdd_HH-mm-ss_ffff}",
+            Name = $"保存点 : {DateTime.Now:yyyyMMdd_HHmmss_ffff}",
             Position = vector3
         });
 
-        UpdateTeleportList();
+        UpdateCustonTeleportList();
 
-        ComboBox_TeleportClass.SelectedIndex = 0;
         ListBox_TeleportInfo.SelectedIndex = ListBox_TeleportInfo.Items.Count - 1;
     }
 
-    private void Button_Teleport_EditCustom_Click(object sender, RoutedEventArgs e)
+    private void Button_EditCustomTeleport_Click(object sender, RoutedEventArgs e)
     {
         AudioUtil.PlayClickSound();
 
-        int index1 = ComboBox_TeleportClass.SelectedIndex;
-        int index2 = ListBox_TeleportInfo.SelectedIndex;
-        if (index1 == 0 && index2 != -1)
+        try
         {
-            TeleportData.TeleportDataClass[index1].TeleportInfo[index2].Position = new Vector3()
+            var tempName = TextBox_CustomTeleportName.Text.Trim();
+            var tempX = TextBox_Position_X.Text.Trim();
+            var tempY = TextBox_Position_Y.Text.Trim();
+            var tempZ = TextBox_Position_Z.Text.Trim();
+
+            if (string.IsNullOrEmpty(tempName) ||
+                string.IsNullOrEmpty(tempX) || string.IsNullOrEmpty(tempY) || string.IsNullOrEmpty(tempZ))
             {
-                X = Convert.ToSingle(TextBox_Position_X.Text),
-                Y = Convert.ToSingle(TextBox_Position_Y.Text),
-                Z = Convert.ToSingle(TextBox_Position_Z.Text)
-            };
+                NotifierHelper.Show(NotifierType.Warning, "部分坐标数据不能为空");
+                return;
+            }
 
-            TeleportData.TeleportDataClass[index1].TeleportInfo[index2].Name = TextBox_Position_Name.Text;
+            int index1 = ComboBox_TeleportClass.SelectedIndex;
+            int index2 = ListBox_TeleportInfo.SelectedIndex;
+            if (index1 == 0 && index2 != -1)
+            {
+                TeleportData.TeleportClassData[index1].TeleportInfo[index2].Position = new Vector3()
+                {
+                    X = Convert.ToSingle(tempX),
+                    Y = Convert.ToSingle(tempY),
+                    Z = Convert.ToSingle(tempZ)
+                };
 
-            UpdateTeleportList();
+                TeleportData.TeleportClassData[index1].TeleportInfo[index2].Name = tempName;
 
-            ComboBox_TeleportClass.SelectedIndex = 0;
-            ListBox_TeleportInfo.SelectedIndex = index2; ;
+                UpdateCustonTeleportList();
 
-            NotifierHelper.Show(NotifierType.Success, "修改自定义传送坐标成功");
+                ListBox_TeleportInfo.SelectedIndex = index2; ;
+            }
+            else
+            {
+                NotifierHelper.Show(NotifierType.Warning, "当前自定义传送坐标选中项为空");
+            }
         }
-        else
+        catch (Exception ex)
         {
-            NotifierHelper.Show(NotifierType.Error, "当前选中项为空");
+            NotifierHelper.ShowException(ex);
         }
     }
 
-    private void Button_Teleport_DeleteCustom_Click(object sender, RoutedEventArgs e)
+    private void Button_DeleteCustomTeleport_Click(object sender, RoutedEventArgs e)
     {
         AudioUtil.PlayClickSound();
 
@@ -259,18 +255,15 @@ public partial class WorldFunctionView : UserControl
         int index2 = ListBox_TeleportInfo.SelectedIndex;
         if (index1 == 0 && index2 != -1)
         {
-            TeleportData.TeleportDataClass[index1].TeleportInfo.Remove(TeleportData.TeleportDataClass[index1].TeleportInfo[index2]);
+            TeleportData.TeleportClassData[index1].TeleportInfo.Remove(TeleportData.TeleportClassData[index1].TeleportInfo[index2]);
 
-            UpdateTeleportList();
+            UpdateCustonTeleportList();
 
-            ComboBox_TeleportClass.SelectedIndex = 0;
             ListBox_TeleportInfo.SelectedIndex = ListBox_TeleportInfo.Items.Count - 1;
-
-            NotifierHelper.Show(NotifierType.Success, "删除自定义传送坐标成功");
         }
         else
         {
-            NotifierHelper.Show(NotifierType.Error, "当前选中项为空");
+            NotifierHelper.Show(NotifierType.Warning, "当前自定义传送坐标选中项为空");
         }
     }
 
@@ -300,7 +293,7 @@ public partial class WorldFunctionView : UserControl
         Teleport.SetTeleportPosition(tempVector3);
     }
 
-    private void Button_Teleport_SaveCustom_Click(object sender, RoutedEventArgs e)
+    private void Button_SaveCustomTeleport_Click(object sender, RoutedEventArgs e)
     {
         AudioUtil.PlayClickSound();
 

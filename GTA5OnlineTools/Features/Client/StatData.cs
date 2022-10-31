@@ -2,13 +2,13 @@
 
 public static class StatData
 {
-    public struct StatClass
+    public class StatClass
     {
         public string ClassName;
         public List<StatInfo> StatInfo;
     }
 
-    public struct StatInfo
+    public class StatInfo
     {
         public string Hash;
         public int Value;

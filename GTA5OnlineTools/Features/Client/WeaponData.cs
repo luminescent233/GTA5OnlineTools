@@ -2,14 +2,14 @@
 
 public static class WeaponData
 {
-    public struct WeaponClass
+    public class WeaponClass
     {
         public string Name;
         public string Emoji;
         public List<WeaponInfo> WeaponInfo;
     }
 
-    public struct WeaponInfo
+    public class WeaponInfo
     {
         public string Name;
         public string DisplayName;

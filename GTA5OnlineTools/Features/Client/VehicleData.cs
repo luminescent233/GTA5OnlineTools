@@ -2,14 +2,14 @@
 
 public static class VehicleData
 {
-    public struct VehicleClass
+    public class VehicleClass
     {
         public string Name;
         public string Emoji;
         public List<VehicleInfo> VehicleInfo;
     }
 
-    public struct VehicleInfo
+    public class VehicleInfo
     {
         public string Name;
         public string DisplayName;

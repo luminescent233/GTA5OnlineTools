@@ -2,7 +2,7 @@
 
 public static class MiscData
 {
-    public struct FlagInfo
+    public class FlagInfo
     {
         public string Name;
         public int ID;

@@ -2,7 +2,7 @@
 
 public static class PedData
 {
-    public struct PedInfo
+    public class PedInfo
     {
         public string Name;
         public string DisplayName;
