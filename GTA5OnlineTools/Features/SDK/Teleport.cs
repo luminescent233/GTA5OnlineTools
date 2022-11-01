@@ -162,45 +162,20 @@ public static class Teleport
     public static Vector3 CustomObjectivePosition(int blipID)
     {
         Vector3 vector3 = Vector3.Zero;
-        int dwIcon, dwColor;
+        int dwIcon;
 
-        // https://www.unknowncheats.me/forum/3529002-post49.html
-        int orgColor = Hacks.ReadGA<int>(1892703 + Hacks.GetPlayerID() * 599 + 10 + 104 + 1);
-
-        // https://wiki.rage.mp/index.php?title=Blips
-        if (orgColor >= 1 && orgColor <= 85)
+        for (int i = 2000; i > 1; i--)
         {
-            for (int i = 2000; i > 1; i--)
+            long pBlip = Memory.Read<long>(Pointers.BlipPTR + i * 0x08);
+
+            dwIcon = Memory.Read<int>(pBlip + 0x40);
+
+            if (dwIcon == blipID)
             {
-                long pBlip = Memory.Read<long>(Pointers.BlipPTR + i * 0x08);
+                vector3 = Memory.Read<Vector3>(pBlip + 0x10);
+                vector3.Z = vector3.Z == 20.0f ? -225.0f : vector3.Z + 1.0f;
 
-                dwIcon = Memory.Read<int>(pBlip + 0x40);
-                dwColor = Memory.Read<int>(pBlip + 0x48);
-
-                if (dwIcon == blipID && dwColor == orgColor)
-                {
-                    vector3 = Memory.Read<Vector3>(pBlip + 0x10);
-                    vector3.Z = vector3.Z == 20.0f ? -225.0f : vector3.Z + 1.0f;
-
-                    return vector3;
-                }
-            }
-        }
-        else
-        {
-            for (int i = 2000; i > 1; i--)
-            {
-                long pBlip = Memory.Read<long>(Pointers.BlipPTR + i * 0x08);
-
-                dwIcon = Memory.Read<int>(pBlip + 0x40);
-
-                if (dwIcon == blipID)
-                {
-                    vector3 = Memory.Read<Vector3>(pBlip + 0x10);
-                    vector3.Z = vector3.Z == 20.0f ? -225.0f : vector3.Z + 1.0f;
-
-                    return vector3;
-                }
+                return vector3;
             }
         }
 
