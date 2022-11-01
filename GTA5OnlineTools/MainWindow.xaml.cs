@@ -277,7 +277,7 @@ public partial class MainWindow
             // 检测版本更新
             var options = new RestClientOptions("https://api.crazyzhang.cn")
             {
-                MaxTimeout = 9000,
+                MaxTimeout = 20000,
                 FollowRedirects = true
             };
             var client = new RestClient(options);

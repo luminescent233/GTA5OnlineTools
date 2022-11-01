@@ -941,7 +941,7 @@
     <None Remove="Features\Files\Kiddion\config.json" />
     <None Remove="Features\Files\Kiddion\key87\config.json" />
     <None Remove="Features\Files\Kiddion\Kiddion.exe" />
-    <None Remove="Features\Files\Kiddion\Kiddion_Chs.exe" />
+    <None Remove="Features\Files\Kiddion\KiddionChs.exe" />
     <None Remove="Features\Files\Kiddion\scripts\Readme.api" />
     <None Remove="Features\Files\Kiddion\teleports.json" />
     <None Remove="Features\Files\Kiddion\themes.json" />
@@ -962,7 +962,7 @@
     <EmbeddedResource Include="Features\Files\Kiddion\config.json" />
     <EmbeddedResource Include="Features\Files\Kiddion\key87\config.json" />
     <EmbeddedResource Include="Features\Files\Kiddion\Kiddion.exe" />
-    <EmbeddedResource Include="Features\Files\Kiddion\Kiddion_Chs.exe" />
+    <EmbeddedResource Include="Features\Files\Kiddion\KiddionChs.exe" />
     <EmbeddedResource Include="Features\Files\Kiddion\scripts\Readme.api" />
     <EmbeddedResource Include="Features\Files\Kiddion\teleports.json" />
     <EmbeddedResource Include="Features\Files\Kiddion\themes.json" />

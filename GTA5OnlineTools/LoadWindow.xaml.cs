@@ -69,7 +69,7 @@ public partial class LoadWindow
 
                 // 释放必要文件
                 FileUtil.ExtractResFile(FileUtil.Resource_Kiddion_Path + "Kiddion.exe", FileUtil.D_Kiddion_Path + "Kiddion.exe");
-                FileUtil.ExtractResFile(FileUtil.Resource_Kiddion_Path + "Kiddion_Chs.exe", FileUtil.D_Kiddion_Path + "Kiddion_Chs.exe");
+                FileUtil.ExtractResFile(FileUtil.Resource_Kiddion_Path + "KiddionChs.exe", FileUtil.D_Kiddion_Path + "KiddionChs.exe");
 
                 // 释放前先判断，防止覆盖配置文件
                 if (!File.Exists(FileUtil.D_Kiddion_Path + "config.json"))

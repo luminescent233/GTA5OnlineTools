@@ -25,16 +25,19 @@ public partial class InjectorWindow
         {
             foreach (Process process in Process.GetProcesses())
             {
-                this.Dispatcher.BeginInvoke(DispatcherPriority.Background, () =>
+                if (!string.IsNullOrEmpty(process.MainWindowTitle))
                 {
-                    ProcessLists.Add(new ProcessList()
+                    this.Dispatcher.BeginInvoke(DispatcherPriority.Background, () =>
                     {
-                        ProcID = process.Id,
-                        ProcName = process.ProcessName,
-                        MainWindowTitle = process.MainWindowTitle,
-                        MainWindowHandle = process.MainWindowHandle,
+                        ProcessLists.Add(new ProcessList()
+                        {
+                            ProcID = process.Id,
+                            ProcName = process.ProcessName,
+                            MainWindowTitle = process.MainWindowTitle,
+                            MainWindowHandle = process.MainWindowHandle,
+                        });
                     });
-                });
+                }
             }
         });
     }
@@ -86,13 +89,10 @@ public partial class InjectorWindow
         }
     }
 
-    /// <summary>
-    /// 仅显示带窗口进程 单选框 点击事件
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
-    private void CheckBox_OnlyShowWindowProcess_Click(object sender, RoutedEventArgs e)
+    private void Button_Refush_Click(object sender, RoutedEventArgs e)
     {
+        AudioUtil.PlayClickSound();
+
         lock (this)
         {
             ProcessLists.Clear();
@@ -101,33 +101,11 @@ public partial class InjectorWindow
             InjectInfo.ProcName = string.Empty;
             InjectInfo.MainWindowHandle = IntPtr.Zero;
 
-            if (CheckBox_OnlyShowWindowProcess.IsChecked == true)
+            Task.Run(() =>
             {
-                Task.Run(() =>
+                foreach (Process process in Process.GetProcesses())
                 {
-                    foreach (Process process in Process.GetProcesses())
-                    {
-                        if (!string.IsNullOrEmpty(process.MainWindowTitle))
-                        {
-                            this.Dispatcher.BeginInvoke(DispatcherPriority.Background, () =>
-                            {
-                                ProcessLists.Add(new ProcessList()
-                                {
-                                    ProcID = process.Id,
-                                    ProcName = process.ProcessName,
-                                    MainWindowTitle = process.MainWindowTitle,
-                                    MainWindowHandle = process.MainWindowHandle,
-                                });
-                            });
-                        }
-                    }
-                });
-            }
-            else
-            {
-                Task.Run(() =>
-                {
-                    foreach (Process process in Process.GetProcesses())
+                    if (!string.IsNullOrEmpty(process.MainWindowTitle))
                     {
                         this.Dispatcher.BeginInvoke(DispatcherPriority.Background, () =>
                         {
@@ -140,8 +118,8 @@ public partial class InjectorWindow
                             });
                         });
                     }
-                });
-            }
+                }
+            });
         }
     }
 

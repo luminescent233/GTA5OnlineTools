@@ -222,7 +222,7 @@ public partial class CheatsView : UserControl
             if (CheatsModel.KiddionIsRun)
             {
                 // 先关闭Kiddion汉化程序
-                ProcessUtil.CloseProcess("Kiddion_Chs");
+                ProcessUtil.CloseProcess("KiddionChs");
                 // 如果Kiddion没有运行则打开Kiddion
                 if (!ProcessUtil.IsAppRun("Kiddion"))
                     ProcessUtil.OpenProcess("Kiddion", true);
@@ -250,7 +250,7 @@ public partial class CheatsView : UserControl
                             if (windowName.ToString() == "Kiddion's Modest Menu v0.9.6")
                             {
                                 isShow = true;
-                                ProcessUtil.OpenProcess("Kiddion_Chs", true);
+                                ProcessUtil.OpenProcess("KiddionChs", true);
                             }
                             else
                             {
@@ -271,7 +271,7 @@ public partial class CheatsView : UserControl
             else
             {
                 ProcessUtil.CloseProcess("Kiddion");
-                ProcessUtil.CloseProcess("Kiddion_Chs");
+                ProcessUtil.CloseProcess("KiddionChs");
             }
         });
 
@@ -358,7 +358,7 @@ public partial class CheatsView : UserControl
     private void KiddionKey104Click()
     {
         ProcessUtil.CloseProcess("Kiddion");
-        ProcessUtil.CloseProcess("Kiddion_Chs");
+        ProcessUtil.CloseProcess("KiddionChs");
         FileUtil.ExtractResFile(FileUtil.Resource_Kiddion_Path + "config.json", FileUtil.D_Kiddion_Path + "config.json");
         NotifierHelper.Show(NotifierType.Success, "切换到《Kiddion [104键]》成功");
     }
@@ -369,7 +369,7 @@ public partial class CheatsView : UserControl
     private void KiddionKey87Click()
     {
         ProcessUtil.CloseProcess("Kiddion");
-        ProcessUtil.CloseProcess("Kiddion_Chs");
+        ProcessUtil.CloseProcess("KiddionChs");
         FileUtil.ExtractResFile(FileUtil.Resource_Kiddion_Path + "key87.config.json", FileUtil.D_Kiddion_Path + "config.json");
         NotifierHelper.Show(NotifierType.Success, "切换到《Kiddion [87键]》成功");
     }
@@ -381,8 +381,8 @@ public partial class CheatsView : UserControl
     {
         if (ProcessUtil.IsAppRun("Kiddion"))
         {
-            ProcessUtil.CloseProcess("Kiddion_Chs");
-            ProcessUtil.OpenProcess("Kiddion_Chs", true);
+            ProcessUtil.CloseProcess("KiddionChs");
+            ProcessUtil.OpenProcess("KiddionChs", true);
         }
         else
         {
@@ -395,9 +395,9 @@ public partial class CheatsView : UserControl
     /// </summary>
     private void KiddionChsOFFClick()
     {
-        if (ProcessUtil.IsAppRun("Kiddion_Chs"))
+        if (ProcessUtil.IsAppRun("KiddionChs"))
         {
-            ProcessUtil.CloseProcess("Kiddion_Chs");
+            ProcessUtil.CloseProcess("KiddionChs");
             NotifierHelper.Show(NotifierType.Success, "关闭《Kiddion汉化》成功");
         }
         else

@@ -40,8 +40,15 @@
             LastChildFill="True">
             <TextBlock VerticalAlignment="Center" Text="DLL路径" />
             <ui:UiButtonEmoji
+                x:Name="Button_Refush"
+                Margin="5,5,0,5"
+                Click="Button_Refush_Click"
+                Content="刷新"
+                DockPanel.Dock="Right"
+                Emoji="♻" />
+            <ui:UiButtonEmoji
                 x:Name="Button_Inject"
-                Margin="0"
+                Margin="0,5,0,5"
                 Click="Button_Inject_Click"
                 Content="注入"
                 DockPanel.Dock="Right"
@@ -53,19 +60,13 @@
                 MouseDoubleClick="TextBox_DLLPath_MouseDoubleClick" />
         </DockPanel>
         <!--  ##########  -->
-        <DockPanel DockPanel.Dock="Top" LastChildFill="False">
-            <CheckBox
-                x:Name="CheckBox_OnlyShowWindowProcess"
-                Click="CheckBox_OnlyShowWindowProcess_Click"
-                Content="仅显示带窗口进程" />
-            <TextBlock
-                x:Name="TextBlock_Status"
-                Margin="5"
-                VerticalAlignment="Center"
-                DockPanel.Dock="Right"
-                Foreground="Green"
-                Text="等待用户操作..." />
-        </DockPanel>
+        <TextBlock
+            x:Name="TextBlock_Status"
+            Margin="10,5,10,5"
+            VerticalAlignment="Center"
+            DockPanel.Dock="Top"
+            Foreground="Green"
+            Text="等待用户操作..." />
         <!--  ##########  -->
         <ListView
             x:Name="ListView_Process"
