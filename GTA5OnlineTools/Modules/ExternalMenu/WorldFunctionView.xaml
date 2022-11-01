@@ -272,7 +272,6 @@
                         ValueChanged="Slider_MoveDistance_ValueChanged"
                         Value="1.5" />
                 </DockPanel>
-                <Button Click="Button_MoveDistance_Click" Content="向上" />
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition />
@@ -305,6 +304,7 @@
                         Click="Button_MoveDistance_Click"
                         Content="向右" />
                 </Grid>
+                <Button Click="Button_MoveDistance_Click" Content="向上" />
                 <Button Click="Button_MoveDistance_Click" Content="向下" />
             </StackPanel>
 

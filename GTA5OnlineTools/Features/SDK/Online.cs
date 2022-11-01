@@ -112,7 +112,7 @@ public static class Online
     /// 移除被动模式CD
     /// </summary>
     /// <param name="isEnable"></param>
-    public static void RemovePassiveModeCooldown(bool isEnable)
+    public static void PassiveModeCooldown(bool isEnable)
     {
         Hacks.WriteGA(2815059 + 4460, isEnable ? 0 : 1);
         Hacks.WriteGA(1966337, isEnable ? 0 : 1);
@@ -122,7 +122,7 @@ public static class Online
     /// 移除自杀CD
     /// </summary>
     /// <param name="isEnable"></param>
-    public static void RemoveSuicideCooldown(bool isEnable)
+    public static void SuicideCooldown(bool isEnable)
     {
         if (isEnable)
             Hacks.WriteGA(2815059 + 6774, 0);
@@ -220,6 +220,15 @@ public static class Online
     public static void RPMultiplier(float multiplier)
     {
         Hacks.WriteGA(262145 + 1, multiplier);           // xpMultiplier Global_262145.f_1
+    }
+
+    /// <summary>
+    /// 设置角色AP经验倍数
+    /// </summary>
+    /// <param name="multiplier"></param>
+    public static void APMultiplier(float multiplier)
+    {
+        Hacks.WriteGA(262145 + 25914, multiplier);
     }
 
     /// <summary>
@@ -342,7 +351,7 @@ public static class Online
     /// 移除地堡进货延迟
     /// </summary>
     /// <param name="isEnable"></param>
-    public static void RemoveBunkerSupplyDelay(bool isEnable)
+    public static void BunkerSupplyDelay(bool isEnable)
     {
         Hacks.WriteGA(262145 + 21601, isEnable ? 0 : 600);
     }
@@ -486,7 +495,7 @@ public static class Online
     /// 移除摩托帮进货延迟
     /// </summary>
     /// <param name="isEnable"></param>
-    public static void RemoveMCSupplyDelay(bool isEnable)
+    public static void MCSupplyDelay(bool isEnable)
     {
         Hacks.WriteGA(262145 + 18999, isEnable ? 0 : 600);           // 728170457  tuneables_processing.c
     }
@@ -513,7 +522,7 @@ public static class Online
     /// 移除进出口大亨出货CD
     /// </summary>
     /// <param name="isEnable"></param>
-    public static void RemoveExportVehicleDelay(bool isEnable)
+    public static void ExportVehicleDelay(bool isEnable)
     {
         Hacks.WriteGA(262145 + 19727, isEnable ? 0 : 1200000);         // 1001423248  tuneables_processing.c
         Hacks.WriteGA(262145 + 19728, isEnable ? 0 : 1680000);
@@ -535,7 +544,7 @@ public static class Online
     /// 移除机库进货CD
     /// </summary>
     /// <param name="isEnable"></param>
-    public static void RemoveSmugglerRunInDelay(bool isEnable)
+    public static void SmugglerRunInDelay(bool isEnable)
     {
         Hacks.WriteGA(262145 + 22779, isEnable ? 0 : 120000);          // 1278611667  tuneables_processing.c
         Hacks.WriteGA(262145 + 22780, isEnable ? 0 : 180000);
@@ -547,7 +556,7 @@ public static class Online
     /// 移除机库出货CD
     /// </summary>
     /// <param name="isEnable"></param>
-    public static void RemoveSmugglerRunOutDelay(bool isEnable)
+    public static void SmugglerRunOutDelay(bool isEnable)
     {
         Hacks.WriteGA(262145 + 22820, isEnable ? 0 : 180000);          // -1525481945  tuneables_processing.c
     }
@@ -556,7 +565,7 @@ public static class Online
     /// 移除夜总会出货CD
     /// </summary>
     /// <param name="isEnable"></param>
-    public static void RemoveNightclubOutDelay(bool isEnable)
+    public static void NightclubOutDelay(bool isEnable)
     {
         Hacks.WriteGA(262145 + 24475, isEnable ? 0 : 300000);          // 1763921019  tuneables_processing.c
         Hacks.WriteGA(262145 + 24517, isEnable ? 0 : 300000);          // -1004589438
@@ -580,5 +589,64 @@ public static class Online
     {
         Hacks.WriteGA(Offsets.oVMYCar + 965, index);
         Hacks.WriteGA(Offsets.oVMYCar + 962, 1);
+    }
+
+    /// <summary>
+    /// 移除CEO工作冷却
+    /// </summary>
+    /// <param name="isEnable"></param>
+    public static void CEOWorkCooldown(bool isEnable)
+    {
+        Hacks.WriteGA(262145 + 13078, isEnable ? 0 : 300000);
+        Hacks.WriteGA(262145 + 12975, isEnable ? 0 : 600000);
+    }
+
+    /// <summary>
+    /// 移除恐霸客户差事冷却
+    /// </summary>
+    /// <param name="isEnable"></param>
+    public static void ClientJonCooldown(bool isEnable)
+    {
+        Hacks.WriteGA(262145 + 24664 + 0, isEnable ? 0 : 300000);       // Between Jobs
+        Hacks.WriteGA(262145 + 24664 + 1, isEnable ? 0 : 1800000);      // Robbery in Progress
+        Hacks.WriteGA(262145 + 24664 + 2, isEnable ? 0 : 1800000);      // Data Sweep
+        Hacks.WriteGA(262145 + 24664 + 3, isEnable ? 0 : 1800000);      // Targeted Data
+        Hacks.WriteGA(262145 + 24664 + 4, isEnable ? 0 : 1800000);      //  Diamond Shopping
+    }
+
+    /// <summary>
+    /// 移除事务所安保合约冷却
+    /// </summary>
+    /// <param name="isEnable"></param>
+    public static void SecurityHitCooldown(bool isEnable)
+    {
+        Hacks.WriteGA(262145 + 31689, isEnable ? 0 : 300000);
+    }
+
+    /// <summary>
+    /// 移除公共电话任务合约冷却
+    /// </summary>
+    /// <param name="isEnable"></param>
+    public static void PayphoneHitCooldown(bool isEnable)
+    {
+        Hacks.WriteGA(262145 + 31769, isEnable ? 0 : 1200000);
+    }
+
+    /// <summary>
+    /// 进入RC匪徒
+    /// </summary>
+    /// <param name="isEnable"></param>
+    public static void TriggerRCBandito(bool isEnable)
+    {
+        Hacks.WriteGA(Offsets.oVMYCar + 6751, isEnable ? 1 : 0);
+    }
+
+    /// <summary>
+    /// 进入迷你坦克
+    /// </summary>
+    /// <param name="isEnable"></param>
+    public static void TriggerMiniTank(bool isEnable)
+    {
+        Hacks.WriteGA(Offsets.oVMYCar + 6752, isEnable ? 1 : 0);
     }
 }

@@ -14,13 +14,6 @@ public partial class OnlineOptionView : UserControl
         InitializeComponent();
         this.DataContext = this;
         ExternalMenuWindow.WindowClosingEvent += ExternalMenuWindow_WindowClosingEvent;
-
-        // Ped列表
-        foreach (var item in PedData.PedDataClass)
-        {
-            ListBox_PedModel.Items.Add(item.DisplayName);
-        }
-        ListBox_PedModel.SelectedIndex = 0;
     }
 
     private void ExternalMenuWindow_WindowClosingEvent()
@@ -67,12 +60,12 @@ public partial class OnlineOptionView : UserControl
 
     private void CheckBox_RemovePassiveModeCooldown_Click(object sender, RoutedEventArgs e)
     {
-        Online.RemovePassiveModeCooldown(CheckBox_RemovePassiveModeCooldown.IsChecked == true);
+        Online.PassiveModeCooldown(CheckBox_RemovePassiveModeCooldown.IsChecked == true);
     }
 
     private void CheckBox_RemoveSuicideCooldown_Click(object sender, RoutedEventArgs e)
     {
-        Online.RemoveSuicideCooldown(CheckBox_RemoveSuicideCooldown.IsChecked == true);
+        Online.SuicideCooldown(CheckBox_RemoveSuicideCooldown.IsChecked == true);
     }
 
     private void CheckBox_DisableOrbitalCooldown_Click(object sender, RoutedEventArgs e)
@@ -154,14 +147,5 @@ public partial class OnlineOptionView : UserControl
     private void CheckBox_Airstrike_Click(object sender, RoutedEventArgs e)
     {
         Online.CallAirstrike(CheckBox_Airstrike.IsChecked == true);
-    }
-
-    private void Button_ModelChange_Click(object sender, RoutedEventArgs e)
-    {
-        AudioUtil.PlayClickSound();
-
-        var index = ListBox_PedModel.SelectedIndex;
-        if (index != -1)
-            Online.ModelChange(PedData.PedDataClass[index].Hash);
     }
 }

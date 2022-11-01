@@ -21,9 +21,9 @@ public partial class JobHelperView : UserControl
 
     }
 
-    private void CheckBox_RemoveBunkerSupplyDelay_Click(object sender, RoutedEventArgs e)
+    private void CheckBox_BunkerSupplyDelay_Click(object sender, RoutedEventArgs e)
     {
-        Online.RemoveBunkerSupplyDelay(CheckBox_RemoveBunkerSupplyDelay.IsChecked == true);
+        Online.BunkerSupplyDelay(CheckBox_BunkerSupplyDelay.IsChecked == true);
     }
 
     private void CheckBox_UnlockBunkerResearch_Click(object sender, RoutedEventArgs e)
@@ -31,24 +31,19 @@ public partial class JobHelperView : UserControl
         Online.UnlockBunkerResearch(CheckBox_UnlockBunkerResearch.IsChecked == true);
     }
 
-    private void CheckBox_RemoveBuyingCratesCooldown_Click(object sender, RoutedEventArgs e)
+    private void CheckBox_CEOBuyingCratesCooldown_Click(object sender, RoutedEventArgs e)
     {
-        Online.CEOBuyingCratesCooldown(CheckBox_CooldownForBuyingCrates.IsChecked == true);
+        Online.CEOBuyingCratesCooldown(CheckBox_CEOBuyingCratesCooldown.IsChecked == true);
     }
 
-    private void CheckBox_RemoveSellingCratesCooldown_Click(object sender, RoutedEventArgs e)
+    private void CheckBox_CEOSellingCratesCooldown_Click(object sender, RoutedEventArgs e)
     {
-        Online.CEOSellingCratesCooldown(CheckBox_CooldownForSellingCrates.IsChecked == true);
+        Online.CEOSellingCratesCooldown(CheckBox_CEOSellingCratesCooldown.IsChecked == true);
     }
 
-    private void CheckBox_PricePerCrateAtCrates_Click(object sender, RoutedEventArgs e)
+    private void CheckBox_MCSupplyDelay_Click(object sender, RoutedEventArgs e)
     {
-        Online.CEOPricePerCrateAtCrates(CheckBox_PricePerCrateAtCrates.IsChecked == true);
-    }
-
-    private void CheckBox_RemoveMCSupplyDelay_Click(object sender, RoutedEventArgs e)
-    {
-        Online.RemoveMCSupplyDelay(CheckBox_RemoveMCSupplyDelay.IsChecked == true);
+        Online.MCSupplyDelay(CheckBox_MCSupplyDelay.IsChecked == true);
     }
 
     private void Button_CEOCargos_Click(object sender, RoutedEventArgs e)
@@ -72,23 +67,43 @@ public partial class JobHelperView : UserControl
         }
     }
 
-    private void CheckBox_RemoveExportVehicleDelay_Click(object sender, RoutedEventArgs e)
+    private void CheckBox_ExportVehicleDelay_Click(object sender, RoutedEventArgs e)
     {
-        Online.RemoveExportVehicleDelay(CheckBox_RemoveExportVehicleDelay.IsChecked == true);
+        Online.ExportVehicleDelay(CheckBox_ExportVehicleDelay.IsChecked == true);
     }
 
-    private void CheckBox_RemoveSmugglerRunInDelay_Click(object sender, RoutedEventArgs e)
+    private void CheckBox_SmugglerRunInDelay_Click(object sender, RoutedEventArgs e)
     {
-        Online.RemoveSmugglerRunInDelay(CheckBox_RemoveSmugglerRunInDelay.IsChecked == true);
+        Online.SmugglerRunInDelay(CheckBox_SmugglerRunInDelay.IsChecked == true);
     }
 
-    private void CheckBox_RemoveSmugglerRunOutDelay_Click(object sender, RoutedEventArgs e)
+    private void CheckBox_SmugglerRunOutDelay_Click(object sender, RoutedEventArgs e)
     {
-        Online.RemoveSmugglerRunOutDelay(CheckBox_RemoveSmugglerRunOutDelay.IsChecked == true);
+        Online.SmugglerRunOutDelay(CheckBox_SmugglerRunOutDelay.IsChecked == true);
     }
 
-    private void CheckBox_RemoveNightclubOutDelay_Click(object sender, RoutedEventArgs e)
+    private void CheckBox_NightclubOutDelay_Click(object sender, RoutedEventArgs e)
     {
-        Online.RemoveNightclubOutDelay(CheckBox_RemoveNightclubOutDelay.IsChecked == true);
+        Online.NightclubOutDelay(CheckBox_NightclubOutDelay.IsChecked == true);
+    }
+
+    private void CheckBox_CEOWorkCooldown_Click(object sender, RoutedEventArgs e)
+    {
+        Online.CEOWorkCooldown(CheckBox_CEOWorkCooldown.IsChecked == true);
+    }
+
+    private void CheckBox_ClientJonCooldown_Click(object sender, RoutedEventArgs e)
+    {
+        Online.ClientJonCooldown(CheckBox_ClientJonCooldown.IsChecked == true);
+    }
+
+    private void CheckBox_SecurityHitCooldown_Click(object sender, RoutedEventArgs e)
+    {
+        Online.SecurityHitCooldown(CheckBox_SecurityHitCooldown.IsChecked == true);
+    }
+
+    private void CheckBox_PayphoneHitCooldown_Click(object sender, RoutedEventArgs e)
+    {
+        Online.PayphoneHitCooldown(CheckBox_PayphoneHitCooldown.IsChecked == true);
     }
 }

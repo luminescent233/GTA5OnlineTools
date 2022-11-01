@@ -33,6 +33,7 @@ public partial class ExternalMenuWindow
     private readonly ExternalOverlayView ExternalOverlayView = new();
     private readonly SessionChatView SessionChatView = new();
     private readonly JobHelperView JobHelperView = new();
+    private readonly OtherMiscView OtherMiscView = new();
 
     ///////////////////////////////////////////////////////////////
 
@@ -134,6 +135,7 @@ public partial class ExternalMenuWindow
         MenuBars.Add(new MenuBar() { Emoji = "🍈", Title = "外部ESP", NameSpace = "ExternalOverlayView" });
         MenuBars.Add(new MenuBar() { Emoji = "🍑", Title = "战局聊天", NameSpace = "SessionChatView" });
         MenuBars.Add(new MenuBar() { Emoji = "🥭", Title = "任务帮手", NameSpace = "JobHelperView" });
+        MenuBars.Add(new MenuBar() { Emoji = "🍍", Title = "其他杂项", NameSpace = "OtherMiscView" });
 
         MenuBars.Add(new MenuBar() { Emoji = "💌", Title = "README", NameSpace = "ReadMeView" });
     }
@@ -178,6 +180,9 @@ public partial class ExternalMenuWindow
                 break;
             case "JobHelperView":
                 ContentControl_Main.Content = JobHelperView;
+                break;
+            case "OtherMiscView":
+                ContentControl_Main.Content = OtherMiscView;
                 break;
         }
     }

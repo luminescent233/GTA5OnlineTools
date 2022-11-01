@@ -223,4 +223,14 @@ public partial class SpawnVehicleView : UserControl
             Vehicle.Extras((short)MiscData.VehicleExtras[index].ID);
         }
     }
+
+    private void CheckBox_TriggerRCBandito_Click(object sender, RoutedEventArgs e)
+    {
+        Online.TriggerRCBandito(CheckBox_TriggerRCBandito.IsChecked == true);
+    }
+
+    private void CheckBox_TriggerMiniTank_Click(object sender, RoutedEventArgs e)
+    {
+        Online.TriggerMiniTank(CheckBox_TriggerMiniTank.IsChecked == true);
+    }
 }

@@ -61,23 +61,26 @@
             </WrapPanel>
             <StackPanel Margin="5,0,5,0">
                 <CheckBox
-                    x:Name="CheckBox_CooldownForBuyingCrates"
-                    Click="CheckBox_RemoveBuyingCratesCooldown_Click"
+                    x:Name="CheckBox_CEOBuyingCratesCooldown"
+                    Click="CheckBox_CEOBuyingCratesCooldown_Click"
                     Content="移除购买板条箱冷却" />
                 <CheckBox
-                    x:Name="CheckBox_CooldownForSellingCrates"
-                    Click="CheckBox_RemoveSellingCratesCooldown_Click"
+                    x:Name="CheckBox_CEOSellingCratesCooldown"
+                    Click="CheckBox_CEOSellingCratesCooldown_Click"
                     Content="移除出售板条箱冷却" />
-                <CheckBox
-                    x:Name="CheckBox_PricePerCrateAtCrates"
-                    Click="CheckBox_PricePerCrateAtCrates_Click"
-                    Content="⚠️ 设置每箱出售单价为2W"
-                    Foreground="Red"
-                    Visibility="Collapsed" />
-
                 <TextBlock Style="{StaticResource TextBlockStyle_Hint}">
                     提示：需要重新进入CEO电脑生效
                 </TextBlock>
+
+                <TextBlock />
+                <CheckBox
+                    x:Name="CheckBox_CEOWorkCooldown"
+                    Click="CheckBox_CEOWorkCooldown_Click"
+                    Content="移除CEO工作冷却" />
+                <CheckBox
+                    x:Name="CheckBox_ClientJonCooldown"
+                    Click="CheckBox_ClientJonCooldown_Click"
+                    Content="移除恐霸客户差事冷却" />
             </StackPanel>
 
         </StackPanel>
@@ -86,8 +89,8 @@
             <ui:UiLabelEmoji Content="地堡" />
             <StackPanel Margin="5,0,5,0">
                 <CheckBox
-                    x:Name="CheckBox_RemoveBunkerSupplyDelay"
-                    Click="CheckBox_RemoveBunkerSupplyDelay_Click"
+                    x:Name="CheckBox_BunkerSupplyDelay"
+                    Click="CheckBox_BunkerSupplyDelay_Click"
                     Content="移除地堡进货延迟" />
                 <CheckBox
                     x:Name="CheckBox_UnlockBunkerResearch"
@@ -98,37 +101,49 @@
             <ui:UiLabelEmoji Content="摩托帮" />
             <StackPanel Margin="5,0,5,0">
                 <CheckBox
-                    x:Name="CheckBox_RemoveMCSupplyDelay"
-                    Click="CheckBox_RemoveMCSupplyDelay_Click"
+                    x:Name="CheckBox_MCSupplyDelay"
+                    Click="CheckBox_MCSupplyDelay_Click"
                     Content="移除摩托帮进货延迟" />
             </StackPanel>
 
             <ui:UiLabelEmoji Content="夜总会" />
             <StackPanel Margin="5,0,5,0">
                 <CheckBox
-                    x:Name="CheckBox_RemoveNightclubOutDelay"
-                    Click="CheckBox_RemoveNightclubOutDelay_Click"
+                    x:Name="CheckBox_NightclubOutDelay"
+                    Click="CheckBox_NightclubOutDelay_Click"
                     Content="移除夜总会出货延迟" />
             </StackPanel>
 
             <ui:UiLabelEmoji Content="进出口大亨" />
             <StackPanel Margin="5,0,5,0">
                 <CheckBox
-                    x:Name="CheckBox_RemoveExportVehicleDelay"
-                    Click="CheckBox_RemoveExportVehicleDelay_Click"
+                    x:Name="CheckBox_ExportVehicleDelay"
+                    Click="CheckBox_ExportVehicleDelay_Click"
                     Content="移除进出口大亨出货延迟" />
             </StackPanel>
 
             <ui:UiLabelEmoji Content="走私大暴走" />
             <StackPanel Margin="5,0,5,0">
                 <CheckBox
-                    x:Name="CheckBox_RemoveSmugglerRunInDelay"
-                    Click="CheckBox_RemoveSmugglerRunInDelay_Click"
+                    x:Name="CheckBox_SmugglerRunInDelay"
+                    Click="CheckBox_SmugglerRunInDelay_Click"
                     Content="移除机库进货延迟" />
                 <CheckBox
-                    x:Name="CheckBox_RemoveSmugglerRunOutDelay"
-                    Click="CheckBox_RemoveSmugglerRunOutDelay_Click"
+                    x:Name="CheckBox_SmugglerRunOutDelay"
+                    Click="CheckBox_SmugglerRunOutDelay_Click"
                     Content="移除机库出货延迟" />
+            </StackPanel>
+
+            <ui:UiLabelEmoji Content="事务所合约" />
+            <StackPanel Margin="5,0,5,0">
+                <CheckBox
+                    x:Name="CheckBox_SecurityHitCooldown"
+                    Click="CheckBox_SecurityHitCooldown_Click"
+                    Content="移除事务所安保合约冷却" />
+                <CheckBox
+                    x:Name="CheckBox_PayphoneHitCooldown"
+                    Click="CheckBox_PayphoneHitCooldown_Click"
+                    Content="移除公共电话任务合约冷却" />
             </StackPanel>
 
         </StackPanel>
