@@ -258,36 +258,36 @@ public partial class ExternalMenuWindow
             // 玩家无敌
             if (MenuSetting.Player.GodMode)
             {
-                if (oGod == 0x00)
+                if (oGod != 0x01)
                     Memory.Write<byte>(pCPed + Offsets.CPed_God, 0x01);
             }
             else
             {
-                if (oGod == 0x01)
+                if (oGod != 0x00)
                     Memory.Write<byte>(pCPed + Offsets.CPed_God, 0x00);
             }
 
             // 挂机防踢
             if (MenuSetting.Player.AntiAFK)
             {
-                if (Hacks.ReadGA<int>(262145 + 87) == 120000)
+                if (Hacks.ReadGA<int>(262145 + 87) != 99999999)
                     Online.AntiAFK(true);
             }
             else
             {
-                if (Hacks.ReadGA<int>(262145 + 87) == 99999999)
+                if (Hacks.ReadGA<int>(262145 + 87) != 120000)
                     Online.AntiAFK(false);
             }
 
             // 无布娃娃
             if (MenuSetting.Player.NoRagdoll)
             {
-                if (oRagdoll == 0x20)
+                if (oRagdoll != 0x01)
                     Memory.Write<byte>(pCPed + Offsets.CPed_Ragdoll, 0x01);
             }
             else
             {
-                if (oRagdoll == 0x01)
+                if (oRagdoll != 0x20)
                     Memory.Write<byte>(pCPed + Offsets.CPed_Ragdoll, 0x20);
             }
 
@@ -304,12 +304,12 @@ public partial class ExternalMenuWindow
             // 安全带
             if (MenuSetting.Vehicle.Seatbelt)
             {
-                if (oSeatbelt == 0xC8)
+                if (oSeatbelt != 0xC9)
                     Memory.Write<byte>(pCPed + Offsets.CPed_Seatbelt, 0xC9);
             }
             else
             {
-                if (oSeatbelt == 0xC9)
+                if (oSeatbelt != 0xC8)
                     Memory.Write<byte>(pCPed + Offsets.CPed_Seatbelt, 0xC8);
             }
 
@@ -323,12 +323,12 @@ public partial class ExternalMenuWindow
                 // 载具无敌
                 if (MenuSetting.Vehicle.GodMode)
                 {
-                    if (oVehicleGod == 0x00)
+                    if (oVehicleGod != 0x01)
                         Memory.Write<byte>(pCVehicle + Offsets.CPed_CVehicle_God, 0x01);
                 }
                 else
                 {
-                    if (oVehicleGod == 0x01)
+                    if (oVehicleGod != 0x00)
                         Memory.Write<byte>(pCVehicle + Offsets.CPed_CVehicle_God, 0x00);
                 }
             }
