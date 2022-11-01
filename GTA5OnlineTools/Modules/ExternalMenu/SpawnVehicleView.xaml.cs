@@ -143,6 +143,20 @@ public partial class SpawnVehicleView : UserControl
         Vehicle.FillHealth();
     }
 
+    private void Button_RepairVehicle_Click(object sender, RoutedEventArgs e)
+    {
+        AudioUtil.PlayClickSound();
+
+        Vehicle.Fix1stfoundBST();
+    }
+
+    private void Button_TurnOffBST_Click(object sender, RoutedEventArgs e)
+    {
+        AudioUtil.PlayClickSound();
+
+        Online.InstantBullShark(false);
+    }
+
     private void Button_GetInOnlinePV_Click(object sender, RoutedEventArgs e)
     {
         AudioUtil.PlayClickSound();

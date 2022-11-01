@@ -151,6 +151,7 @@ public static class Offsets
     // CReplayInterface Offsets
     public const int CReplayInterface_CVehicleInterface = 0x10;
     public const int CReplayInterface_CPedInterface = 0x18;
+    public const int CReplayInterface_CPickupInterface = 0x20;
     public const int CReplayInterface_CObjectInterface = 0x28;
 
     // CReplayInterface CVehicleInterface Offsets

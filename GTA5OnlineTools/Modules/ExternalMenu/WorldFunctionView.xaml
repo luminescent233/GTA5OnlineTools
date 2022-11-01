@@ -68,6 +68,18 @@
                     Click="Button_TPHostilityNPCToMe_Click"
                     Content="传送全部敌对NPC到我" />
             </WrapPanel>
+
+            <ui:UiLabelEmoji Content="自定义传送" />
+            <WrapPanel Margin="5,0,5,0">
+                <Button
+                    x:Name="Button_ToWaypoint"
+                    Click="Button_ToWaypoint_Click"
+                    Content="传送到导航点" />
+                <Button
+                    x:Name="Button_ToObjective"
+                    Click="Button_ToObjective_Click"
+                    Content="传送到目标点" />
+            </WrapPanel>
         </StackPanel>
         <!--  面板2  -->
         <DockPanel LastChildFill="True">
@@ -114,6 +126,7 @@
                         <TextBox.Resources>
                             <Style BasedOn="{StaticResource TextBoxStyle_Base}" TargetType="{x:Type TextBox}">
                                 <Setter Property="IsEnabled" Value="False" />
+                                <Setter Property="InputLanguageManager.InputLanguage" Value="en-US" />
                                 <Style.Triggers>
                                     <DataTrigger Binding="{Binding ElementName=ComboBox_TeleportClass, Path=SelectedIndex}" Value="0">
                                         <Setter Property="IsEnabled" Value="True" />
@@ -134,6 +147,7 @@
                         <TextBox.Resources>
                             <Style BasedOn="{StaticResource TextBoxStyle_Base}" TargetType="{x:Type TextBox}">
                                 <Setter Property="IsEnabled" Value="False" />
+                                <Setter Property="InputLanguageManager.InputLanguage" Value="en-US" />
                                 <Style.Triggers>
                                     <DataTrigger Binding="{Binding ElementName=ComboBox_TeleportClass, Path=SelectedIndex}" Value="0">
                                         <Setter Property="IsEnabled" Value="True" />
@@ -154,6 +168,7 @@
                         <TextBox.Resources>
                             <Style BasedOn="{StaticResource TextBoxStyle_Base}" TargetType="{x:Type TextBox}">
                                 <Setter Property="IsEnabled" Value="False" />
+                                <Setter Property="InputLanguageManager.InputLanguage" Value="en-US" />
                                 <Style.Triggers>
                                     <DataTrigger Binding="{Binding ElementName=ComboBox_TeleportClass, Path=SelectedIndex}" Value="0">
                                         <Setter Property="IsEnabled" Value="True" />
@@ -233,24 +248,65 @@
                         x:Name="Button_Teleport_SaveCustom"
                         Click="Button_SaveCustomTeleport_Click"
                         Content="保存传送数据" />
+                    <Button
+                        x:Name="Button_Teleport"
+                        Click="Button_Teleport_Click"
+                        Content="传送到选中位置" />
                 </WrapPanel>
             </StackPanel>
 
-            <ui:UiLabelEmoji Content="自定义传送" />
-            <WrapPanel Margin="5,0,5,0">
-                <Button
-                    x:Name="Button_ToWaypoint"
-                    Click="Button_ToWaypoint_Click"
-                    Content="传送到导航点" />
-                <Button
-                    x:Name="Button_ToObjective"
-                    Click="Button_ToObjective_Click"
-                    Content="传送到目标点" />
-                <Button
-                    x:Name="Button_Teleport"
-                    Click="Button_Teleport_Click"
-                    Content="传送到选中位置" />
-            </WrapPanel>
+            <ui:UiLabelEmoji Content="坐标微调" />
+            <StackPanel Margin="5,0,5,0">
+                <DockPanel>
+                    <TextBlock
+                        Margin="5"
+                        DockPanel.Dock="Left"
+                        Text="{Binding ElementName=Slider_MoveDistance, Path=Value, StringFormat=微调距离 : {0:0.0}}" />
+                    <Slider
+                        Name="Slider_MoveDistance"
+                        VerticalAlignment="Center"
+                        DockPanel.Dock="Right"
+                        Maximum="5.0"
+                        Minimum="0.5"
+                        TickFrequency="0.5"
+                        ValueChanged="Slider_MoveDistance_ValueChanged"
+                        Value="1.5" />
+                </DockPanel>
+                <Button Click="Button_MoveDistance_Click" Content="向上" />
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Button
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        Click="Button_MoveDistance_Click"
+                        Content="向前" />
+                    <Button
+                        Grid.Row="2"
+                        Grid.Column="1"
+                        Click="Button_MoveDistance_Click"
+                        Content="向后" />
+                    <Button
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Click="Button_MoveDistance_Click"
+                        Content="向左" />
+                    <Button
+                        Grid.Row="1"
+                        Grid.Column="2"
+                        Click="Button_MoveDistance_Click"
+                        Content="向右" />
+                </Grid>
+                <Button Click="Button_MoveDistance_Click" Content="向下" />
+            </StackPanel>
 
         </StackPanel>
     </UniformGrid>

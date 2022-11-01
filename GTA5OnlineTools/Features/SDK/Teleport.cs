@@ -185,46 +185,100 @@ public static class Teleport
     /// <summary>
     /// 坐标向前微调
     /// </summary>
-    /// <param name="forward">微调距离</param>
-    public static void MovingFoward(float forward)
+    /// <param name="distance">微调距离</param>
+    public static void MoveFoward(float distance)
     {
         long pCPed = Globals.GetCPed();
         long pCNavigation = Memory.Read<long>(pCPed + Offsets.CPed_CNavigation);
 
-        float sin = Memory.Read<float>(pCNavigation + Offsets.CPed_CNavigation_RightX);
-        float cos = Memory.Read<float>(pCNavigation + Offsets.CPed_CNavigation_ForwardX);
+        float head = Memory.Read<float>(pCNavigation + Offsets.CPed_CNavigation_RightX);
+        float head2 = Memory.Read<float>(pCNavigation + Offsets.CPed_CNavigation_RightY);
 
-        if (Memory.Read<int>(pCPed + Offsets.CPed_InVehicle) == 0)
-        {
-            // 玩家不在载具
+        Vector3 vector3 = Memory.Read<Vector3>(pCPed + Offsets.CPed_VisualX);
 
-            float x = Memory.Read<float>(pCPed + Offsets.CPed_VisualX);
-            float y = Memory.Read<float>(pCPed + Offsets.CPed_VisualY);
+        vector3.X -= head2 * distance;
+        vector3.Y += head * distance;
 
-            x += forward * cos;
-            y += forward * sin;
+        SetTeleportPosition(vector3);
+    }
 
-            Memory.Write(pCPed + Offsets.CPed_VisualX, x);
-            Memory.Write(pCPed + Offsets.CPed_VisualY, y);
-            Memory.Write(pCNavigation + Offsets.CPed_CNavigation_PositionX, x);
-            Memory.Write(pCNavigation + Offsets.CPed_CNavigation_PositionY, y);
-        }
-        else
-        {
-            // 玩家在载具
-            long pCVehicle = Memory.Read<long>(pCPed + Offsets.CPed_CVehicle);
-            long pCVehicle_CNavigation = Memory.Read<long>(pCVehicle + Offsets.CPed_CVehicle_CNavigation);
+    /// <summary>
+    /// 坐标向后微调
+    /// </summary>
+    /// <param name="distance">微调距离</param>
+    public static void MoveBack(float distance)
+    {
+        long pCPed = Globals.GetCPed();
+        long pCNavigation = Memory.Read<long>(pCPed + Offsets.CPed_CNavigation);
 
-            float x = Memory.Read<float>(pCVehicle + Offsets.CPed_CVehicle_VisualX);
-            float y = Memory.Read<float>(pCVehicle + Offsets.CPed_CVehicle_VisualY);
+        float head = Memory.Read<float>(pCNavigation + Offsets.CPed_CNavigation_RightX);
+        float head2 = Memory.Read<float>(pCNavigation + Offsets.CPed_CNavigation_RightY);
 
-            x += forward * cos;
-            y += forward * sin;
+        Vector3 vector3 = Memory.Read<Vector3>(pCPed + Offsets.CPed_VisualX);
 
-            Memory.Write(pCVehicle + Offsets.CPed_CVehicle_VisualX, x);
-            Memory.Write(pCVehicle + Offsets.CPed_CVehicle_VisualY, y);
-            Memory.Write(pCVehicle_CNavigation + Offsets.CPed_CVehicle_CNavigation_PositionX, x);
-            Memory.Write(pCVehicle_CNavigation + Offsets.CPed_CVehicle_CNavigation_PositionY, y);
-        }
+        vector3.X += head2 * distance;
+        vector3.Y -= head * distance;
+
+        SetTeleportPosition(vector3);
+    }
+
+    /// <summary>
+    /// 坐标向左微调
+    /// </summary>
+    /// <param name="distance">微调距离</param>
+    public static void MoveLeft(float distance)
+    {
+        long pCPed = Globals.GetCPed();
+        long pCNavigation = Memory.Read<long>(pCPed + Offsets.CPed_CNavigation);
+
+        float head2 = Memory.Read<float>(pCNavigation + Offsets.CPed_CNavigation_RightY);
+
+        Vector3 vector3 = Memory.Read<Vector3>(pCPed + Offsets.CPed_VisualX);
+
+        vector3.X += distance;
+        vector3.Y -= head2 * distance;
+
+        SetTeleportPosition(vector3);
+    }
+
+    /// <summary>
+    /// 坐标向右微调
+    /// </summary>
+    /// <param name="distance">微调距离</param>
+    public static void MoveRight(float distance)
+    {
+        long pCPed = Globals.GetCPed();
+        long pCNavigation = Memory.Read<long>(pCPed + Offsets.CPed_CNavigation);
+
+        float head2 = Memory.Read<float>(pCNavigation + Offsets.CPed_CNavigation_RightY);
+
+        Vector3 vector3 = Memory.Read<Vector3>(pCPed + Offsets.CPed_VisualX);
+
+        vector3.X -= distance;
+        vector3.Y += head2 * distance;
+
+        SetTeleportPosition(vector3);
+    }
+
+    /// <summary>
+    /// 坐标向上微调
+    /// </summary>
+    /// <param name="distance">微调距离</param>
+    public static void MoveUp(float distance)
+    {
+        Vector3 vector3 = GetPlayerPosition();
+        vector3.Z += distance;
+        SetTeleportPosition(vector3);
+    }
+
+    /// <summary>
+    /// 坐标向下微调
+    /// </summary>
+    /// <param name="distance">微调距离</param>
+    public static void MoveDown(float distance)
+    {
+        Vector3 vector3 = GetPlayerPosition();
+        vector3.Z -= distance;
+        SetTeleportPosition(vector3);
     }
 }

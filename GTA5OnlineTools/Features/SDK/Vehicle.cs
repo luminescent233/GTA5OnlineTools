@@ -1,5 +1,6 @@
 ﻿using GTA5OnlineTools.Features.Core;
 using GTA5OnlineTools.Features.Client;
+using System.Numerics;
 
 namespace GTA5OnlineTools.Features.SDK;
 
@@ -89,6 +90,67 @@ public static class Vehicle
                 Memory.Write(pCVehicle + Offsets.CPed_CVehicle_HealthEngine, 1000.0f);
             }
         }
+    }
+
+    /// <summary>
+    /// 修复载具外观
+    /// </summary>
+    public static void Fix1stfoundBST()
+    {
+        Task.Run(async () =>
+        {
+            if (Globals.GetCVehicle(out long pCVehicle))
+            {
+                var offset = Memory.Read<long>(Pointers.GlobalPTR + 0x08 * 0x0A);
+
+                Memory.Write(offset + 0x17BE28, 1);
+                Memory.Write(pCVehicle + Offsets.CPed_CVehicle_Health, 999.0f);
+
+                await Task.Delay(300);
+
+                long pCPickupData = Memory.Read<long>(Pointers.PickupDataPTR);
+                int FixVehValue = Memory.Read<int>(pCPickupData + 0x228);       // pFixVeh
+                int BSTValue = Memory.Read<int>(pCPickupData + 0x160);          // pBST
+
+                long pCPickupInterface = Memory.Read<long>(Pointers.ReplayInterfacePTR);
+                long pCReplayInterface_CPickupInterface = Memory.Read<long>(pCPickupInterface + Offsets.CReplayInterface_CPickupInterface);
+                long mPickupCount = Memory.Read<int>(pCReplayInterface_CPickupInterface + 0x110);       // oPickupNum
+                long pPickupList = Memory.Read<long>(pCReplayInterface_CPickupInterface + 0x100);       // pPickupList
+
+                if (!Memory.IsValid(pPickupList))
+                    return;
+
+                for (long i = 0; i < mPickupCount; i++)
+                {
+                    long dwpPickup = Memory.Read<long>(pPickupList + i * 0x10);
+                    int dwPickupValue = Memory.Read<int>(dwpPickup + 0x470);        // pDroppedPickupData
+
+                    if (dwPickupValue == BSTValue)
+                    {
+                        Memory.Write(dwpPickup + 0x470, FixVehValue);
+
+                        await Task.Delay(10);
+
+                        Vector3 dwpPickupV3 = Memory.Read<Vector3>(dwpPickup + 0x90);
+                        Vector3 vehicleV3 = Memory.Read<Vector3>(pCVehicle + Offsets.CPed_CVehicle_VisualX);
+
+                        await Task.Delay(10);
+
+                        Memory.Write(dwpPickup + 0x90, vehicleV3);
+                    }
+                }
+
+                await Task.Delay(700);
+
+                Memory.Write(offset + 0x17BE28, 1);
+                Memory.Write(pCVehicle + Offsets.CPed_CVehicle_Health, 999.0f);
+
+                if (Memory.Read<int>(offset + 0xA7B78) != 0)
+                    Memory.Write(offset + 0xA7B78, -1);
+
+                //Online.InstantBullShark(false);
+            }
+        });
     }
 
     /// <summary>

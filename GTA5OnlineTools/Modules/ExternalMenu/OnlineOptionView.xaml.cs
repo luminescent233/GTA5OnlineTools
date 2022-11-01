@@ -32,8 +32,8 @@ public partial class OnlineOptionView : UserControl
     {
         AudioUtil.PlayClickSound();
 
-        var str = (e.OriginalSource as Button).Content.ToString();
-        var index = MiscData.Sessions.FindIndex(t => t.Name == str);
+        var btnContent = (e.OriginalSource as Button).Content.ToString();
+        var index = MiscData.Sessions.FindIndex(t => t.Name == btnContent);
         if (index != -1)
             Online.LoadSession(MiscData.Sessions[index].ID);
     }
@@ -49,8 +49,8 @@ public partial class OnlineOptionView : UserControl
     {
         AudioUtil.PlayClickSound();
 
-        var str = (e.OriginalSource as Button).Content.ToString();
-        var index = MiscData.RPxNs.FindIndex(t => t.Name == str);
+        var btnContent = (e.OriginalSource as Button).Content.ToString();
+        var index = MiscData.RPxNs.FindIndex(t => t.Name == btnContent);
         if (index != -1)
             Online.RPMultiplier(MiscData.RPxNs[index].ID);
     }
@@ -59,8 +59,8 @@ public partial class OnlineOptionView : UserControl
     {
         AudioUtil.PlayClickSound();
 
-        var str = (e.OriginalSource as Button).Content.ToString();
-        var index = MiscData.REPxNs.FindIndex(t => t.Name == str);
+        var btnContent = (e.OriginalSource as Button).Content.ToString();
+        var index = MiscData.REPxNs.FindIndex(t => t.Name == btnContent);
         if (index != -1)
             Online.REPMultiplier(MiscData.REPxNs[index].ID);
     }
@@ -119,9 +119,9 @@ public partial class OnlineOptionView : UserControl
     {
         AudioUtil.PlayClickSound();
 
-        var str = (e.OriginalSource as Button).Content.ToString();
+        var btnContent = (e.OriginalSource as Button).Content.ToString();
 
-        int index = MiscData.Blips.FindIndex(t => t.Name == str);
+        int index = MiscData.Blips.FindIndex(t => t.Name == btnContent);
         if (index != -1)
         {
             Teleport.ToBlips(MiscData.Blips[index].ID);
@@ -132,9 +132,9 @@ public partial class OnlineOptionView : UserControl
     {
         AudioUtil.PlayClickSound();
 
-        var str = (e.OriginalSource as Button).Content.ToString();
+        var btnContent = (e.OriginalSource as Button).Content.ToString();
 
-        int index = MiscData.MerryWeatherServices.FindIndex(t => t.Name == str);
+        int index = MiscData.MerryWeatherServices.FindIndex(t => t.Name == btnContent);
         if (index != -1)
         {
             Online.MerryWeatherServices(MiscData.MerryWeatherServices[index].ID);

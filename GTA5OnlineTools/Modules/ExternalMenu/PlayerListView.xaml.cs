@@ -2,6 +2,7 @@
 using GTA5OnlineTools.Features.SDK;
 using GTA5OnlineTools.Features.Core;
 using GTA5OnlineTools.Features.Data;
+using System;
 
 namespace GTA5OnlineTools.Modules.ExternalMenu;
 
@@ -87,7 +88,8 @@ public partial class PlayerListView : UserControl
                     Index = ++index,
                     Avatar = url,
                     Name = $"{item.PlayerName} [房主]",
-                    RID = item.RockstarId
+                    RID = item.RockstarId,
+                    GodMode = item.GodMode ? "无敌" : ""
                 });
             }
             else
@@ -97,7 +99,8 @@ public partial class PlayerListView : UserControl
                     Index = ++index,
                     Avatar = url,
                     Name = item.PlayerName,
-                    RID = item.RockstarId
+                    RID = item.RockstarId,
+                    GodMode = item.GodMode ? "无敌" : ""
                 });
             }
         }
@@ -117,6 +120,11 @@ public partial class PlayerListView : UserControl
         }
     }
 
+    private void PlayerInfoAppend(string msg)
+    {
+        TextBox_PlayerInfo.AppendText($"{msg}\n");
+    }
+
     private void ListBox_PlayerList_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         TextBox_PlayerInfo.Clear();
@@ -124,23 +132,23 @@ public partial class PlayerListView : UserControl
         var index = ListBox_PlayerList.SelectedIndex;
         if (index != -1)
         {
-            TextBox_PlayerInfo.AppendText($"战局房主 : {NetPlayerDatas[index].IsHost}\n\n");
+            PlayerInfoAppend($"战局房主 : {NetPlayerDatas[index].IsHost}\n");
 
-            TextBox_PlayerInfo.AppendText($"玩家RID : {NetPlayerDatas[index].RockstarId}\n");
-            TextBox_PlayerInfo.AppendText($"玩家昵称 : {NetPlayerDatas[index].PlayerName}\n\n");
+            PlayerInfoAppend($"玩家RID : {NetPlayerDatas[index].RockstarId}");
+            PlayerInfoAppend($"玩家昵称 : {NetPlayerDatas[index].PlayerName}\n");
 
-            TextBox_PlayerInfo.AppendText($"当前生命值 : {NetPlayerDatas[index].Health:0.0}\n");
-            TextBox_PlayerInfo.AppendText($"最大生命值 : {NetPlayerDatas[index].MaxHealth:0.0}\n\n");
+            PlayerInfoAppend($"当前生命值 : {NetPlayerDatas[index].Health:0.0}");
+            PlayerInfoAppend($"最大生命值 : {NetPlayerDatas[index].MaxHealth:0.0}\n");
 
-            TextBox_PlayerInfo.AppendText($"无敌状态 : {NetPlayerDatas[index].GodMode}\n");
-            TextBox_PlayerInfo.AppendText($"无布娃娃 : {NetPlayerDatas[index].NoRagdoll}\n\n");
+            PlayerInfoAppend($"无敌状态 : {NetPlayerDatas[index].GodMode}");
+            PlayerInfoAppend($"无布娃娃 : {NetPlayerDatas[index].NoRagdoll}\n");
 
-            TextBox_PlayerInfo.AppendText($"通缉等级 : {NetPlayerDatas[index].WantedLevel}\n");
-            TextBox_PlayerInfo.AppendText($"奔跑速度 : {NetPlayerDatas[index].RunSpeed:0.0}\n\n");
+            PlayerInfoAppend($"通缉等级 : {NetPlayerDatas[index].WantedLevel}");
+            PlayerInfoAppend($"奔跑速度 : {NetPlayerDatas[index].RunSpeed:0.0}\n");
 
-            TextBox_PlayerInfo.AppendText($"X : {NetPlayerDatas[index].Position.X:0.000}\n");
-            TextBox_PlayerInfo.AppendText($"Y : {NetPlayerDatas[index].Position.Y:0.000}\n");
-            TextBox_PlayerInfo.AppendText($"Z : {NetPlayerDatas[index].Position.Z:0.000}\n");
+            PlayerInfoAppend($"X坐标 : {NetPlayerDatas[index].Position.X:0.000}");
+            PlayerInfoAppend($"Y坐标 : {NetPlayerDatas[index].Position.Y:0.000}");
+            PlayerInfoAppend($"Z坐标 : {NetPlayerDatas[index].Position.Z:0.000}");
         }
     }
 }

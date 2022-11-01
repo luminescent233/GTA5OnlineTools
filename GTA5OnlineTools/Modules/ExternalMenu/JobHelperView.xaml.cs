@@ -18,7 +18,7 @@ public partial class JobHelperView : UserControl
 
     private void ExternalMenuWindow_WindowClosingEvent()
     {
-        
+
     }
 
     private void CheckBox_RemoveBunkerSupplyDelay_Click(object sender, RoutedEventArgs e)
@@ -55,16 +55,19 @@ public partial class JobHelperView : UserControl
     {
         AudioUtil.PlayClickSound();
 
-        var str = (e.OriginalSource as Button).Content.ToString();
+        var btnContent = (e.OriginalSource as Button).Content.ToString();
 
-        int index = MiscData.CEOCargos.FindIndex(t => t.Name == str);
+        int index = MiscData.CEOCargos.FindIndex(t => t.Name == btnContent);
         if (index != -1)
         {
             // They are in gb_contraband_buy at func_915, for future updates.
-            Online.CEOSpecialCargo(false);
-            Thread.Sleep(100);
-            Online.CEOSpecialCargo(true);
-            Thread.Sleep(100);
+
+            var id = MiscData.CEOCargos[index].ID;
+            if (id == 0 || id == 1 || id == 3 || id == 5 || id == 10)
+                Online.CEOSpecialCargo(false);
+            else
+                Online.CEOSpecialCargo(true);
+
             Online.CEOCargoType(MiscData.CEOCargos[index].ID);
         }
     }

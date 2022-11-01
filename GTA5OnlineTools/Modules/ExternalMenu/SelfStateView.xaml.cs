@@ -37,7 +37,7 @@ public partial class SelfStateView : UserControl
     /// <summary>
     /// 坐标微调距离
     /// </summary>
-    private float Forward_Distance = 1.5f;
+    private float MoveDistance = 1.5f;
 
     /////////////////////////////////////////////////////////
 
@@ -130,7 +130,7 @@ public partial class SelfStateView : UserControl
             case WinVK.F4:
                 if (SelfStateModel.IsHotKeyMovingFoward)
                 {
-                    Teleport.MovingFoward(Forward_Distance);
+                    Teleport.MoveFoward(MoveDistance);
                 }
                 break;
             case WinVK.F5:
@@ -257,9 +257,9 @@ public partial class SelfStateView : UserControl
         Player.WalkSpeed((float)Slider_WalkSpeed.Value);
     }
 
-    private void Slider_MovingFoward_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+    private void Slider_MoveDistance_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
     {
-        Forward_Distance = (float)Slider_MovingFoward.Value;
+        MoveDistance = (float)Slider_MoveDistance.Value;
     }
 
     private void CheckBox_PlayerGodMode_Click(object sender, RoutedEventArgs e)

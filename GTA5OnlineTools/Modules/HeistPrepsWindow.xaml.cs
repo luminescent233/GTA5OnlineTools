@@ -401,15 +401,15 @@ public partial class HeistPrepsWindow
 
     private void Button_FastTeleport_Click(object sender, RoutedEventArgs e)
     {
-        var str = (e.OriginalSource as Button).Content.ToString();
+        var btnContent = (e.OriginalSource as Button).Content.ToString();
 
-        int index = HeistPrepsConfig.FastTeleport.FindIndex(t => t.Name == str);
+        int index = HeistPrepsConfig.FastTeleport.FindIndex(t => t.Name == btnContent);
         if (index != -1)
         {
             Teleport.SetTeleportPosition(HeistPrepsConfig.FastTeleport[index].Position);
         }
 
-        AppendTextBox($"传送到 {str} 成功");
+        AppendTextBox($"传送到 {btnContent} 成功");
     }
 
     private void Button_Click(object sender, RoutedEventArgs e)

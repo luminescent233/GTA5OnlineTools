@@ -15,7 +15,7 @@
             <ui:UiLabelEmoji Content="属性调节" />
             <StackPanel Margin="5,0,5,0">
                 <!--  生命值  -->
-                <DockPanel LastChildFill="True">
+                <DockPanel>
                     <DockPanel Width="120" DockPanel.Dock="Left">
                         <ui:UiLabelEmoji
                             Margin="5,0,0,0"
@@ -38,7 +38,7 @@
                         ValueChanged="Slider_Health_ValueChanged" />
                 </DockPanel>
                 <!--  最大生命值  -->
-                <DockPanel LastChildFill="True">
+                <DockPanel>
                     <DockPanel
                         Width="120"
                         VerticalAlignment="Center"
@@ -64,7 +64,7 @@
                         ValueChanged="Slider_HealthMax_ValueChanged" />
                 </DockPanel>
                 <!--  护甲值  -->
-                <DockPanel LastChildFill="True">
+                <DockPanel>
                     <DockPanel
                         Width="120"
                         VerticalAlignment="Center"
@@ -90,7 +90,7 @@
                         ValueChanged="Slider_Armor_ValueChanged" />
                 </DockPanel>
                 <!--  通缉等级  -->
-                <DockPanel LastChildFill="True">
+                <DockPanel>
                     <DockPanel
                         Width="120"
                         VerticalAlignment="Center"
@@ -116,7 +116,7 @@
                         ValueChanged="Slider_WantedLevel_ValueChanged" />
                 </DockPanel>
                 <!--  奔跑速度  -->
-                <DockPanel LastChildFill="True">
+                <DockPanel>
                     <DockPanel
                         Width="120"
                         VerticalAlignment="Center"
@@ -142,7 +142,7 @@
                         ValueChanged="Slider_RunSpeed_ValueChanged" />
                 </DockPanel>
                 <!--  游泳速度  -->
-                <DockPanel LastChildFill="True">
+                <DockPanel>
                     <DockPanel Width="120" DockPanel.Dock="Left">
                         <ui:UiLabelEmoji
                             Margin="5,0,0,0"
@@ -165,7 +165,7 @@
                         ValueChanged="Slider_SwimSpeed_ValueChanged" />
                 </DockPanel>
                 <!--  潜行速度  -->
-                <DockPanel LastChildFill="True">
+                <DockPanel>
                     <DockPanel
                         Width="120"
                         VerticalAlignment="Center"
@@ -239,19 +239,19 @@
                 <TextBlock />
                 <CheckBox Content="[F3] 补满全部武器弹药" IsChecked="{Binding SelfStateModel.IsHotKeyFillAllAmmo, UpdateSourceTrigger=PropertyChanged}" />
                 <CheckBox Content="[F4] 坐标向前微调" IsChecked="{Binding SelfStateModel.IsHotKeyMovingFoward, UpdateSourceTrigger=PropertyChanged}" />
-                <DockPanel LastChildFill="True">
+                <DockPanel>
                     <TextBlock
                         Margin="5"
                         DockPanel.Dock="Left"
-                        Text="{Binding ElementName=Slider_MovingFoward, Path=Value, StringFormat=坐标微调距离 : {0:0.0}}" />
+                        Text="{Binding ElementName=Slider_MoveDistance, Path=Value, StringFormat=微调距离 : {0:0.0}}" />
                     <Slider
-                        Name="Slider_MovingFoward"
+                        Name="Slider_MoveDistance"
                         VerticalAlignment="Center"
                         DockPanel.Dock="Right"
                         Maximum="5.0"
                         Minimum="0.5"
                         TickFrequency="0.5"
-                        ValueChanged="Slider_MovingFoward_ValueChanged"
+                        ValueChanged="Slider_MoveDistance_ValueChanged"
                         Value="1.5" />
                 </DockPanel>
 

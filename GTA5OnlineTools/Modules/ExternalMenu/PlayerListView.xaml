@@ -77,7 +77,14 @@
                                     Stretch="Uniform"
                                     Style="{StaticResource ImageStyle_HighQuality}" />
                             </Border>
-                            <StackPanel VerticalAlignment="Center" DockPanel.Dock="Right">
+                            <TextBlock
+                                Margin="0,0,10,0"
+                                VerticalAlignment="Center"
+                                DockPanel.Dock="Right"
+                                Foreground="Red"
+                                Text="{Binding GodMode}"
+                                TextAlignment="Right" />
+                            <StackPanel VerticalAlignment="Center" DockPanel.Dock="Left">
                                 <TextBlock
                                     Margin="0,0,0,3"
                                     VerticalAlignment="Bottom"

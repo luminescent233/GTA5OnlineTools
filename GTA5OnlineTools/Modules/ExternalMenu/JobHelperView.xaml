@@ -14,17 +14,50 @@
         <StackPanel>
             <ui:UiLabelEmoji Content="CEO" />
             <WrapPanel Margin="5,0,5,0">
-                <Button Click="Button_CEOCargos_Click" Content="医疗用品" />
-                <Button Click="Button_CEOCargos_Click" Content="烟酒" />
-                <Button Click="Button_CEOCargos_Click" Content="古董艺术品（华丽彩蛋）" />
-                <Button Click="Button_CEOCargos_Click" Content="电子产品" />
-                <Button Click="Button_CEOCargos_Click" Content="武器弹药（黄金火神机枪）" />
-                <Button Click="Button_CEOCargos_Click" Content="迷幻药" />
-                <Button Click="Button_CEOCargos_Click" Content="宝石（一大颗钻石）" />
-                <Button Click="Button_CEOCargos_Click" Content="动物材料（稀有皮草）" />
-                <Button Click="Button_CEOCargos_Click" Content="仿制品（电影胶卷）" />
-                <Button Click="Button_CEOCargos_Click" Content="珠宝（稀有怀表）" />
-                <Button Click="Button_CEOCargos_Click" Content="银块" />
+                <Button
+                    Background="#34A853"
+                    Click="Button_CEOCargos_Click"
+                    Content="医疗用品" />
+                <Button
+                    Background="#34A853"
+                    Click="Button_CEOCargos_Click"
+                    Content="烟酒" />
+                <Button
+                    Background="#4285F4"
+                    Click="Button_CEOCargos_Click"
+                    Content="古董艺术品（华丽彩蛋）" />
+                <Button
+                    Background="#34A853"
+                    Click="Button_CEOCargos_Click"
+                    Content="电子产品" />
+                <Button
+                    Background="#4285F4"
+                    Click="Button_CEOCargos_Click"
+                    Content="武器弹药（黄金火神机枪）" />
+                <Button
+                    Background="#34A853"
+                    Click="Button_CEOCargos_Click"
+                    Content="迷幻药" />
+                <Button
+                    Background="#4285F4"
+                    Click="Button_CEOCargos_Click"
+                    Content="宝石（一大颗钻石）" />
+                <Button
+                    Background="#4285F4"
+                    Click="Button_CEOCargos_Click"
+                    Content="动物材料（稀有皮草）" />
+                <Button
+                    Background="#4285F4"
+                    Click="Button_CEOCargos_Click"
+                    Content="仿制品（电影胶卷）" />
+                <Button
+                    Background="#4285F4"
+                    Click="Button_CEOCargos_Click"
+                    Content="珠宝（稀有怀表）" />
+                <Button
+                    Background="#34A853"
+                    Click="Button_CEOCargos_Click"
+                    Content="银块" />
             </WrapPanel>
             <StackPanel Margin="5,0,5,0">
                 <CheckBox
@@ -43,7 +76,7 @@
                     Visibility="Collapsed" />
 
                 <TextBlock Style="{StaticResource TextBlockStyle_Hint}">
-                    提示：需要退出CEO电脑重新进入生效
+                    提示：需要重新进入CEO电脑生效
                 </TextBlock>
             </StackPanel>
 

@@ -128,7 +128,15 @@
                         <Button
                             x:Name="Button_FillVehicleHealth"
                             Click="Button_FillVehicleHealth_Click"
-                            Content="补满载具血量" />
+                            Content="补满血量" />
+                        <Button
+                            x:Name="Button_RepairVehicle"
+                            Click="Button_RepairVehicle_Click"
+                            Content="修复外观" />
+                        <Button
+                            x:Name="Button_TurnOffBST"
+                            Click="Button_TurnOffBST_Click"
+                            Content="移除牛鲨睾酮效果" />
                     </WrapPanel>
 
                     <ui:UiLabelEmoji Content="附加功能" />

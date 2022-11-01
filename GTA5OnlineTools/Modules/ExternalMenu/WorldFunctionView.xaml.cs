@@ -16,6 +16,11 @@ public partial class WorldFunctionView : UserControl
     /// </summary>
     private Vector3 tempVector3 = Vector3.Zero;
 
+    /// <summary>
+    /// 坐标微调距离
+    /// </summary>
+    private float Move_Distance = 1.5f;
+
     public WorldFunctionView()
     {
         InitializeComponent();
@@ -72,8 +77,8 @@ public partial class WorldFunctionView : UserControl
     {
         AudioUtil.PlayClickSound();
 
-        var str = (e.OriginalSource as Button).Content.ToString();
-        var index = MiscData.LocalWeathers.FindIndex(t => t.Name == str);
+        var btnContent = (e.OriginalSource as Button).Content.ToString();
+        var index = MiscData.LocalWeathers.FindIndex(t => t.Name == btnContent);
         if (index != -1)
         {
             World.Set_Local_Weather(MiscData.LocalWeathers[index].ID);
@@ -304,6 +309,39 @@ public partial class WorldFunctionView : UserControl
         SaveConfig();
 
         NotifierHelper.Show(NotifierType.Success, $"保存到自定义传送坐标文件成功");
+    }
+
+    private void Slider_MoveDistance_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+    {
+        Move_Distance = (float)Slider_MoveDistance.Value;
+    }
+
+    private void Button_MoveDistance_Click(object sender, RoutedEventArgs e)
+    {
+        AudioUtil.PlayClickSound();
+
+        var btnContent = (e.OriginalSource as Button).Content.ToString();
+        switch (btnContent)
+        {
+            case "向前":
+                Teleport.MoveFoward(Move_Distance);
+                break;
+            case "向后":
+                Teleport.MoveBack(Move_Distance);
+                break;
+            case "向左":
+                Teleport.MoveLeft(Move_Distance);
+                break;
+            case "向右":
+                Teleport.MoveRight(Move_Distance);
+                break;
+            case "向上":
+                Teleport.MoveUp(Move_Distance);
+                break;
+            case "向下":
+                Teleport.MoveDown(Move_Distance);
+                break;
+        }
     }
     #endregion
 }
