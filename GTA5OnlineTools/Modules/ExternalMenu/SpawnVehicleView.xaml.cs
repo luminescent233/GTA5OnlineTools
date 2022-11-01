@@ -116,14 +116,14 @@ public partial class SpawnVehicleView : UserControl
 
     private void CheckBox_VehicleGodMode_Click(object sender, RoutedEventArgs e)
     {
-        Vehicle.GodMode(CheckBox_VehicleGodMode.IsChecked == true);
         MenuSetting.Vehicle.GodMode = CheckBox_VehicleGodMode.IsChecked == true;
+        Vehicle.GodMode(CheckBox_VehicleGodMode.IsChecked == true);
     }
 
     private void CheckBox_VehicleSeatbelt_Click(object sender, RoutedEventArgs e)
     {
-        Vehicle.Seatbelt(CheckBox_VehicleSeatbelt.IsChecked == true);
         MenuSetting.Vehicle.Seatbelt = CheckBox_VehicleSeatbelt.IsChecked == true;
+        Vehicle.Seatbelt(CheckBox_VehicleSeatbelt.IsChecked == true);
     }
 
     private void CheckBox_VehicleParachute_Click(object sender, RoutedEventArgs e)

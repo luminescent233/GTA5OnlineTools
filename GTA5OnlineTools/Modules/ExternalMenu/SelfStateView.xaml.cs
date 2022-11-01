@@ -264,19 +264,20 @@ public partial class SelfStateView : UserControl
 
     private void CheckBox_PlayerGodMode_Click(object sender, RoutedEventArgs e)
     {
-        Player.GodMode(CheckBox_PlayerGodMode.IsChecked == true);
         MenuSetting.Player.GodMode = CheckBox_PlayerGodMode.IsChecked == true;
+        Player.GodMode(CheckBox_PlayerGodMode.IsChecked == true);
     }
 
     private void CheckBox_AntiAFK_Click(object sender, RoutedEventArgs e)
     {
-        Online.AntiAFK(CheckBox_AntiAFK.IsChecked == true);
         MenuSetting.Player.AntiAFK = CheckBox_AntiAFK.IsChecked == true;
+        Online.AntiAFK(CheckBox_AntiAFK.IsChecked == true);
     }
 
-    private void CheckBox_Invisibility_Click(object sender, RoutedEventArgs e)
+    private void CheckBox_NoRagdoll_Click(object sender, RoutedEventArgs e)
     {
-        Player.Invisible(CheckBox_Invisibility.IsChecked == true);
+        MenuSetting.Player.NoRagdoll = CheckBox_NoRagdoll.IsChecked == true;
+        Player.NoRagdoll(CheckBox_NoRagdoll.IsChecked == true);
     }
 
     private void CheckBox_UndeadOffRadar_Click(object sender, RoutedEventArgs e)
@@ -284,10 +285,9 @@ public partial class SelfStateView : UserControl
         Player.UndeadOffRadar(CheckBox_UndeadOffRadar.IsChecked == true);
     }
 
-    private void CheckBox_NoRagdoll_Click(object sender, RoutedEventArgs e)
+    private void CheckBox_Invisibility_Click(object sender, RoutedEventArgs e)
     {
-        Player.NoRagdoll(CheckBox_NoRagdoll.IsChecked == true);
-        MenuSetting.Player.NoRagdoll = CheckBox_NoRagdoll.IsChecked == true;
+        Player.Invisible(CheckBox_Invisibility.IsChecked == true);
     }
 
     private void CheckBox_NPCIgnore_Click(object sender, RoutedEventArgs e)

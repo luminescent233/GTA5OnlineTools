@@ -261,11 +261,6 @@ public partial class ExternalMenuWindow
                 if (oGod != 0x01)
                     Memory.Write<byte>(pCPed + Offsets.CPed_God, 0x01);
             }
-            else
-            {
-                if (oGod != 0x00)
-                    Memory.Write<byte>(pCPed + Offsets.CPed_God, 0x00);
-            }
 
             // 挂机防踢
             if (MenuSetting.Player.AntiAFK)
@@ -273,22 +268,12 @@ public partial class ExternalMenuWindow
                 if (Hacks.ReadGA<int>(262145 + 87) != 99999999)
                     Online.AntiAFK(true);
             }
-            else
-            {
-                if (Hacks.ReadGA<int>(262145 + 87) != 120000)
-                    Online.AntiAFK(false);
-            }
 
             // 无布娃娃
             if (MenuSetting.Player.NoRagdoll)
             {
                 if (oRagdoll != 0x01)
                     Memory.Write<byte>(pCPed + Offsets.CPed_Ragdoll, 0x01);
-            }
-            else
-            {
-                if (oRagdoll != 0x20)
-                    Memory.Write<byte>(pCPed + Offsets.CPed_Ragdoll, 0x20);
             }
 
             // 玩家无碰撞体积
@@ -307,11 +292,6 @@ public partial class ExternalMenuWindow
                 if (oSeatbelt != 0xC9)
                     Memory.Write<byte>(pCPed + Offsets.CPed_Seatbelt, 0xC9);
             }
-            else
-            {
-                if (oSeatbelt != 0xC8)
-                    Memory.Write<byte>(pCPed + Offsets.CPed_Seatbelt, 0xC8);
-            }
 
             ////////////////////////////////////////////////////////////////
 
@@ -325,11 +305,6 @@ public partial class ExternalMenuWindow
                 {
                     if (oVehicleGod != 0x01)
                         Memory.Write<byte>(pCVehicle + Offsets.CPed_CVehicle_God, 0x01);
-                }
-                else
-                {
-                    if (oVehicleGod != 0x00)
-                        Memory.Write<byte>(pCVehicle + Offsets.CPed_CVehicle_God, 0x00);
                 }
             }
 
