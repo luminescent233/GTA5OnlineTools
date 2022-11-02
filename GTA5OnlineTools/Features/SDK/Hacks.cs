@@ -163,17 +163,17 @@ public static class Hacks
         WriteGA(4534105 + 1 + (ReadGA<int>(2787534) * 85) + 66 + 2, 2);
         WriteGA(2787534 + 6, 1);
 
-        Thread.Sleep(150);
+        Thread.Sleep(200);
 
         long pReplayInterface = Memory.Read<long>(Pointers.ReplayInterfacePTR);
-        long m_dwpPickUpInterface = Memory.Read<long>(pReplayInterface + 0x20);
+        long pCPickupInterface = Memory.Read<long>(pReplayInterface + 0x20);    // pCPickupInterface
 
-        long dw_curPickUpNum = Memory.Read<long>(m_dwpPickUpInterface + 0x110);
-        long m_dwpPedList = Memory.Read<long>(m_dwpPickUpInterface + 0x100);
+        long oPickupNum  = Memory.Read<long>(pCPickupInterface + 0x110);        // oPickupNum
+        long pPickupList = Memory.Read<long>(pCPickupInterface + 0x100);       // pPickupList
 
-        for (long i = 0; i < dw_curPickUpNum; i++)
+        for (long i = 0; i < oPickupNum; i++)
         {
-            long dwpPickup = Memory.Read<long>(m_dwpPedList + i * 0x10);
+            long dwpPickup = Memory.Read<long>(pPickupList + i * 0x10);
             uint dwPickupHash = Memory.Read<uint>(dwpPickup + 0x468);
 
             if (dwPickupHash == 4263048111)
