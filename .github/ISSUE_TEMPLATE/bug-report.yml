@@ -1,0 +1,52 @@
+---
+name: Bug报告
+description: 创建一个报告来帮助我们改进
+title: '[Bug]: '
+labels:
+  - bug
+body:
+  - type: input
+    id: version
+    attributes:
+      label: 小助手版本号
+      description: 请填写发生问题的小助手版本号
+      placeholder: 如：3.0.7.0
+    validations:
+      required: true
+
+  - type: input
+    id: session
+    attributes:
+      label: 战局模式
+      description: 发生问题时你的战局模式
+      placeholder: 如：邀请战局
+    validations:
+      required: true
+
+  - type: input
+    id: session
+    attributes:
+      label: 玩家数量
+      description: 发生问题时你的战局玩家数量
+      placeholder: 单人就填写1，联机任务填写玩家数量
+    validations:
+      required: true
+
+  - type: input
+    id: function
+    attributes:
+      label: 具体功能
+      description: 你具体使用小助手哪个功能才导致bug，要详细到某个按钮
+      placeholder: 如：小助手外置辅助》刷出武器》补全全部武器弹药，功能无效
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: 问题描述
+      description: 请具体描述你的问题现象，比如是在什么情况下发生的，这个问题是偶尔存在还是经常发生？
+      placeholder:
+      value:
+    validations:
+      required: true

@@ -1,0 +1,17 @@
+---
+name: 功能请求
+description: 请描述你需要的新功能
+title: '[Feature]: '
+labels:
+  - discussion
+  - enhancement
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: 功能概述
+      description: 请描述你需要的新功能
+      placeholder:
+      value:
+    validations:
+      require: true
