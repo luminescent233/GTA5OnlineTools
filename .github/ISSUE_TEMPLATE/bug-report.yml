@@ -24,7 +24,7 @@ body:
       required: true
 
   - type: input
-    id: session
+    id: players
     attributes:
       label: 玩家数量
       description: 发生问题时你的战局玩家数量
