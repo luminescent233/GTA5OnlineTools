@@ -176,40 +176,19 @@
                 Style="{StaticResource ImageStyle_HighQuality}" />
         </DockPanel>
         <!--  面板3  -->
-        <DockPanel>
-            <StackPanel DockPanel.Dock="Top">
-                <ui:UiLabelEmoji Content="高级" />
-                <WrapPanel Margin="5,0,5,0">
-                    <CheckBox
-                        x:Name="CheckBox_TriggerRCBandito"
-                        Click="CheckBox_TriggerRCBandito_Click"
-                        Content="进入RC匪徒" />
-                    <CheckBox
-                        x:Name="CheckBox_TriggerMiniTank"
-                        Click="CheckBox_TriggerMiniTank_Click"
-                        Content="进入迷你坦克" />
-                </WrapPanel>
-                <ui:UiLabelEmoji Content="随身技工" />
-                <UniformGrid Margin="5,0,5,0" Columns="3">
-                    <Button
-                        x:Name="Button_RefushPersonalVehicleList"
-                        Click="Button_RefushPersonalVehicleList_Click"
-                        Content="刷新列表" />
-                    <Button
-                        x:Name="Button_SpawnPersonalVehicle"
-                        Click="Button_SpawnPersonalVehicle_Click"
-                        Content="呼叫个人载具" />
-                    <Button
-                        x:Name="Button_GetInOnlinePV"
-                        Click="Button_GetInOnlinePV_Click"
-                        Content="坐进个人载具" />
-                </UniformGrid>
-            </StackPanel>
-            <ListBox
-                x:Name="ListBox_PersonalVehicle"
-                Margin="5"
-                DockPanel.Dock="Bottom" />
-        </DockPanel>
+        <StackPanel>
+            <ui:UiLabelEmoji Content="高级" />
+            <WrapPanel Margin="5,0,5,0">
+                <CheckBox
+                    x:Name="CheckBox_TriggerRCBandito"
+                    Click="CheckBox_TriggerRCBandito_Click"
+                    Content="进入RC匪徒" />
+                <CheckBox
+                    x:Name="CheckBox_TriggerMiniTank"
+                    Click="CheckBox_TriggerMiniTank_Click"
+                    Content="进入迷你坦克" />
+            </WrapPanel>
+        </StackPanel>
 
     </UniformGrid>
 

@@ -287,6 +287,7 @@
                     Content="消除警星" />
                 <Button
                     x:Name="Button_Suicide"
+                    Background="#EA4335"
                     Click="Button_Suicide_Click"
                     Content="玩家自杀" />
             </WrapPanel>

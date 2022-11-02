@@ -231,6 +231,7 @@
                     </Button>
                     <Button
                         x:Name="Button_DeleteCustomTeleport"
+                        Background="#EA4335"
                         Click="Button_DeleteCustomTeleport_Click"
                         Content="删除选中数据">
                         <Button.Resources>
@@ -246,10 +247,12 @@
                     </Button>
                     <Button
                         x:Name="Button_Teleport_SaveCustom"
+                        Background="#34A853"
                         Click="Button_SaveCustomTeleport_Click"
                         Content="保存传送数据" />
                     <Button
                         x:Name="Button_Teleport"
+                        Background="#34A853"
                         Click="Button_Teleport_Click"
                         Content="传送到选中位置" />
                 </WrapPanel>
@@ -273,39 +276,50 @@
                         Value="1.5" />
                 </DockPanel>
                 <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition />
-                        <RowDefinition />
-                        <RowDefinition />
-                    </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition />
-                        <ColumnDefinition />
-                        <ColumnDefinition />
+                        <ColumnDefinition Width="0.5*" />
                     </Grid.ColumnDefinitions>
-                    <Button
-                        Grid.Row="0"
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Button
+                            Grid.Row="0"
+                            Grid.Column="1"
+                            Click="Button_MoveDistance_Click"
+                            Content="向前" />
+                        <Button
+                            Grid.Row="2"
+                            Grid.Column="1"
+                            Click="Button_MoveDistance_Click"
+                            Content="向后" />
+                        <Button
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Click="Button_MoveDistance_Click"
+                            Content="向左" />
+                        <Button
+                            Grid.Row="1"
+                            Grid.Column="2"
+                            Click="Button_MoveDistance_Click"
+                            Content="向右" />
+                    </Grid>
+                    <StackPanel
                         Grid.Column="1"
-                        Click="Button_MoveDistance_Click"
-                        Content="向前" />
-                    <Button
-                        Grid.Row="2"
-                        Grid.Column="1"
-                        Click="Button_MoveDistance_Click"
-                        Content="向后" />
-                    <Button
-                        Grid.Row="1"
-                        Grid.Column="0"
-                        Click="Button_MoveDistance_Click"
-                        Content="向左" />
-                    <Button
-                        Grid.Row="1"
-                        Grid.Column="2"
-                        Click="Button_MoveDistance_Click"
-                        Content="向右" />
+                        Margin="5"
+                        VerticalAlignment="Center">
+                        <Button Click="Button_MoveDistance_Click" Content="向上" />
+                        <Button Click="Button_MoveDistance_Click" Content="向下" />
+                    </StackPanel>
                 </Grid>
-                <Button Click="Button_MoveDistance_Click" Content="向上" />
-                <Button Click="Button_MoveDistance_Click" Content="向下" />
             </StackPanel>
 
         </StackPanel>

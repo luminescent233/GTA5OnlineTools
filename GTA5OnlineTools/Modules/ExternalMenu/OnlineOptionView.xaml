@@ -34,35 +34,6 @@
                     Content="空战局" />
             </WrapPanel>
 
-            <ui:UiLabelEmoji Content="角色等级RP倍数" />
-            <WrapPanel Margin="5,0,5,0">
-                <Button Click="Button_RPxN_Click" Content="RPx1" />
-                <Button Click="Button_RPxN_Click" Content="RPx2" />
-                <Button Click="Button_RPxN_Click" Content="RPx5" />
-                <Button Click="Button_RPxN_Click" Content="RPx10" />
-                <Button Click="Button_RPxN_Click" Content="RPx20" />
-                <Button Click="Button_RPxN_Click" Content="RPx50" />
-                <Button Click="Button_RPxN_Click" Content="RPx100" />
-                <Button Click="Button_RPxN_Click" Content="RPx500" />
-                <Button Click="Button_RPxN_Click" Content="RPx1000" />
-            </WrapPanel>
-
-            <ui:UiLabelEmoji Content="车友会等级RP倍数" />
-            <WrapPanel Margin="5,0,5,0">
-                <Button Click="Button_REPxN_Click" Content="REPx1" />
-                <Button Click="Button_REPxN_Click" Content="REPx2" />
-                <Button Click="Button_REPxN_Click" Content="REPx5" />
-                <Button Click="Button_REPxN_Click" Content="REPx10" />
-                <Button Click="Button_REPxN_Click" Content="REPx20" />
-                <Button Click="Button_REPxN_Click" Content="REPx50" />
-                <Button Click="Button_REPxN_Click" Content="REPx100" />
-                <Button Click="Button_REPxN_Click" Content="REPx500" />
-                <Button Click="Button_REPxN_Click" Content="REPx1000" />
-            </WrapPanel>
-
-        </StackPanel>
-        <!--  面板2  -->
-        <StackPanel>
             <ui:UiLabelEmoji Content="高级" />
             <UniformGrid Margin="5,0,5,0" Columns="2">
                 <StackPanel>
@@ -110,10 +81,13 @@
                         Content="显示玩家" />
                 </StackPanel>
             </UniformGrid>
-
+        </StackPanel>
+        <!--  面板2  -->
+        <StackPanel>
             <ui:UiLabelEmoji Content="线上资产传送" />
             <WrapPanel Margin="5,0,5,0">
                 <Button Click="Button_Blips_Click" Content="游艇" />
+                <Button Click="Button_Blips_Click" Content="CEO仓库" />
                 <Button Click="Button_Blips_Click" Content="CEO办公室" />
                 <Button Click="Button_Blips_Click" Content="摩托帮会所" />
                 <Button Click="Button_Blips_Click" Content="大麻种植场" />
@@ -121,10 +95,12 @@
                 <Button Click="Button_Blips_Click" Content="伪证件办公室" />
                 <Button Click="Button_Blips_Click" Content="冰毒实验室" />
                 <Button Click="Button_Blips_Click" Content="假钞工厂" />
+                <Button Click="Button_Blips_Click" Content="CEO载具仓库" />
                 <Button Click="Button_Blips_Click" Content="地堡" />
                 <Button Click="Button_Blips_Click" Content="机库" />
                 <Button Click="Button_Blips_Click" Content="设施" />
                 <Button Click="Button_Blips_Click" Content="夜总会" />
+                <Button Click="Button_Blips_Click" Content="恐霸" />
                 <Button Click="Button_Blips_Click" Content="游戏厅" />
                 <Button Click="Button_Blips_Click" Content="虎鲸" />
                 <Button Click="Button_Blips_Click" Content="车友会" />
@@ -157,6 +133,33 @@
 
         </StackPanel>
         <!--  面板3  -->
+        <StackPanel>
+            <ui:UiLabelEmoji Content="角色等级RP倍数" />
+            <WrapPanel Margin="5,0,5,0">
+                <Button Click="Button_RPxN_Click" Content="RPx1" />
+                <Button Click="Button_RPxN_Click" Content="RPx2" />
+                <Button Click="Button_RPxN_Click" Content="RPx5" />
+                <Button Click="Button_RPxN_Click" Content="RPx10" />
+                <Button Click="Button_RPxN_Click" Content="RPx20" />
+                <Button Click="Button_RPxN_Click" Content="RPx50" />
+                <Button Click="Button_RPxN_Click" Content="RPx100" />
+                <Button Click="Button_RPxN_Click" Content="RPx500" />
+                <Button Click="Button_RPxN_Click" Content="RPx1000" />
+            </WrapPanel>
+
+            <ui:UiLabelEmoji Content="车友会等级RP倍数" />
+            <WrapPanel Margin="5,0,5,0">
+                <Button Click="Button_REPxN_Click" Content="REPx1" />
+                <Button Click="Button_REPxN_Click" Content="REPx2" />
+                <Button Click="Button_REPxN_Click" Content="REPx5" />
+                <Button Click="Button_REPxN_Click" Content="REPx10" />
+                <Button Click="Button_REPxN_Click" Content="REPx20" />
+                <Button Click="Button_REPxN_Click" Content="REPx50" />
+                <Button Click="Button_REPxN_Click" Content="REPx100" />
+                <Button Click="Button_REPxN_Click" Content="REPx500" />
+                <Button Click="Button_REPxN_Click" Content="REPx1000" />
+            </WrapPanel>
+        </StackPanel>
 
     </UniformGrid>
 

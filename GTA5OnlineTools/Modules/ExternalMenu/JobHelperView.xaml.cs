@@ -55,15 +55,23 @@ public partial class JobHelperView : UserControl
         int index = MiscData.CEOCargos.FindIndex(t => t.Name == btnContent);
         if (index != -1)
         {
-            // They are in gb_contraband_buy at func_915, for future updates.
-
-            var id = MiscData.CEOCargos[index].ID;
-            if (id == 0 || id == 1 || id == 3 || id == 5 || id == 10)
-                Online.CEOSpecialCargo(false);
-            else
-                Online.CEOSpecialCargo(true);
-
+            Online.CEOSpecialCargo(false);
             Online.CEOCargoType(MiscData.CEOCargos[index].ID);
+        }
+    }
+
+    private void Button_CEOSpecialCargos_Click(object sender, RoutedEventArgs e)
+    {
+        AudioUtil.PlayClickSound();
+
+        var btnContent = (e.OriginalSource as Button).Content.ToString();
+
+        int index = MiscData.CEOSpecialCargos.FindIndex(t => t.Name == btnContent);
+        if (index != -1)
+        {
+            // They are in gb_contraband_buy at func_915, for future updates.
+            Online.CEOSpecialCargo(true);
+            Online.CEOCargoType(MiscData.CEOSpecialCargos[index].ID);
         }
     }
 

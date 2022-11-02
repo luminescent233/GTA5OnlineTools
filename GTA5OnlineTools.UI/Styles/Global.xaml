@@ -20,6 +20,10 @@
     <!--  ToolTip背景色为白色  -->
     <Style TargetType="{x:Type ToolTip}">
         <Setter Property="Background" Value="White" />
+        <!--<Setter Property="ToolTipService.InitialShowDelay" Value="0" />
+        <Setter Property="ToolTipService.ShowDuration" Value="5000" />
+        <Setter Property="ToolTipService.HasDropShadow" Value="True" />
+        <Setter Property="ToolTipService.BetweenShowDelay" Value="0" />-->
     </Style>
 
 </ResourceDictionary>

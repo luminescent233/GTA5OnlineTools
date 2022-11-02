@@ -13,6 +13,30 @@
         <!--  面板1  -->
         <DockPanel>
             <StackPanel DockPanel.Dock="Top">
+                <ui:UiLabelEmoji Content="随身技工" />
+                <UniformGrid Margin="5,0,5,0" Columns="3">
+                    <Button
+                        x:Name="Button_RefushPersonalVehicleList"
+                        Click="Button_RefushPersonalVehicleList_Click"
+                        Content="刷新列表" />
+                    <Button
+                        x:Name="Button_SpawnPersonalVehicle"
+                        Click="Button_SpawnPersonalVehicle_Click"
+                        Content="呼叫个人载具" />
+                    <Button
+                        x:Name="Button_GetInOnlinePV"
+                        Click="Button_GetInOnlinePV_Click"
+                        Content="坐进个人载具" />
+                </UniformGrid>
+            </StackPanel>
+            <ListBox
+                x:Name="ListBox_PersonalVehicle"
+                Margin="5"
+                DockPanel.Dock="Bottom" />
+        </DockPanel>
+        <!--  面板2  -->
+        <DockPanel>
+            <StackPanel DockPanel.Dock="Top">
                 <ui:UiLabelEmoji Content="模型修改" />
                 <StackPanel Margin="5,0,5,0">
                     <Button
@@ -35,7 +59,6 @@
                 Margin="5"
                 DockPanel.Dock="Bottom" />
         </DockPanel>
-        <!--  面板2  -->
         <!--  面板3  -->
     </UniformGrid>
 

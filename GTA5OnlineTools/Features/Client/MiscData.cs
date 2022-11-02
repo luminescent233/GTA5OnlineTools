@@ -11,6 +11,7 @@ public static class MiscData
     public static List<FlagInfo> Blips = new()
     {
         new FlagInfo(){ Name="游艇", ID=455 },
+        new FlagInfo(){ Name="CEO仓库", ID=473 },
         new FlagInfo(){ Name="CEO办公室", ID=475 },
         new FlagInfo(){ Name="摩托帮会所", ID=492 },
         new FlagInfo(){ Name="大麻种植场", ID=496 },
@@ -18,10 +19,12 @@ public static class MiscData
         new FlagInfo(){ Name="伪证件办公室", ID=498 },
         new FlagInfo(){ Name="冰毒实验室", ID=499 },
         new FlagInfo(){ Name="假钞工厂", ID=500 },
+        new FlagInfo(){ Name="CEO载具仓库", ID=524 },
         new FlagInfo(){ Name="地堡", ID=557 },
         new FlagInfo(){ Name="机库", ID=569 },
         new FlagInfo(){ Name="设施", ID=590 },
         new FlagInfo(){ Name="夜总会", ID=614 },
+        new FlagInfo(){ Name="恐霸", ID=632 },
         new FlagInfo(){ Name="游戏厅", ID=740 },
         new FlagInfo(){ Name="虎鲸", ID=760 },
         new FlagInfo(){ Name="车友会", ID=777 },
@@ -76,15 +79,25 @@ public static class MiscData
     {
         new FlagInfo(){ Name="医疗用品", ID=0 },
         new FlagInfo(){ Name="烟酒", ID=1 },
-        new FlagInfo(){ Name="古董艺术品（华丽彩蛋）", ID=2 },
+        new FlagInfo(){ Name="古董艺术品", ID=2 },
         new FlagInfo(){ Name="电子产品", ID=3 },
-        new FlagInfo(){ Name="武器弹药（黄金火神机枪）", ID=4 },
+        new FlagInfo(){ Name="武器弹药", ID=4 },
         new FlagInfo(){ Name="迷幻药", ID=5 },
+        new FlagInfo(){ Name="宝石", ID=6 },
+        new FlagInfo(){ Name="动物材料", ID=7 },
+        new FlagInfo(){ Name="仿制品", ID=8 },
+        new FlagInfo(){ Name="珠宝", ID=9 },
+        new FlagInfo(){ Name="银块", ID=10 },
+    };
+
+    public static List<FlagInfo> CEOSpecialCargos = new()
+    {
+        new FlagInfo(){ Name="古董艺术品（华丽彩蛋）", ID=2 },
+        new FlagInfo(){ Name="武器弹药（黄金火神机枪）", ID=4 },
         new FlagInfo(){ Name="宝石（一大颗钻石）", ID=6 },
         new FlagInfo(){ Name="动物材料（稀有皮草）", ID=7 },
         new FlagInfo(){ Name="仿制品（电影胶卷）", ID=8 },
         new FlagInfo(){ Name="珠宝（稀有怀表）", ID=9 },
-        new FlagInfo(){ Name="银块", ID=10 },
     };
 
     public static List<FlagInfo> MerryWeatherServices = new()
