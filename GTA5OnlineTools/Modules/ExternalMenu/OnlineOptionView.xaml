@@ -36,10 +36,10 @@
                     x:Name="Button_Disconnect"
                     Click="Button_Disconnect_Click"
                     Content="断开战局连接" />
-                <!--<Button
+                <Button
                     x:Name="Button_StopCutscene"
                     Click="Button_StopCutscene_Click"
-                    Content="结束过场动画" />-->
+                    Content="结束过场动画" />
             </WrapPanel>
 
             <ui:UiLabelEmoji Content="高级" />

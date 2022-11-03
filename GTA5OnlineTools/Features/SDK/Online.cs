@@ -28,18 +28,18 @@ public static class Online
             if (sessionID == -1)
             {
                 // 离开线上模式需要特殊处理
-                Hacks.WriteGA(Offsets.InitSession_Cache, -1);
+                Hacks.WriteGA(Offsets.InitSessionCache, -1);
             }
             else
             {
                 // 正常切换战局，修改战局类型
-                Hacks.WriteGA(Offsets.InitSession_Type, sessionID);
+                Hacks.WriteGA(Offsets.InitSessionType, sessionID);
             }
 
             // 切换战局状态
-            Hacks.WriteGA(Offsets.InitSession_State, 1);
+            Hacks.WriteGA(Offsets.InitSessionState, 1);
             await Task.Delay(200);
-            Hacks.WriteGA(Offsets.InitSession_State, 0);
+            Hacks.WriteGA(Offsets.InitSessionState, 0);
         });
     }
 
@@ -545,7 +545,7 @@ public static class Online
     /// </summary>
     public static void StopCutscene()
     {
-        Hacks.WriteGA(2520143 + 3, 1);
+        Hacks.WriteGA(2789756 + 3, 1);
         Hacks.WriteGA(1575058, 1);
     }
 

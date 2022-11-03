@@ -35,10 +35,6 @@ public partial class PlayerListView : UserControl
 
         long pCNetworkPlayerMgr = Memory.Read<long>(Pointers.NetworkPlayerMgrPTR);
 
-        long pCNetGamePlayerLocal = Memory.Read<long>(pCNetworkPlayerMgr + Offsets.CNetworkPlayerMgr_CNetGamePlayerLocal);
-        long pCPlayerInfoLocal = Memory.Read<long>(pCNetGamePlayerLocal + Offsets.CNetworkPlayerMgr_CNetGamePlayer_CPlayerInfo);
-        long oLocalHostToken = Memory.Read<long>(pCPlayerInfoLocal + Offsets.CNetworkPlayerMgr_CNetGamePlayer_HostToken);
-
         for (int i = 0; i < 32; i++)
         {
             long pCNetGamePlayer = Memory.Read<long>(pCNetworkPlayerMgr + Offsets.CNetworkPlayerMgr_CNetGamePlayer + i * 0x08);
@@ -62,9 +58,6 @@ public partial class PlayerListView : UserControl
                 RockstarId = Memory.Read<long>(pCPlayerInfo + Offsets.CNetworkPlayerMgr_CNetGamePlayer_RockstarId),
                 PlayerName = Memory.ReadString(pCPlayerInfo + Offsets.CNetworkPlayerMgr_CNetGamePlayer_Name, 20),
 
-                IsHost = oHostToken == oLocalHostToken,
-                HostToken = oHostToken,
-
                 Health = Memory.Read<float>(pCPed + Offsets.CPed_Health),
                 MaxHealth = Memory.Read<float>(pCPed + Offsets.CPed_HealthMax),
                 GodMode = Memory.Read<byte>(pCPed + Offsets.CPed_God) == 0x01,
@@ -81,28 +74,14 @@ public partial class PlayerListView : UserControl
         {
             var url = "https://prod.cloud.rockstargames.com/members/sc/5605/" + item.RockstarId + "/publish/gta5/mpchars/0.png";
 
-            if (item.IsHost)
+            ListBox_PlayerList.Items.Add(new NetPlayer()
             {
-                ListBox_PlayerList.Items.Add(new NetPlayer()
-                {
-                    Index = ++index,
-                    Avatar = url,
-                    Name = $"{item.PlayerName} [房主]",
-                    RID = item.RockstarId,
-                    GodMode = item.GodMode ? "无敌" : ""
-                });
-            }
-            else
-            {
-                ListBox_PlayerList.Items.Add(new NetPlayer()
-                {
-                    Index = ++index,
-                    Avatar = url,
-                    Name = item.PlayerName,
-                    RID = item.RockstarId,
-                    GodMode = item.GodMode ? "无敌" : ""
-                });
-            }
+                Index = ++index,
+                Avatar = url,
+                Name = item.PlayerName,
+                RID = item.RockstarId,
+                GodMode = item.GodMode ? "无敌" : ""
+            });
         }
     }
 
@@ -132,8 +111,6 @@ public partial class PlayerListView : UserControl
         var index = ListBox_PlayerList.SelectedIndex;
         if (index != -1)
         {
-            PlayerInfoAppend($"战局房主 : {NetPlayerDatas[index].IsHost}\n");
-
             PlayerInfoAppend($"玩家RID : {NetPlayerDatas[index].RockstarId}");
             PlayerInfoAppend($"玩家昵称 : {NetPlayerDatas[index].PlayerName}\n");
 

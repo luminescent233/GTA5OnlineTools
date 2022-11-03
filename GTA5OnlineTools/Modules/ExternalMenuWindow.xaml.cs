@@ -129,12 +129,12 @@ public partial class ExternalMenuWindow
         MenuBars.Add(new MenuBar() { Emoji = "🍎", Title = "自身属性", NameSpace = "SelfStateView" });
         MenuBars.Add(new MenuBar() { Emoji = "🍐", Title = "世界功能", NameSpace = "WorldFunctionView" });
         MenuBars.Add(new MenuBar() { Emoji = "🍋", Title = "线上选项", NameSpace = "OnlineOptionView" });
-        MenuBars.Add(new MenuBar() { Emoji = "🍉", Title = "玩家列表", NameSpace = "PlayerListView" });
         MenuBars.Add(new MenuBar() { Emoji = "🍇", Title = "线上载具", NameSpace = "SpawnVehicleView" });
         MenuBars.Add(new MenuBar() { Emoji = "🍓", Title = "线上武器", NameSpace = "SpawnWeaponView" });
-        MenuBars.Add(new MenuBar() { Emoji = "🍈", Title = "外部ESP", NameSpace = "ExternalOverlayView" });
-        MenuBars.Add(new MenuBar() { Emoji = "🍑", Title = "战局聊天", NameSpace = "SessionChatView" });
         MenuBars.Add(new MenuBar() { Emoji = "🥭", Title = "任务帮手", NameSpace = "JobHelperView" });
+        MenuBars.Add(new MenuBar() { Emoji = "🍈", Title = "外部ESP", NameSpace = "ExternalOverlayView" });
+        MenuBars.Add(new MenuBar() { Emoji = "🍉", Title = "玩家列表", NameSpace = "PlayerListView" });
+        MenuBars.Add(new MenuBar() { Emoji = "🍑", Title = "战局聊天", NameSpace = "SessionChatView" });
         MenuBars.Add(new MenuBar() { Emoji = "🍍", Title = "其他杂项", NameSpace = "OtherMiscView" });
 
         MenuBars.Add(new MenuBar() { Emoji = "💌", Title = "README", NameSpace = "ReadMeView" });

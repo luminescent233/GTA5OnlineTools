@@ -95,7 +95,25 @@
 
         </StackPanel>
         <!--  面板2  -->
-        <StackPanel />
+        <StackPanel>
+            <ui:UiLabelEmoji Content="玩家昵称修改（最大20字符）" />
+            <TextBlock Margin="5" Text="输入你要修改的昵称 " />
+            <TextBox x:Name="TextBox_PlayerName" MaxLength="20" />
+            <UniformGrid Columns="2">
+                <Button
+                    x:Name="Button_ReadPlayerName"
+                    Click="Button_ReadPlayerName_Click"
+                    Content="读取" />
+                <Button
+                    x:Name="Button_WritePlayerName"
+                    Click="Button_WritePlayerName_Click"
+                    Content="修改" />
+            </UniformGrid>
+            <!--  ##########  -->
+            <TextBlock Style="{StaticResource TextBlockStyle_Hint}">
+                提示：修改成功后，切换战局生效
+            </TextBlock>
+        </StackPanel>
         <!--  面板3  -->
 
     </UniformGrid>

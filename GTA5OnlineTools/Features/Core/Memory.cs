@@ -305,7 +305,7 @@ public static class Memory
     }
 
     /// <summary>
-    /// 特征码搜索
+    /// 特征码搜索，结果为单个地址
     /// </summary>
     /// <param name="pattern"></param>
     /// <returns></returns>
@@ -330,7 +330,7 @@ public static class Memory
         var patternByteArray = tempArray.ToArray();
 
         var moduleSize = GTA5Process.MainModule.ModuleMemorySize;
-        if (moduleSize == 0) 
+        if (moduleSize == 0)
             throw new Exception($"模块 {GTA5Process.MainModule.ModuleName} 大小无效");
 
         var localModulebytes = new byte[moduleSize];
@@ -361,6 +361,50 @@ public static class Memory
         return address;
     }
 
+    /// <summary>
+    /// 特征码搜索，结果为多个地址
+    /// </summary>
+    /// <param name="pattern"></param>
+    /// <returns></returns>
+    /// <exception cref="Exception"></exception>
+    public static List<long> FindPatterns(string pattern)
+    {
+        List<long> address = new();
+
+        var patternByteArray = Encoding.ASCII.GetBytes(pattern);
+
+        var moduleSize = GTA5Process.MainModule.ModuleMemorySize;
+        if (moduleSize == 0)
+            throw new Exception($"模块 {GTA5Process.MainModule.ModuleName} 大小无效");
+
+        var localModulebytes = new byte[moduleSize];
+        Win32.ReadProcessMemory(GTA5ProHandle, GTA5ProBaseAddress, localModulebytes, moduleSize, out _);
+
+        for (int indexAfterBase = 0; indexAfterBase < localModulebytes.Length; indexAfterBase++)
+        {
+            bool noMatch = false;
+
+            if (localModulebytes[indexAfterBase] != patternByteArray[0])
+                continue;
+
+            for (var MatchedIndex = 0; MatchedIndex < patternByteArray.Length && indexAfterBase + MatchedIndex < localModulebytes.Length; MatchedIndex++)
+            {
+                if (patternByteArray[MatchedIndex] == 0x0)
+                    continue;
+                if (patternByteArray[MatchedIndex] != localModulebytes[indexAfterBase + MatchedIndex])
+                {
+                    noMatch = true;
+                    break;
+                }
+            }
+
+            if (!noMatch)
+                address.Add(GTA5ProBaseAddress + indexAfterBase);
+        }
+
+        return address;
+    }
+
     public static long Rip_37(long address)
     {
         return address + Read<int>(address + 0x03) + 0x07;
@@ -369,11 +413,6 @@ public static class Memory
     public static long Rip_6A(long address)
     {
         return address + Read<int>(address + 0x06) + 0x0A;
-    }
-
-    public static long Rip_389(long address)
-    {
-        return address + Read<int>(address + 0x03) - 0x89;
     }
 
     /// <summary>
@@ -515,7 +554,7 @@ public static class Memory
     /// </summary>
     /// <param name="address"></param>
     /// <param name="str"></param>
-    public static void WriteString(long address,  string str)
+    public static void WriteString(long address, string str)
     {
         var buffer = new ASCIIEncoding().GetBytes(str);
         Win32.WriteProcessMemory(GTA5ProHandle, address, buffer, buffer.Length, out _);

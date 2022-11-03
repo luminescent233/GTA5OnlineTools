@@ -4,8 +4,6 @@ public class NetPlayerData
 {
     public long RockstarId { get; set; }
     public string PlayerName { get; set; }
-    public bool IsHost { get; set; }
-    public long HostToken { get; set; }
     public float Health { get; set; }
     public float MaxHealth { get; set; }
     public bool GodMode { get; set; }

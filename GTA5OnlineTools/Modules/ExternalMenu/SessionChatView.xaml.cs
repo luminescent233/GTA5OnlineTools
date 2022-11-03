@@ -27,7 +27,7 @@ public partial class SessionChatView : UserControl
 
     private void ExternalMenuWindow_WindowClosingEvent()
     {
-        
+
     }
 
     private void Button_Translate_Click(object sender, RoutedEventArgs e)
@@ -181,23 +181,68 @@ public partial class SessionChatView : UserControl
     /// <returns></returns>
     private string ToDBC(string input)
     {
-        char[] c = input.ToCharArray();
+        char[] inputChar = input.ToCharArray();
 
-        for (int i = 0; i < c.Length; i++)
+        for (int i = 0; i < inputChar.Length; i++)
         {
-            if (c[i] == 12288)
+            if (inputChar[i] == 12288)
             {
-                c[i] = (char)32;
+                inputChar[i] = (char)32;
                 continue;
             }
 
-            if (c[i] > 65280 && c[i] < 65375)
+            if (inputChar[i] > 65280 && inputChar[i] < 65375)
             {
-                c[i] = (char)(c[i] - 65248);
+                inputChar[i] = (char)(inputChar[i] - 65248);
             }
         }
 
-        return new string(c);
+        return inputChar.ToString();
+    }
+
+    private void Button_ReadPlayerName_Click(object sender, RoutedEventArgs e)
+    {
+        AudioUtil.PlayClickSound();
+
+        long pCPlayerInfo = Globals.GetCPlayerInfo();
+        TextBox_PlayerName.Text = Memory.ReadString(pCPlayerInfo + Offsets.CPed_CPlayerInfo_Name, 20);
+    }
+
+    private void Button_WritePlayerName_Click(object sender, RoutedEventArgs e)
+    {
+        AudioUtil.PlayClickSound();
+
+        try
+        {
+            string playerName = TextBox_PlayerName.Text.Trim();
+            TextBox_PlayerName.Text = playerName;
+
+            if (Regex.IsMatch(playerName, "^[a-zA-Z0-9_-]{3,20}$"))
+            {
+                long pCPlayerInfo = Globals.GetCPlayerInfo();
+                string name = Memory.ReadString(pCPlayerInfo + Offsets.CPed_CPlayerInfo_Name, 20);
+
+                playerName += "\0";
+
+                var pointers = Memory.FindPatterns(name);
+                foreach (var item in pointers)
+                {
+                    Memory.WriteString(item, playerName);
+                }
+
+                Memory.WriteString(pCPlayerInfo + Offsets.CPed_CPlayerInfo_Name, playerName);
+
+                NotifierHelper.Show(NotifierType.Success, "修改玩家昵称成功，切换战局生效");
+            }
+            else
+            {
+                NotifierHelper.Show(NotifierType.Warning, "玩家昵称不合法，规则：3到20位（字母，数字，下划线，减号）");
+            }
+        }
+        catch (Exception ex)
+        {
+            NotifierHelper.ShowException(ex);
+        }
     }
 }
 
