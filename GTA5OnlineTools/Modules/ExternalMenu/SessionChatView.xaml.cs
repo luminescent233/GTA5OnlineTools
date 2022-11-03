@@ -23,6 +23,9 @@ public partial class SessionChatView : UserControl
         ExternalMenuWindow.WindowClosingEvent += ExternalMenuWindow_WindowClosingEvent;
 
         TextBox_InputMessage.Text = "测试文本: 请把游戏中聊天输入法调成英文,否则会漏掉文字.Hello1234,漏掉文字了吗?";
+
+        long pCPlayerInfo = Globals.GetCPlayerInfo();
+        TextBox_PlayerName.Text = Memory.ReadString(pCPlayerInfo + Offsets.CPed_CPlayerInfo_Name, 20);
     }
 
     private void ExternalMenuWindow_WindowClosingEvent()
@@ -197,7 +200,7 @@ public partial class SessionChatView : UserControl
             }
         }
 
-        return inputChar.ToString();
+        return new string(inputChar);
     }
 
     private void Button_ReadPlayerName_Click(object sender, RoutedEventArgs e)
@@ -221,6 +224,12 @@ public partial class SessionChatView : UserControl
             {
                 long pCPlayerInfo = Globals.GetCPlayerInfo();
                 string name = Memory.ReadString(pCPlayerInfo + Offsets.CPed_CPlayerInfo_Name, 20);
+
+                if (playerName.Equals(name))
+                {
+                    NotifierHelper.Show(NotifierType.Information, "玩家昵称未改动，无需修改");
+                    return;
+                }
 
                 playerName += "\0";
 

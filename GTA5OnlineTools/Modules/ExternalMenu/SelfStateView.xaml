@@ -115,6 +115,32 @@
                         TickFrequency="1"
                         ValueChanged="Slider_WantedLevel_ValueChanged" />
                 </DockPanel>
+                <!--  潜行速度  -->
+                <DockPanel>
+                    <DockPanel
+                        Width="120"
+                        VerticalAlignment="Center"
+                        DockPanel.Dock="Left">
+                        <ui:UiLabelEmoji
+                            Margin="5,0,0,0"
+                            Content="走路速度"
+                            Emoji="🚶🏻"
+                            Style="{StaticResource LabelEmojiStyle_MenuTitle}" />
+                        <TextBlock
+                            Margin="5"
+                            HorizontalAlignment="Right"
+                            Text="{Binding ElementName=Slider_WalkSpeed, Path=Value, StringFormat={}{0:0.0}}" />
+                    </DockPanel>
+                    <Slider
+                        Name="Slider_WalkSpeed"
+                        VerticalAlignment="Center"
+                        DockPanel.Dock="Right"
+                        IsSnapToTickEnabled="True"
+                        Maximum="10"
+                        Minimum="0"
+                        TickFrequency="0.1"
+                        ValueChanged="Slider_WalkSpeed_ValueChanged" />
+                </DockPanel>
                 <!--  奔跑速度  -->
                 <DockPanel>
                     <DockPanel
@@ -163,32 +189,6 @@
                         Minimum="0"
                         TickFrequency="0.1"
                         ValueChanged="Slider_SwimSpeed_ValueChanged" />
-                </DockPanel>
-                <!--  潜行速度  -->
-                <DockPanel>
-                    <DockPanel
-                        Width="120"
-                        VerticalAlignment="Center"
-                        DockPanel.Dock="Left">
-                        <ui:UiLabelEmoji
-                            Margin="5,0,0,0"
-                            Content="走路速度"
-                            Emoji="🚶🏻"
-                            Style="{StaticResource LabelEmojiStyle_MenuTitle}" />
-                        <TextBlock
-                            Margin="5"
-                            HorizontalAlignment="Right"
-                            Text="{Binding ElementName=Slider_WalkSpeed, Path=Value, StringFormat={}{0:0.0}}" />
-                    </DockPanel>
-                    <Slider
-                        Name="Slider_WalkSpeed"
-                        VerticalAlignment="Center"
-                        DockPanel.Dock="Right"
-                        IsSnapToTickEnabled="True"
-                        Maximum="10"
-                        Minimum="0"
-                        TickFrequency="0.1"
-                        ValueChanged="Slider_WalkSpeed_ValueChanged" />
                 </DockPanel>
             </StackPanel>
 

@@ -1,7 +1,7 @@
 ﻿using GTA5OnlineTools.Common.Utils;
 using GTA5OnlineTools.Features.SDK;
-using GTA5OnlineTools.Features.Client;
 using GTA5OnlineTools.Features.Data;
+using GTA5OnlineTools.Features.Client;
 
 namespace GTA5OnlineTools.Modules.ExternalMenu;
 
@@ -35,37 +35,40 @@ public partial class OtherMiscView : UserControl
     {
         AudioUtil.PlayClickSound();
 
-        ListBox_PersonalVehicle.Items.Clear();
-        PerVehInfos.Clear();
-
-        Task.Run(() =>
+        lock (this)
         {
-            int max_slots = Hacks.ReadGA<int>(1585857);
-            for (int i = 0; i < max_slots; i++)
+            ListBox_PersonalVehicle.Items.Clear();
+            PerVehInfos.Clear();
+
+            Task.Run(() =>
             {
-                long hash = Hacks.ReadGA<long>(1585857 + 1 + (i * 142) + 66);
-                if (hash == 0)
-                    continue;
-
-                string plate = Hacks.ReadGAString(1585857 + 1 + (i * 142) + 1);
-
-                PerVehInfos.Add(new PerVehInfo()
+                int max_slots = Hacks.ReadGA<int>(1585857);
+                for (int i = 0; i < max_slots; i++)
                 {
-                    Index = i,
-                    Name = Vehicle.FindVehicleDisplayName(hash, true),
-                    Hash = hash,
-                    Plate = plate
-                });
-            }
+                    long hash = Hacks.ReadGA<long>(1585857 + 1 + (i * 142) + 66);
+                    if (hash == 0)
+                        continue;
 
-            foreach (var item in PerVehInfos)
-            {
-                this.Dispatcher.Invoke(() =>
+                    string plate = Hacks.ReadGAString(1585857 + 1 + (i * 142) + 1);
+
+                    PerVehInfos.Add(new PerVehInfo()
+                    {
+                        Index = i,
+                        Name = Vehicle.FindVehicleDisplayName(hash, true),
+                        Hash = hash,
+                        Plate = plate
+                    });
+                }
+
+                foreach (var item in PerVehInfos)
                 {
-                    ListBox_PersonalVehicle.Items.Add($"[{item.Plate}]\t{item.Name}");
-                });
-            }
-        });
+                    this.Dispatcher.Invoke(() =>
+                    {
+                        ListBox_PersonalVehicle.Items.Add($"[{item.Plate}]\t{item.Name}");
+                    });
+                }
+            });
+        }
     }
 
     private void Button_SpawnPersonalVehicle_Click(object sender, RoutedEventArgs e)

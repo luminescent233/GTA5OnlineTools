@@ -535,6 +535,7 @@ public static class Online
     /// </summary>
     public static void Disconnect()
     {
+        // at 1.63 freemode.c func_20826
         Hacks.WriteGA(32236, 1);
         Thread.Sleep(200);
         Hacks.WriteGA(32236, 0);
@@ -545,6 +546,7 @@ public static class Online
     /// </summary>
     public static void StopCutscene()
     {
+        // at 1.63 freemode.c func_12850
         Hacks.WriteGA(2789756 + 3, 1);
         Hacks.WriteGA(1575058, 1);
     }

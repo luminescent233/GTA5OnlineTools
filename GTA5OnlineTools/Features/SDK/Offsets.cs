@@ -120,17 +120,36 @@ public static class Offsets
     public const int CPed_CVehicle_CNavigation_PositionZ = 0x58;
 
     // CPed CPlayerInfo Offsets
-    public const int CPed_CPlayerInfo_Name = 0xA4;                  // string[20]
+    public const int CPed_CPlayerInfo_RlGamerInfo = 0x20;
+    public const int CPed_CPlayerInfo_RockstarId = 0x28;                    // int64
+    public const int CPed_CPlayerInfo_RelayIP = 0x64;                       // byte
+    public const int CPed_CPlayerInfo_RelayPort = 0x68;                     // short
+    public const int CPed_CPlayerInfo_ExternalIP = 0x6C;
+    public const int CPed_CPlayerInfo_ExternalPort = 0x70;
+    public const int CPed_CPlayerInfo_InternalIP = 0x74;
+    public const int CPed_CPlayerInfo_InternalPort = 0x78;
+    public const int CPed_CPlayerInfo_Name = 0xA4;                          // string[20]
+    public const int CPed_CPlayerInfo_HostToken = 0x80;                     // int64
     public const int CPed_CPlayerInfo_RockstarID = 0x90;
-    public const int CPed_CPlayerInfo_SwimSpeed = 0x170;            // float
-    public const int CPed_CPlayerInfo_FrameFlags = 0x219;
+    public const int CPed_CPlayerInfo_SwimSpeed = 0x170;                    // float
+    public const int CPed_CPlayerInfo_WaterProof = 0x188;
     public const int CPed_CPlayerInfo_WalkSpeed = 0x18C;
-    public const int CPed_CPlayerInfo_WantedCanChange = 0x73C;      // float
-    public const int CPed_CPlayerInfo_NPCIgnore = 0x870;
-    public const int CPed_CPlayerInfo_WantedLevel = 0x888;          // int8
-    public const int CPed_CPlayerInfo_RunSpeed = 0xCF0;             // float
-    public const int CPed_CPlayerInfo_Stamina = 0xCF4;
-    public const int CPed_CPlayerInfo_StaminaRegen = 0xCF8;
+    public const int CPed_CPlayerInfo_GameState = 0x1D8;                    // byte
+    public const int CPed_CPlayerInfo_CPed = 0x1E8;
+    public const int CPed_CPlayerInfo_FrameFlags = 0x219;
+    public const int CPed_CPlayerInfo_WantedCanChange = 0x73C;              // float
+    public const int CPed_CPlayerInfo_NPCIgnore = 0x870;                    // int32
+    public const int CPed_CPlayerInfo_WantedLevel = 0x888;                  // int32
+    public const int CPed_CPlayerInfo_WantedLevelDisplay = 0x88C;           // int32
+    public const int CPed_CPlayerInfo_RunSpeed = 0xCF0;                     // float
+    public const int CPed_CPlayerInfo_Stamina = 0xCF4;                      // float
+    public const int CPed_CPlayerInfo_StaminaRegen = 0xCF8;                 // float
+    public const int CPed_CPlayerInfo_WeaponDamageMult = 0xD0C;             // float
+    public const int CPed_CPlayerInfo_WeaponDefenceMult = 0xD10;
+    public const int CPed_CPlayerInfo_MeleeWeaponDamageMult = 0xD18;
+    public const int CPed_CPlayerInfo_MeleeDamageMult = 0xD1C;
+    public const int CPed_CPlayerInfo_MeleeDefenceMult = 0xD20;
+    public const int CPed_CPlayerInfo_MeleeWeaponDefenceMult = 0xD2C;
 
     // CPed CPedInventory Offsets
     public const int CPed_CPedInventory_AmmoModifier = 0x78;
@@ -171,12 +190,12 @@ public static class Offsets
     public const int CNetworkPlayerMgr_PlayerCount = 0x28C;
 
     // CNetworkPlayerMgr CNetGamePlayer Offsets
+    public const int CNetworkPlayerMgr_CNetGamePlayer_IsSpectating = 0x0C;
     public const int CNetworkPlayerMgr_CNetGamePlayer_CPlayerInfo = 0xA0;
-
-    // CNetworkPlayerMgr CNetGamePlayer CPlayerInfo Offsets
-    public const int CNetworkPlayerMgr_CNetGamePlayer_RockstarId = 0x28;            // int64
-    public const int CNetworkPlayerMgr_CNetGamePlayer_HostToken = 0x80;             // int64
-    public const int CNetworkPlayerMgr_CNetGamePlayer_Name = 0xA4;
-    public const int CNetworkPlayerMgr_CNetGamePlayer_CPed = 0x1E8;
+    public const int CNetworkPlayerMgr_CNetGamePlayer_ClanName = 0xE6;
+    public const int CNetworkPlayerMgr_CNetGamePlayer_ClanTag = 0xFF;
+    public const int CNetworkPlayerMgr_CNetGamePlayer_IsRockStarDev = 0x199;
+    public const int CNetworkPlayerMgr_CNetGamePlayer_IsRockStarQA = 0x19A;
+    public const int CNetworkPlayerMgr_CNetGamePlayer_IsCheater = 0x19B;
 
 }

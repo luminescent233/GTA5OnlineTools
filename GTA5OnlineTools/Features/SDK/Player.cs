@@ -88,7 +88,7 @@ public static class Player
     public static void NoRagdoll(bool isEnable)
     {
         long pCPed = Globals.GetCPed();
-        Memory.Write(pCPed + Offsets.CPed_Ragdoll, (byte)(isEnable ? 0x00 : 0x20));
+        Memory.Write(pCPed + Offsets.CPed_Ragdoll, (byte)(isEnable ? 0x01 : 0x20));
     }
 
     /// <summary>
