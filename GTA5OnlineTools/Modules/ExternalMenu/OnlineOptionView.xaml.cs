@@ -38,6 +38,20 @@ public partial class OnlineOptionView : UserControl
         Online.EmptySession();
     }
 
+    private void Button_Disconnect_Click(object sender, RoutedEventArgs e)
+    {
+        AudioUtil.PlayClickSound();
+
+        Online.Disconnect();
+    }
+
+    private void Button_StopCutscene_Click(object sender, RoutedEventArgs e)
+    {
+        AudioUtil.PlayClickSound();
+
+        Online.StopCutscene();
+    }
+
     private void Button_RPxN_Click(object sender, RoutedEventArgs e)
     {
         AudioUtil.PlayClickSound();

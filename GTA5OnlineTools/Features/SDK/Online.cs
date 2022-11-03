@@ -93,8 +93,8 @@ public static class Online
     /// <param name="hash"></param>
     public static void ModelChange(long hash)
     {
-        Hacks.WriteGA(Offsets.oVGETIn + 59, 1);                // triggerModelChange   Global_2671449.f_59
-        Hacks.WriteGA(Offsets.oVGETIn + 46, hash);            // modelChangeHash      Global_2671449.f_46
+        Hacks.WriteGA(Offsets.oVGETIn + 59, 1);                 // triggerModelChange   Global_2671449.f_59
+        Hacks.WriteGA(Offsets.oVGETIn + 46, hash);              // modelChangeHash      Global_2671449.f_46
         Thread.Sleep(10);
         Hacks.WriteGA(Offsets.oVGETIn + 59, 0);
     }
@@ -535,9 +535,18 @@ public static class Online
     /// </summary>
     public static void Disconnect()
     {
-        Hacks.WriteGA(32236, 1);       // 2022/07/29 没效果
-        Thread.Sleep(20);
+        Hacks.WriteGA(32236, 1);
+        Thread.Sleep(200);
         Hacks.WriteGA(32236, 0);
+    }
+
+    /// <summary>
+    /// 结束过场动画
+    /// </summary>
+    public static void StopCutscene()
+    {
+        Hacks.WriteGA(2520143 + 3, 1);
+        Hacks.WriteGA(1575058, 1);
     }
 
     /// <summary>
