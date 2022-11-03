@@ -24,7 +24,7 @@ public partial class GTAHaxWindow
         // STAT列表
         foreach (var item in StatData.StatDataClass)
         {
-            ListBox_GTAHaxCode_ClassList.Items.Add(item.ClassName);
+            ListBox_GTAHaxCode_ClassList.Items.Add(item.Name);
         }
         ListBox_GTAHaxCode_ClassList.SelectedIndex = 0;
     }
@@ -138,7 +138,7 @@ public partial class GTAHaxWindow
     private void ListBox_GTAHaxCode_ClassList_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         var statClassName = ListBox_GTAHaxCode_ClassList.SelectedItem.ToString();
-        int index = StatData.StatDataClass.FindIndex(t => t.ClassName == statClassName);
+        int index = StatData.StatDataClass.FindIndex(t => t.Name == statClassName);
         if (index != -1)
         {
             TextBox_GTAHaxCodePreview.Clear();

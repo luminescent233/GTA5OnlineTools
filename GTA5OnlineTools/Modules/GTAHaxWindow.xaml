@@ -451,14 +451,6 @@
                                         </TextBlock.ToolTip>
                                     </TextBlock>
                                 </WrapPanel>
-                                <TextBlock
-                                    Margin="5"
-                                    VerticalAlignment="Center"
-                                    ToolTip="网站基于GitHub，如果你无法访问GitHub请尝试使用 Steam++ 加速">
-                                    <Hyperlink NavigateUri="https://beholdmystuff.github.io/heist-stat.txt-maker/" RequestNavigate="Hyperlink_RequestNavigate">
-                                        代码自定义（Web网页）
-                                    </Hyperlink>
-                                </TextBlock>
                             </StackPanel>
                         </ScrollViewer>
                     </Grid>
@@ -470,6 +462,14 @@
             Grid.Row="1"
             HorizontalAlignment="Right"
             Orientation="Horizontal">
+            <TextBlock
+                Margin="5"
+                VerticalAlignment="Center"
+                ToolTip="网站基于GitHub，如果你无法访问GitHub请尝试使用 Steam++ 加速">
+                <Hyperlink NavigateUri="https://beholdmystuff.github.io/heist-stat.txt-maker/" RequestNavigate="Hyperlink_RequestNavigate">
+                    代码自定义（Web网页）
+                </Hyperlink>
+            </TextBlock>
             <ui:UiButtonEmoji
                 x:Name="Button_CreateHaxCode"
                 Margin="5,0,5,5"

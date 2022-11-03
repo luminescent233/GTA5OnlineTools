@@ -102,4 +102,9 @@ public partial class OtherMiscView : UserControl
         if (index != -1)
             Online.ModelChange(PedData.PedDataClass[index].Hash);
     }
+
+    private void ListBox_PedModel_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+    {
+        Button_ModelChange_Click(null, null);
+    }
 }

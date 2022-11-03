@@ -57,7 +57,8 @@
             <ListBox
                 x:Name="ListBox_PedModel"
                 Margin="5"
-                DockPanel.Dock="Bottom" />
+                DockPanel.Dock="Bottom"
+                MouseDoubleClick="ListBox_PedModel_MouseDoubleClick" />
         </DockPanel>
         <!--  面板3  -->
     </UniformGrid>

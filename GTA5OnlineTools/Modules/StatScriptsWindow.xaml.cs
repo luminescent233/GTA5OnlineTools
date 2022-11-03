@@ -19,7 +19,7 @@ public partial class StatScriptsWindow
         // STAT列表
         foreach (var item in StatData.StatDataClass)
         {
-            ListBox_STATList.Items.Add(item.ClassName);
+            ListBox_STATList.Items.Add(item.Name);
         }
         ListBox_STATList.SelectedIndex = 0;
     }
@@ -64,10 +64,10 @@ public partial class StatScriptsWindow
         {
             try
             {
-                var index = StatData.StatDataClass.FindIndex(t => t.ClassName == statClassName);
+                var index = StatData.StatDataClass.FindIndex(t => t.Name == statClassName);
                 if (index != -1)
                 {
-                    AppendTextBox($"正在执行 {StatData.StatDataClass[index].ClassName} 脚本代码");
+                    AppendTextBox($"正在执行 {StatData.StatDataClass[index].Name} 脚本代码");
 
                     for (int i = 0; i < StatData.StatDataClass[index].StatInfo.Count; i++)
                     {
@@ -77,7 +77,7 @@ public partial class StatScriptsWindow
                         Task.Delay(500).Wait();
                     }
 
-                    AppendTextBox($"{StatData.StatDataClass[index].ClassName} 脚本代码执行完毕");
+                    AppendTextBox($"{StatData.StatDataClass[index].Name} 脚本代码执行完毕");
                 }
             }
             catch (Exception ex)
