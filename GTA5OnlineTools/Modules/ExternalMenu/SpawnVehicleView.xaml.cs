@@ -59,7 +59,7 @@ public partial class SpawnVehicleView : UserControl
                     for (int i = 0; i < VehicleData.VehicleClassData[index].VehicleInfo.Count; i++)
                     {
                         var name = VehicleData.VehicleClassData[index].VehicleInfo[i].Name;
-                        var displayName = VehicleData.VehicleClassData[index].VehicleInfo[i].DisplayName;
+                        var displayName = VehicleData.VehicleClassData[index].VehicleInfo[i].Display;
 
                         this.Dispatcher.BeginInvoke(DispatcherPriority.Background, () =>
                         {

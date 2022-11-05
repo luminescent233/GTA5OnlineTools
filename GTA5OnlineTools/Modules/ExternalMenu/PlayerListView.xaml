@@ -59,7 +59,8 @@
                     <DataTemplate>
                         <DockPanel>
                             <TextBlock
-                                Width="20"
+                                Width="25"
+                                Margin="5,0,5,0"
                                 VerticalAlignment="Center"
                                 DockPanel.Dock="Left"
                                 Text="{Binding Index}"
@@ -67,7 +68,7 @@
                             <Border
                                 Width="45"
                                 Height="45"
-                                Margin="10,1,10,1"
+                                Margin="0,1,10,1"
                                 BorderBrush="White"
                                 BorderThickness="1"
                                 DockPanel.Dock="Left"

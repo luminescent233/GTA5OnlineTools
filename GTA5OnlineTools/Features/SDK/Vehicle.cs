@@ -341,7 +341,7 @@ public static class Vehicle
                 if (item0.Hash == hash)
                 {
                     if (isDisplay)
-                        return item0.DisplayName;
+                        return item0.Display;
                     else
                         return item0.Name;
                 }
