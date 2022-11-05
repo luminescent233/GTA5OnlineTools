@@ -132,6 +132,7 @@
             <TextBox
                 Height="60"
                 Margin="5"
+                VerticalContentAlignment="Center"
                 Style="{StaticResource TextBoxStyle_Logger}"
                 Text="{Binding ElementName=ListBox_PlayerInfo, Path=SelectedItem.Value}" />
             <ui:UiLabelEmoji Content="功能" />

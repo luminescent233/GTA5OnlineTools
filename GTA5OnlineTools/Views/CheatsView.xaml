@@ -74,17 +74,17 @@
                                         CommandParameter="KiddionKey104"
                                         Content="104键" />
                                     <Button
-                                        Background="#FBBC05"
+                                        Background="#F36838"
                                         Command="{Binding ExtraClickCommand}"
                                         CommandParameter="KiddionKey87"
                                         Content="87键" />
                                     <Button
-                                        Background="#4285F4"
+                                        Background="#009AD6"
                                         Command="{Binding ExtraClickCommand}"
                                         CommandParameter="KiddionConfigDirectory"
                                         Content="配置目录" />
                                     <Button
-                                        Background="#34A853"
+                                        Background="#00AE9D"
                                         Command="{Binding ExtraClickCommand}"
                                         CommandParameter="KiddionScriptsDirectory"
                                         Content="脚本目录" />
@@ -101,7 +101,7 @@
                                         CommandParameter="EditKiddionConfig"
                                         Content="配置文件" />
                                     <Button
-                                        Background="#34A853"
+                                        Background="#1685A9"
                                         Command="{Binding ExtraClickCommand}"
                                         CommandParameter="EditKiddionTheme"
                                         Content="主题文件" />
@@ -111,7 +111,7 @@
                                         CommandParameter="EditKiddionTP"
                                         Content="自定传送" />
                                     <Button
-                                        Background="#34A853"
+                                        Background="#4C8DAE"
                                         Command="{Binding ExtraClickCommand}"
                                         CommandParameter="EditKiddionVC"
                                         Content="自定载具" />

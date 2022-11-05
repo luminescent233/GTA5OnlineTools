@@ -1,6 +1,7 @@
 ﻿using GTA5OnlineTools.Common.Utils;
 using GTA5OnlineTools.Features.SDK;
 using GTA5OnlineTools.Features.Client;
+using GTA5OnlineTools.Features.Settings;
 
 namespace GTA5OnlineTools.Modules.ExternalMenu;
 
@@ -114,6 +115,7 @@ public partial class OnlineOptionView : UserControl
 
     private void CheckBox_AllowSellOnNonPublic_Click(object sender, RoutedEventArgs e)
     {
+        MenuSetting.Online.AllowSellOnNonPublic = CheckBox_AllowSellOnNonPublic.IsChecked == true;
         Online.AllowSellOnNonPublic(CheckBox_AllowSellOnNonPublic.IsChecked == true);
     }
 

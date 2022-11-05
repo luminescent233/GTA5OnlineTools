@@ -34,6 +34,26 @@ public static class MenuSetting
         }
     }
 
+    public static class Weapon
+    {
+        public static int AmmoModifierFlag = 0;
+
+        public static void Reset()
+        {
+            AmmoModifierFlag = 0;
+        }
+    }
+
+    public static class Online
+    {
+        public static bool AllowSellOnNonPublic = false;
+
+        public static void Reset()
+        {
+            AllowSellOnNonPublic = false;
+        }
+    }
+
     public static class Auto
     {
         public static bool ClearWanted = false;

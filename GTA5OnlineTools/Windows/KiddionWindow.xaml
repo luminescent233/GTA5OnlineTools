@@ -36,9 +36,9 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1.5*" />
+            <ColumnDefinition Width="1.3*" />
             <ColumnDefinition />
-            <ColumnDefinition />
+            <ColumnDefinition Width="1.2*" />
         </Grid.ColumnDefinitions>
         <!--  板块1  -->
         <DataGrid
@@ -70,15 +70,23 @@
             <Button
                 x:Name="Button_GetKiddionUI"
                 Margin="5"
+                Background="#177CB0"
                 Click="Button_GetKiddionUI_Click"
                 Content="获取Kiddion当前界面UI文本" />
 
             <ui:UiLabelEmoji Content="翻译" />
             <TextBox
-                x:Name="TextBox_SelectedText"
+                x:Name="TextBox_SelectedItem_Name"
                 Height="60"
                 Margin="5"
+                VerticalContentAlignment="Center"
+                IsEnabled="False"
                 Text="{Binding ElementName=DataGrid_KiddionUIs, Path=SelectedItem.Name, Mode=OneWay}" />
+            <TextBox
+                x:Name="TextBox_SelectedItem_Vaule"
+                Height="60"
+                Margin="5"
+                Text="{Binding ElementName=DataGrid_KiddionUIs, Path=SelectedItem.Value, Mode=OneWay}" />
             <UniformGrid Columns="2">
                 <Button
                     x:Name="Button_TranslateSelected"
@@ -88,19 +96,21 @@
                 <Button
                     x:Name="Button_YouDaoTranslateSelected"
                     Margin="2,5,5,5"
+                    Background="#F00056"
                     Click="Button_YouDaoTranslateSelected_Click"
                     Content="有道翻译" />
             </UniformGrid>
             <Button
                 x:Name="Button_TranslateBuild"
                 Margin="5,0,5,5"
+                Background="#0AA344"
                 Click="Button_TranslateBuild_Click"
                 Content="生成指定格式翻译文本" />
 
         </StackPanel>
         <!--  板块3  -->
         <DockPanel Grid.Column="2">
-            <ui:UiLabelEmoji Content="翻译代码（复制给作者）" DockPanel.Dock="Top" />
+            <ui:UiLabelEmoji Content="翻译代码（全选复制发给作者）" DockPanel.Dock="Top" />
             <TextBox
                 x:Name="TextBox_TranslateBuild"
                 Margin="5"

@@ -116,6 +116,7 @@ public partial class ExternalMenuWindow
         IsAppRunning = false;
         MenuSetting.Player.Reset();
         MenuSetting.Vehicle.Reset();
+        MenuSetting.Weapon.Reset();
         MenuSetting.Auto.Reset();
         MenuSetting.Overlay.Reset();
         HotKeys.ClearKeys();
@@ -297,6 +298,17 @@ public partial class ExternalMenuWindow
                 if (oSeatbelt != 0xC9)
                     Memory.Write<byte>(pCPed + Offsets.CPed_Seatbelt, 0xC9);
             }
+
+            // 弹药编辑
+            if (MenuSetting.Weapon.AmmoModifierFlag != 0)
+            {
+                long pCPedInventory = Memory.Read<long>(pCPed + Offsets.CPed_CPedInventory);
+                Memory.Write(pCPedInventory + Offsets.CPed_CPedInventory_AmmoModifier, MenuSetting.Weapon.AmmoModifierFlag);
+            }
+
+            // 非公开战局运货
+            if (MenuSetting.Online.AllowSellOnNonPublic)
+                Online.AllowSellOnNonPublic(true);
 
             ////////////////////////////////////////////////////////////////
 

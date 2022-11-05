@@ -115,15 +115,15 @@
                 <RadioButton
                     x:Name="RadioButton_AmmoModifier_AMMO"
                     Click="RadioButton_AmmoModifier_None_Click"
-                    Content="无限弹药" />
+                    Content="无限弹药 ★" />
                 <RadioButton
                     x:Name="RadioButton_AmmoModifier_CLIP"
                     Click="RadioButton_AmmoModifier_None_Click"
-                    Content="无限弹夹" />
+                    Content="无限弹夹 ★" />
                 <RadioButton
                     x:Name="RadioButton_AmmoModifier_Both"
                     Click="RadioButton_AmmoModifier_None_Click"
-                    Content="无限弹药和弹夹" />
+                    Content="无限弹药和弹夹 ★" />
             </WrapPanel>
 
             <ui:UiLabelEmoji Content="高级" />

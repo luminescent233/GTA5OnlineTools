@@ -291,6 +291,9 @@
                     Click="Button_Suicide_Click"
                     Content="玩家自杀" />
             </WrapPanel>
+            <TextBlock Style="{StaticResource TextBlockStyle_Hint}">
+                提示：带 ★ 的功能代表会进入线程循环修改，这样切换战局也不会失效，其余功能仅在点击时修改内存
+            </TextBlock>
 
         </StackPanel>
         <!--  面板3  -->

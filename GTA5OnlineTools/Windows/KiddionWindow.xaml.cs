@@ -75,12 +75,12 @@ public partial class KiddionWindow
     {
         AudioUtil.PlayClickSound();
 
-        var text = TextBox_SelectedText.Text.Trim();
-        if (!string.IsNullOrEmpty(text))
+        var value = TextBox_SelectedItem_Vaule.Text.Trim();
+        if (!string.IsNullOrEmpty(value))
         {
             var index = DataGrid_KiddionUIs.SelectedIndex;
 
-            KiddionModels[index].Value = text;
+            KiddionModels[index].Value = value;
         }
         else
         {
@@ -92,12 +92,12 @@ public partial class KiddionWindow
     {
         AudioUtil.PlayClickSound();
 
-        var text = TextBox_SelectedText.Text.Trim();
-        if (!string.IsNullOrEmpty(text))
+        var name = TextBox_SelectedItem_Name.Text.Trim();
+        if (!string.IsNullOrEmpty(name))
         {
             var index = DataGrid_KiddionUIs.SelectedIndex;
 
-            KiddionModels[index].Value = await WebAPI.GetYouDaoContent(text);
+            KiddionModels[index].Value = await WebAPI.GetYouDaoContent(name);
         }
         else
         {

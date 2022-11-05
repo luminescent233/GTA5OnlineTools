@@ -60,7 +60,7 @@
                     <CheckBox
                         x:Name="CheckBox_AllowSellOnNonPublic"
                         Click="CheckBox_AllowSellOnNonPublic_Click"
-                        Content="非公开战局运货" />
+                        Content="非公开战局运货 ★" />
                     <CheckBox
                         x:Name="CheckBox_OnlineSnow"
                         Click="CheckBox_OnlineSnow_Click"

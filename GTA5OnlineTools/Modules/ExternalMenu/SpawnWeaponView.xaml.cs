@@ -2,6 +2,7 @@
 using GTA5OnlineTools.Features.SDK;
 using GTA5OnlineTools.Features.Data;
 using GTA5OnlineTools.Features.Client;
+using GTA5OnlineTools.Features.Settings;
 
 namespace GTA5OnlineTools.Modules.ExternalMenu;
 
@@ -106,18 +107,22 @@ public partial class SpawnWeaponView : UserControl
     {
         if (RadioButton_AmmoModifier_None.IsChecked == true)
         {
+            MenuSetting.Weapon.AmmoModifierFlag = 0;
             Weapon.AmmoModifier(0);
         }
         else if (RadioButton_AmmoModifier_AMMO.IsChecked == true)
         {
+            MenuSetting.Weapon.AmmoModifierFlag = 1;
             Weapon.AmmoModifier(1);
         }
         else if (RadioButton_AmmoModifier_CLIP.IsChecked == true)
         {
+            MenuSetting.Weapon.AmmoModifierFlag = 2;
             Weapon.AmmoModifier(2);
         }
         else if (RadioButton_AmmoModifier_Both.IsChecked == true)
         {
+            MenuSetting.Weapon.AmmoModifierFlag = 3;
             Weapon.AmmoModifier(3);
         }
     }
