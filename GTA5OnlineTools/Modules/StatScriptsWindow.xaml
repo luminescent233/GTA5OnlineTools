@@ -35,9 +35,14 @@
         </StackPanel>
     </ui:UiWindow.TitleContent>
 
-    <UniformGrid Columns="3">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.7*" />
+            <ColumnDefinition Width="1.5*" />
+            <ColumnDefinition Width="0.7*" />
+        </Grid.ColumnDefinitions>
         <!--  面板1  -->
-        <DockPanel LastChildFill="True">
+        <DockPanel Grid.Column="0">
             <emoji:TextBlock
                 DockPanel.Dock="Top"
                 Style="{StaticResource TextBlockStyle_Title}"
@@ -49,7 +54,7 @@
                 ToolTip="把需要导入GTAHax的代码粘贴到这里" />
         </DockPanel>
         <!--  面板2  -->
-        <DockPanel LastChildFill="True">
+        <DockPanel Grid.Column="1">
             <emoji:TextBlock
                 DockPanel.Dock="Top"
                 Style="{StaticResource TextBlockStyle_Title}"
@@ -60,7 +65,7 @@
                 DockPanel.Dock="Bottom" />
         </DockPanel>
         <!--  面板3  -->
-        <StackPanel>
+        <StackPanel Grid.Column="2">
             <emoji:TextBlock
                 DockPanel.Dock="Top"
                 Style="{StaticResource TextBlockStyle_Title}"
@@ -83,7 +88,6 @@
                 </TextBlock>
             </StackPanel>
         </StackPanel>
-
-    </UniformGrid>
+    </Grid>
 
 </ui:UiWindow>

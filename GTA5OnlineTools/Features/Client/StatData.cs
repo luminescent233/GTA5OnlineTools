@@ -166,6 +166,110 @@ public static class StatData
 
     #region 抢劫任务
     /// <summary>
+    /// 佩里科岛抢劫-玩家x1/100%分红/困难模式/无精英/不拿保险柜/人均245W（粉钻x1+画作x2）
+    /// </summary>
+    public static List<StatInfo> _H4CNF_1 = new()
+    {
+        new StatInfo(){ Hash="_H4CNF_BS_GEN", Value=131071 },
+        new StatInfo(){ Hash="_H4CNF_BS_ENTR", Value=63 },
+        new StatInfo(){ Hash="_H4CNF_BS_ABIL", Value=63 },
+        new StatInfo(){ Hash="_H4CNF_APPROACH", Value=-1 },
+        new StatInfo(){ Hash="_H4_PROGRESS", Value=131055 },
+        new StatInfo(){ Hash="_H4CNF_TARGET", Value=3 },
+        new StatInfo(){ Hash="_H4LOOT_PAINT", Value=-1 },
+        new StatInfo(){ Hash="_H4LOOT_PAINT_SCOPED", Value=-1 },
+        new StatInfo(){ Hash="_H4LOOT_PAINT_V", Value=677045 },
+        new StatInfo(){ Hash="_H4_MISSIONS", Value=65535 },
+        new StatInfo(){ Hash="_H4CNF_WEAPONS", Value=2 },
+        new StatInfo(){ Hash="_H4CNF_WEP_DISRP", Value=3 },
+        new StatInfo(){ Hash="_H4CNF_ARM_DISRP", Value=3 },
+        new StatInfo(){ Hash="_H4CNF_HEL_DISRP", Value=3 },
+        new StatInfo(){ Hash="_H4CNF_GRAPPEL", Value=-1 },
+        new StatInfo(){ Hash="_H4CNF_UNIFORM", Value=-1 },
+        new StatInfo(){ Hash="_H4CNF_BOLTCUT", Value=-1 },
+        new StatInfo(){ Hash="_H4CNF_TROJAN", Value=4 },
+        new StatInfo(){ Hash="_H4_PLAYTHROUGH_STATUS", Value=10 },
+    };
+
+    /// <summary>
+    /// 佩里科岛抢劫-玩家x2/50%50%分红/困难模式/无精英/不拿保险柜/人均245W（粉钻x1+画作x4）
+    /// </summary>
+    public static List<StatInfo> _H4CNF_2 = new()
+    {
+        new StatInfo(){ Hash="_H4CNF_BS_GEN", Value=131071 },
+        new StatInfo(){ Hash="_H4CNF_BS_ENTR", Value=63 },
+        new StatInfo(){ Hash="_H4CNF_BS_ABIL", Value=63 },
+        new StatInfo(){ Hash="_H4CNF_APPROACH", Value=-1 },
+        new StatInfo(){ Hash="_H4_PROGRESS", Value=131055 },
+        new StatInfo(){ Hash="_H4CNF_TARGET", Value=3 },
+        new StatInfo(){ Hash="_H4LOOT_PAINT", Value=-1 },
+        new StatInfo(){ Hash="_H4LOOT_PAINT_SCOPED", Value=-1 },
+        new StatInfo(){ Hash="_H4LOOT_PAINT_V", Value=1034545 },
+        new StatInfo(){ Hash="_H4_MISSIONS", Value=65535 },
+        new StatInfo(){ Hash="_H4CNF_WEAPONS", Value=2 },
+        new StatInfo(){ Hash="_H4CNF_WEP_DISRP", Value=3 },
+        new StatInfo(){ Hash="_H4CNF_ARM_DISRP", Value=3 },
+        new StatInfo(){ Hash="_H4CNF_HEL_DISRP", Value=3 },
+        new StatInfo(){ Hash="_H4CNF_GRAPPEL", Value=-1 },
+        new StatInfo(){ Hash="_H4CNF_UNIFORM", Value=-1 },
+        new StatInfo(){ Hash="_H4CNF_BOLTCUT", Value=-1 },
+        new StatInfo(){ Hash="_H4CNF_TROJAN", Value=4 },
+        new StatInfo(){ Hash="_H4_PLAYTHROUGH_STATUS", Value=10 },
+    };
+
+    /// <summary>
+    /// 佩里科岛抢劫-玩家x3/35%35%30%分红/困难模式/无精英/不拿保险柜/人均245W（粉钻x1+画作x6）
+    /// </summary>
+    public static List<StatInfo> _H4CNF_3 = new()
+    {
+        new StatInfo(){ Hash="_H4CNF_BS_GEN", Value=131071 },
+        new StatInfo(){ Hash="_H4CNF_BS_ENTR", Value=63 },
+        new StatInfo(){ Hash="_H4CNF_BS_ABIL", Value=63 },
+        new StatInfo(){ Hash="_H4CNF_APPROACH", Value=-1 },
+        new StatInfo(){ Hash="_H4_PROGRESS", Value=131055 },
+        new StatInfo(){ Hash="_H4CNF_TARGET", Value=3 },
+        new StatInfo(){ Hash="_H4LOOT_PAINT", Value=-1 },
+        new StatInfo(){ Hash="_H4LOOT_PAINT_SCOPED", Value=-1 },
+        new StatInfo(){ Hash="_H4LOOT_PAINT_V", Value=1087424 },
+        new StatInfo(){ Hash="_H4_MISSIONS", Value=65535 },
+        new StatInfo(){ Hash="_H4CNF_WEAPONS", Value=2 },
+        new StatInfo(){ Hash="_H4CNF_WEP_DISRP", Value=3 },
+        new StatInfo(){ Hash="_H4CNF_ARM_DISRP", Value=3 },
+        new StatInfo(){ Hash="_H4CNF_HEL_DISRP", Value=3 },
+        new StatInfo(){ Hash="_H4CNF_GRAPPEL", Value=-1 },
+        new StatInfo(){ Hash="_H4CNF_UNIFORM", Value=-1 },
+        new StatInfo(){ Hash="_H4CNF_BOLTCUT", Value=-1 },
+        new StatInfo(){ Hash="_H4CNF_TROJAN", Value=4 },
+        new StatInfo(){ Hash="_H4_PLAYTHROUGH_STATUS", Value=10 },
+    };
+
+    /// <summary>
+    /// 佩里科岛抢劫-玩家x4/100%分红/困难模式/无精英/不拿保险柜/人均245W（粉钻x1+画作x7）
+    /// </summary>
+    public static List<StatInfo> _H4CNF_4 = new()
+    {
+        new StatInfo(){ Hash="_H4CNF_BS_GEN", Value=131071 },
+        new StatInfo(){ Hash="_H4CNF_BS_ENTR", Value=63 },
+        new StatInfo(){ Hash="_H4CNF_BS_ABIL", Value=63 },
+        new StatInfo(){ Hash="_H4CNF_APPROACH", Value=-1 },
+        new StatInfo(){ Hash="_H4_PROGRESS", Value=131055 },
+        new StatInfo(){ Hash="_H4CNF_TARGET", Value=3 },
+        new StatInfo(){ Hash="_H4LOOT_PAINT", Value=-1 },
+        new StatInfo(){ Hash="_H4LOOT_PAINT_SCOPED", Value=-1 },
+        new StatInfo(){ Hash="_H4LOOT_PAINT_V", Value=1213295 },
+        new StatInfo(){ Hash="_H4_MISSIONS", Value=65535 },
+        new StatInfo(){ Hash="_H4CNF_WEAPONS", Value=2 },
+        new StatInfo(){ Hash="_H4CNF_WEP_DISRP", Value=3 },
+        new StatInfo(){ Hash="_H4CNF_ARM_DISRP", Value=3 },
+        new StatInfo(){ Hash="_H4CNF_HEL_DISRP", Value=3 },
+        new StatInfo(){ Hash="_H4CNF_GRAPPEL", Value=-1 },
+        new StatInfo(){ Hash="_H4CNF_UNIFORM", Value=-1 },
+        new StatInfo(){ Hash="_H4CNF_BOLTCUT", Value=-1 },
+        new StatInfo(){ Hash="_H4CNF_TROJAN", Value=4 },
+        new StatInfo(){ Hash="_H4_PLAYTHROUGH_STATUS", Value=10 },
+    };
+
+    /// <summary>
     /// 赌场抢劫面板重置
     /// </summary>
     public static List<StatInfo> _H3OPT = new()
@@ -440,7 +544,7 @@ public static class StatData
     };
     #endregion
 
-    #region 解决问题
+    #region 其他
     /// <summary>
     /// 解决赌场侦察拍照问题
     /// </summary>
@@ -448,6 +552,40 @@ public static class StatData
     {
         new StatInfo(){ Hash="_H3OPT_ACCESSPOINTS", Value=0 },
         new StatInfo(){ Hash="_H3OPT_POI", Value=0 },
+    };
+
+    /// <summary>
+    /// 清除举报（建议单人战局使用）
+    /// </summary>
+    public static List<StatInfo> MPPLY_REPORT_STRENGTH = new()
+    {
+        new StatInfo(){ Hash="MPPLY_REPORT_STRENGTH", Value=0 },
+        new StatInfo(){ Hash="MPPLY_COMMEND_STRENGTH", Value=0 },
+        new StatInfo(){ Hash="MPPLY_FRIENDLY", Value=0 },
+        new StatInfo(){ Hash="MPPLY_HELPFUL", Value=0 },
+        new StatInfo(){ Hash="MPPLY_GRIEFING", Value=0 },
+        new StatInfo(){ Hash="MPPLY_VC_ANNOYINGME", Value=0 },
+        new StatInfo(){ Hash="MPPLY_VC_HATE", Value=0 },
+        new StatInfo(){ Hash="MPPLY_TC_ANNOYINGME", Value=0 },
+        new StatInfo(){ Hash="MPPLY_TC_HATE", Value=0 },
+        new StatInfo(){ Hash="MPPLY_OFFENSIVE_LANGUAGE", Value=0 },
+        new StatInfo(){ Hash="MPPLY_OFFENSIVE_TAGPLATE", Value=0 },
+        new StatInfo(){ Hash="MPPLY_OFFENSIVE_UGC", Value=0 },
+        new StatInfo(){ Hash="MPPLY_BAD_CREW_NAME", Value=0 },
+        new StatInfo(){ Hash="MPPLY_BAD_CREW_MOTTO", Value=0 },
+        new StatInfo(){ Hash="MPPLY_BAD_CREW_STATUS", Value=0 },
+        new StatInfo(){ Hash="MPPLY_BAD_CREW_EMBLEM", Value=0 },
+        new StatInfo(){ Hash="MPPLY_EXPLOITS", Value=0 },
+        new StatInfo(){ Hash="MPPLY_BECAME_BADSPORT_NUM", Value=0 },
+        new StatInfo(){ Hash="MPPLY_DESTROYED_PVEHICLES", Value=0 },
+        new StatInfo(){ Hash="MPPLY_BECAME_CHEATER_NUM", Value=0 },
+        new StatInfo(){ Hash="MPPLY_BADSPORT_MESSAGE", Value=0 },
+        new StatInfo(){ Hash="MPPLY_GAME_EXPLOITS", Value=0 },
+        new StatInfo(){ Hash="MPPLY_PLAYER_MENTAL_STATE", Value=0 },
+        new StatInfo(){ Hash="MPPLY_PLAYERMADE_TITLE", Value=0 },
+        new StatInfo(){ Hash="MPPLY_PLAYERMADE_DESC", Value=0 },
+        new StatInfo(){ Hash="MPPLY_OVERALL_BADSPORT", Value=0 },
+        new StatInfo(){ Hash="MPPLY_OVERALL_CHEAT", Value=0 },
     };
     #endregion
 
@@ -472,6 +610,11 @@ public static class StatData
         new StatClass(){ Name="资产-地堡自动进货（切换战局）", StatInfo=_PAYRESUPPLYTIMER5 },
         new StatClass(){ Name="资产-跳过过场动画（地堡、摩托帮、办公室等）", StatInfo=_FM_CUT_DONE },
         new StatClass(){ Name="资产-修改车友会等级为1", StatInfo=_CAR_CLUB_REP },
+
+        new StatClass(){ Name="佩里科岛抢劫-玩家x1/100%分红/困难模式/无精英/不拿保险柜/人均245W（粉钻x1+画作x2）", StatInfo=_H4CNF_1 },
+        new StatClass(){ Name="佩里科岛抢劫-玩家x2/50%50%分红/困难模式/无精英/不拿保险柜/人均245W（粉钻x1+画作x4）", StatInfo=_H4CNF_2 },
+        new StatClass(){ Name="佩里科岛抢劫-玩家x3/35%35%30%分红/困难模式/无精英/不拿保险柜/人均245W（粉钻x1+画作x6）", StatInfo=_H4CNF_3 },
+        new StatClass(){ Name="佩里科岛抢劫-玩家x4/25%25%25%25%分红/困难模式/无精英/不拿保险柜/人均245W（粉钻x1+画作x7）", StatInfo=_H4CNF_4 },
 
         new StatClass(){ Name="抢劫任务-赌场抢劫面板重置", StatInfo=_H3OPT },
         new StatClass(){ Name="抢劫任务-佩里克岛抢劫面板重置", StatInfo=_H4 },
@@ -501,7 +644,8 @@ public static class StatData
 
         new StatClass(){ Name="解锁-解锁CEO特殊载具任务", StatInfo=_AT_FLOW_IMPEXP_NUM },
 
-        new StatClass(){ Name="解决问题-解决赌场侦察拍照问题", StatInfo=_H3OPT_ACCESSPOINTS },
+        new StatClass(){ Name="其他-解决赌场侦察拍照问题", StatInfo=_H3OPT_ACCESSPOINTS },
+        new StatClass(){ Name="其他-清除举报（建议单人战局使用）", StatInfo=MPPLY_REPORT_STRENGTH },
 
     };
 }
