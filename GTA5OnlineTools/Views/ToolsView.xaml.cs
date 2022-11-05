@@ -77,9 +77,6 @@ public partial class ToolsView : UserControl
             case "DefenderControl":
                 DefenderControlClick();
                 break;
-            case "GetKiddionText":
-                GetKiddionTextClick();
-                break;
             case "MinimizeToTray":
                 MinimizeToTrayClick();
                 break;
@@ -305,14 +302,6 @@ public partial class ToolsView : UserControl
     private void DefenderControlClick()
     {
         ProcessUtil.OpenProcess("dControl", false);
-    }
-
-    /// <summary>
-    /// 获取Kiddion UI文本
-    /// </summary>
-    private void GetKiddionTextClick()
-    {
-        ProcessUtil.OpenProcess("KiddionUI", false);
     }
 
     /// <summary>

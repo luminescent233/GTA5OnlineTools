@@ -18,11 +18,11 @@
     }
   ],
   "Menu": {
-    "BackgroundColor": "F2F3F4",
+    "BackgroundColor": "000000",
     "FontName": "Microsoft YaHei",
-    "ItemColor": "093145",
+    "ItemColor": "000000",
     "ItemHeight": 20,
-    "ItemSpacing": 0,
+    "ItemSpacing": 3,
     "ItemWidth": 350,
     "KeyBindings": {
       "BackKey": 79,
@@ -33,12 +33,12 @@
       "SelectKey": 85,
       "UpKey": 73
     },
-    "Opacity": 192,
-    "SelectedItemColor": "EFD469",
-    "SelectedTextColor": "373D3F",
-    "TextColor": "F2F3F4",
-    "TransparencyColorKey": "000000",
-    "ViewableItems": 50,
+    "Opacity": 210,
+    "SelectedItemColor": "FFFFFF",
+    "SelectedTextColor": "000000",
+    "TextColor": "FFFFFF",
+    "TransparencyColorKey": "001337",
+    "ViewableItems": 30,
     "XPosition": 240,
     "YPosition": 40
   },

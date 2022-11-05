@@ -84,10 +84,15 @@
                                         CommandParameter="KiddionConfigDirectory"
                                         Content="配置目录" />
                                     <Button
-                                        Background="#FF5722"
+                                        Background="#34A853"
                                         Command="{Binding ExtraClickCommand}"
                                         CommandParameter="KiddionScriptsDirectory"
                                         Content="脚本目录" />
+                                    <Button
+                                        Background="#F34B7D"
+                                        Command="{Binding ExtraClickCommand}"
+                                        CommandParameter="KiddionChsHelper"
+                                        Content="帮助改进Kiddion汉化" />
                                 </WrapPanel>
                                 <WrapPanel>
                                     <Button
@@ -111,7 +116,13 @@
                                         CommandParameter="EditKiddionVC"
                                         Content="自定载具" />
                                 </WrapPanel>
-                                <WrapPanel />
+                                <WrapPanel>
+                                    <Button
+                                        Background="#EA4335"
+                                        Command="{Binding ExtraClickCommand}"
+                                        CommandParameter="ResetKiddionConfig"
+                                        Content="重置Kiddion配置文件" />
+                                </WrapPanel>
                             </StackPanel>
                         </DockPanel>
                     </DockPanel>

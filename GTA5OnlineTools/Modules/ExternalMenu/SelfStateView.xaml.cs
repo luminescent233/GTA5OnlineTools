@@ -99,18 +99,21 @@ public partial class SelfStateView : UserControl
     /// </summary>
     private void SaveConfig()
     {
-        SelfStateConfig.IsHotKeyToWaypoint = SelfStateModel.IsHotKeyToWaypoint;
-        SelfStateConfig.IsHotKeyToObjective = SelfStateModel.IsHotKeyToObjective;
-        SelfStateConfig.IsHotKeyFillHealthArmor = SelfStateModel.IsHotKeyFillHealthArmor;
-        SelfStateConfig.IsHotKeyClearWanted = SelfStateModel.IsHotKeyClearWanted;
+        if (Directory.Exists(FileUtil.D_Config_Path))
+        {
+            SelfStateConfig.IsHotKeyToWaypoint = SelfStateModel.IsHotKeyToWaypoint;
+            SelfStateConfig.IsHotKeyToObjective = SelfStateModel.IsHotKeyToObjective;
+            SelfStateConfig.IsHotKeyFillHealthArmor = SelfStateModel.IsHotKeyFillHealthArmor;
+            SelfStateConfig.IsHotKeyClearWanted = SelfStateModel.IsHotKeyClearWanted;
 
-        SelfStateConfig.IsHotKeyFillAllAmmo = SelfStateModel.IsHotKeyFillAllAmmo;
-        SelfStateConfig.IsHotKeyMovingFoward = SelfStateModel.IsHotKeyMovingFoward;
+            SelfStateConfig.IsHotKeyFillAllAmmo = SelfStateModel.IsHotKeyFillAllAmmo;
+            SelfStateConfig.IsHotKeyMovingFoward = SelfStateModel.IsHotKeyMovingFoward;
 
-        SelfStateConfig.IsHotKeyNoCollision = SelfStateModel.IsHotKeyNoCollision;
+            SelfStateConfig.IsHotKeyNoCollision = SelfStateModel.IsHotKeyNoCollision;
 
-        // 写入到Json文件
-        File.WriteAllText(FileUtil.F_SelfStateConfig_Path, JsonUtil.JsonSeri(SelfStateConfig));
+            // 写入到Json文件
+            File.WriteAllText(FileUtil.F_SelfStateConfig_Path, JsonUtil.JsonSeri(SelfStateConfig));
+        }
     }
 
     /// <summary>

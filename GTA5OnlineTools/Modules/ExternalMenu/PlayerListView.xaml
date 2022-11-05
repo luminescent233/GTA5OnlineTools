@@ -63,7 +63,7 @@
                                 VerticalAlignment="Center"
                                 DockPanel.Dock="Left"
                                 Text="{Binding Index}"
-                                TextAlignment="Right" />
+                                TextAlignment="Center" />
                             <Border
                                 Width="45"
                                 Height="45"
@@ -129,7 +129,7 @@
         <StackPanel>
             <ui:UiLabelEmoji Content="详情" />
             <TextBox
-                Height="100"
+                Height="60"
                 Margin="5"
                 Style="{StaticResource TextBoxStyle_Logger}"
                 Text="{Binding ElementName=ListBox_PlayerInfo, Path=SelectedItem.Value}" />

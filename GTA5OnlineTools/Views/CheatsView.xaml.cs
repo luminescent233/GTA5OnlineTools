@@ -1,10 +1,12 @@
 ﻿using GTA5OnlineTools.Models;
+using GTA5OnlineTools.Windows;
 using GTA5OnlineTools.Views.Cheats;
 using GTA5OnlineTools.Common.Utils;
 using GTA5OnlineTools.Common.Helper;
 using GTA5OnlineTools.Features.Core;
 
 using CommunityToolkit.Mvvm.Input;
+using GTA5OnlineTools.Modules;
 
 namespace GTA5OnlineTools.Views;
 
@@ -38,6 +40,8 @@ public partial class CheatsView : UserControl
     private readonly BincoHaxPage BincoHaxPage = new();
     private readonly LSCHaxPage LSCHaxPage = new();
     private readonly YimMenuPage YimMenuPage = new();
+
+    private KiddionWindow KiddionWindow = null;
 
     public CheatsView()
     {
@@ -166,6 +170,9 @@ public partial class CheatsView : UserControl
             case "KiddionScriptsDirectory":
                 KiddionScriptsDirectoryClick();
                 break;
+            case "KiddionChsHelper":
+                KiddionChsHelperClick();
+                break;
             case "EditKiddionConfig":
                 EditKiddionConfigClick();
                 break;
@@ -177,6 +184,9 @@ public partial class CheatsView : UserControl
                 break;
             case "EditKiddionVC":
                 EditKiddionVCClick();
+                break;
+            case "ResetKiddionConfig":
+                ResetKiddionConfigClick();
                 break;
             #endregion
             ////////////////////////////////////
@@ -360,6 +370,37 @@ public partial class CheatsView : UserControl
     }
 
     /// <summary>
+    /// 帮助改进Kiddion汉化
+    /// </summary>
+    private void KiddionChsHelperClick()
+    {
+        if (KiddionWindow == null)
+        {
+            KiddionWindow = new KiddionWindow();
+            KiddionWindow.Show();
+        }
+        else
+        {
+            if (KiddionWindow.IsVisible)
+            {
+                if (!KiddionWindow.Topmost)
+                {
+                    KiddionWindow.Topmost = true;
+                    KiddionWindow.Topmost = false;
+                }
+
+                KiddionWindow.WindowState = WindowState.Normal;
+            }
+            else
+            {
+                KiddionWindow = null;
+                KiddionWindow = new KiddionWindow();
+                KiddionWindow.Show();
+            }
+        }
+    }
+
+    /// <summary>
     /// 编辑Kiddion配置文件
     /// </summary>
     private void EditKiddionConfigClick()
@@ -389,6 +430,41 @@ public partial class CheatsView : UserControl
     private void EditKiddionVCClick()
     {
         ProcessUtil.Notepad2EditTextFile(FileUtil.D_Kiddion_Path + "vehicles.json");
+    }
+
+    /// <summary>
+    /// 重置Kiddion配置文件
+    /// </summary>
+    private void ResetKiddionConfigClick()
+    {
+        try
+        {
+            if (MessageBox.Show("你确定要重置Kiddion配置文件吗？\n\n将清空《C:\\ProgramData\\GTA5OnlineTools\\Kiddion》文件夹，如有重要文件请提前备份",
+                "警告", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            {
+                ProcessUtil.CloseProcess("Kiddion");
+                ProcessUtil.CloseProcess("Notepad2");
+                Thread.Sleep(100);
+
+                FileUtil.DelectDir(FileUtil.D_Kiddion_Path);
+                Directory.CreateDirectory(FileUtil.D_KiddionScripts_Path);
+                Thread.Sleep(100);
+
+                FileUtil.ExtractResFile(FileUtil.Resource_Kiddion_Path + "Kiddion.exe", FileUtil.D_Kiddion_Path + "Kiddion.exe");
+                FileUtil.ExtractResFile(FileUtil.Resource_Kiddion_Path + "KiddionChs.dll", FileUtil.D_Kiddion_Path + "KiddionChs.dll");
+                FileUtil.ExtractResFile(FileUtil.Resource_Kiddion_Path + "config.json", FileUtil.D_Kiddion_Path + "config.json");
+                FileUtil.ExtractResFile(FileUtil.Resource_Kiddion_Path + "themes.json", FileUtil.D_Kiddion_Path + "themes.json");
+                FileUtil.ExtractResFile(FileUtil.Resource_Kiddion_Path + "teleports.json", FileUtil.D_Kiddion_Path + "teleports.json");
+                FileUtil.ExtractResFile(FileUtil.Resource_Kiddion_Path + "vehicles.json", FileUtil.D_Kiddion_Path + "vehicles.json");
+                FileUtil.ExtractResFile(FileUtil.Resource_Kiddion_Path + "scripts.Readme.api", FileUtil.D_KiddionScripts_Path + "Readme.api");
+
+                NotifierHelper.Show(NotifierType.Success, "重置Kiddion配置文件成功");
+            }
+        }
+        catch (Exception ex)
+        {
+            NotifierHelper.ShowException(ex);
+        }
     }
     #endregion
 

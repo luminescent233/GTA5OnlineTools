@@ -84,10 +84,13 @@ public partial class OptionView : UserControl
     /// </summary>
     private void SaveConfig()
     {
-        OptionConfig.ClickAudioIndex = AudioUtil.ClickAudioIndex;
+        if (Directory.Exists(FileUtil.D_Config_Path))
+        {
+            OptionConfig.ClickAudioIndex = AudioUtil.ClickAudioIndex;
 
-        // 写入到Json文件
-        File.WriteAllText(FileUtil.F_OptionConfig_Path, JsonUtil.JsonSeri(OptionConfig));
+            // 写入到Json文件
+            File.WriteAllText(FileUtil.F_OptionConfig_Path, JsonUtil.JsonSeri(OptionConfig));
+        }
     }
 
     /// <summary>

@@ -1,7 +1,33 @@
 {
   "CustomThemes": [
     {
-      "Name": "默认主题",
+      "Name": "黑白相间",
+      "FontName": "Microsoft YaHei",
+      "ItemColor": "000000",
+      "TextColor": "FFFFFF",
+      "SelectedItemColor": "FFFFFF",
+      "SelectedTextColor": "000000",
+      "BackgroundColor": "000000",
+      "TransparencyColorKey": "001337",
+      "ItemHeight": 20,
+      "ItemWidth": 350,
+      "ItemSpacing": 3
+    },
+    {
+      "Name": "黑白相间（蓝色）",
+      "FontName": "Microsoft YaHei",
+      "ItemColor": "000000",
+      "TextColor": "FFFFFF",
+      "SelectedItemColor": "255A97",
+      "SelectedTextColor": "FFFFFF",
+      "BackgroundColor": "000000",
+      "TransparencyColorKey": "001337",
+      "ItemHeight": 20,
+      "ItemWidth": 350,
+      "ItemSpacing": 3
+    },
+    {
+      "Name": "Kiddion默认",
       "FontName": "Microsoft YaHei",
       "ItemColor": "093145",
       "TextColor": "F2F3F4",
@@ -9,32 +35,6 @@
       "SelectedTextColor": "373D3F",
       "BackgroundColor": "F2F3F4",
       "TransparencyColorKey": "000000",
-      "ItemHeight": 20,
-      "ItemWidth": 350,
-      "ItemSpacing": 0
-    },
-    {
-      "Name": "黑色主题",
-      "FontName": "Microsoft YaHei",
-      "ItemColor": "222831",
-      "TextColor": "EEEEEE",
-      "SelectedItemColor": "FFD66B",
-      "SelectedTextColor": "222831",
-      "BackgroundColor": "222831",
-      "TransparencyColorKey": "001337",
-      "ItemHeight": 20,
-      "ItemWidth": 350,
-      "ItemSpacing": 0
-    },
-    {
-      "Name": "白色主题",
-      "FontName": "Microsoft YaHei",
-      "ItemColor": "EEEEEE",
-      "TextColor": "222831",
-      "SelectedItemColor": "FFD66B",
-      "SelectedTextColor": "222831",
-      "BackgroundColor": "EEEEEE",
-      "TransparencyColorKey": "001337",
       "ItemHeight": 20,
       "ItemWidth": 350,
       "ItemSpacing": 0

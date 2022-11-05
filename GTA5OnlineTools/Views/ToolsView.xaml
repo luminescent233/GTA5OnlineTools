@@ -90,12 +90,6 @@
                     Style="{StaticResource ButtonStyle_Tools}" />
                 <ui:UiButtonIcon
                     Command="{Binding ToolsButtonClickCommand}"
-                    CommandParameter="GetKiddionText"
-                    Content="获取Kiddion UI文本"
-                    Icon="&#xe882;"
-                    Style="{StaticResource ButtonStyle_Tools}" />
-                <ui:UiButtonIcon
-                    Command="{Binding ToolsButtonClickCommand}"
                     CommandParameter="MinimizeToTray"
                     Content="最小化程序到系统托盘"
                     Icon="&#xe60e;"

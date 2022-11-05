@@ -69,8 +69,11 @@ public partial class WorldFunctionView : UserControl
     /// </summary>
     private void SaveConfig()
     {
-        // 写入到Json文件
-        File.WriteAllText(FileUtil.F_CustomTPList_Path, JsonUtil.JsonSeri(TeleportData.CustomTeleport));
+        if (Directory.Exists(FileUtil.D_Config_Path))
+        {
+            // 写入到Json文件
+            File.WriteAllText(FileUtil.F_CustomTPList_Path, JsonUtil.JsonSeri(TeleportData.CustomTeleport));
+        }
     }
 
     private void Button_LocalWeather_Click(object sender, RoutedEventArgs e)
