@@ -9,8 +9,8 @@
     <StartupObject>GTA5OnlineTools.App</StartupObject>
     <ApplicationIcon>Assets\Images\Favicon.ico</ApplicationIcon>
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
-    <AssemblyVersion>3.0.7.1</AssemblyVersion>
-    <FileVersion>3.0.7.1</FileVersion>
+    <AssemblyVersion>3.0.7.2</AssemblyVersion>
+    <FileVersion>3.0.7.2</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -937,11 +937,10 @@
     <None Remove="Features\Files\dControl.ini" />
     <None Remove="Features\Files\GTAHax.exe" />
     <None Remove="Features\Files\Inject\YimMenu.dll" />
-    <None Remove="Features\Files\KiddionUI.exe" />
     <None Remove="Features\Files\Kiddion\config.json" />
     <None Remove="Features\Files\Kiddion\key87\config.json" />
     <None Remove="Features\Files\Kiddion\Kiddion.exe" />
-    <None Remove="Features\Files\Kiddion\KiddionChs.exe" />
+    <None Remove="Features\Files\Kiddion\KiddionChs.dll" />
     <None Remove="Features\Files\Kiddion\scripts\Readme.api" />
     <None Remove="Features\Files\Kiddion\teleports.json" />
     <None Remove="Features\Files\Kiddion\themes.json" />
@@ -956,13 +955,12 @@
     <EmbeddedResource Include="Features\Files\BincoHax.exe" />
     <EmbeddedResource Include="Features\Files\dControl.exe" />
     <EmbeddedResource Include="Features\Files\dControl.ini" />
-    <EmbeddedResource Include="Features\Files\KiddionUI.exe" />
     <EmbeddedResource Include="Features\Files\GTAHax.exe" />
     <EmbeddedResource Include="Features\Files\Inject\YimMenu.dll" />
     <EmbeddedResource Include="Features\Files\Kiddion\config.json" />
     <EmbeddedResource Include="Features\Files\Kiddion\key87\config.json" />
     <EmbeddedResource Include="Features\Files\Kiddion\Kiddion.exe" />
-    <EmbeddedResource Include="Features\Files\Kiddion\KiddionChs.exe" />
+    <EmbeddedResource Include="Features\Files\Kiddion\KiddionChs.dll" />
     <EmbeddedResource Include="Features\Files\Kiddion\scripts\Readme.api" />
     <EmbeddedResource Include="Features\Files\Kiddion\teleports.json" />
     <EmbeddedResource Include="Features\Files\Kiddion\themes.json" />

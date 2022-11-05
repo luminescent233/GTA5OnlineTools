@@ -73,4 +73,14 @@ public class CheatsModel : ObservableObject
         get => _frameState;
         set => SetProperty(ref _frameState, value);
     }
+
+    private bool _isUseKiddionChs = true;
+    /// <summary>
+    /// 是否使用Kiddion汉化
+    /// </summary>
+    public bool IsUseKiddionChs
+    {
+        get => _isUseKiddionChs;
+        set => SetProperty(ref _isUseKiddionChs, value);
+    }
 }

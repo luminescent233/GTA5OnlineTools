@@ -14,7 +14,7 @@ namespace GTA5OnlineTools.Views;
 public partial class CheatsView : UserControl
 {
     /// <summary>
-    /// Third数据模型
+    /// Cheats数据模型
     /// </summary>
     public CheatsModel CheatsModel { get; set; } = new();
 
@@ -160,12 +160,6 @@ public partial class CheatsView : UserControl
             case "KiddionKey87":
                 KiddionKey87Click();
                 break;
-            case "KiddionChsON":
-                KiddionChsONClick();
-                break;
-            case "KiddionChsOFF":
-                KiddionChsOFFClick();
-                break;
             case "KiddionConfigDirectory":
                 KiddionConfigDirectoryClick();
                 break;
@@ -221,57 +215,34 @@ public partial class CheatsView : UserControl
         {
             if (CheatsModel.KiddionIsRun)
             {
-                // 先关闭Kiddion汉化程序
-                ProcessUtil.CloseProcess("KiddionChs");
-                // 如果Kiddion没有运行则打开Kiddion
-                if (!ProcessUtil.IsAppRun("Kiddion"))
-                    ProcessUtil.OpenProcess("Kiddion", true);
+                ProcessUtil.OpenProcess("Kiddion", true);
 
-                do
+                if (CheatsModel.IsUseKiddionChs)
                 {
-                    // 等待Kiddion启动
-                    if (ProcessUtil.IsAppRun("Kiddion"))
+                    do
                     {
-                        // Kiddion进程启动标志
-                        isRun = true;
-                        // Kiddion菜单界面显示标志
-                        bool isShow = false;
-                        do
+                        // 等待Kiddion启动
+                        if (ProcessUtil.IsAppRun("Kiddion"))
                         {
+                            // Kiddion进程启动标志
+                            isRun = true;
+
                             // 拿到Kiddion进程
                             var pKiddion = Process.GetProcessesByName("Kiddion").ToList()[0];
-                            // 获取Kiddion窗口句柄
-                            var caption_handle = Win32.FindWindowEx(pKiddion.MainWindowHandle, IntPtr.Zero, "Static", null);
+                            BaseInjector.DLLInjector(pKiddion.Id, FileUtil.D_Kiddion_Path + "KiddionChs.dll");
+                        }
+                        else
+                        {
+                            isRun = false;
+                        }
 
-                            var length = Win32.GetWindowTextLength(caption_handle);
-                            var windowName = new StringBuilder(length + 1);
-                            Win32.GetWindowText(caption_handle, windowName, windowName.Capacity);
-
-                            if (windowName.ToString() == "Kiddion's Modest Menu v0.9.6")
-                            {
-                                isShow = true;
-                                ProcessUtil.OpenProcess("KiddionChs", true);
-                            }
-                            else
-                            {
-                                isShow = false;
-                            }
-
-                            Task.Delay(100).Wait();
-                        } while (!isShow);
-                    }
-                    else
-                    {
-                        isRun = false;
-                    }
-
-                    Task.Delay(250).Wait();
-                } while (!isRun);
+                        Task.Delay(250).Wait();
+                    } while (!isRun);
+                }
             }
             else
             {
                 ProcessUtil.CloseProcess("Kiddion");
-                ProcessUtil.CloseProcess("KiddionChs");
             }
         });
 
@@ -358,7 +329,6 @@ public partial class CheatsView : UserControl
     private void KiddionKey104Click()
     {
         ProcessUtil.CloseProcess("Kiddion");
-        ProcessUtil.CloseProcess("KiddionChs");
         FileUtil.ExtractResFile(FileUtil.Resource_Kiddion_Path + "config.json", FileUtil.D_Kiddion_Path + "config.json");
         NotifierHelper.Show(NotifierType.Success, "切换到《Kiddion [104键]》成功");
     }
@@ -369,41 +339,8 @@ public partial class CheatsView : UserControl
     private void KiddionKey87Click()
     {
         ProcessUtil.CloseProcess("Kiddion");
-        ProcessUtil.CloseProcess("KiddionChs");
         FileUtil.ExtractResFile(FileUtil.Resource_Kiddion_Path + "key87.config.json", FileUtil.D_Kiddion_Path + "config.json");
         NotifierHelper.Show(NotifierType.Success, "切换到《Kiddion [87键]》成功");
-    }
-
-    /// <summary>
-    /// 启用Kiddion汉化
-    /// </summary>
-    private void KiddionChsONClick()
-    {
-        if (ProcessUtil.IsAppRun("Kiddion"))
-        {
-            ProcessUtil.CloseProcess("KiddionChs");
-            ProcessUtil.OpenProcess("KiddionChs", true);
-        }
-        else
-        {
-            NotifierHelper.Show(NotifierType.Warning, "请先启动《Kiddion》程序");
-        }
-    }
-
-    /// <summary>
-    /// 关闭Kiddion汉化
-    /// </summary>
-    private void KiddionChsOFFClick()
-    {
-        if (ProcessUtil.IsAppRun("KiddionChs"))
-        {
-            ProcessUtil.CloseProcess("KiddionChs");
-            NotifierHelper.Show(NotifierType.Success, "关闭《Kiddion汉化》成功");
-        }
-        else
-        {
-            NotifierHelper.Show(NotifierType.Notification, "未发现《Kiddion汉化》进程");
-        }
     }
 
     /// <summary>

@@ -40,6 +40,10 @@
                                     Text="Kiddion 外置辅助菜单" />
                                 <!--  功能  -->
                                 <StackPanel DockPanel.Dock="Right" Orientation="Horizontal">
+                                    <CheckBox
+                                        x:Name="CheckBox_IsUseKiddionChs"
+                                        Content="汉化"
+                                        IsChecked="{Binding CheatsModel.IsUseKiddionChs, UpdateSourceTrigger=PropertyChanged}" />
                                     <TextBlock Margin="5,0,5,0" VerticalAlignment="Center">
                                         <Hyperlink Command="{Binding ReadMeClickCommand}" CommandParameter="KiddionPage">
                                             使用说明
@@ -75,18 +79,6 @@
                                         CommandParameter="KiddionKey87"
                                         Content="87键" />
                                     <Button
-                                        Background="#34A853"
-                                        Command="{Binding ExtraClickCommand}"
-                                        CommandParameter="KiddionChsON"
-                                        Content="启用汉化" />
-                                    <Button
-                                        Background="#EA4335"
-                                        Command="{Binding ExtraClickCommand}"
-                                        CommandParameter="KiddionChsOFF"
-                                        Content="关闭汉化" />
-                                </WrapPanel>
-                                <WrapPanel>
-                                    <Button
                                         Background="#4285F4"
                                         Command="{Binding ExtraClickCommand}"
                                         CommandParameter="KiddionConfigDirectory"
@@ -96,6 +88,8 @@
                                         Command="{Binding ExtraClickCommand}"
                                         CommandParameter="KiddionScriptsDirectory"
                                         Content="脚本目录" />
+                                </WrapPanel>
+                                <WrapPanel>
                                     <Button
                                         Background="#34A853"
                                         Command="{Binding ExtraClickCommand}"

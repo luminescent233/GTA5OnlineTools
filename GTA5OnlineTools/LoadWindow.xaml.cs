@@ -69,7 +69,7 @@ public partial class LoadWindow
 
                 // 释放必要文件
                 FileUtil.ExtractResFile(FileUtil.Resource_Kiddion_Path + "Kiddion.exe", FileUtil.D_Kiddion_Path + "Kiddion.exe");
-                FileUtil.ExtractResFile(FileUtil.Resource_Kiddion_Path + "KiddionChs.exe", FileUtil.D_Kiddion_Path + "KiddionChs.exe");
+                FileUtil.ExtractResFile(FileUtil.Resource_Kiddion_Path + "KiddionChs.dll", FileUtil.D_Kiddion_Path + "KiddionChs.dll");
 
                 // 释放前先判断，防止覆盖配置文件
                 if (!File.Exists(FileUtil.D_Kiddion_Path + "config.json"))
@@ -94,7 +94,6 @@ public partial class LoadWindow
                 FileUtil.ExtractResFile(FileUtil.Resource_Path + "dControl.exe", FileUtil.D_Cache_Path + "dControl.exe");
                 FileUtil.ExtractResFile(FileUtil.Resource_Path + "dControl.ini", FileUtil.D_Cache_Path + "dControl.ini");
 
-                FileUtil.ExtractResFile(FileUtil.Resource_Path + "KiddionUI.exe", FileUtil.D_Cache_Path + "KiddionUI.exe");
                 FileUtil.ExtractResFile(FileUtil.Resource_Path + "Notepad2.exe", FileUtil.D_Cache_Path + "Notepad2.exe");
 
                 // 判断DLL文件是否存在以及是否被占用

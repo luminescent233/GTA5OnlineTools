@@ -123,12 +123,10 @@ public static class ProcessUtil
     public static void CloseThirdProcess()
     {
         CloseProcess("Kiddion");
-        CloseProcess("KiddionChs");
         CloseProcess("GTAHax");
         CloseProcess("BincoHax");
         CloseProcess("LSCHax");
         CloseProcess("dControl");
-        CloseProcess("KiddionUI");
         CloseProcess("Notepad2");
     }
 }
