@@ -140,7 +140,7 @@ public partial class UpdateWindow
     /// <param name="e"></param>
     private void DownloadProgressChanged(object sender, Downloader.DownloadProgressChangedEventArgs e)
     {
-        this.Dispatcher.BeginInvoke(new Action(delegate
+        this.Dispatcher.BeginInvoke(() =>
         {
             ProgressBar_Update.Minimum = 0;
             ProgressBar_Update.Maximum = e.TotalBytesToReceive;
@@ -151,7 +151,7 @@ public partial class UpdateWindow
             TextBlock_Percentage.Text = $"{LongToString(e.ReceivedBytesSize)}/{LongToString(e.TotalBytesToReceive)}";
 
             TaskbarItemInfo.ProgressValue = ProgressBar_Update.Value / ProgressBar_Update.Maximum;
-        }));
+        });
     }
 
     /// <summary>
@@ -161,7 +161,7 @@ public partial class UpdateWindow
     /// <param name="e"></param>
     private void DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
     {
-        Dispatcher.BeginInvoke(new Action(delegate
+        this.Dispatcher.BeginInvoke(() =>
         {
             if (e.Error != null)
             {
@@ -206,7 +206,7 @@ public partial class UpdateWindow
                     NotifierHelper.ShowException(ex);
                 }
             }
-        }));
+        });
     }
 
     /// <summary>

@@ -297,7 +297,7 @@ public partial class MainWindow
                 if (response.StatusCode == HttpStatusCode.OK)
                     WeakReferenceMessenger.Default.Send(response.Content, "Notice");
                 else
-                    WeakReferenceMessenger.Default.Send("网络异常，获取最新公告内容失败！这并不影响小助手程序使用", "Notice");
+                    WeakReferenceMessenger.Default.Send("网络异常，获取最新公告内容失败！这并不影响小助手程序使用\n建议你定期去小助手网址查看是否有最新版本：https://crazyzhang.cn/", "Notice");
 
                 // 获取更新日志
                 request = new RestRequest("/update/server/change.txt");
@@ -305,7 +305,7 @@ public partial class MainWindow
                 if (response.StatusCode == HttpStatusCode.OK)
                     WeakReferenceMessenger.Default.Send(response.Content, "Change");
                 else
-                    WeakReferenceMessenger.Default.Send("网络异常，获取更新日志信息失败！这并不影响小助手程序使用", "Change");
+                    WeakReferenceMessenger.Default.Send("网络异常，获取更新日志信息失败！这并不影响小助手程序使用\n建议你定期去小助手网址查看是否有最新版本：https://crazyzhang.cn/", "Change");
 
                 // 如果线上版本号大于本地版本号，则提示更新
                 if (CoreUtil.ServerVersion > CoreUtil.ClientVersion)
@@ -339,8 +339,8 @@ public partial class MainWindow
                     NotifierHelper.Show(NotifierType.Error, "网络异常，这并不影响小助手程序使用");
                 });
 
-                WeakReferenceMessenger.Default.Send("网络异常，获取最新公告内容失败！这并不影响小助手程序使用", "Notice");
-                WeakReferenceMessenger.Default.Send("网络异常，获取更新日志信息失败！这并不影响小助手程序使用", "Change");
+                WeakReferenceMessenger.Default.Send("网络异常，获取最新公告内容失败！这并不影响小助手程序使用\n建议你定期去小助手网址查看是否有最新版本：https://crazyzhang.cn/", "Notice");
+                WeakReferenceMessenger.Default.Send("网络异常，获取更新日志信息失败！这并不影响小助手程序使用\n建议你定期去小助手网址查看是否有最新版本：https://crazyzhang.cn/", "Change");
             }
         }
         catch (Exception ex)
@@ -351,8 +351,8 @@ public partial class MainWindow
                 NotifierHelper.Show(NotifierType.Error, $"初始化错误\n{ex.Message}");
             });
 
-            WeakReferenceMessenger.Default.Send("获取最新公告内容失败！", "Notice");
-            WeakReferenceMessenger.Default.Send("获取更新日志信息失败！", "Change");
+            WeakReferenceMessenger.Default.Send("获取最新公告内容失败！\n建议你定期去小助手网址查看是否有最新版本：https://crazyzhang.cn/", "Notice");
+            WeakReferenceMessenger.Default.Send("获取更新日志信息失败！\n建议你定期去小助手网址查看是否有最新版本：https://crazyzhang.cn/", "Change");
         }
     }
 

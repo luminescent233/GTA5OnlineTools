@@ -1,8 +1,8 @@
-﻿using GTA5OnlineTools.Common.Helper;
+﻿using GTA5OnlineTools.Models;
 using GTA5OnlineTools.Common.Utils;
+using GTA5OnlineTools.Common.Helper;
 using GTA5OnlineTools.Features.Core;
-using GTA5OnlineTools.Features.Data;
-using GTA5OnlineTools.Models;
+using GTA5OnlineTools.Common.API;
 
 namespace GTA5OnlineTools.Windows;
 
@@ -58,7 +58,7 @@ public partial class KiddionWindow
                     {
                         Index = ++index,
                         Name = text,
-                        Value = "需要中文翻译"
+                        Value = "中文翻译写这里"
                     });
 
                     button_handle = Win32.FindWindowEx(main_handle, button_handle, "Button", null);
@@ -81,6 +81,23 @@ public partial class KiddionWindow
             var index = DataGrid_KiddionUIs.SelectedIndex;
 
             KiddionModels[index].Value = text;
+        }
+        else
+        {
+            NotifierHelper.Show(NotifierType.Warning, "翻译内容为空，操作取消");
+        }
+    }
+
+    private async void Button_YouDaoTranslateSelected_Click(object sender, RoutedEventArgs e)
+    {
+        AudioUtil.PlayClickSound();
+
+        var text = TextBox_SelectedText.Text.Trim();
+        if (!string.IsNullOrEmpty(text))
+        {
+            var index = DataGrid_KiddionUIs.SelectedIndex;
+
+            KiddionModels[index].Value = await WebAPI.GetYouDaoContent(text);
         }
         else
         {

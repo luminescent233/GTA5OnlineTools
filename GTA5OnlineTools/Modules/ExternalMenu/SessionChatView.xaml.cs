@@ -1,10 +1,10 @@
 ﻿using GTA5OnlineTools.Common.Utils;
+using GTA5OnlineTools.Common.API;
 using GTA5OnlineTools.Common.Helper;
 using GTA5OnlineTools.Features.SDK;
 using GTA5OnlineTools.Features.Core;
 
 using Chinese;
-using RestSharp;
 using Forms = System.Windows.Forms;
 
 namespace GTA5OnlineTools.Modules.ExternalMenu;
@@ -14,7 +14,6 @@ namespace GTA5OnlineTools.Modules.ExternalMenu;
 /// </summary>
 public partial class SessionChatView : UserControl
 {
-    private const string youdaoAPI = "http://fanyi.youdao.com/translate?&doctype=json&type=AUTO&i=";
 
     public SessionChatView()
     {
@@ -136,31 +135,7 @@ public partial class SessionChatView : UserControl
     {
         try
         {
-            var stringBuilder = new StringBuilder();
-
-            var options = new RestClientOptions(youdaoAPI + message)
-            {
-                MaxTimeout = 5000,
-                FollowRedirects = true
-            };
-            var client = new RestClient(options);
-
-            var request = new RestRequest();
-            var response = await client.ExecuteGetAsync(request);
-            if (response.StatusCode == HttpStatusCode.OK)
-            {
-                var rb = JsonUtil.JsonDese<ReceiveObj>(response.Content);
-
-                foreach (var item in rb.translateResult)
-                {
-                    foreach (var t in item)
-                    {
-                        stringBuilder.Append(t.tgt);
-                    }
-                }
-
-                TextBox_InputMessage.Text = stringBuilder.ToString();
-            }
+            TextBox_InputMessage.Text = await WebAPI.GetYouDaoContent(message);
         }
         catch (Exception ex)
         {
@@ -252,18 +227,5 @@ public partial class SessionChatView : UserControl
         {
             NotifierHelper.ShowException(ex);
         }
-    }
-}
-
-public class ReceiveObj
-{
-    public string type { get; set; }
-    public int errorCode { get; set; }
-    public int elapsedTime { get; set; }
-    public List<List<TranslateResultItemItem>> translateResult { get; set; }
-    public class TranslateResultItemItem
-    {
-        public string src { get; set; }
-        public string tgt { get; set; }
     }
 }

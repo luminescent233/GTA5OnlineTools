@@ -159,7 +159,7 @@ public class Overlay : IDisposable
             if (MenuSetting.Overlay.ESP_Crosshair)
             {
                 // 当玩家按住右键准心对准敌人，准心变成粉红色，否则为绿色
-                if (isAimPed && Convert.ToBoolean(Win32.GetKeyState((int)WinVK.RBUTTON) & Win32.KEY_PRESSED))
+                if (isAimPed && Convert.ToBoolean(Win32.GetAsyncKeyState((int)WinVK.RBUTTON) & Win32.KEY_PRESSED))
                     DrawCrosshair(gfx, _brushes["deepPink"], 7.0f, 1.5f);
                 else
                     DrawCrosshair(gfx, _brushes["green"], 7.0f, 1.5f);
@@ -511,7 +511,7 @@ public class Overlay : IDisposable
                 if (oInVehicle != 0x01 && aimBot_Min_Distance != MenuSetting.Overlay.AimBot_Fov)
                 {
                     // 默认按住Ctrl键自瞄
-                    if (Convert.ToBoolean(Win32.GetKeyState((int)MenuSetting.Overlay.AimBot_Key) & Win32.KEY_PRESSED))
+                    if (Convert.ToBoolean(Win32.GetAsyncKeyState((int)MenuSetting.Overlay.AimBot_Key) & Win32.KEY_PRESSED))
                     {
                         if (isFPP == 0)
                         {
@@ -524,7 +524,7 @@ public class Overlay : IDisposable
                             Memory.Write(pCCameraPTR_0 + 0x3D0, aimBot_ViewAngles);
                         }
 
-                        if (Convert.ToBoolean(Win32.GetKeyState((int)WinVK.F5) & Win32.KEY_PRESSED))
+                        if (Convert.ToBoolean(Win32.GetAsyncKeyState((int)WinVK.F5) & Win32.KEY_PRESSED))
                         {
                             Teleport.SetTeleportPosition(teleW_pedCoords);
                         }

@@ -39,6 +39,8 @@ public static class HotKeys
     public static void ClearKeys()
     {
         WinHotKeys.Clear();
+        KeyUpEvent = null;
+        KeyDownEvent = null;
     }
 
     /// <summary>
@@ -76,7 +78,7 @@ public static class HotKeys
                 {
                     foreach (WinKey key in keysData)
                     {
-                        if (Convert.ToBoolean(Win32.GetKeyState((int)key.Key) & Win32.KEY_PRESSED))
+                        if (Convert.ToBoolean(Win32.GetAsyncKeyState((int)key.Key) & Win32.KEY_PRESSED))
                         {
                             if (!key.IsKeyDown)
                             {

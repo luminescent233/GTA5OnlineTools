@@ -9,9 +9,10 @@
     Title="GTA5线上小助手 - Kiddion汉化改进工具"
     Width="1280"
     Height="720"
+    MinWidth="1280"
+    MinHeight="720"
     Closing="Window_Kiddion_Closing"
     Loaded="Window_Kiddion_Loaded"
-    ResizeMode="CanMinimize"
     Style="{StaticResource UiWindowStyle}"
     mc:Ignorable="d">
 
@@ -78,11 +79,18 @@
                 Height="60"
                 Margin="5"
                 Text="{Binding ElementName=DataGrid_KiddionUIs, Path=SelectedItem.Name, Mode=OneWay}" />
-            <Button
-                x:Name="Button_TranslateSelected"
-                Margin="5"
-                Click="Button_TranslateSelected_Click"
-                Content="修改中文翻译" />
+            <UniformGrid Columns="2">
+                <Button
+                    x:Name="Button_TranslateSelected"
+                    Margin="5,5,2,5"
+                    Click="Button_TranslateSelected_Click"
+                    Content="修改中文翻译" />
+                <Button
+                    x:Name="Button_YouDaoTranslateSelected"
+                    Margin="2,5,5,5"
+                    Click="Button_YouDaoTranslateSelected_Click"
+                    Content="有道翻译" />
+            </UniformGrid>
             <Button
                 x:Name="Button_TranslateBuild"
                 Margin="5,0,5,5"
@@ -91,15 +99,18 @@
 
         </StackPanel>
         <!--  板块3  -->
-        <TextBox
-            x:Name="TextBox_TranslateBuild"
-            Grid.Column="2"
-            Margin="0,5,5,5"
-            HorizontalAlignment="Stretch"
-            VerticalAlignment="Stretch"
-            AcceptsReturn="True"
-            IsReadOnly="False"
-            Style="{StaticResource TextBoxStyle_Logger}" />
+        <DockPanel Grid.Column="2">
+            <ui:UiLabelEmoji Content="翻译代码（复制给作者）" DockPanel.Dock="Top" />
+            <TextBox
+                x:Name="TextBox_TranslateBuild"
+                Margin="5"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"
+                AcceptsReturn="True"
+                DockPanel.Dock="Bottom"
+                IsReadOnly="False"
+                Style="{StaticResource TextBoxStyle_Logger}" />
+        </DockPanel>
     </Grid>
 
 </ui:UiWindow>
