@@ -42,6 +42,7 @@ public partial class CheatsView : UserControl
     private readonly YimMenuPage YimMenuPage = new();
 
     private KiddionWindow KiddionWindow = null;
+    private GTAHaxWindow GTAHaxWindow = null;
 
     public CheatsView()
     {
@@ -193,6 +194,9 @@ public partial class CheatsView : UserControl
             #region 其他增强功能
             case "EditGTAHaxStat":
                 EditGTAHaxStatClick();
+                break;
+            case "DefaultGTAHaxStat":
+                DefaultGTAHaxStatClick();
                 break;
             case "BigBaseV2Directory":
                 BigBaseV2DirectoryClick();
@@ -475,6 +479,37 @@ public partial class CheatsView : UserControl
     private void EditGTAHaxStatClick()
     {
         ProcessUtil.Notepad2EditTextFile(FileUtil.F_GTAHaxStat_Path);
+    }
+
+    /// <summary>
+    /// GTAHax预设代码
+    /// </summary>
+    private void DefaultGTAHaxStatClick()
+    {
+        if (GTAHaxWindow == null)
+        {
+            GTAHaxWindow = new GTAHaxWindow();
+            GTAHaxWindow.Show();
+        }
+        else
+        {
+            if (GTAHaxWindow.IsVisible)
+            {
+                if (!GTAHaxWindow.Topmost)
+                {
+                    GTAHaxWindow.Topmost = true;
+                    GTAHaxWindow.Topmost = false;
+                }
+
+                GTAHaxWindow.WindowState = WindowState.Normal;
+            }
+            else
+            {
+                GTAHaxWindow = null;
+                GTAHaxWindow = new GTAHaxWindow();
+                GTAHaxWindow.Show();
+            }
+        }
     }
 
     /// <summary>

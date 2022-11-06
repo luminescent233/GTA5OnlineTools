@@ -1,0 +1,319 @@
+﻿<UserControl
+    x:Class="GTA5OnlineTools.Modules.HeistsEdit.CasinoView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ui="http://crazyzhang.cn/ui/2022/xaml"
+    d:DesignHeight="720"
+    d:DesignWidth="1280"
+    mc:Ignorable="d">
+
+    <UserControl.Resources>
+        <Style TargetType="{x:Type TextBlock}">
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="HorizontalAlignment" Value="Right" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+    </UserControl.Resources>
+
+    <TabControl Margin="5">
+        <ui:UiTabItemEmoji Emoji="🐹" Header="赌场抢劫 - 前置任务">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <DockPanel>
+                    <WrapPanel DockPanel.Dock="Bottom">
+                        <ui:UiButtonEmoji
+                            x:Name="Button_BuildGTAHax"
+                            Click="Button_BuildGTAHax_Click"
+                            Content="生成GTAHax代码"
+                            Emoji="🖨" />
+                        <ui:UiButtonEmoji
+                            x:Name="Button_ImportGTAHax"
+                            Click="Button_ImportGTAHax_Click"
+                            Content="批量导入GTAHax"
+                            Emoji="📡" />
+                    </WrapPanel>
+                    <TextBox
+                        x:Name="TextBox_PreviewGTAHax"
+                        Margin="5,5,5,0"
+                        AcceptsReturn="True"
+                        IsReadOnly="False"
+                        Style="{StaticResource TextBoxStyle_Logger}" />
+                </DockPanel>
+                <!--  ##########  -->
+                <ScrollViewer Grid.Column="1" Margin="5">
+                    <StackPanel Orientation="Vertical">
+                        <RadioButton
+                            x:Name="RadioButton_H3_P1"
+                            HorizontalAlignment="Center"
+                            Content="第一块面板"
+                            FontSize="18"
+                            FontWeight="Bold"
+                            GroupName="RadioButton_H3"
+                            IsChecked="True" />
+
+                        <CheckBox
+                            x:Name="CheckBox_H3OPT_BITSET1"
+                            Content="重置第一块面板"
+                            Foreground="Red" />
+                        <Expander
+                            Margin="5"
+                            Header="抢劫方式"
+                            IsExpanded="False">
+                            <ListBox
+                                x:Name="ListBox_H3OPT_APPROACH"
+                                Margin="5"
+                                SelectedIndex="0">
+                                <ListBoxItem Content="不选择抢劫方式" Foreground="#FF6666" />
+                                <ListBoxItem Content="隐迹潜踪" />
+                                <ListBoxItem Content="兵不厌诈" />
+                                <ListBoxItem Content="气势汹汹" />
+                            </ListBox>
+                        </Expander>
+                        <Expander
+                            Margin="5"
+                            Header="抢劫物品"
+                            IsExpanded="False">
+                            <ListBox
+                                x:Name="ListBoxItem_H3OPT_TARGET"
+                                Margin="5"
+                                SelectedIndex="0">
+                                <ListBoxItem Content="不选择抢劫物品" Foreground="#FF6666" />
+                                <ListBoxItem Content="现金" />
+                                <ListBoxItem Content="黄金" />
+                                <ListBoxItem Content="艺术品" />
+                                <ListBoxItem Content="钻石" />
+                            </ListBox>
+                        </Expander>
+                        <CheckBox x:Name="CheckBox_H3OPT_ACCESSPOINTS" Content="解锁所有侦察点" />
+                        <CheckBox x:Name="CheckBox_H3OPT_POI" Content="解锁所有兴趣点" />
+                        <CheckBox x:Name="CheckBox_H3OPT_BITSET1_1" Content="提交修改到第一块面板" />
+
+                        <TextBlock />
+                        <Expander Header="高级" IsExpanded="True">
+                            <StackPanel Margin="5">
+                                <CheckBox x:Name="CheckBox_H3_COMPLETEDPOSIX" Content="重置赌场抢劫冷却时间" />
+                                <CheckBox x:Name="CheckBox_Reset_P1P2" Content="重置赌场抢劫第一第二块面板" />
+                            </StackPanel>
+                        </Expander>
+
+                        <TextBlock />
+                        <TextBlock Style="{StaticResource TextBlockStyle_Hint}">
+                            提示：导入时需要在游戏厅地下室按E键选择对应面板，导入成功后会黑屏一下
+                        </TextBlock>
+                    </StackPanel>
+                </ScrollViewer>
+                <!--  ##########  -->
+                <ScrollViewer Grid.Column="2" Margin="5">
+                    <StackPanel Orientation="Vertical">
+                        <RadioButton
+                            x:Name="RadioButton_H3_P2"
+                            HorizontalAlignment="Center"
+                            Content="第二块面板"
+                            FontSize="18"
+                            FontWeight="Bold"
+                            GroupName="RadioButton_H3" />
+
+                        <CheckBox
+                            x:Name="CheckBox_H3OPT_BITSET0"
+                            Content="重置第二块面板"
+                            Foreground="Red" />
+                        <Expander
+                            Margin="5"
+                            Header="逃亡载具"
+                            IsExpanded="False">
+                            <ListBox
+                                x:Name="ListBoxItem_H3OPT_VEH"
+                                Margin="5"
+                                SelectedIndex="0">
+                                <ListBoxItem Content="不选择逃亡载具" Foreground="#FF6666" />
+                                <ListBoxItem Content="载具类型一" />
+                                <ListBoxItem Content="载具类型二" />
+                                <ListBoxItem Content="载具类型三" />
+                                <ListBoxItem Content="载具类型四" />
+                            </ListBox>
+                        </Expander>
+                        <Expander
+                            Margin="5"
+                            Header="武器类型"
+                            IsExpanded="False">
+                            <ListBox
+                                x:Name="ListBoxItem_H3OPT_WEAPS"
+                                Margin="5"
+                                SelectedIndex="0">
+                                <ListBoxItem Content="不选择武器类型" Foreground="#FF6666" />
+                                <ListBoxItem Content="武器类型一" />
+                                <ListBoxItem Content="武器类型二" />
+                                <ListBoxItem Content="武器类型三" />
+                                <ListBoxItem Content="武器类型四" />
+                                <ListBoxItem Content="武器类型五" />
+                            </ListBox>
+                        </Expander>
+                        <CheckBox x:Name="CheckBox_H3OPT_DISRUPTSHIP" Content="撤走重型武装警卫" />
+                        <CheckBox x:Name="CheckBox_H3OPT_KEYLEVELS" Content="获得二级门禁卡" />
+                        <Expander
+                            Margin="5"
+                            Header="枪手等级"
+                            IsExpanded="False">
+                            <ListBox
+                                x:Name="ListBoxItem_H3OPT_CREWWEAP"
+                                Margin="5"
+                                SelectedIndex="0">
+                                <ListBoxItem Content="不选择枪手" Foreground="#FF6666" />
+                                <ListBoxItem Content="卡尔·阿不拉季（5％分红）" />
+                                <ListBoxItem Content="古斯塔沃·莫塔（9％分红）" />
+                                <ListBoxItem Content="查理·里德（7％分红）" />
+                                <ListBoxItem Content="切斯特·麦考伊（10％分红）" />
+                                <ListBoxItem Content="帕里克·麦克瑞利（8％分红）" />
+                                <ListBoxItem Content="枪手零分红" />
+                            </ListBox>
+                        </Expander>
+                        <Expander
+                            Margin="5"
+                            Header="车手等级"
+                            IsExpanded="False">
+                            <ListBox
+                                x:Name="ListBoxItem_H3OPT_CREWDRIVER"
+                                Margin="5"
+                                SelectedIndex="0">
+                                <ListBoxItem Content="不选择车手" Foreground="#FF6666" />
+                                <ListBoxItem Content="卡里姆·登茨（5％分红）" />
+                                <ListBoxItem Content="塔丽娜·马丁内斯（7％分红）" />
+                                <ListBoxItem Content="淘艾迪（9％分红）" />
+                                <ListBoxItem Content="扎克·尼尔森（6％分红）" />
+                                <ListBoxItem Content="切斯特·麦考伊（10％分红）" />
+                                <ListBoxItem Content="车手零分红" />
+                            </ListBox>
+                        </Expander>
+                        <Expander
+                            Margin="5"
+                            Header="黑客等级"
+                            IsExpanded="False">
+                            <ListBox
+                                x:Name="ListBoxItem_H3OPT_CREWHACKER"
+                                Margin="5"
+                                SelectedIndex="0">
+                                <ListBoxItem Content="不选择黑客" Foreground="#FF6666" />
+                                <ListBoxItem Content="里奇·卢肯斯（3％分红）" />
+                                <ListBoxItem Content="克里斯汀·费尔兹（7％分红）" />
+                                <ListBoxItem Content="尤汗·布莱尔（5％分红）" />
+                                <ListBoxItem Content="阿维·施瓦茨曼（10％分红）" />
+                                <ListBoxItem Content="佩奇·哈里斯（9％分红）" />
+                                <ListBoxItem Content="黑客零分红" />
+                            </ListBox>
+                        </Expander>
+                        <CheckBox x:Name="CheckBox_H3OPT_BITSET0_0" Content="提交修改到第二块面板" />
+                    </StackPanel>
+                </ScrollViewer>
+            </Grid>
+        </ui:UiTabItemEmoji>
+        <!--  ##############################  -->
+        <ui:UiTabItemEmoji Emoji="🐹" Header="赌场抢劫 - 分红数据">
+            <StackPanel>
+                <Border Margin="5" Background="#F0F0F0">
+                    <WrapPanel HorizontalAlignment="Right">
+                        <ui:UiButtonEmoji
+                            x:Name="Button_Read"
+                            Click="Button_Read_Click"
+                            Content="读取数据"
+                            Emoji="⭐" />
+                        <ui:UiButtonEmoji
+                            x:Name="Button_Write"
+                            Click="Button_Write_Click"
+                            Content="写入数据"
+                            Emoji="⚡" />
+                    </WrapPanel>
+                </Border>
+                <!--  ##########  -->
+                <UniformGrid Columns="4">
+                    <StackPanel Margin="5">
+                        <TextBlock Style="{StaticResource TextBlockStyle_Title}" Text="分红比例" />
+                        <UniformGrid Columns="2">
+                            <TextBlock Text="（房主）玩家1" />
+                            <TextBox x:Name="TextBox_Casino_Player1" />
+                            <TextBlock Text="玩家2" />
+                            <TextBox x:Name="TextBox_Casino_Player2" />
+                            <TextBlock Text="玩家3" />
+                            <TextBox x:Name="TextBox_Casino_Player3" />
+                            <TextBlock Text="玩家4" />
+                            <TextBox x:Name="TextBox_Casino_Player4" />
+
+                            <TextBlock />
+                            <TextBlock />
+
+                            <TextBlock Text="莱斯特" />
+                            <TextBox x:Name="TextBox_Casino_Lester" />
+                        </UniformGrid>
+                    </StackPanel>
+
+                    <StackPanel Margin="5">
+                        <TextBlock Style="{StaticResource TextBlockStyle_Title}" Text="分红金额" />
+                        <UniformGrid Columns="2">
+                            <TextBlock Text="现金" />
+                            <TextBox x:Name="TextBox_CasinoPotential_Money" />
+                            <TextBlock Text="名画" />
+                            <TextBox x:Name="TextBox_CasinoPotential_Artwork" />
+                            <TextBlock Text="黄金" />
+                            <TextBox x:Name="TextBox_CasinoPotential_Gold" />
+                            <TextBlock Text="钻石" />
+                            <TextBox x:Name="TextBox_CasinoPotential_Diamonds" />
+                        </UniformGrid>
+                    </StackPanel>
+
+                    <StackPanel Margin="5">
+                        <TextBlock Style="{StaticResource TextBlockStyle_Title}" Text="AI分红比例 枪手" />
+                        <UniformGrid Columns="2">
+                            <TextBlock Text="卡尔·阿不拉季" />
+                            <TextBox x:Name="TextBox_CasinoAI_1" />
+                            <TextBlock Text="古斯塔沃·莫塔" />
+                            <TextBox x:Name="TextBox_CasinoAI_2" />
+                            <TextBlock Text="查理·里德" />
+                            <TextBox x:Name="TextBox_CasinoAI_3" />
+                            <TextBlock Text="切斯特·麦考伊" />
+                            <TextBox x:Name="TextBox_CasinoAI_4" />
+                            <TextBlock Text="帕里克·麦克瑞利" />
+                            <TextBox x:Name="TextBox_CasinoAI_5" />
+                        </UniformGrid>
+
+                        <TextBlock Style="{StaticResource TextBlockStyle_Title}" Text="AI分红比例 车手" />
+                        <UniformGrid Columns="2">
+                            <TextBlock Text="卡里姆·登茨" />
+                            <TextBox x:Name="TextBox_CasinoAI_6" />
+                            <TextBlock Text="塔丽娜·马丁内斯" />
+                            <TextBox x:Name="TextBox_CasinoAI_7" />
+                            <TextBlock Text="淘艾迪" />
+                            <TextBox x:Name="TextBox_CasinoAI_8" />
+                            <TextBlock Text="扎克·尼尔森" />
+                            <TextBox x:Name="TextBox_CasinoAI_9" />
+                            <TextBlock Text="切斯特·麦考伊" />
+                            <TextBox x:Name="TextBox_CasinoAI_10" />
+                        </UniformGrid>
+
+                    </StackPanel>
+
+                    <StackPanel Margin="5">
+                        <TextBlock Style="{StaticResource TextBlockStyle_Title}" Text="AI分红比例 黑客" />
+                        <UniformGrid Columns="2">
+                            <TextBlock Text="里奇·卢肯斯" />
+                            <TextBox x:Name="TextBox_CasinoAI_11" />
+                            <TextBlock Text="克里斯汀·费尔兹" />
+                            <TextBox x:Name="TextBox_CasinoAI_12" />
+                            <TextBlock Text="尤汗·布莱尔" />
+                            <TextBox x:Name="TextBox_CasinoAI_13" />
+                            <TextBlock Text="阿维·施瓦茨曼" />
+                            <TextBox x:Name="TextBox_CasinoAI_14" />
+                            <TextBlock Text="佩奇·哈里斯" />
+                            <TextBox x:Name="TextBox_CasinoAI_15" />
+                        </UniformGrid>
+                    </StackPanel>
+                </UniformGrid>
+            </StackPanel>
+        </ui:UiTabItemEmoji>
+    </TabControl>
+
+</UserControl>

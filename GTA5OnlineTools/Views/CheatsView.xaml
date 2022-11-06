@@ -180,6 +180,11 @@
                                         Command="{Binding ExtraClickCommand}"
                                         CommandParameter="EditGTAHaxStat"
                                         Content="导入文件" />
+                                    <Button
+                                        Background="#00AE9D"
+                                        Command="{Binding ExtraClickCommand}"
+                                        CommandParameter="DefaultGTAHaxStat"
+                                        Content="预设代码" />
                                 </WrapPanel>
                                 <WrapPanel />
                                 <WrapPanel />

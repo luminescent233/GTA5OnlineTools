@@ -13,9 +13,9 @@ public partial class ModulesView : UserControl
 {
     private ExternalMenuWindow ExternalMenuWindow = null;
     private SpawnVehicleWindow SpawnVehicleWindow = null;
-    private GTAHaxWindow GTAHaxWindow = null;
+    private HeistsEditWindow HeistsEditWindow = null;
+
     private OutfitsEditWindow OutfitsEditWindow = null;
-    private HeistCutWindow HeistCutWindow = null;
     private StatScriptsWindow StatScriptsWindow = null;
     private HeistPrepsWindow HeistPrepsWindow = null;
     private CasinoHackWindow CasinoHackWindow = null;
@@ -52,14 +52,11 @@ public partial class ModulesView : UserControl
                 case "SpawnVehicle":
                     SpawnVehicleClick();
                     break;
-                case "GTAHax":
-                    GTAHaxClick();
+                case "HeistsEdit":
+                    HeistsEditClick();
                     break;
                 case "OutfitsEdit":
                     OutfitsEditClick();
-                    break;
-                case "HeistCut":
-                    HeistCutClick();
                     break;
                 case "StatScripts":
                     StatScriptsClick();
@@ -134,26 +131,26 @@ public partial class ModulesView : UserControl
         }
     }
 
-    private void GTAHaxClick()
+    private void HeistsEditClick()
     {
-        if (GTAHaxWindow == null)
+        if (HeistsEditWindow == null)
         {
-            GTAHaxWindow = new GTAHaxWindow();
-            GTAHaxWindow.Show();
+            HeistsEditWindow = new HeistsEditWindow();
+            HeistsEditWindow.Show();
         }
         else
         {
-            if (GTAHaxWindow.IsVisible)
+            if (HeistsEditWindow.IsVisible)
             {
-                GTAHaxWindow.Topmost = true;
-                GTAHaxWindow.Topmost = false;
-                GTAHaxWindow.WindowState = WindowState.Normal;
+                HeistsEditWindow.Topmost = true;
+                HeistsEditWindow.Topmost = false;
+                HeistsEditWindow.WindowState = WindowState.Normal;
             }
             else
             {
-                GTAHaxWindow = null;
-                GTAHaxWindow = new GTAHaxWindow();
-                GTAHaxWindow.Show();
+                HeistsEditWindow = null;
+                HeistsEditWindow = new HeistsEditWindow();
+                HeistsEditWindow.Show();
             }
         }
     }
@@ -178,30 +175,6 @@ public partial class ModulesView : UserControl
                 OutfitsEditWindow = null;
                 OutfitsEditWindow = new OutfitsEditWindow();
                 OutfitsEditWindow.Show();
-            }
-        }
-    }
-
-    private void HeistCutClick()
-    {
-        if (HeistCutWindow == null)
-        {
-            HeistCutWindow = new HeistCutWindow();
-            HeistCutWindow.Show();
-        }
-        else
-        {
-            if (HeistCutWindow.IsVisible)
-            {
-                HeistCutWindow.Topmost = true;
-                HeistCutWindow.Topmost = false;
-                HeistCutWindow.WindowState = WindowState.Normal;
-            }
-            else
-            {
-                HeistCutWindow = null;
-                HeistCutWindow = new HeistCutWindow();
-                HeistCutWindow.Show();
             }
         }
     }
@@ -324,22 +297,16 @@ public partial class ModulesView : UserControl
                 SpawnVehicleWindow = null;
             }
 
-            if (GTAHaxWindow != null)
+            if (HeistsEditWindow != null)
             {
-                GTAHaxWindow.Close();
-                GTAHaxWindow = null;
+                HeistsEditWindow.Close();
+                HeistsEditWindow = null;
             }
 
             if (OutfitsEditWindow != null)
             {
                 OutfitsEditWindow.Close();
                 OutfitsEditWindow = null;
-            }
-
-            if (HeistCutWindow != null)
-            {
-                HeistCutWindow.Close();
-                HeistCutWindow = null;
             }
 
             if (StatScriptsWindow != null)

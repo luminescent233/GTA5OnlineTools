@@ -28,11 +28,11 @@
             Style="{StaticResource ButtonStyle_FuncModule}" />
 
         <ui:UiButtonIcon
-            Title="GTAHax Code Edit"
+            Title="Heists Edit"
             Command="{Binding ModelsClickCommand}"
-            CommandParameter="GTAHax"
-            Content="GTAHax代码导入编辑器"
-            Icon="&#xe691;"
+            CommandParameter="HeistsEdit"
+            Content="抢劫任务编辑器"
+            Icon="&#xe63b;"
             Style="{StaticResource ButtonStyle_FuncModule}" />
 
         <ui:UiButtonIcon
@@ -40,14 +40,6 @@
             Command="{Binding ModelsClickCommand}"
             CommandParameter="OutfitsEdit"
             Content="角色服装编辑器"
-            Icon="&#xe691;"
-            Style="{StaticResource ButtonStyle_FuncModule}" />
-
-        <ui:UiButtonIcon
-            Title="Heist Cut Edit"
-            Command="{Binding ModelsClickCommand}"
-            CommandParameter="HeistCut"
-            Content="抢劫任务分红编辑器"
             Icon="&#xe691;"
             Style="{StaticResource ButtonStyle_FuncModule}" />
 
