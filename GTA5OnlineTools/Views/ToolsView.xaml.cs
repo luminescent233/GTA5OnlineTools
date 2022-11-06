@@ -116,7 +116,9 @@ public partial class ToolsView : UserControl
     {
         try
         {
-            if (MessageBox.Show("你确定要初始化配置文件吗？将恢复全部配置文件为默认版本，对于修复崩溃问题很有帮助", "警告", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            if (MessageBox.Show("你确定要初始化配置文件吗？将恢复小助手全部配置文件为默认版本，对于修复崩溃问题很有帮助\n\n" +
+                "程序会自动重置此文件夹：C:\\ProgramData\\GTA5OnlineTools\\\n\n",
+                "初始化配置文件", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
             {
                 ProcessUtil.CloseThirdProcess();
                 Thread.Sleep(100);
