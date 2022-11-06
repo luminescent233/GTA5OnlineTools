@@ -71,19 +71,17 @@ public static class Weapon
         if (isEnable)
         {
             long addrAmmo = Memory.FindPattern("41 2B D1 E8");
-            if (addrAmmo == 0)
-            {
+            if (Memory.IsValid(addrAmmo))
                 addrAmmo = Memory.FindPattern("90 90 90 E8");
-            }
+
             Memory.WriteBytes(addrAmmo, new byte[] { 0x90, 0x90, 0x90 });
         }
         else
         {
             long addrAmmo = Memory.FindPattern("41 2B D1 E8");
-            if (addrAmmo == 0)
-            {
+            if (Memory.IsValid(addrAmmo))
                 addrAmmo = Memory.FindPattern("90 90 90 E8");
-            }
+
             Memory.WriteBytes(addrAmmo, new byte[] { 0x41, 0x2B, 0xD1 });
         }
     }
@@ -96,19 +94,17 @@ public static class Weapon
         if (isEnable)
         {
             long addrAmmo = Memory.FindPattern("41 2B C9 3B C8 0F");
-            if (addrAmmo == 0)
-            {
+            if (Memory.IsValid(addrAmmo))
                 addrAmmo = Memory.FindPattern("90 90 90 3B C8 0F");
-            }
+
             Memory.WriteBytes(addrAmmo, new byte[] { 0x90, 0x90, 0x90 });
         }
         else
         {
             long addrAmmo = Memory.FindPattern("41 2B C9 3B C8 0F");
-            if (addrAmmo == 0)
-            {
+            if (Memory.IsValid(addrAmmo))
                 addrAmmo = Memory.FindPattern("90 90 90 3B C8 0F");
-            }
+
             Memory.WriteBytes(addrAmmo, new byte[] { 0x41, 0x2B, 0xC9 });
         }
     }

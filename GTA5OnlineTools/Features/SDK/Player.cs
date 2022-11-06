@@ -110,13 +110,9 @@ public static class Player
         float oHealth = Memory.Read<float>(pCPed + Offsets.CPed_Health);
         float oHealthMax = Memory.Read<float>(pCPed + Offsets.CPed_HealthMax);
         if (oHealth <= oHealthMax)
-        {
             Memory.Write(pCPed + Offsets.CPed_Health, oHealthMax);
-        }
         else
-        {
             Memory.Write(pCPed + Offsets.CPed_Health, 328.0f);
-        }
     }
 
     /// <summary>

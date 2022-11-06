@@ -302,9 +302,9 @@ public partial class CheatsView : UserControl
     /// </summary>
     private void YimMenuClick()
     {
-        var _DLLPath = FileUtil.D_Inject_Path + "YimMenu.dll";
+        var dllPath = FileUtil.D_Inject_Path + "YimMenu.dll";
 
-        if (!File.Exists(_DLLPath))
+        if (!File.Exists(dllPath))
         {
             NotifierHelper.Show(NotifierType.Error, "发生异常，YimMenu菜单DLL文件不存在");
             return;
@@ -312,7 +312,7 @@ public partial class CheatsView : UserControl
 
         foreach (ProcessModule module in Process.GetProcessById(Memory.GTA5ProId).Modules)
         {
-            if (module.FileName == _DLLPath)
+            if (module.FileName == dllPath)
             {
                 NotifierHelper.Show(NotifierType.Warning, "该DLL已经被注入过了，请勿重复注入");
                 return;
@@ -321,7 +321,7 @@ public partial class CheatsView : UserControl
 
         try
         {
-            BaseInjector.DLLInjector(Memory.GTA5ProId, _DLLPath);
+            BaseInjector.DLLInjector(Memory.GTA5ProId, dllPath);
             Memory.SetForegroundWindow();
             NotifierHelper.Show(NotifierType.Success, "YimMenu注入成功，请前往游戏查看");
         }

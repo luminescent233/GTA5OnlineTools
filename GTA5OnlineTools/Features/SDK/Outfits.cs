@@ -2,7 +2,7 @@
 
 public static class Outfits
 {
-    // -- Outfit Editor Globals from VenomKY
+    // Outfit Editor Globals from VenomKY
     private const int oWardrobeG = 2359296;
     private const int oWPointA = 5567;
     private const int oWPointB = 681;
@@ -36,7 +36,7 @@ public static class Outfits
         Hacks.WriteGAString(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponent + (OutfitIndex * 13) + 1126 - (OutfitIndex * 5), name);
     }
 
-    /*********************** TOP ***********************/
+    //////////////////////// TOP ////////////////////////
 
     public static int TOP
     {
@@ -50,7 +50,7 @@ public static class Outfits
         set => Hacks.WriteGA(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponentTex + (OutfitIndex * 13) + 14, value);
     }
 
-    /*********************** UNDERSHIRT ***********************/
+    //////////////////////// UNDERSHIRT ////////////////////////
 
     public static int UNDERSHIRT
     {
@@ -64,7 +64,7 @@ public static class Outfits
         set => Hacks.WriteGA(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponentTex + (OutfitIndex * 13) + 11, value);
     }
 
-    /*********************** LEGS ***********************/
+    //////////////////////// LEGS ////////////////////////
 
     public static int LEGS
     {
@@ -78,7 +78,7 @@ public static class Outfits
         set => Hacks.WriteGA(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponentTex + (OutfitIndex * 13) + 7, value);
     }
 
-    /*********************** FEET ***********************/
+    //////////////////////// FEET ////////////////////////
 
     public static int FEET
     {
@@ -92,7 +92,7 @@ public static class Outfits
         set => Hacks.WriteGA(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponentTex + (OutfitIndex * 13) + 9, value);
     }
 
-    /*********************** ACCESSORIES ***********************/
+    //////////////////////// ACCESSORIES ////////////////////////
 
     public static int ACCESSORIES
     {
@@ -106,7 +106,7 @@ public static class Outfits
         set => Hacks.WriteGA(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponentTex + (OutfitIndex * 13) + 10, value);
     }
 
-    /*********************** BAGS ***********************/
+    //////////////////////// BAGS ////////////////////////
 
     public static int BAGS
     {
@@ -120,7 +120,7 @@ public static class Outfits
         set => Hacks.WriteGA(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponentTex + (OutfitIndex * 13) + 8, value);
     }
 
-    /*********************** GLOVES ***********************/
+    //////////////////////// GLOVES ////////////////////////
 
     public static int GLOVES
     {
@@ -134,7 +134,7 @@ public static class Outfits
         set => Hacks.WriteGA(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponentTex + (OutfitIndex * 13) + 6, value);
     }
 
-    /*********************** DECALS ***********************/
+    //////////////////////// DECALS ////////////////////////
 
     public static int DECALS
     {
@@ -148,7 +148,7 @@ public static class Outfits
         set => Hacks.WriteGA(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponentTex + (OutfitIndex * 13) + 13, value);
     }
 
-    /*********************** MASK ***********************/
+    //////////////////////// MASK ////////////////////////
 
     public static int MASK
     {
@@ -162,7 +162,7 @@ public static class Outfits
         set => Hacks.WriteGA(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponentTex + (OutfitIndex * 13) + 4, value);
     }
 
-    /*********************** ARMOR ***********************/
+    //////////////////////// ARMOR ////////////////////////
 
     public static int ARMOR
     {
@@ -176,11 +176,9 @@ public static class Outfits
         set => Hacks.WriteGA(oWardrobeG + (0 * oWPointA) + oWPointB + oWComponentTex + (OutfitIndex * 13) + 12, value);
     }
 
-    /********************************************************************************************/
-    /********************************************************************************************/
-    /********************************************************************************************/
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    /*********************** HATS ***********************/
+    //////////////////////// HATS ////////////////////////
 
     public static int HATS
     {
@@ -194,7 +192,7 @@ public static class Outfits
         set => Hacks.WriteGA(oWardrobeG + (0 * oWPointA) + oWPointB + oWPropTex + (OutfitIndex * 10) + 3, value);
     }
 
-    /*********************** GLASSES ***********************/
+    //////////////////////// GLASSES ////////////////////////
 
     public static int GLASSES
     {
@@ -208,7 +206,7 @@ public static class Outfits
         set => Hacks.WriteGA(oWardrobeG + (0 * oWPointA) + oWPointB + oWPropTex + (OutfitIndex * 10) + 4, value);
     }
 
-    /*********************** EARS ***********************/
+    //////////////////////// EARS ////////////////////////
 
     public static int EARS
     {
@@ -222,7 +220,7 @@ public static class Outfits
         set => Hacks.WriteGA(oWardrobeG + (0 * oWPointA) + oWPointB + oWPropTex + (OutfitIndex * 10) + 5, value);
     }
 
-    /*********************** WATCHES ***********************/
+    //////////////////////// WATCHES ////////////////////////
 
     public static int WATCHES
     {
@@ -236,7 +234,7 @@ public static class Outfits
         set => Hacks.WriteGA(oWardrobeG + (0 * oWPointA) + oWPointB + oWPropTex + (OutfitIndex * 10) + 9, value);
     }
 
-    /*********************** WRIST ***********************/
+    //////////////////////// WRIST ////////////////////////
 
     public static int WRIST
     {

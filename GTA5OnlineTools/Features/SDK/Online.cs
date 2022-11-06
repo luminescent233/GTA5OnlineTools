@@ -323,28 +323,28 @@ public static class Online
     /// <param name="isEnable"></param>
     public static void CEOPricePerCrateAtCrates(bool isEnable)
     {
-        // Global_262145.f_15843    -1445480509                                 // tuneables_processing.c
-        Hacks.WriteGA(262145 + 15843, isEnable ? 20000 : 10000);           // 1        specialCargo1CratesPrice
-        Hacks.WriteGA(262145 + 15843 + 1, isEnable ? 20000 : 11000);       // 2        specialCargo2CratesPrice
-        Hacks.WriteGA(262145 + 15843 + 2, isEnable ? 20000 : 12000);       // 3        specialCargo3CratesPrice                                                
-        Hacks.WriteGA(262145 + 15843 + 3, isEnable ? 20000 : 13000);       // 4-5      specialCargo4to5CratesPrice
-        Hacks.WriteGA(262145 + 15843 + 4, isEnable ? 20000 : 13500);       // 6-7      specialCargo6to7CratesPrice
-        Hacks.WriteGA(262145 + 15843 + 5, isEnable ? 20000 : 14000);       // 8-9      ...
-        Hacks.WriteGA(262145 + 15843 + 6, isEnable ? 20000 : 14500);       // 10-14
-        Hacks.WriteGA(262145 + 15843 + 7, isEnable ? 20000 : 15000);       // 15-19
-        Hacks.WriteGA(262145 + 15843 + 8, isEnable ? 20000 : 15500);       // 20-24
-        Hacks.WriteGA(262145 + 15843 + 9, isEnable ? 20000 : 16000);       // 25-29
-        Hacks.WriteGA(262145 + 15843 + 10, isEnable ? 20000 : 16500);      // 30-34
-        Hacks.WriteGA(262145 + 15843 + 11, isEnable ? 20000 : 17000);      // 35-39
-        Hacks.WriteGA(262145 + 15843 + 12, isEnable ? 20000 : 17500);      // 40-44
-        Hacks.WriteGA(262145 + 15843 + 13, isEnable ? 20000 : 17750);      // 45-49
-        Hacks.WriteGA(262145 + 15843 + 14, isEnable ? 20000 : 18000);      // 50-59
-        Hacks.WriteGA(262145 + 15843 + 15, isEnable ? 20000 : 18250);      // 60-69
-        Hacks.WriteGA(262145 + 15843 + 16, isEnable ? 20000 : 18500);      // 70-79
-        Hacks.WriteGA(262145 + 15843 + 17, isEnable ? 20000 : 18750);      // 80-89
-        Hacks.WriteGA(262145 + 15843 + 18, isEnable ? 20000 : 19000);      // 90-990
-        Hacks.WriteGA(262145 + 15843 + 19, isEnable ? 20000 : 19500);      // 100-11
-        Hacks.WriteGA(262145 + 15843 + 20, isEnable ? 20000 : 20000);      // 111
+        // Global_262145.f_15843    -1445480509                             // tuneables_processing.c
+        Hacks.WriteGA(262145 + 15843, isEnable ? 20000 : 10000);            // 1        specialCargo1CratesPrice
+        Hacks.WriteGA(262145 + 15843 + 1, isEnable ? 20000 : 11000);        // 2        specialCargo2CratesPrice
+        Hacks.WriteGA(262145 + 15843 + 2, isEnable ? 20000 : 12000);        // 3        specialCargo3CratesPrice                                                
+        Hacks.WriteGA(262145 + 15843 + 3, isEnable ? 20000 : 13000);        // 4-5      specialCargo4to5CratesPrice
+        Hacks.WriteGA(262145 + 15843 + 4, isEnable ? 20000 : 13500);        // 6-7      specialCargo6to7CratesPrice
+        Hacks.WriteGA(262145 + 15843 + 5, isEnable ? 20000 : 14000);        // 8-9      ...
+        Hacks.WriteGA(262145 + 15843 + 6, isEnable ? 20000 : 14500);        // 10-14
+        Hacks.WriteGA(262145 + 15843 + 7, isEnable ? 20000 : 15000);        // 15-19
+        Hacks.WriteGA(262145 + 15843 + 8, isEnable ? 20000 : 15500);        // 20-24
+        Hacks.WriteGA(262145 + 15843 + 9, isEnable ? 20000 : 16000);        // 25-29
+        Hacks.WriteGA(262145 + 15843 + 10, isEnable ? 20000 : 16500);       // 30-34
+        Hacks.WriteGA(262145 + 15843 + 11, isEnable ? 20000 : 17000);       // 35-39
+        Hacks.WriteGA(262145 + 15843 + 12, isEnable ? 20000 : 17500);       // 40-44
+        Hacks.WriteGA(262145 + 15843 + 13, isEnable ? 20000 : 17750);       // 45-49
+        Hacks.WriteGA(262145 + 15843 + 14, isEnable ? 20000 : 18000);       // 50-59
+        Hacks.WriteGA(262145 + 15843 + 15, isEnable ? 20000 : 18250);       // 60-69
+        Hacks.WriteGA(262145 + 15843 + 16, isEnable ? 20000 : 18500);       // 70-79
+        Hacks.WriteGA(262145 + 15843 + 17, isEnable ? 20000 : 18750);       // 80-89
+        Hacks.WriteGA(262145 + 15843 + 18, isEnable ? 20000 : 19000);       // 90-990
+        Hacks.WriteGA(262145 + 15843 + 19, isEnable ? 20000 : 19500);       // 100-11
+        Hacks.WriteGA(262145 + 15843 + 20, isEnable ? 20000 : 20000);       // 111
     }
 
     /// <summary>
@@ -390,9 +390,9 @@ public static class Online
     /// <param name="isEnable"></param>
     public static void SetBunkerSaleMultipliers(bool isEnable)
     {
-        // Sale Multipliers                                                 // tuneables_processing.c
-        Hacks.WriteGA(262145 + 21553, isEnable ? 2.0f : 1.0f);       // Near         1865029244
-        Hacks.WriteGA(262145 + 21554, isEnable ? 3.0f : 1.5f);       // Far          1021567941
+        // Sale Multipliers                                             // tuneables_processing.c
+        Hacks.WriteGA(262145 + 21553, isEnable ? 2.0f : 1.0f);          // Near         1865029244
+        Hacks.WriteGA(262145 + 21554, isEnable ? 3.0f : 1.5f);          // Far          1021567941
     }
 
     /// <summary>
@@ -401,9 +401,9 @@ public static class Online
     /// <param name="isEnable"></param>
     public static void SetMCSaleMultipliers(bool isEnable)
     {
-        // Sale Multipliers                                                 // tuneables_processing.c
-        Hacks.WriteGA(262145 + 19111, isEnable ? 2.0f : 1.0f);       // Near         -823848572
-        Hacks.WriteGA(262145 + 19112, isEnable ? 3.0f : 1.5f);       // Far          1763638426
+        // Sale Multipliers                                             // tuneables_processing.c
+        Hacks.WriteGA(262145 + 19111, isEnable ? 2.0f : 1.0f);          // Near         -823848572
+        Hacks.WriteGA(262145 + 19112, isEnable ? 3.0f : 1.5f);          // Far          1763638426
     }
 
     /// <summary>
@@ -413,10 +413,10 @@ public static class Online
     public static void SetBunkerSuppliesPerUnitProduced(bool isEnable)
     {
         // Supplies Per Unit Produced                                   // tuneables_processing.c
-        Hacks.WriteGA(262145 + 21579, isEnable ? 1 : 10);          // Product Base              -1652502760
-        Hacks.WriteGA(262145 + 21580, isEnable ? 1 : 5);           // Product Upgraded          1647327744
-        Hacks.WriteGA(262145 + 21595, isEnable ? 1 : 2);           // Research Base             1485279815
-        Hacks.WriteGA(262145 + 21596, isEnable ? 1 : 1);           // Research Upgraded         2041812011
+        Hacks.WriteGA(262145 + 21579, isEnable ? 1 : 10);               // Product Base              -1652502760
+        Hacks.WriteGA(262145 + 21580, isEnable ? 1 : 5);                // Product Upgraded          1647327744
+        Hacks.WriteGA(262145 + 21595, isEnable ? 1 : 2);                // Research Base             1485279815
+        Hacks.WriteGA(262145 + 21596, isEnable ? 1 : 1);                // Research Upgraded         2041812011
     }
 
     /// <summary>
@@ -426,16 +426,16 @@ public static class Online
     public static void SetMCSuppliesPerUnitProduced(bool isEnable)
     {
         // Supplies Per Unit Produced                                   // tuneables_processing.c
-        Hacks.WriteGA(262145 + 17461, isEnable ? 1 : 4);           // Documents Base            -1839004359
-        Hacks.WriteGA(262145 + 17462, isEnable ? 1 : 10);          // Cash Base
-        Hacks.WriteGA(262145 + 17463, isEnable ? 1 : 50);          // Cocaine Base
-        Hacks.WriteGA(262145 + 17464, isEnable ? 1 : 24);          // Meth Base
-        Hacks.WriteGA(262145 + 17465, isEnable ? 1 : 4);           // Weed Base
-        Hacks.WriteGA(262145 + 17466, isEnable ? 1 : 2);           // Documents Upgraded
-        Hacks.WriteGA(262145 + 17467, isEnable ? 1 : 5);           // Cash Upgraded
-        Hacks.WriteGA(262145 + 17468, isEnable ? 1 : 25);          // Cocaine Upgraded
-        Hacks.WriteGA(262145 + 17469, isEnable ? 1 : 12);          // Meth Upgraded
-        Hacks.WriteGA(262145 + 17470, isEnable ? 1 : 2);           // Weed Upgraded
+        Hacks.WriteGA(262145 + 17461, isEnable ? 1 : 4);                // Documents Base            -1839004359
+        Hacks.WriteGA(262145 + 17462, isEnable ? 1 : 10);               // Cash Base
+        Hacks.WriteGA(262145 + 17463, isEnable ? 1 : 50);               // Cocaine Base
+        Hacks.WriteGA(262145 + 17464, isEnable ? 1 : 24);               // Meth Base
+        Hacks.WriteGA(262145 + 17465, isEnable ? 1 : 4);                // Weed Base
+        Hacks.WriteGA(262145 + 17466, isEnable ? 1 : 2);                // Documents Upgraded
+        Hacks.WriteGA(262145 + 17467, isEnable ? 1 : 5);                // Cash Upgraded
+        Hacks.WriteGA(262145 + 17468, isEnable ? 1 : 25);               // Cocaine Upgraded
+        Hacks.WriteGA(262145 + 17469, isEnable ? 1 : 12);               // Meth Upgraded
+        Hacks.WriteGA(262145 + 17470, isEnable ? 1 : 2);                // Weed Upgraded
     }
 
     /// <summary>
@@ -444,7 +444,7 @@ public static class Online
     /// <param name="isEnable"></param>
     public static void UnlockBunkerResearch(bool isEnable)
     {
-        Hacks.WriteGA(262145 + 21729, isEnable ? 1 : 0);         // 886070202
+        Hacks.WriteGA(262145 + 21729, isEnable ? 1 : 0);                // 886070202
     }
 
     /// <summary>
@@ -454,14 +454,14 @@ public static class Online
     /// <param name="produce_time"></param>
     public static void SetNightclubProduceTime(bool isEnable, int produce_time)
     {
-        // Time to Produce                                                          // tuneables_processing.c
-        Hacks.WriteGA(262145 + 24394, isEnable ? produce_time : 4800000);      // Sporting Goods               -147565853
-        Hacks.WriteGA(262145 + 24395, isEnable ? produce_time : 14400000);     // South American Imports
-        Hacks.WriteGA(262145 + 24396, isEnable ? produce_time : 7200000);      // Pharmaceutical Research
-        Hacks.WriteGA(262145 + 24397, isEnable ? produce_time : 2400000);      // Organic Produce
-        Hacks.WriteGA(262145 + 24398, isEnable ? produce_time : 1800000);      // Printing and Copying
-        Hacks.WriteGA(262145 + 24399, isEnable ? produce_time : 3600000);      // Cash Creation
-        Hacks.WriteGA(262145 + 24400, isEnable ? produce_time : 8400000);      // Cargo and Shipments          1607981264
+        // Time to Produce                                                      // tuneables_processing.c
+        Hacks.WriteGA(262145 + 24394, isEnable ? produce_time : 4800000);       // Sporting Goods               -147565853
+        Hacks.WriteGA(262145 + 24395, isEnable ? produce_time : 14400000);      // South American Imports
+        Hacks.WriteGA(262145 + 24396, isEnable ? produce_time : 7200000);       // Pharmaceutical Research
+        Hacks.WriteGA(262145 + 24397, isEnable ? produce_time : 2400000);       // Organic Produce
+        Hacks.WriteGA(262145 + 24398, isEnable ? produce_time : 1800000);       // Printing and Copying
+        Hacks.WriteGA(262145 + 24399, isEnable ? produce_time : 3600000);       // Cash Creation
+        Hacks.WriteGA(262145 + 24400, isEnable ? produce_time : 8400000);       // Cargo and Shipments          1607981264
     }
 
     /// <summary>
@@ -471,24 +471,24 @@ public static class Online
     /// <param name="produce_time"></param>
     public static void SetMCProduceTime(bool isEnable, int produce_time)
     {
-        // Base Time to Produce                                                     // tuneables_processing.c
-        Hacks.WriteGA(262145 + 17446, isEnable ? produce_time : 360000);       // Weed                     -635596193
-        Hacks.WriteGA(262145 + 17447, isEnable ? produce_time : 1800000);      // Meth
-        Hacks.WriteGA(262145 + 17448, isEnable ? produce_time : 3000000);      // Cocaine
-        Hacks.WriteGA(262145 + 17449, isEnable ? produce_time : 300000);       // Documents
-        Hacks.WriteGA(262145 + 17450, isEnable ? produce_time : 720000);       // Cash                     1310272402
+        // Base Time to Produce                                                 // tuneables_processing.c
+        Hacks.WriteGA(262145 + 17446, isEnable ? produce_time : 360000);        // Weed                     -635596193
+        Hacks.WriteGA(262145 + 17447, isEnable ? produce_time : 1800000);       // Meth
+        Hacks.WriteGA(262145 + 17448, isEnable ? produce_time : 3000000);       // Cocaine
+        Hacks.WriteGA(262145 + 17449, isEnable ? produce_time : 300000);        // Documents
+        Hacks.WriteGA(262145 + 17450, isEnable ? produce_time : 720000);        // Cash                     1310272402
 
         // Time to Produce Reductions
-        Hacks.WriteGA(262145 + 17451, isEnable ? 1 : 60000);                   // Documents Equipment      1672482518
-        Hacks.WriteGA(262145 + 17452, isEnable ? 1 : 120000);                  // Cash Equipment
-        Hacks.WriteGA(262145 + 17453, isEnable ? 1 : 600000);                  // Cocaine Equipment
-        Hacks.WriteGA(262145 + 17454, isEnable ? 1 : 360000);                  // Meth Equipment
-        Hacks.WriteGA(262145 + 17455, isEnable ? 1 : 60000);                   // Weed Equipment
-        Hacks.WriteGA(262145 + 17456, isEnable ? 1 : 60000);                   // Documents Staff
-        Hacks.WriteGA(262145 + 17457, isEnable ? 1 : 120000);                  // Cash Staff
-        Hacks.WriteGA(262145 + 17458, isEnable ? 1 : 600000);                  // Cocaine Staff
-        Hacks.WriteGA(262145 + 17459, isEnable ? 1 : 360000);                  // Meth Staff
-        Hacks.WriteGA(262145 + 17460, isEnable ? 1 : 60000);                   // Weed Staff               1575359233
+        Hacks.WriteGA(262145 + 17451, isEnable ? 1 : 60000);                    // Documents Equipment      1672482518
+        Hacks.WriteGA(262145 + 17452, isEnable ? 1 : 120000);                   // Cash Equipment
+        Hacks.WriteGA(262145 + 17453, isEnable ? 1 : 600000);                   // Cocaine Equipment
+        Hacks.WriteGA(262145 + 17454, isEnable ? 1 : 360000);                   // Meth Equipment
+        Hacks.WriteGA(262145 + 17455, isEnable ? 1 : 60000);                    // Weed Equipment
+        Hacks.WriteGA(262145 + 17456, isEnable ? 1 : 60000);                    // Documents Staff
+        Hacks.WriteGA(262145 + 17457, isEnable ? 1 : 120000);                   // Cash Staff
+        Hacks.WriteGA(262145 + 17458, isEnable ? 1 : 600000);                   // Cocaine Staff
+        Hacks.WriteGA(262145 + 17459, isEnable ? 1 : 360000);                   // Meth Staff
+        Hacks.WriteGA(262145 + 17460, isEnable ? 1 : 60000);                    // Weed Staff               1575359233
     }
 
     /// <summary>
@@ -497,7 +497,7 @@ public static class Online
     /// <param name="isEnable"></param>
     public static void MCSupplyDelay(bool isEnable)
     {
-        Hacks.WriteGA(262145 + 18999, isEnable ? 0 : 600);           // 728170457  tuneables_processing.c
+        Hacks.WriteGA(262145 + 18999, isEnable ? 0 : 600);          // 728170457  tuneables_processing.c
     }
 
     /// <summary>
@@ -506,7 +506,7 @@ public static class Online
     /// <param name="isEnable"></param>
     public static void SetMCResupplyCosts(bool isEnable)
     {
-        Hacks.WriteGA(262145 + 18998, isEnable ? 200 : 15000);       // Discounted Resupply Cost, BIKER_PURCHASE_SUPPLIES_COST_PER_SEGMENT
+        Hacks.WriteGA(262145 + 18998, isEnable ? 200 : 15000);      // Discounted Resupply Cost, BIKER_PURCHASE_SUPPLIES_COST_PER_SEGMENT
     }
 
     /// <summary>

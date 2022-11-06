@@ -1,6 +1,5 @@
 ﻿using GTA5OnlineTools.Features.Core;
 using GTA5OnlineTools.Features.Client;
-using System.Numerics;
 
 namespace GTA5OnlineTools.Features.SDK;
 
@@ -147,8 +146,6 @@ public static class Vehicle
 
                 if (Memory.Read<int>(offset + 0xA7B78) != 0)
                     Memory.Write(offset + 0xA7B78, -1);
-
-                //Online.InstantBullShark(false);
             }
         });
     }
