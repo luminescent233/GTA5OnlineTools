@@ -9,14 +9,6 @@
     d:DesignWidth="1280"
     mc:Ignorable="d">
 
-    <UserControl.Resources>
-        <Style TargetType="{x:Type TextBlock}">
-            <Setter Property="Margin" Value="5" />
-            <Setter Property="HorizontalAlignment" Value="Right" />
-            <Setter Property="VerticalAlignment" Value="Center" />
-        </Style>
-    </UserControl.Resources>
-
     <TabControl Margin="5">
         <ui:UiTabItemEmoji Emoji="🐹" Header="赌场抢劫 - 前置任务">
             <Grid>
@@ -48,48 +40,53 @@
                 <!--  ##########  -->
                 <ScrollViewer Grid.Column="1" Margin="5">
                     <StackPanel Orientation="Vertical">
-                        <RadioButton
-                            x:Name="RadioButton_H3_P1"
-                            HorizontalAlignment="Center"
-                            Content="第一块面板"
-                            FontSize="18"
-                            FontWeight="Bold"
-                            GroupName="RadioButton_H3"
-                            IsChecked="True" />
+                        <Border>
+                            <Border.Style>
+                                <Style TargetType="{x:Type Border}">
+                                    <Setter Property="Margin" Value="5" />
+                                    <Setter Property="Padding" Value="5" />
+                                    <Setter Property="BorderThickness" Value="1" />
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ElementName=RadioButton_H3_P1, Path=IsChecked}" Value="True">
+                                            <Setter Property="Background" Value="#EEEEEE" />
+                                            <Setter Property="BorderBrush" Value="#0078D4" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Border.Style>
+                            <RadioButton
+                                x:Name="RadioButton_H3_P1"
+                                HorizontalAlignment="Center"
+                                Content="第一块面板"
+                                FontSize="18"
+                                FontWeight="Bold"
+                                GroupName="RadioButton_H3"
+                                IsChecked="True" />
+                        </Border>
 
                         <CheckBox
                             x:Name="CheckBox_H3OPT_BITSET1"
                             Content="重置第一块面板"
                             Foreground="Red" />
-                        <Expander
+                        <ComboBox
+                            x:Name="ListBox_H3OPT_APPROACH"
                             Margin="5"
-                            Header="抢劫方式"
-                            IsExpanded="False">
-                            <ListBox
-                                x:Name="ListBox_H3OPT_APPROACH"
-                                Margin="5"
-                                SelectedIndex="0">
-                                <ListBoxItem Content="不选择抢劫方式" Foreground="#FF6666" />
-                                <ListBoxItem Content="隐迹潜踪" />
-                                <ListBoxItem Content="兵不厌诈" />
-                                <ListBoxItem Content="气势汹汹" />
-                            </ListBox>
-                        </Expander>
-                        <Expander
+                            SelectedIndex="0">
+                            <ComboBoxItem Content="不选择抢劫方式" Foreground="#FF6666" />
+                            <ComboBoxItem Content="隐迹潜踪" />
+                            <ComboBoxItem Content="兵不厌诈" />
+                            <ComboBoxItem Content="气势汹汹" />
+                        </ComboBox>
+                        <ComboBox
+                            x:Name="ComboBoxItem_H3OPT_TARGET"
                             Margin="5"
-                            Header="抢劫物品"
-                            IsExpanded="False">
-                            <ListBox
-                                x:Name="ListBoxItem_H3OPT_TARGET"
-                                Margin="5"
-                                SelectedIndex="0">
-                                <ListBoxItem Content="不选择抢劫物品" Foreground="#FF6666" />
-                                <ListBoxItem Content="现金" />
-                                <ListBoxItem Content="黄金" />
-                                <ListBoxItem Content="艺术品" />
-                                <ListBoxItem Content="钻石" />
-                            </ListBox>
-                        </Expander>
+                            SelectedIndex="0">
+                            <ComboBoxItem Content="不选择抢劫物品" Foreground="#FF6666" />
+                            <ComboBoxItem Content="现金" />
+                            <ComboBoxItem Content="黄金" />
+                            <ComboBoxItem Content="艺术品" />
+                            <ComboBoxItem Content="钻石" />
+                        </ComboBox>
                         <CheckBox x:Name="CheckBox_H3OPT_ACCESSPOINTS" Content="解锁所有侦察点" />
                         <CheckBox x:Name="CheckBox_H3OPT_POI" Content="解锁所有兴趣点" />
                         <CheckBox x:Name="CheckBox_H3OPT_BITSET1_1" Content="提交修改到第一块面板" />
@@ -111,102 +108,92 @@
                 <!--  ##########  -->
                 <ScrollViewer Grid.Column="2" Margin="5">
                     <StackPanel Orientation="Vertical">
-                        <RadioButton
-                            x:Name="RadioButton_H3_P2"
-                            HorizontalAlignment="Center"
-                            Content="第二块面板"
-                            FontSize="18"
-                            FontWeight="Bold"
-                            GroupName="RadioButton_H3" />
+                        <Border>
+                            <Border.Style>
+                                <Style TargetType="{x:Type Border}">
+                                    <Setter Property="Margin" Value="5" />
+                                    <Setter Property="Padding" Value="5" />
+                                    <Setter Property="BorderThickness" Value="1" />
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ElementName=RadioButton_H3_P2, Path=IsChecked}" Value="True">
+                                            <Setter Property="Background" Value="#EEEEEE" />
+                                            <Setter Property="BorderBrush" Value="#0078D4" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Border.Style>
+                            <RadioButton
+                                x:Name="RadioButton_H3_P2"
+                                HorizontalAlignment="Center"
+                                Content="第二块面板"
+                                FontSize="18"
+                                FontWeight="Bold"
+                                GroupName="RadioButton_H3" />
+                        </Border>
 
                         <CheckBox
                             x:Name="CheckBox_H3OPT_BITSET0"
                             Content="重置第二块面板"
                             Foreground="Red" />
-                        <Expander
+                        <ComboBox
+                            x:Name="ComboBox_H3OPT_VEH"
                             Margin="5"
-                            Header="逃亡载具"
-                            IsExpanded="False">
-                            <ListBox
-                                x:Name="ListBoxItem_H3OPT_VEH"
-                                Margin="5"
-                                SelectedIndex="0">
-                                <ListBoxItem Content="不选择逃亡载具" Foreground="#FF6666" />
-                                <ListBoxItem Content="载具类型一" />
-                                <ListBoxItem Content="载具类型二" />
-                                <ListBoxItem Content="载具类型三" />
-                                <ListBoxItem Content="载具类型四" />
-                            </ListBox>
-                        </Expander>
-                        <Expander
+                            SelectedIndex="0">
+                            <ComboBoxItem Content="不选择逃亡载具" Foreground="#FF6666" />
+                            <ComboBoxItem Content="载具类型一" />
+                            <ComboBoxItem Content="载具类型二" />
+                            <ComboBoxItem Content="载具类型三" />
+                            <ComboBoxItem Content="载具类型四" />
+                        </ComboBox>
+                        <ComboBox
+                            x:Name="ComboBoxItem_H3OPT_WEAPS"
                             Margin="5"
-                            Header="武器类型"
-                            IsExpanded="False">
-                            <ListBox
-                                x:Name="ListBoxItem_H3OPT_WEAPS"
-                                Margin="5"
-                                SelectedIndex="0">
-                                <ListBoxItem Content="不选择武器类型" Foreground="#FF6666" />
-                                <ListBoxItem Content="武器类型一" />
-                                <ListBoxItem Content="武器类型二" />
-                                <ListBoxItem Content="武器类型三" />
-                                <ListBoxItem Content="武器类型四" />
-                                <ListBoxItem Content="武器类型五" />
-                            </ListBox>
-                        </Expander>
+                            SelectedIndex="0">
+                            <ComboBoxItem Content="不选择武器类型" Foreground="#FF6666" />
+                            <ComboBoxItem Content="武器类型一" />
+                            <ComboBoxItem Content="武器类型二" />
+                            <ComboBoxItem Content="武器类型三" />
+                            <ComboBoxItem Content="武器类型四" />
+                            <ComboBoxItem Content="武器类型五" />
+                        </ComboBox>
                         <CheckBox x:Name="CheckBox_H3OPT_DISRUPTSHIP" Content="撤走重型武装警卫" />
                         <CheckBox x:Name="CheckBox_H3OPT_KEYLEVELS" Content="获得二级门禁卡" />
-                        <Expander
+                        <ComboBox
+                            x:Name="ComboBoxItem_H3OPT_CREWWEAP"
                             Margin="5"
-                            Header="枪手等级"
-                            IsExpanded="False">
-                            <ListBox
-                                x:Name="ListBoxItem_H3OPT_CREWWEAP"
-                                Margin="5"
-                                SelectedIndex="0">
-                                <ListBoxItem Content="不选择枪手" Foreground="#FF6666" />
-                                <ListBoxItem Content="卡尔·阿不拉季（5％分红）" />
-                                <ListBoxItem Content="古斯塔沃·莫塔（9％分红）" />
-                                <ListBoxItem Content="查理·里德（7％分红）" />
-                                <ListBoxItem Content="切斯特·麦考伊（10％分红）" />
-                                <ListBoxItem Content="帕里克·麦克瑞利（8％分红）" />
-                                <ListBoxItem Content="枪手零分红" />
-                            </ListBox>
-                        </Expander>
-                        <Expander
+                            SelectedIndex="0">
+                            <ComboBoxItem Content="不选择枪手" Foreground="#FF6666" />
+                            <ComboBoxItem Content="卡尔·阿不拉季（5％分红）" />
+                            <ComboBoxItem Content="古斯塔沃·莫塔（9％分红）" />
+                            <ComboBoxItem Content="查理·里德（7％分红）" />
+                            <ComboBoxItem Content="切斯特·麦考伊（10％分红）" />
+                            <ComboBoxItem Content="帕里克·麦克瑞利（8％分红）" />
+                            <ComboBoxItem Content="枪手零分红" />
+                        </ComboBox>
+                        <ComboBox
+                            x:Name="ComboBoxItem_H3OPT_CREWDRIVER"
                             Margin="5"
-                            Header="车手等级"
-                            IsExpanded="False">
-                            <ListBox
-                                x:Name="ListBoxItem_H3OPT_CREWDRIVER"
-                                Margin="5"
-                                SelectedIndex="0">
-                                <ListBoxItem Content="不选择车手" Foreground="#FF6666" />
-                                <ListBoxItem Content="卡里姆·登茨（5％分红）" />
-                                <ListBoxItem Content="塔丽娜·马丁内斯（7％分红）" />
-                                <ListBoxItem Content="淘艾迪（9％分红）" />
-                                <ListBoxItem Content="扎克·尼尔森（6％分红）" />
-                                <ListBoxItem Content="切斯特·麦考伊（10％分红）" />
-                                <ListBoxItem Content="车手零分红" />
-                            </ListBox>
-                        </Expander>
-                        <Expander
+                            SelectedIndex="0">
+                            <ComboBoxItem Content="不选择车手" Foreground="#FF6666" />
+                            <ComboBoxItem Content="卡里姆·登茨（5％分红）" />
+                            <ComboBoxItem Content="塔丽娜·马丁内斯（7％分红）" />
+                            <ComboBoxItem Content="淘艾迪（9％分红）" />
+                            <ComboBoxItem Content="扎克·尼尔森（6％分红）" />
+                            <ComboBoxItem Content="切斯特·麦考伊（10％分红）" />
+                            <ComboBoxItem Content="车手零分红" />
+                        </ComboBox>
+                        <ComboBox
+                            x:Name="ComboBoxItem_H3OPT_CREWHACKER"
                             Margin="5"
-                            Header="黑客等级"
-                            IsExpanded="False">
-                            <ListBox
-                                x:Name="ListBoxItem_H3OPT_CREWHACKER"
-                                Margin="5"
-                                SelectedIndex="0">
-                                <ListBoxItem Content="不选择黑客" Foreground="#FF6666" />
-                                <ListBoxItem Content="里奇·卢肯斯（3％分红）" />
-                                <ListBoxItem Content="克里斯汀·费尔兹（7％分红）" />
-                                <ListBoxItem Content="尤汗·布莱尔（5％分红）" />
-                                <ListBoxItem Content="阿维·施瓦茨曼（10％分红）" />
-                                <ListBoxItem Content="佩奇·哈里斯（9％分红）" />
-                                <ListBoxItem Content="黑客零分红" />
-                            </ListBox>
-                        </Expander>
+                            SelectedIndex="0">
+                            <ComboBoxItem Content="不选择黑客" Foreground="#FF6666" />
+                            <ComboBoxItem Content="里奇·卢肯斯（3％分红）" />
+                            <ComboBoxItem Content="克里斯汀·费尔兹（7％分红）" />
+                            <ComboBoxItem Content="尤汗·布莱尔（5％分红）" />
+                            <ComboBoxItem Content="阿维·施瓦茨曼（10％分红）" />
+                            <ComboBoxItem Content="佩奇·哈里斯（9％分红）" />
+                            <ComboBoxItem Content="黑客零分红" />
+                        </ComboBox>
                         <CheckBox x:Name="CheckBox_H3OPT_BITSET0_0" Content="提交修改到第二块面板" />
                     </StackPanel>
                 </ScrollViewer>
@@ -231,6 +218,13 @@
                 </Border>
                 <!--  ##########  -->
                 <UniformGrid Columns="4">
+                    <UniformGrid.Resources>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="Margin" Value="5" />
+                            <Setter Property="HorizontalAlignment" Value="Right" />
+                            <Setter Property="VerticalAlignment" Value="Center" />
+                        </Style>
+                    </UniformGrid.Resources>
                     <StackPanel Margin="5">
                         <TextBlock Style="{StaticResource TextBlockStyle_Title}" Text="分红比例" />
                         <UniformGrid Columns="2">

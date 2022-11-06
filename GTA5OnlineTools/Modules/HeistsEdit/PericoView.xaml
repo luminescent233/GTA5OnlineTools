@@ -3,20 +3,11 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:emoji="clr-namespace:Emoji.Wpf;assembly=Emoji.Wpf"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ui="http://crazyzhang.cn/ui/2022/xaml"
     d:DesignHeight="720"
     d:DesignWidth="1280"
     mc:Ignorable="d">
-
-    <UserControl.Resources>
-        <Style TargetType="{x:Type TextBlock}">
-            <Setter Property="Margin" Value="5" />
-            <Setter Property="HorizontalAlignment" Value="Right" />
-            <Setter Property="VerticalAlignment" Value="Center" />
-        </Style>
-    </UserControl.Resources>
 
     <TabControl Margin="5">
         <ui:UiTabItemEmoji Emoji="🐶" Header="佩里克岛 - 前置任务">
@@ -49,114 +40,101 @@
                 <!--  ##########  -->
                 <ScrollViewer Grid.Column="1" Margin="5">
                     <StackPanel>
-                        <RadioButton
-                            x:Name="RadioButton_H4CNF_P1"
-                            HorizontalAlignment="Center"
-                            Content="前置任务"
-                            FontSize="18"
-                            FontWeight="Bold"
-                            GroupName="RadioButton_H4CNF"
-                            IsChecked="True" />
+                        <Border>
+                            <Border.Style>
+                                <Style TargetType="{x:Type Border}">
+                                    <Setter Property="Margin" Value="5" />
+                                    <Setter Property="Padding" Value="5" />
+                                    <Setter Property="BorderThickness" Value="1" />
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ElementName=RadioButton_H4CNF_P1, Path=IsChecked}" Value="True">
+                                            <Setter Property="Background" Value="#EEEEEE" />
+                                            <Setter Property="BorderBrush" Value="#0078D4" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Border.Style>
+                            <RadioButton
+                                x:Name="RadioButton_H4CNF_P1"
+                                HorizontalAlignment="Center"
+                                Content="前置任务"
+                                FontSize="18"
+                                FontWeight="Bold"
+                                GroupName="RadioButton_H4CNF"
+                                IsChecked="True" />
+                        </Border>
 
                         <CheckBox x:Name="CheckBox_H4CNF_BS_GEN" Content="解锁所有兴趣点" />
                         <CheckBox x:Name="CheckBox_H4CNF_BS_ENTR" Content="解锁所有入侵点" />
                         <CheckBox x:Name="CheckBox_H4CNF_BS_ABIL" Content="解锁团队支持" />
                         <CheckBox x:Name="CheckBox_H4CNF_APPROACH" Content="解锁所有逃离点" />
 
-                        <Expander
+                        <ComboBox
+                            x:Name="ComboBox_H4_PROGRESS"
                             Margin="5"
-                            Header="任务难度"
-                            IsExpanded="False">
-                            <ListBox
-                                x:Name="ListBoxItem_H4_PROGRESS"
-                                Margin="5"
-                                SelectedIndex="0">
-                                <ListBoxItem Content="未选择" Foreground="#FF6666" />
-                                <ListBoxItem Content="普通模式" />
-                                <ListBoxItem Content="困难模式" />
-                            </ListBox>
-                        </Expander>
+                            SelectedIndex="0">
+                            <ComboBoxItem Content="任务难度 - 未选择" Foreground="#FF6666" />
+                            <ComboBoxItem Content="普通模式" />
+                            <ComboBoxItem Content="困难模式" />
+                        </ComboBox>
 
-                        <Expander
+                        <ComboBox
+                            x:Name="ComboBox_H4CNF_TARGET"
                             Margin="5"
-                            Header="主要目标"
-                            IsExpanded="False">
-                            <ListBox
-                                x:Name="ListBoxItem_H4CNF_TARGET"
-                                Margin="5"
-                                SelectedIndex="0">
-                                <ListBoxItem Content="未选择" Foreground="#FF6666" />
-                                <ListBoxItem Content="西西米托龙舌兰" />
-                                <ListBoxItem Content="红宝石项链" />
-                                <ListBoxItem Content="不记名债券" />
-                                <ListBoxItem Content="粉钻" />
-                                <ListBoxItem Content="玛德拉索文件" />
-                                <ListBoxItem Content="猎豹雕像" />
-                            </ListBox>
-                        </Expander>
+                            SelectedIndex="0">
+                            <ComboBoxItem Content="主要目标 - 未选择" Foreground="#FF6666" />
+                            <ComboBoxItem Content="西西米托龙舌兰" />
+                            <ComboBoxItem Content="红宝石项链" />
+                            <ComboBoxItem Content="不记名债券" />
+                            <ComboBoxItem Content="粉钻" />
+                            <ComboBoxItem Content="玛德拉索文件" />
+                            <ComboBoxItem Content="猎豹雕像" />
+                        </ComboBox>
 
-                        <Expander
-                            x:Name="Expander_H4LOOT"
+                        <CheckBox x:Name="CheckBox_H4LOOT_Random" Content="随机次要目标" />
+                        <ComboBox
+                            x:Name="ComboBox_H4LOOT"
                             Margin="5"
-                            Header="次要目标"
-                            IsExpanded="False">
-                            <StackPanel Margin="5">
-                                <CheckBox x:Name="CheckBox_H4LOOT_Random" Content="随机次要目标" />
-                                <ListBox
-                                    x:Name="ListBoxItem_H4LOOT"
-                                    Margin="5"
-                                    SelectedIndex="0">
-                                    <ListBoxItem Content="未选择" Foreground="#FF6666" />
-                                    <ListBoxItem Content="已发现/侦察 现金（室内/室外）" />
-                                    <ListBoxItem Content="已发现/侦察 大麻（室内/室外）" />
-                                    <ListBoxItem Content="已发现/侦察 可可（室内/室外）" />
-                                    <ListBoxItem Content="已发现/侦察 黄金（室内/室外）" />
-                                </ListBox>
-                                <ListBox
-                                    x:Name="ListBoxItem_H4LOOT_PAINT"
-                                    Margin="5"
-                                    SelectedIndex="0">
-                                    <ListBoxItem Content="未选择" Foreground="#FF6666" />
-                                    <ListBoxItem Content="已发现/侦察 画作（室内/室外）" />
-                                </ListBox>
-                            </StackPanel>
-                        </Expander>
+                            SelectedIndex="0">
+                            <ComboBoxItem Content="次要目标 - 未选择" Foreground="#FF6666" />
+                            <ComboBoxItem Content="已发现/侦察 现金（室内/室外）" />
+                            <ComboBoxItem Content="已发现/侦察 大麻（室内/室外）" />
+                            <ComboBoxItem Content="已发现/侦察 可可（室内/室外）" />
+                            <ComboBoxItem Content="已发现/侦察 黄金（室内/室外）" />
+                        </ComboBox>
+                        <ComboBox
+                            x:Name="ComboBox_H4LOOT_PAINT"
+                            Margin="5"
+                            SelectedIndex="0">
+                            <ComboBoxItem Content="次要目标（画作） - 未选择" Foreground="#FF6666" />
+                            <ComboBoxItem Content="已发现/侦察 画作（室内/室外）" />
+                        </ComboBox>
 
-                        <Expander
+                        <ComboBox
+                            x:Name="ComboBox_H4_MISSIONS"
                             Margin="5"
-                            Header="接近载具"
-                            IsExpanded="False">
-                            <ListBox
-                                x:Name="ListBoxItem_H4_MISSIONS"
-                                Margin="5"
-                                SelectedIndex="0">
-                                <ListBoxItem Content="未选择" Foreground="#FF6666" />
-                                <ListBoxItem Content="潜水艇：虎鲸" />
-                                <ListBoxItem Content="飞机：阿尔科诺斯特" />
-                                <ListBoxItem Content="飞机：梅杜莎" />
-                                <ListBoxItem Content="直升机：隐形歼灭者" />
-                                <ListBoxItem Content="船只：巡逻艇" />
-                                <ListBoxItem Content="船只：长鳍" />
-                                <ListBoxItem Content="全部载具可用" />
-                            </ListBox>
-                        </Expander>
+                            SelectedIndex="0">
+                            <ComboBoxItem Content="接近载具 - 未选择" Foreground="#FF6666" />
+                            <ComboBoxItem Content="潜水艇：虎鲸" />
+                            <ComboBoxItem Content="飞机：阿尔科诺斯特" />
+                            <ComboBoxItem Content="飞机：梅杜莎" />
+                            <ComboBoxItem Content="直升机：隐形歼灭者" />
+                            <ComboBoxItem Content="船只：巡逻艇" />
+                            <ComboBoxItem Content="船只：长鳍" />
+                            <ComboBoxItem Content="全部载具可用" />
+                        </ComboBox>
 
-                        <Expander
+                        <ComboBox
+                            x:Name="ComboBox_H4CNF_WEAPONS"
                             Margin="5"
-                            Header="武器装备"
-                            IsExpanded="False">
-                            <ListBox
-                                x:Name="ListBoxItem_H4CNF_WEAPONS"
-                                Margin="5"
-                                SelectedIndex="0">
-                                <ListBoxItem Content="未选择" Foreground="#FF6666" />
-                                <ListBoxItem Content="侵略者（连发散弹，连发手枪，手雷，砍刀）" />
-                                <ListBoxItem Content="阴谋者（军用步枪，单发手枪，粘弹，指虎）" />
-                                <ListBoxItem Content="神枪手（轻狙，连发手枪，燃烧瓶，小刀）" />
-                                <ListBoxItem Content="破坏者（MK2冲锋枪，单发手枪，土质炸弹，小刀）" />
-                                <ListBoxItem Content="神射手（MK2突击步枪，单发手枪，土质炸弹，砍刀）" />
-                            </ListBox>
-                        </Expander>
+                            SelectedIndex="0">
+                            <ComboBoxItem Content="武器装备 - 未选择" Foreground="#FF6666" />
+                            <ComboBoxItem Content="侵略者（连发散弹，连发手枪，手雷，砍刀）" />
+                            <ComboBoxItem Content="阴谋者（军用步枪，单发手枪，粘弹，指虎）" />
+                            <ComboBoxItem Content="神枪手（轻狙，连发手枪，燃烧瓶，小刀）" />
+                            <ComboBoxItem Content="破坏者（MK2冲锋枪，单发手枪，土质炸弹，小刀）" />
+                            <ComboBoxItem Content="神射手（MK2突击步枪，单发手枪，土质炸弹，砍刀）" />
+                        </ComboBox>
 
                         <Expander
                             Margin="5"
@@ -180,22 +158,17 @@
                             </StackPanel>
                         </Expander>
 
-                        <Expander
+                        <ComboBox
+                            x:Name="ComboBox_H4CNF_TROJAN"
                             Margin="5"
-                            Header="运货卡车位置"
-                            IsExpanded="False">
-                            <ListBox
-                                x:Name="ListBoxItem_H4CNF_TROJAN"
-                                Margin="5"
-                                SelectedIndex="0">
-                                <ListBoxItem Content="未选择" Foreground="#FF6666" />
-                                <ListBoxItem Content="机场" />
-                                <ListBoxItem Content="北船坞" />
-                                <ListBoxItem Content="主码头-东" />
-                                <ListBoxItem Content="主码头-西" />
-                                <ListBoxItem Content="混合粉" />
-                            </ListBox>
-                        </Expander>
+                            SelectedIndex="0">
+                            <ComboBoxItem Content="运货卡车位置 - 未选择" Foreground="#FF6666" />
+                            <ComboBoxItem Content="机场" />
+                            <ComboBoxItem Content="北船坞" />
+                            <ComboBoxItem Content="主码头-东" />
+                            <ComboBoxItem Content="主码头-西" />
+                            <ComboBoxItem Content="混合粉" />
+                        </ComboBox>
 
                         <CheckBox x:Name="CheckBox_H4_PLAYTHROUGH_STATUS" Content="任务通过状态（最后勾选我）" />
                     </StackPanel>
@@ -203,13 +176,28 @@
                 <!--  ##########  -->
                 <ScrollViewer Grid.Column="2" Margin="5">
                     <StackPanel Orientation="Vertical">
-                        <RadioButton
-                            x:Name="RadioButton_H4CNF_P2"
-                            HorizontalAlignment="Center"
-                            Content="高级"
-                            FontSize="18"
-                            FontWeight="Bold"
-                            GroupName="RadioButton_H4CNF" />
+                        <Border>
+                            <Border.Style>
+                                <Style TargetType="{x:Type Border}">
+                                    <Setter Property="Margin" Value="5" />
+                                    <Setter Property="Padding" Value="5" />
+                                    <Setter Property="BorderThickness" Value="1" />
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ElementName=RadioButton_H4CNF_P2, Path=IsChecked}" Value="True">
+                                            <Setter Property="Background" Value="#EEEEEE" />
+                                            <Setter Property="BorderBrush" Value="#0078D4" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Border.Style>
+                            <RadioButton
+                                x:Name="RadioButton_H4CNF_P2"
+                                HorizontalAlignment="Center"
+                                Content="高级"
+                                FontSize="18"
+                                FontWeight="Bold"
+                                GroupName="RadioButton_H4CNF" />
+                        </Border>
 
                         <CheckBox x:Name="CheckBox_ResetEverything" Content="重置海岛面板" />
                         <CheckBox x:Name="CheckBox_H4_COOLDOWN" Content="解除普通模式冷却时间" />
@@ -243,15 +231,16 @@
                                         我们跑到直升机那里等待GTAhax导入完毕，然后回来海岛面板就已经重置了</TextBlock>
                                 </TextBlock.ToolTip>
                             </TextBlock>
-                            <TextBlock
-                                Margin="5"
-                                VerticalAlignment="Center"
-                                ToolTip="网站基于GitHub，如果你无法访问GitHub请尝试使用 Steam++ 加速">
-                                <Hyperlink NavigateUri="https://beholdmystuff.github.io/heist-stat.txt-maker/" RequestNavigate="Hyperlink_RequestNavigate">
-                                    代码自定义（Web网页）
-                                </Hyperlink>
-                            </TextBlock>
                         </WrapPanel>
+
+                        <TextBlock
+                            Margin="5"
+                            VerticalAlignment="Center"
+                            ToolTip="网站基于GitHub，如果你无法访问GitHub请尝试使用 Steam++ 加速">
+                            <Hyperlink NavigateUri="https://beholdmystuff.github.io/heist-stat.txt-maker/" RequestNavigate="Hyperlink_RequestNavigate">
+                                代码自定义（Web网页）
+                            </Hyperlink>
+                        </TextBlock>
                     </StackPanel>
                 </ScrollViewer>
             </Grid>
@@ -275,6 +264,13 @@
                 </Border>
                 <!--  ##########  -->
                 <UniformGrid Columns="4">
+                    <UniformGrid.Resources>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="Margin" Value="5" />
+                            <Setter Property="HorizontalAlignment" Value="Right" />
+                            <Setter Property="VerticalAlignment" Value="Center" />
+                        </Style>
+                    </UniformGrid.Resources>
                     <StackPanel Margin="5">
                         <TextBlock Style="{StaticResource TextBlockStyle_Title}" Text="分红比例" />
                         <UniformGrid Columns="2">

@@ -9,14 +9,6 @@
     d:DesignWidth="1280"
     mc:Ignorable="d">
 
-    <UserControl.Resources>
-        <Style TargetType="{x:Type TextBlock}">
-            <Setter Property="Margin" Value="5" />
-            <Setter Property="HorizontalAlignment" Value="Right" />
-            <Setter Property="VerticalAlignment" Value="Center" />
-        </Style>
-    </UserControl.Resources>
-
     <TabControl Margin="5">
         <ui:UiTabItemEmoji Emoji="🐰" Header="公寓抢劫 - 前置任务" />
         <!--  ##############################  -->
@@ -38,6 +30,13 @@
                 </Border>
                 <!--  ##########  -->
                 <UniformGrid Columns="4">
+                    <UniformGrid.Resources>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="Margin" Value="5" />
+                            <Setter Property="HorizontalAlignment" Value="Right" />
+                            <Setter Property="VerticalAlignment" Value="Center" />
+                        </Style>
+                    </UniformGrid.Resources>
                     <StackPanel Margin="5">
                         <TextBlock Style="{StaticResource TextBlockStyle_Title}" Text="分红比例" />
                         <UniformGrid Columns="2">
