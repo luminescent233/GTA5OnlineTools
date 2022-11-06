@@ -40,7 +40,7 @@
             Command="{Binding ModelsClickCommand}"
             CommandParameter="OutfitsEdit"
             Content="角色服装编辑器"
-            Icon="&#xe691;"
+            Icon="&#xe8c7;"
             Style="{StaticResource ButtonStyle_FuncModule}" />
 
         <ui:UiButtonIcon
@@ -48,15 +48,7 @@
             Command="{Binding ModelsClickCommand}"
             CommandParameter="StatScripts"
             Content="STAT自动化脚本"
-            Icon="&#xe691;"
-            Style="{StaticResource ButtonStyle_FuncModule}" />
-
-        <ui:UiButtonIcon
-            Title="Heist Preps Edit"
-            Command="{Binding ModelsClickCommand}"
-            CommandParameter="HeistPreps"
-            Content="抢劫前置任务编辑器"
-            Icon="&#xe691;"
+            Icon="&#xe636;"
             Style="{StaticResource ButtonStyle_FuncModule}" />
 
         <ui:UiButtonIcon
@@ -64,7 +56,7 @@
             Command="{Binding ModelsClickCommand}"
             CommandParameter="CasinoHack"
             Content="赌场黑客"
-            Icon="&#xe691;"
+            Icon="&#xe811;"
             Style="{StaticResource ButtonStyle_FuncModule}" />
 
         <ui:UiButtonIcon
@@ -72,7 +64,7 @@
             Command="{Binding ModelsClickCommand}"
             CommandParameter="SpeedMeter"
             Content="车速表"
-            Icon="&#xe691;"
+            Icon="&#xeab4;"
             Style="{StaticResource ButtonStyle_FuncModule}" />
 
     </WrapPanel>

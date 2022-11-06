@@ -17,7 +17,6 @@ public partial class ModulesView : UserControl
 
     private OutfitsEditWindow OutfitsEditWindow = null;
     private StatScriptsWindow StatScriptsWindow = null;
-    private HeistPrepsWindow HeistPrepsWindow = null;
     private CasinoHackWindow CasinoHackWindow = null;
     private SpeedMeterWindow SpeedMeterWindow = null;
 
@@ -60,9 +59,6 @@ public partial class ModulesView : UserControl
                     break;
                 case "StatScripts":
                     StatScriptsClick();
-                    break;
-                case "HeistPreps":
-                    HeistPrepsClick();
                     break;
                 case "CasinoHack":
                     CasinoHackClick();
@@ -203,30 +199,6 @@ public partial class ModulesView : UserControl
         }
     }
 
-    private void HeistPrepsClick()
-    {
-        if (HeistPrepsWindow == null)
-        {
-            HeistPrepsWindow = new HeistPrepsWindow();
-            HeistPrepsWindow.Show();
-        }
-        else
-        {
-            if (HeistPrepsWindow.IsVisible)
-            {
-                HeistPrepsWindow.Topmost = true;
-                HeistPrepsWindow.Topmost = false;
-                HeistPrepsWindow.WindowState = WindowState.Normal;
-            }
-            else
-            {
-                HeistPrepsWindow = null;
-                HeistPrepsWindow = new HeistPrepsWindow();
-                HeistPrepsWindow.Show();
-            }
-        }
-    }
-
     private void CasinoHackClick()
     {
         if (CasinoHackWindow == null)
@@ -313,12 +285,6 @@ public partial class ModulesView : UserControl
             {
                 StatScriptsWindow.Close();
                 StatScriptsWindow = null;
-            }
-
-            if (HeistPrepsWindow != null)
-            {
-                HeistPrepsWindow.Close();
-                HeistPrepsWindow = null;
             }
 
             if (CasinoHackWindow != null)

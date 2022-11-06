@@ -14,6 +14,7 @@ public partial class ApartmentView : UserControl
         InitializeComponent();
     }
 
+    #region 公寓抢劫 - 分红数据
     private void Button_Read_Click(object sender, RoutedEventArgs e)
     {
         AudioUtil.PlayClickSound();
@@ -63,4 +64,23 @@ public partial class ApartmentView : UserControl
             NotifierHelper.Show(NotifierType.Warning, "部分数据为空，请检查后重新写入");
         }
     }
+    #endregion
+
+    #region 公寓抢劫 - 高级
+    private void WriteStatWithDelay(string hash, int value)
+    {
+        Task.Run(() =>
+        {
+            Hacks.WriteStat(hash, value);
+            Task.Delay(1000).Wait();
+        });
+    }
+
+    ////////////////////////////////////////////////////
+
+    private void Button_HEIST_PLANNING_STAGE_Click(object sender, RoutedEventArgs e)
+    {
+        WriteStatWithDelay("_HEIST_PLANNING_STAGE", -1);
+    }
+    #endregion
 }

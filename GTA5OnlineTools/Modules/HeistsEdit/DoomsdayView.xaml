@@ -66,6 +66,66 @@
                 </UniformGrid>
             </StackPanel>
         </ui:UiTabItemEmoji>
+        <!--  ##############################  -->
+        <ui:UiTabItemEmoji Emoji="🐱" Header="末日抢劫 - 高级">
+            <UniformGrid Columns="3">
+                <StackPanel Margin="5">
+                    <TextBlock Style="{StaticResource TextBlockStyle_Title}" Text="跳过前置" />
+                    <Button
+                        x:Name="Button_GANGOPS_FLOW_MISSION_PROG_1"
+                        Click="Button_GANGOPS_FLOW_MISSION_PROG_1_Click"
+                        Content="跳过末日前置及准备任务" />
+
+                    <TextBlock />
+                    <Button
+                        x:Name="Button_GANGOPS_FLOW_MISSION_PROG_503"
+                        Click="Button_GANGOPS_FLOW_MISSION_PROG_503_Click"
+                        Content="进入末日一分红关" />
+                    <Button
+                        x:Name="Button_GANGOPS_FLOW_MISSION_PROG_240"
+                        Click="Button_GANGOPS_FLOW_MISSION_PROG_240_Click"
+                        Content="进入末日二分红关" />
+                    <Button
+                        x:Name="Button_GANGOPS_FLOW_MISSION_PROG_16368"
+                        Click="Button_GANGOPS_FLOW_MISSION_PROG_16368_Click"
+                        Content="进入末日三分红关" />
+
+                    <TextBlock />
+                    <TextBlock Style="{StaticResource TextBlockStyle_Hint}">
+                        提示：按M键-设施管理-抢劫任务策划大屏-关闭/开启一次，用来刷新策划大屏，这样我们才能看到修改后的结果
+                    </TextBlock>
+
+                </StackPanel>
+
+                <StackPanel Margin="0,5,5,5">
+                    <TextBlock Style="{StaticResource TextBlockStyle_Title}" Text="高级" />
+                    <Button
+                        x:Name="Button_GANGOPS_FLOW_NOTIFICATIONS"
+                        Click="Button_GANGOPS_FLOW_NOTIFICATIONS_Click"
+                        Content="解锁重玩末日豪劫" />
+                    <Button
+                        x:Name="Button_GANGOPS_HEIST_STATUS"
+                        Click="Button_GANGOPS_HEIST_STATUS_Click"
+                        Content="重置末日一二三任务" />
+
+                    <TextBlock />
+
+                    <Button
+                        x:Name="Button_HEISTCOOLDOWNTIMER0"
+                        Click="Button_HEISTCOOLDOWNTIMER0_Click"
+                        Content="重置末日一冷却" />
+                    <Button
+                        x:Name="Button_HEISTCOOLDOWNTIMER1"
+                        Click="Button_HEISTCOOLDOWNTIMER1_Click"
+                        Content="重置末日二冷却" />
+                    <Button
+                        x:Name="Button_HEISTCOOLDOWNTIMER2"
+                        Click="Button_HEISTCOOLDOWNTIMER2_Click"
+                        Content="重置末日三冷却" />
+
+                </StackPanel>
+            </UniformGrid>
+        </ui:UiTabItemEmoji>
     </TabControl>
 
 </UserControl>

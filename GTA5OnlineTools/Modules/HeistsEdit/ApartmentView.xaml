@@ -69,6 +69,23 @@
                 </UniformGrid>
             </StackPanel>
         </ui:UiTabItemEmoji>
+        <!--  ##############################  -->
+        <ui:UiTabItemEmoji Emoji="🍉" Header="公寓抢劫 - 高级">
+            <UniformGrid Columns="3">
+                <StackPanel Margin="5">
+                    <TextBlock Style="{StaticResource TextBlockStyle_Title}" Text="跳过前置" />
+                    <Button
+                        x:Name="Button_HEIST_PLANNING_STAGE"
+                        Click="Button_HEIST_PLANNING_STAGE_Click"
+                        Content="直接进入分红关" />
+
+                    <TextBlock />
+                    <TextBlock Style="{StaticResource TextBlockStyle_Hint}">
+                        提示：组好人看动画过程中执行
+                    </TextBlock>
+                </StackPanel>
+            </UniformGrid>
+        </ui:UiTabItemEmoji>
     </TabControl>
 
 </UserControl>

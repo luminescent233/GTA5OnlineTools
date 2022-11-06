@@ -21,11 +21,13 @@
                     <WrapPanel DockPanel.Dock="Bottom">
                         <ui:UiButtonEmoji
                             x:Name="Button_BuildGTAHax"
+                            Margin="5,5,2,5"
                             Click="Button_BuildGTAHax_Click"
                             Content="生成GTAHax代码"
                             Emoji="🖨" />
                         <ui:UiButtonEmoji
                             x:Name="Button_ImportGTAHax"
+                            Margin="2,5,5,5"
                             Click="Button_ImportGTAHax_Click"
                             Content="批量导入GTAHax"
                             Emoji="📡" />
