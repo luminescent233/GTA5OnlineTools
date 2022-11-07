@@ -10,7 +10,14 @@
     mc:Ignorable="d">
 
     <TabControl Margin="5">
-        <ui:UiTabItemEmoji Emoji="🐰" Header="公寓抢劫 - 前置任务" />
+        <ui:UiTabItemEmoji Emoji="🐰" Header="公寓抢劫 - 前置任务">
+            <TextBlock
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                FontSize="36"
+                FontWeight="Bold"
+                Text="功能开发中..." />
+        </ui:UiTabItemEmoji>
         <!--  ##############################  -->
         <ui:UiTabItemEmoji Emoji="🐰" Header="公寓抢劫 - 分红数据">
             <StackPanel>
