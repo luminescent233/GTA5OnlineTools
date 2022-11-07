@@ -8,8 +8,8 @@ body:
   - type: input
     id: version
     attributes:
-      label: 小助手版本号
-      description: 请填写发生问题的小助手版本号
+      label: 助手版本
+      description: 请填写发生问题的GTA5线上小助手版本号
       placeholder: 如：3.0.7.0
     validations:
       required: true
