@@ -33,6 +33,15 @@ body:
       required: true
 
   - type: input
+    id: antivirus
+    attributes:
+      label: 杀毒软件
+      description: 电脑中是否正在运行杀毒程序，运行的有哪些？
+      placeholder: 比如：windows安全中心、联想电脑管家、360卫士，卡巴斯基等
+    validations:
+      required: true
+
+  - type: input
     id: function
     attributes:
       label: 具体功能
