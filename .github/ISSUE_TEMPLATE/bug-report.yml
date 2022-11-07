@@ -8,8 +8,8 @@ body:
   - type: input
     id: version
     attributes:
-      label: 小助手版本号
-      description: 请填写发生问题的小助手版本号
+      label: 助手版本
+      description: 请填写发生问题的GTA5线上小助手版本号
       placeholder: 如：3.0.7.0
     validations:
       required: true
@@ -29,6 +29,15 @@ body:
       label: 玩家数量
       description: 发生问题时你的战局玩家数量
       placeholder: 单人就填写1，联机任务填写玩家数量
+    validations:
+      required: true
+
+  - type: input
+    id: antivirus
+    attributes:
+      label: 杀毒软件
+      description: 电脑中是否正在运行杀毒程序，运行的有哪些？
+      placeholder: 比如：windows安全中心、联想电脑管家、360卫士，卡巴斯基等
     validations:
       required: true
 
