@@ -7,11 +7,12 @@
     xmlns:ui="http://crazyzhang.cn/ui/2022/xaml"
     x:Name="Window_KiddionLua"
     Title="GTA5线上小助手 - Kiddion Lua生成工具"
-    Width="1000"
-    Height="600"
+    Width="1280"
+    Height="720"
+    MinWidth="1280"
+    MinHeight="720"
     Closing="Window_KiddionLua_Closing"
     Loaded="Window_KiddionLua_Loaded"
-    ResizeMode="CanMinimize"
     Style="{StaticResource UiWindowStyle}"
     mc:Ignorable="d">
 
@@ -33,6 +34,32 @@
         </StackPanel>
     </ui:UiWindow.TitleContent>
 
-    <Grid />
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.5*" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <!--  ##########  -->
+        <DockPanel>
+            <ui:UiButtonEmoji
+                x:Name="Button_BulidLua"
+                Click="Button_BulidLua_Click"
+                Content="生成Lua脚本"
+                DockPanel.Dock="Bottom"
+                Emoji="📡" />
+            <TextBox
+                x:Name="TextBox_PreviewLua"
+                Margin="5,5,5,0"
+                AcceptsReturn="True"
+                IsReadOnly="False"
+                Style="{StaticResource TextBoxStyle_Logger}" />
+        </DockPanel>
+        <!--  ##########  -->
+        <ListBox
+            x:Name="ListBox_StatClass"
+            Grid.Column="1"
+            Margin="0,5,5,5"
+            SelectionChanged="ListBox_StatClass_SelectionChanged" />
+    </Grid>
 
 </ui:UiWindow>

@@ -34,14 +34,14 @@ public partial class GTAHaxStatWindow
 
     private void TextBox_AppendText_MP(string str, string value)
     {
-        TextBox_PreviewGTAHax.AppendText($"\n$MPx{str}");
-        TextBox_PreviewGTAHax.AppendText($"\n{value}");
+        TextBox_PreviewGTAHax.AppendText($"$MPx{str}\n");
+        TextBox_PreviewGTAHax.AppendText($"{value}\n");
     }
 
     private void TextBox_AppendText_NoMP(string str, string value)
     {
-        TextBox_PreviewGTAHax.AppendText($"\n${str}");
-        TextBox_PreviewGTAHax.AppendText($"\n{value}");
+        TextBox_PreviewGTAHax.AppendText($"${str}\n");
+        TextBox_PreviewGTAHax.AppendText($"{value}\n");
     }
 
     private void ListBox_GTAHaxClass_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -51,7 +51,7 @@ public partial class GTAHaxStatWindow
         if (index != -1)
         {
             TextBox_PreviewGTAHax.Clear();
-            TextBox_PreviewGTAHax.AppendText("INT32");
+            TextBox_PreviewGTAHax.AppendText("INT32\n");
 
             for (int i = 0; i < StatData.StatDataClass[index].StatInfo.Count; i++)
             {
@@ -76,10 +76,7 @@ public partial class GTAHaxStatWindow
 
         try
         {
-            File.WriteAllText(FileUtil.F_GTAHaxStat_Path, string.Empty);
-
-            using var sw = new StreamWriter(FileUtil.F_GTAHaxStat_Path, true);
-            sw.Write(TextBox_PreviewGTAHax.Text);
+            File.WriteAllText(FileUtil.F_GTAHaxStat_Path, TextBox_PreviewGTAHax.Text);
         }
         catch (Exception ex)
         {

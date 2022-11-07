@@ -140,18 +140,15 @@ public partial class CasinoView : UserControl
     #region 赌场抢劫 - 前置任务
     private void TextBox_AppendText_MP(string stat, string value)
     {
-        TextBox_PreviewGTAHax.AppendText($"\n$MPx{stat}");
-        TextBox_PreviewGTAHax.AppendText($"\n{value}");
+        TextBox_PreviewGTAHax.AppendText($"$MPx{stat}\n");
+        TextBox_PreviewGTAHax.AppendText($"{value}\n");
     }
 
     private void WirtePreviewGTAHaxStat()
     {
         try
         {
-            File.WriteAllText(FileUtil.F_GTAHaxStat_Path, string.Empty);
-
-            using var sw = new StreamWriter(FileUtil.F_GTAHaxStat_Path, true);
-            sw.Write(TextBox_PreviewGTAHax.Text);
+            File.WriteAllText(FileUtil.F_GTAHaxStat_Path, TextBox_PreviewGTAHax.Text);
         }
         catch (Exception ex)
         {
@@ -164,7 +161,7 @@ public partial class CasinoView : UserControl
         AudioUtil.PlayClickSound();
 
         TextBox_PreviewGTAHax.Clear();
-        TextBox_PreviewGTAHax.AppendText("INT32");
+        TextBox_PreviewGTAHax.AppendText("INT32\n");
 
         if (CheckBox_H3_COMPLETEDPOSIX.IsChecked == true)
         {
@@ -409,8 +406,6 @@ public partial class CasinoView : UserControl
                 TextBox_AppendText_MP("_H3OPT_BITSET0", "-1");
             }
         }
-
-        TextBox_PreviewGTAHax.AppendText("\n");
 
         WirtePreviewGTAHaxStat();
     }
