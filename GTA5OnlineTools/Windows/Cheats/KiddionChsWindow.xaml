@@ -1,18 +1,18 @@
 ﻿<ui:UiWindow
-    x:Class="GTA5OnlineTools.Windows.KiddionWindow"
+    x:Class="GTA5OnlineTools.Windows.Cheats.KiddionChsWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ui="http://crazyzhang.cn/ui/2022/xaml"
-    x:Name="Window_Kiddion"
-    Title="GTA5线上小助手 - Kiddion汉化改进工具"
+    x:Name="Window_KiddionChs"
+    Title="GTA5线上小助手 - Kiddion汉化修正工具"
     Width="1280"
     Height="720"
     MinWidth="1280"
     MinHeight="720"
-    Closing="Window_Kiddion_Closing"
-    Loaded="Window_Kiddion_Loaded"
+    Closing="Window_KiddionChs_Closing"
+    Loaded="Window_KiddionChs_Loaded"
     Style="{StaticResource UiWindowStyle}"
     mc:Ignorable="d">
 
@@ -30,7 +30,7 @@
                 VerticalAlignment="Center"
                 FontSize="14"
                 FontWeight="Bold"
-                Text="{Binding ElementName=Window_Kiddion, Path=Title}" />
+                Text="{Binding ElementName=Window_KiddionChs, Path=Title}" />
         </StackPanel>
     </ui:UiWindow.TitleContent>
 
@@ -45,7 +45,7 @@
             x:Name="DataGrid_KiddionUIs"
             Grid.Column="0"
             Margin="5,5,0,5"
-            ItemsSource="{Binding KiddionModels}">
+            ItemsSource="{Binding KiddionChsObs}">
             <DataGrid.Columns>
                 <DataGridTextColumn
                     MinWidth="30"

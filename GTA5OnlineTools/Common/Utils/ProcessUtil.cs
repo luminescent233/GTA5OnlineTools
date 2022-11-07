@@ -126,7 +126,6 @@ public static class ProcessUtil
         CloseProcess("GTAHax");
         CloseProcess("BincoHax");
         CloseProcess("LSCHax");
-        CloseProcess("dControl");
         CloseProcess("Notepad2");
     }
 }

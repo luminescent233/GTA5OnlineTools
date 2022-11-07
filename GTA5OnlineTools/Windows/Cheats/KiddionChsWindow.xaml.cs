@@ -1,29 +1,30 @@
-﻿using GTA5OnlineTools.Models;
-using GTA5OnlineTools.Common.API;
+﻿using GTA5OnlineTools.Common.API;
 using GTA5OnlineTools.Common.Utils;
 using GTA5OnlineTools.Common.Helper;
 using GTA5OnlineTools.Features.Core;
 
-namespace GTA5OnlineTools.Windows;
+using CommunityToolkit.Mvvm.ComponentModel;
+
+namespace GTA5OnlineTools.Windows.Cheats;
 
 /// <summary>
-/// KiddionWindow.xaml 的交互逻辑
+/// KiddionChsWindow.xaml 的交互逻辑
 /// </summary>
-public partial class KiddionWindow
+public partial class KiddionChsWindow
 {
-    public ObservableCollection<KiddionModel> KiddionModels { get; set; } = new();
+    public ObservableCollection<KiddionChs> KiddionChsObs { get; set; } = new();
 
-    public KiddionWindow()
+    public KiddionChsWindow()
     {
         InitializeComponent();
     }
 
-    private void Window_Kiddion_Loaded(object sender, RoutedEventArgs e)
+    private void Window_KiddionChs_Loaded(object sender, RoutedEventArgs e)
     {
         this.DataContext = this;
     }
 
-    private void Window_Kiddion_Closing(object sender, CancelEventArgs e)
+    private void Window_KiddionChs_Closing(object sender, CancelEventArgs e)
     {
 
     }
@@ -34,7 +35,7 @@ public partial class KiddionWindow
 
         lock (this)
         {
-            KiddionModels.Clear();
+            KiddionChsObs.Clear();
 
             var pArray = Process.GetProcessesByName("Kiddion");
             if (pArray.Length > 0)
@@ -54,7 +55,7 @@ public partial class KiddionWindow
                     var split = text.IndexOf("|");
                     if (split != -1)
                         text = text[..split];
-                    KiddionModels.Add(new KiddionModel()
+                    KiddionChsObs.Add(new KiddionChs()
                     {
                         Index = ++index,
                         Name = text,
@@ -80,7 +81,7 @@ public partial class KiddionWindow
         {
             var index = DataGrid_KiddionUIs.SelectedIndex;
 
-            KiddionModels[index].Value = value;
+            KiddionChsObs[index].Value = value;
         }
         else
         {
@@ -97,7 +98,7 @@ public partial class KiddionWindow
         {
             var index = DataGrid_KiddionUIs.SelectedIndex;
 
-            KiddionModels[index].Value = await WebAPI.GetYouDaoContent(name);
+            KiddionChsObs[index].Value = await WebAPI.GetYouDaoContent(name);
         }
         else
         {
@@ -111,9 +112,42 @@ public partial class KiddionWindow
 
         TextBox_TranslateBuild.Clear();
 
-        foreach (var item in KiddionModels)
+        foreach (var item in KiddionChsObs)
         {
             TextBox_TranslateBuild.AppendText($"\t{{ L\"{item.Name}\", L\"{item.Value}\" }},\n");
         }
+    }
+}
+
+public class KiddionChs : ObservableObject
+{
+    private int _index;
+    /// <summary>
+    /// 索引
+    /// </summary>
+    public int Index
+    {
+        get => _index;
+        set => SetProperty(ref _index, value);
+    }
+
+    private string _name;
+    /// <summary>
+    /// 名称
+    /// </summary>
+    public string Name
+    {
+        get => _name;
+        set => SetProperty(ref _name, value);
+    }
+
+    private string _value;
+    /// <summary>
+    /// 值
+    /// </summary>
+    public string Value
+    {
+        get => _value;
+        set => SetProperty(ref _value, value);
     }
 }

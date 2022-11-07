@@ -272,10 +272,12 @@ public partial class MainWindow
             {
                 if (Directory.Exists(@"C:\ProgramData\GTA5OnlineTools\Log\ErrorLog"))
                 {
-                    if (MessageBox.Show("检测到小助手最近发生过异常崩溃问题，系统建议你初始化配置文件，以解决崩溃问题，如果不执行本操作崩溃问题可能还会再次发生\n\n" +
+                    var boxResult = MessageBox.Show("检测到小助手最近发生过异常崩溃问题，系统建议你初始化配置文件，以解决崩溃问题，如果不执行本操作崩溃问题可能还会再次发生\n\n" +
                         "程序会自动重置此文件夹：C:\\ProgramData\\GTA5OnlineTools\\\n\n" +
-                        "点「是」自动初始化配置文件，点「否」忽略本次提醒",
-                        "初始化配置文件 - 解决程序崩溃问题", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+                        "点「是」\t自动初始化配置文件（推荐）\n点「否」\t打开配置文件夹（手动备份重要文件）\n点「取消」\t忽略本次提醒（不推荐）",
+                        "初始化配置文件 - 解决程序崩溃问题", MessageBoxButton.YesNoCancel, MessageBoxImage.Warning);
+
+                    if (boxResult == MessageBoxResult.Yes)
                     {
                         FileUtil.DelectDir(FileUtil.Default_Path);
                         Thread.Sleep(100);
@@ -286,6 +288,10 @@ public partial class MainWindow
                         ProcessUtil.OpenPath(FileUtil.Current_Path);
                         Application.Current.Shutdown();
                         return;
+                    }
+                    else if (boxResult == MessageBoxResult.No)
+                    {
+                        ProcessUtil.OpenPath(FileUtil.Default_Path);
                     }
                 }
             });

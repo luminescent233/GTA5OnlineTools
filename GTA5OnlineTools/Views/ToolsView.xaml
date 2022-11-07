@@ -84,12 +84,6 @@
                     Style="{StaticResource ButtonStyle_Tools}" />
                 <ui:UiButtonIcon
                     Command="{Binding ToolsButtonClickCommand}"
-                    CommandParameter="DefenderControl"
-                    Content="Win10安全中心设置"
-                    Icon="&#xec4d;"
-                    Style="{StaticResource ButtonStyle_Tools}" />
-                <ui:UiButtonIcon
-                    Command="{Binding ToolsButtonClickCommand}"
                     CommandParameter="MinimizeToTray"
                     Content="最小化程序到系统托盘"
                     Icon="&#xe60e;"

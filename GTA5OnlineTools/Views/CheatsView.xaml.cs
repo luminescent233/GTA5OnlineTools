@@ -1,12 +1,11 @@
 ﻿using GTA5OnlineTools.Models;
-using GTA5OnlineTools.Windows;
 using GTA5OnlineTools.Views.Cheats;
 using GTA5OnlineTools.Common.Utils;
 using GTA5OnlineTools.Common.Helper;
 using GTA5OnlineTools.Features.Core;
+using GTA5OnlineTools.Windows.Cheats;
 
 using CommunityToolkit.Mvvm.Input;
-using GTA5OnlineTools.Modules;
 
 namespace GTA5OnlineTools.Views;
 
@@ -41,8 +40,9 @@ public partial class CheatsView : UserControl
     private readonly LSCHaxPage LSCHaxPage = new();
     private readonly YimMenuPage YimMenuPage = new();
 
-    private KiddionWindow KiddionWindow = null;
-    private GTAHaxWindow GTAHaxWindow = null;
+    private GTAHaxStatWindow GTAHaxWindow = null;
+    private KiddionChsWindow KiddionChsWindow = null;
+    private KiddionLuaWindow KiddionLuaWindow = null;
 
     public CheatsView()
     {
@@ -174,6 +174,9 @@ public partial class CheatsView : UserControl
             case "KiddionChsHelper":
                 KiddionChsHelperClick();
                 break;
+            case "KiddionLuaHelper":
+                KiddionLuaHelperClick();
+                break;
             case "EditKiddionConfig":
                 EditKiddionConfigClick();
                 break;
@@ -198,8 +201,11 @@ public partial class CheatsView : UserControl
             case "DefaultGTAHaxStat":
                 DefaultGTAHaxStatClick();
                 break;
-            case "BigBaseV2Directory":
-                BigBaseV2DirectoryClick();
+            case "YimMenuDirectory":
+                YimMenuDirectoryClick();
+                break;
+            case "ResetYimMenuConfig":
+                ResetYimMenuConfigClick();
                 break;
             #endregion
             ////////////////////////////////////
@@ -374,32 +380,63 @@ public partial class CheatsView : UserControl
     }
 
     /// <summary>
-    /// 帮助改进Kiddion汉化
+    /// Kiddion 汉化修正
     /// </summary>
     private void KiddionChsHelperClick()
     {
-        if (KiddionWindow == null)
+        if (KiddionChsWindow == null)
         {
-            KiddionWindow = new KiddionWindow();
-            KiddionWindow.Show();
+            KiddionChsWindow = new KiddionChsWindow();
+            KiddionChsWindow.Show();
         }
         else
         {
-            if (KiddionWindow.IsVisible)
+            if (KiddionChsWindow.IsVisible)
             {
-                if (!KiddionWindow.Topmost)
+                if (!KiddionChsWindow.Topmost)
                 {
-                    KiddionWindow.Topmost = true;
-                    KiddionWindow.Topmost = false;
+                    KiddionChsWindow.Topmost = true;
+                    KiddionChsWindow.Topmost = false;
                 }
 
-                KiddionWindow.WindowState = WindowState.Normal;
+                KiddionChsWindow.WindowState = WindowState.Normal;
             }
             else
             {
-                KiddionWindow = null;
-                KiddionWindow = new KiddionWindow();
-                KiddionWindow.Show();
+                KiddionChsWindow = null;
+                KiddionChsWindow = new KiddionChsWindow();
+                KiddionChsWindow.Show();
+            }
+        }
+    }
+
+    /// <summary>
+    /// Kiddion Lua生成
+    /// </summary>
+    private void KiddionLuaHelperClick()
+    {
+        if (KiddionLuaWindow == null)
+        {
+            KiddionLuaWindow = new KiddionLuaWindow();
+            KiddionLuaWindow.Show();
+        }
+        else
+        {
+            if (KiddionLuaWindow.IsVisible)
+            {
+                if (!KiddionLuaWindow.Topmost)
+                {
+                    KiddionLuaWindow.Topmost = true;
+                    KiddionLuaWindow.Topmost = false;
+                }
+
+                KiddionLuaWindow.WindowState = WindowState.Normal;
+            }
+            else
+            {
+                KiddionLuaWindow = null;
+                KiddionLuaWindow = new KiddionLuaWindow();
+                KiddionLuaWindow.Show();
             }
         }
     }
@@ -443,8 +480,8 @@ public partial class CheatsView : UserControl
     {
         try
         {
-            if (MessageBox.Show("你确定要重置Kiddion配置文件吗？\n\n将清空《C:\\ProgramData\\GTA5OnlineTools\\Kiddion》文件夹，如有重要文件请提前备份",
-                "警告", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            if (MessageBox.Show("你确定要重置Kiddion配置文件吗？\n\n将清空「C:\\ProgramData\\GTA5OnlineTools\\Kiddion」文件夹，如有重要文件请提前备份",
+                "重置Kiddion配置文件", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
             {
                 ProcessUtil.CloseProcess("Kiddion");
                 ProcessUtil.CloseProcess("Notepad2");
@@ -488,7 +525,7 @@ public partial class CheatsView : UserControl
     {
         if (GTAHaxWindow == null)
         {
-            GTAHaxWindow = new GTAHaxWindow();
+            GTAHaxWindow = new GTAHaxStatWindow();
             GTAHaxWindow.Show();
         }
         else
@@ -506,18 +543,45 @@ public partial class CheatsView : UserControl
             else
             {
                 GTAHaxWindow = null;
-                GTAHaxWindow = new GTAHaxWindow();
+                GTAHaxWindow = new GTAHaxStatWindow();
                 GTAHaxWindow.Show();
             }
         }
     }
 
     /// <summary>
-    /// BigBaseV2配置目录
+    /// YimMenu配置目录
     /// </summary>
-    private void BigBaseV2DirectoryClick()
+    private void YimMenuDirectoryClick()
     {
-        ProcessUtil.OpenPath(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"/BigBaseV2/");
+        ProcessUtil.OpenPath(FileUtil.YimMenu_Path);
+    }
+
+    /// <summary>
+    /// 重置YimMenu配置文件
+    /// </summary>
+    private void ResetYimMenuConfigClick()
+    {
+        try
+        {
+            if (FileUtil.IsOccupied(FileUtil.D_Inject_Path + "YimMenu.dll"))
+            {
+                NotifierHelper.Show(NotifierType.Warning, "请先卸载YimMenu菜单后再执行操作");
+                return;
+            }
+
+            if (MessageBox.Show($"你确定要重置YimMenu配置文件吗？\n\n将清空「{FileUtil.YimMenu_Path}」文件夹，如有重要文件请提前备份",
+                "重置YimMenu配置文件", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            {
+                FileUtil.DelectDir(FileUtil.YimMenu_Path);
+
+                NotifierHelper.Show(NotifierType.Success, "重置YimMenu配置文件成功");
+            }
+        }
+        catch (Exception ex)
+        {
+            NotifierHelper.ShowException(ex);
+        }
     }
     #endregion
 }

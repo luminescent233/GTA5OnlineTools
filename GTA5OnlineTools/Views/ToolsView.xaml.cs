@@ -74,9 +74,6 @@ public partial class ToolsView : UserControl
             case "StoryModeArchive":
                 StoryModeArchiveClick();
                 break;
-            case "DefenderControl":
-                DefenderControlClick();
-                break;
             case "MinimizeToTray":
                 MinimizeToTrayClick();
                 break;
@@ -117,7 +114,7 @@ public partial class ToolsView : UserControl
         try
         {
             if (MessageBox.Show("你确定要初始化配置文件吗？将恢复小助手全部配置文件为默认版本，对于修复崩溃问题很有帮助\n\n" +
-                "程序会自动重置此文件夹：C:\\ProgramData\\GTA5OnlineTools\\\n\n",
+                "程序会自动重置此文件夹：「C:\\ProgramData\\GTA5OnlineTools\\」\n\n",
                 "初始化配置文件", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
             {
                 ProcessUtil.CloseThirdProcess();
@@ -296,14 +293,6 @@ public partial class ToolsView : UserControl
                 NotifierHelper.ShowException(ex);
             }
         }
-    }
-
-    /// <summary>
-    /// Win10安全中心设置
-    /// </summary>
-    private void DefenderControlClick()
-    {
-        ProcessUtil.OpenProcess("dControl", false);
     }
 
     /// <summary>

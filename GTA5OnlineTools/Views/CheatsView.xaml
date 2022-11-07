@@ -87,12 +87,17 @@
                                         Background="#00AE9D"
                                         Command="{Binding ExtraClickCommand}"
                                         CommandParameter="KiddionScriptsDirectory"
-                                        Content="脚本目录" />
+                                        Content="Lua脚本目录" />
                                     <Button
                                         Background="#F34B7D"
                                         Command="{Binding ExtraClickCommand}"
                                         CommandParameter="KiddionChsHelper"
-                                        Content="帮助改进Kiddion汉化" />
+                                        Content="汉化修正" />
+                                    <Button
+                                        Background="#F34B7D"
+                                        Command="{Binding ExtraClickCommand}"
+                                        CommandParameter="KiddionLuaHelper"
+                                        Content="Lua生成" />
                                 </WrapPanel>
                                 <WrapPanel>
                                     <Button
@@ -356,8 +361,13 @@
                                     <Button
                                         Background="#4285F4"
                                         Command="{Binding ExtraClickCommand}"
-                                        CommandParameter="BigBaseV2Directory"
+                                        CommandParameter="YimMenuDirectory"
                                         Content="配置目录" />
+                                    <Button
+                                        Background="#EA4335"
+                                        Command="{Binding ExtraClickCommand}"
+                                        CommandParameter="ResetYimMenuConfig"
+                                        Content="重置YimMenu配置文件" />
                                 </WrapPanel>
                                 <WrapPanel />
                                 <WrapPanel />

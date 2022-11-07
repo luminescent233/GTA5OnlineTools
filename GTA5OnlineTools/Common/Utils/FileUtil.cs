@@ -7,25 +7,24 @@ public static class FileUtil
     /// </summary>
     public const string Default_Path = @"C:\ProgramData\GTA5OnlineTools\";
 
-    public const string D_Kiddion_Path = Default_Path + @"Kiddion\";
-    public const string D_Cache_Path = Default_Path + @"Cache\";
-    public const string D_Config_Path = Default_Path + @"Config\";
-    public const string D_Inject_Path = Default_Path + @"Inject\";
-    public const string D_Log_Path = Default_Path + @"Log\";
+    public const string Resource_Path = "GTA5OnlineTools.Features.Files.";
+    public const string Resource_Kiddion_Path = "GTA5OnlineTools.Features.Files.Kiddion.";
+    public const string Resource_Inject_Path = "GTA5OnlineTools.Features.Files.Inject.";
 
-    public const string D_KiddionScripts_Path = D_Kiddion_Path + @"scripts\";
+    public static string D_Kiddion_Path = Default_Path + @"Kiddion\";
+    public static string D_Cache_Path = Default_Path + @"Cache\";
+    public static string D_Config_Path = Default_Path + @"Config\";
+    public static string D_Inject_Path = Default_Path + @"Inject\";
+    public static string D_Log_Path = Default_Path + @"Log\";
 
-    public const string F_GTAHaxStat_Path = D_Cache_Path + "stat.txt";
+    public static string D_KiddionScripts_Path = D_Kiddion_Path + @"scripts\";
+
+    public static string F_GTAHaxStat_Path = D_Cache_Path + "stat.txt";
 
     public static string F_OptionConfig_Path = D_Config_Path + "OptionConfig.json";
     public static string F_SelfStateConfig_Path = D_Config_Path + "SelfStateConfig.json";
 
-    public static string F_BlockWords_Path = D_Config_Path + "BlockWords.txt";
     public static string F_CustomTPList_Path = D_Config_Path + "CustomTPList.json";
-
-    public const string Resource_Path = "GTA5OnlineTools.Features.Files.";
-    public const string Resource_Kiddion_Path = "GTA5OnlineTools.Features.Files.Kiddion.";
-    public const string Resource_Inject_Path = "GTA5OnlineTools.Features.Files.Inject.";
 
     /// <summary>
     /// 获取当前运行文件完整路径
@@ -41,6 +40,16 @@ public static class FileUtil
     /// 我的文档完整路径
     /// </summary>
     public static string MyDocuments_Path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+
+    /// <summary>
+    /// AppData完整路径
+    /// </summary>
+    public static string AppData_Path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+
+    /// <summary>
+    /// YimMenu路径
+    /// </summary>
+    public static string YimMenu_Path = Path.Combine(AppData_Path, "BigBaseV2");
 
     /// <summary>
     /// 文件重命名
