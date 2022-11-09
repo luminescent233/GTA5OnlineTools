@@ -52,7 +52,7 @@ public partial class KiddionLuaWindow
         {
             TextBox_PreviewLua.Clear();
 
-            TextBox_AppendLine("local sub_menu = menu.add_submenu(\"★ Kiddion增强脚本 By GTA5线上小助手 ★\")");
+            TextBox_AppendLine("local sub_menu = menu.add_submenu(\"★简易Lua脚本（小助手自动生成）★\")");
             TextBox_AppendLine();
             TextBox_AppendLine("if stats.get_int(\"MPPLY_LAST_MP_CHAR\") == 0 then");
             TextBox_AppendLine("    MPx = \"MP0_\"");
