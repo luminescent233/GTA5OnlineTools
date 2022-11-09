@@ -36,32 +36,39 @@ public partial class ApartmentView : UserControl
     {
         AudioUtil.PlayClickSound();
 
-        if (TextBox_Apart_Player1.Text.Trim() != "" &&
-            TextBox_Apart_Player2.Text.Trim() != "" &&
-            TextBox_Apart_Player3.Text.Trim() != "" &&
-            TextBox_Apart_Player4.Text.Trim() != "" &&
-
-            TextBox_Apart_Fleeca.Text.Trim() != "" &&
-            TextBox_Apart_PrisonBreak.Text.Trim() != "" &&
-            TextBox_Apart_HumaneLabs.Text.Trim() != "" &&
-            TextBox_Apart_SeriesA.Text.Trim() != "" &&
-            TextBox_Apart_PacificStandard.Text.Trim() != "")
+        try
         {
-            // 公寓抢劫玩家分红比例
-            Hacks.WriteGA(1933908 + 3008 + 1, Convert.ToInt32(TextBox_Apart_Player1.Text.Trim()));
-            Hacks.WriteGA(1933908 + 3008 + 2, Convert.ToInt32(TextBox_Apart_Player2.Text.Trim()));
-            Hacks.WriteGA(1933908 + 3008 + 3, Convert.ToInt32(TextBox_Apart_Player3.Text.Trim()));
-            Hacks.WriteGA(1933908 + 3008 + 4, Convert.ToInt32(TextBox_Apart_Player4.Text.Trim()));
+            if (TextBox_Apart_Player1.Text.Trim() != "" &&
+                TextBox_Apart_Player2.Text.Trim() != "" &&
+                TextBox_Apart_Player3.Text.Trim() != "" &&
+                TextBox_Apart_Player4.Text.Trim() != "" &&
 
-            Hacks.WriteGA(262145 + 9127, Convert.ToInt32(TextBox_Apart_Fleeca.Text.Trim()));
-            Hacks.WriteGA(262145 + 9128, Convert.ToInt32(TextBox_Apart_PrisonBreak.Text.Trim()));
-            Hacks.WriteGA(262145 + 9129, Convert.ToInt32(TextBox_Apart_HumaneLabs.Text.Trim()));
-            Hacks.WriteGA(262145 + 9130, Convert.ToInt32(TextBox_Apart_SeriesA.Text.Trim()));
-            Hacks.WriteGA(262145 + 9131, Convert.ToInt32(TextBox_Apart_PacificStandard.Text.Trim()));
+                TextBox_Apart_Fleeca.Text.Trim() != "" &&
+                TextBox_Apart_PrisonBreak.Text.Trim() != "" &&
+                TextBox_Apart_HumaneLabs.Text.Trim() != "" &&
+                TextBox_Apart_SeriesA.Text.Trim() != "" &&
+                TextBox_Apart_PacificStandard.Text.Trim() != "")
+            {
+                // 公寓抢劫玩家分红比例
+                Hacks.WriteGA(1933908 + 3008 + 1, Convert.ToInt32(TextBox_Apart_Player1.Text.Trim()));
+                Hacks.WriteGA(1933908 + 3008 + 2, Convert.ToInt32(TextBox_Apart_Player2.Text.Trim()));
+                Hacks.WriteGA(1933908 + 3008 + 3, Convert.ToInt32(TextBox_Apart_Player3.Text.Trim()));
+                Hacks.WriteGA(1933908 + 3008 + 4, Convert.ToInt32(TextBox_Apart_Player4.Text.Trim()));
+
+                Hacks.WriteGA(262145 + 9127, Convert.ToInt32(TextBox_Apart_Fleeca.Text.Trim()));
+                Hacks.WriteGA(262145 + 9128, Convert.ToInt32(TextBox_Apart_PrisonBreak.Text.Trim()));
+                Hacks.WriteGA(262145 + 9129, Convert.ToInt32(TextBox_Apart_HumaneLabs.Text.Trim()));
+                Hacks.WriteGA(262145 + 9130, Convert.ToInt32(TextBox_Apart_SeriesA.Text.Trim()));
+                Hacks.WriteGA(262145 + 9131, Convert.ToInt32(TextBox_Apart_PacificStandard.Text.Trim()));
+            }
+            else
+            {
+                NotifierHelper.Show(NotifierType.Warning, "部分数据为空，请检查后重新写入");
+            }
         }
-        else
+        catch (Exception ex)
         {
-            NotifierHelper.Show(NotifierType.Warning, "部分数据为空，请检查后重新写入");
+            NotifierHelper.ShowException(ex);
         }
     }
     #endregion
@@ -71,7 +78,7 @@ public partial class ApartmentView : UserControl
     {
         Task.Run(() =>
         {
-            Hacks.WriteStat(hash, value);
+            Hacks.STATS_WriteInt(hash, value);
             Task.Delay(1000).Wait();
         });
     }

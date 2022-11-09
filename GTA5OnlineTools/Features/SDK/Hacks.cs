@@ -122,7 +122,7 @@ public static class Hacks
     /// <summary>
     /// 写入stat值，只支持int类型
     /// </summary>
-    public static void WriteStat(string hash, int value)
+    public static void STATS_WriteInt(string hash, int value)
     {
         if (hash.IndexOf("_") == 0)
         {

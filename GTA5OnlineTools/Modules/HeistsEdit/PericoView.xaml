@@ -172,7 +172,7 @@
                             <ComboBoxItem Content="混合粉" />
                         </ComboBox>
 
-                        <CheckBox x:Name="CheckBox_H4_PLAYTHROUGH_STATUS" Content="任务通过状态（最后勾选我）" />
+                        <CheckBox x:Name="CheckBox_H4_PLAYTHROUGH_STATUS" Content="任务通过状态" />
                     </StackPanel>
                 </ScrollViewer>
                 <!--  ##########  -->
@@ -201,9 +201,10 @@
                                 GroupName="RadioButton_H4CNF" />
                         </Border>
 
-                        <CheckBox x:Name="CheckBox_ResetEverything" Content="重置海岛面板" />
-                        <CheckBox x:Name="CheckBox_H4_COOLDOWN" Content="解除普通模式冷却时间" />
-                        <CheckBox x:Name="CheckBox_H4_COOLDOWN_HARD" Content="解除困难模式冷却时间" />
+                        <CheckBox
+                            x:Name="CheckBox_ResetEverything"
+                            Content="重置海岛面板"
+                            Foreground="Red" />
 
                         <TextBlock />
                         <TextBlock Style="{StaticResource TextBlockStyle_Hint}">
@@ -212,29 +213,23 @@
                         <TextBlock Style="{StaticResource TextBlockStyle_Hint}">
                             提示：每人所获取金额不得超过255W（包括精英10w），否则任务结束不会到账
                         </TextBlock>
+                        <TextBlock Style="{StaticResource TextBlockStyle_Hint}">
+                            提示：耐心等待任务CD，不可跳过，否则会导致钱不到账而且会产生风险
+                        </TextBlock>
 
                         <TextBlock />
                         <WrapPanel>
-                            <TextBlock Margin="5">
-                                <Hyperlink>使用提示1</Hyperlink>
-                                <TextBlock.ToolTip>
-                                    <TextBlock>
-                                        在潜艇开启任务佩里科岛抢劫，然后勾选上面需要的选项<LineBreak />
-                                        然后【生成Hax代码】，【写入stat.txt】，【导入GTAhax】<LineBreak />
-                                        我们跑到直升机那里等待GTAhax导入完毕，然后回来就可以开启终章了</TextBlock>
-                                </TextBlock.ToolTip>
-                            </TextBlock>
-                            <TextBlock Margin="5">
-                                <Hyperlink>使用提示2</Hyperlink>
-                                <TextBlock.ToolTip>
-                                    <TextBlock>
-                                        如果需要清理面板，我们勾选右边的【切换到生成高级功能代码】，勾选【重置海岛面板】<LineBreak />
-                                        然后【生成Hax代码】，【写入stat.txt】，【导入GTAhax】<LineBreak />
-                                        我们跑到直升机那里等待GTAhax导入完毕，然后回来海岛面板就已经重置了</TextBlock>
-                                </TextBlock.ToolTip>
-                            </TextBlock>
+                            <TextBlock Margin="5" TextWrapping="Wrap">
+                                ● 在潜艇开启任务佩里科岛抢劫，然后勾选上面需要的选项<LineBreak />
+                                ● 然后【生成GTAHax代码】，【批量导入GTAHax】<LineBreak />
+                                ● 我们跑到直升机那里等待GTAhax导入完毕，然后回来就可以开启终章了</TextBlock>
+                            <TextBlock Margin="5" TextWrapping="Wrap">
+                                ● 如果需要清理面板，我们勾选右边的【切换到生成高级功能代码】，勾选【重置海岛面板】<LineBreak />
+                                ● 然后【生成GTAHax代码】，【批量导入GTAHax】<LineBreak />
+                                ● 我们跑到直升机那里等待GTAhax导入完毕，然后回来海岛面板就已经重置了</TextBlock>
                         </WrapPanel>
 
+                        <TextBlock />
                         <TextBlock
                             Margin="5"
                             VerticalAlignment="Center"
@@ -251,7 +246,7 @@
         <ui:UiTabItemEmoji Emoji="🐶" Header="佩里克岛 - 分红数据">
             <StackPanel>
                 <Border Margin="5" Background="#F0F0F0">
-                    <WrapPanel HorizontalAlignment="Right">
+                    <WrapPanel HorizontalAlignment="Center">
                         <ui:UiButtonEmoji
                             x:Name="Button_Read"
                             Click="Button_Read_Click"

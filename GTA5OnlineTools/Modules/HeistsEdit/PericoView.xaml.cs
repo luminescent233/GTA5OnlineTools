@@ -56,44 +56,51 @@ public partial class PericoView : UserControl
     {
         AudioUtil.PlayClickSound();
 
-        if (TextBox_Cayo_Player1.Text.Trim() != "" &&
-            TextBox_Cayo_Player2.Text.Trim() != "" &&
-            TextBox_Cayo_Player3.Text.Trim() != "" &&
-            TextBox_Cayo_Player4.Text.Trim() != "" &&
-
-            TextBox_Cayo_Tequila.Text.Trim() != "" &&
-            TextBox_Cayo_RubyNecklace.Text.Trim() != "" &&
-            TextBox_Cayo_BearerBonds.Text.Trim() != "" &&
-            TextBox_Cayo_PinkDiamond.Text.Trim() != "" &&
-            TextBox_Cayo_MadrazoFiles.Text.Trim() != "" &&
-            TextBox_Cayo_BlackPanther.Text.Trim() != "" &&
-
-            TextBox_Cayo_LocalBagSize.Text.Trim() != "" &&
-
-            TextBox_Cayo_FencingFee.Text.Trim() != "" &&
-            TextBox_Cayo_PavelCut.Text.Trim() != "")
+        try
         {
-            // 佩里克岛抢劫玩家分红比例
-            Hacks.WriteGA(1973321 + 823 + 56 + 1, Convert.ToInt32(TextBox_Cayo_Player1.Text.Trim()));
-            Hacks.WriteGA(1973321 + 823 + 56 + 2, Convert.ToInt32(TextBox_Cayo_Player2.Text.Trim()));
-            Hacks.WriteGA(1973321 + 823 + 56 + 3, Convert.ToInt32(TextBox_Cayo_Player3.Text.Trim()));
-            Hacks.WriteGA(1973321 + 823 + 56 + 4, Convert.ToInt32(TextBox_Cayo_Player4.Text.Trim()));
+            if (TextBox_Cayo_Player1.Text.Trim() != "" &&
+                TextBox_Cayo_Player2.Text.Trim() != "" &&
+                TextBox_Cayo_Player3.Text.Trim() != "" &&
+                TextBox_Cayo_Player4.Text.Trim() != "" &&
 
-            Hacks.WriteGA(262145 + 29970, Convert.ToInt32(TextBox_Cayo_Tequila.Text.Trim()));
-            Hacks.WriteGA(262145 + 29971, Convert.ToInt32(TextBox_Cayo_RubyNecklace.Text.Trim()));
-            Hacks.WriteGA(262145 + 29972, Convert.ToInt32(TextBox_Cayo_BearerBonds.Text.Trim()));
-            Hacks.WriteGA(262145 + 29973, Convert.ToInt32(TextBox_Cayo_PinkDiamond.Text.Trim()));
-            Hacks.WriteGA(262145 + 29974, Convert.ToInt32(TextBox_Cayo_MadrazoFiles.Text.Trim()));
-            Hacks.WriteGA(262145 + 29975, Convert.ToInt32(TextBox_Cayo_BlackPanther.Text.Trim()));
+                TextBox_Cayo_Tequila.Text.Trim() != "" &&
+                TextBox_Cayo_RubyNecklace.Text.Trim() != "" &&
+                TextBox_Cayo_BearerBonds.Text.Trim() != "" &&
+                TextBox_Cayo_PinkDiamond.Text.Trim() != "" &&
+                TextBox_Cayo_MadrazoFiles.Text.Trim() != "" &&
+                TextBox_Cayo_BlackPanther.Text.Trim() != "" &&
 
-            Hacks.WriteGA(262145 + 29720, Convert.ToInt32(TextBox_Cayo_LocalBagSize.Text.Trim()));
+                TextBox_Cayo_LocalBagSize.Text.Trim() != "" &&
 
-            Hacks.WriteGA(262145 + 29979, Convert.ToSingle(TextBox_Cayo_FencingFee.Text.Trim()));
-            Hacks.WriteGA(262145 + 29980, Convert.ToSingle(TextBox_Cayo_PavelCut.Text.Trim()));
+                TextBox_Cayo_FencingFee.Text.Trim() != "" &&
+                TextBox_Cayo_PavelCut.Text.Trim() != "")
+            {
+                // 佩里克岛抢劫玩家分红比例
+                Hacks.WriteGA(1973321 + 823 + 56 + 1, Convert.ToInt32(TextBox_Cayo_Player1.Text.Trim()));
+                Hacks.WriteGA(1973321 + 823 + 56 + 2, Convert.ToInt32(TextBox_Cayo_Player2.Text.Trim()));
+                Hacks.WriteGA(1973321 + 823 + 56 + 3, Convert.ToInt32(TextBox_Cayo_Player3.Text.Trim()));
+                Hacks.WriteGA(1973321 + 823 + 56 + 4, Convert.ToInt32(TextBox_Cayo_Player4.Text.Trim()));
+
+                Hacks.WriteGA(262145 + 29970, Convert.ToInt32(TextBox_Cayo_Tequila.Text.Trim()));
+                Hacks.WriteGA(262145 + 29971, Convert.ToInt32(TextBox_Cayo_RubyNecklace.Text.Trim()));
+                Hacks.WriteGA(262145 + 29972, Convert.ToInt32(TextBox_Cayo_BearerBonds.Text.Trim()));
+                Hacks.WriteGA(262145 + 29973, Convert.ToInt32(TextBox_Cayo_PinkDiamond.Text.Trim()));
+                Hacks.WriteGA(262145 + 29974, Convert.ToInt32(TextBox_Cayo_MadrazoFiles.Text.Trim()));
+                Hacks.WriteGA(262145 + 29975, Convert.ToInt32(TextBox_Cayo_BlackPanther.Text.Trim()));
+
+                Hacks.WriteGA(262145 + 29720, Convert.ToInt32(TextBox_Cayo_LocalBagSize.Text.Trim()));
+
+                Hacks.WriteGA(262145 + 29979, Convert.ToSingle(TextBox_Cayo_FencingFee.Text.Trim()));
+                Hacks.WriteGA(262145 + 29980, Convert.ToSingle(TextBox_Cayo_PavelCut.Text.Trim()));
+            }
+            else
+            {
+                NotifierHelper.Show(NotifierType.Warning, "部分数据为空，请检查后重新写入");
+            }
         }
-        else
+        catch (Exception ex)
         {
-            NotifierHelper.Show(NotifierType.Warning, "部分数据为空，请检查后重新写入");
+            NotifierHelper.ShowException(ex);
         }
     }
     #endregion
@@ -410,14 +417,6 @@ public partial class PericoView : UserControl
                 TextBox_AppendText_MP("_H4CNF_APPROACH", "0");
                 TextBox_AppendText_MP("_H4CNF_BS_ENTR", "0");
                 TextBox_AppendText_MP("_H4CNF_BS_GEN", "0");
-            }
-            if (CheckBox_H4_COOLDOWN.IsChecked == true)
-            {
-                TextBox_AppendText_MP("_H4_COOLDOWN", "0");
-            }
-            if (CheckBox_H4_COOLDOWN_HARD.IsChecked == true)
-            {
-                TextBox_AppendText_MP("_H4_COOLDOWN_HARD", "0");
             }
         }
 

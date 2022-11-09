@@ -69,70 +69,77 @@ public partial class CasinoView : UserControl
     {
         AudioUtil.PlayClickSound();
 
-        if (TextBox_Casino_Player1.Text.Trim() != "" &&
-            TextBox_Casino_Player2.Text.Trim() != "" &&
-            TextBox_Casino_Player3.Text.Trim() != "" &&
-            TextBox_Casino_Player4.Text.Trim() != "" &&
-
-            TextBox_Casino_Lester.Text.Trim() != "" &&
-
-            TextBox_CasinoPotential_Money.Text.Trim() != "" &&
-            TextBox_CasinoPotential_Artwork.Text.Trim() != "" &&
-            TextBox_CasinoPotential_Gold.Text.Trim() != "" &&
-            TextBox_CasinoPotential_Diamonds.Text.Trim() != "" &&
-
-            TextBox_CasinoAI_1.Text.Trim() != "" &&
-            TextBox_CasinoAI_2.Text.Trim() != "" &&
-            TextBox_CasinoAI_3.Text.Trim() != "" &&
-            TextBox_CasinoAI_4.Text.Trim() != "" &&
-            TextBox_CasinoAI_5.Text.Trim() != "" &&
-
-            TextBox_CasinoAI_6.Text.Trim() != "" &&
-            TextBox_CasinoAI_7.Text.Trim() != "" &&
-            TextBox_CasinoAI_8.Text.Trim() != "" &&
-            TextBox_CasinoAI_9.Text.Trim() != "" &&
-            TextBox_CasinoAI_10.Text.Trim() != "" &&
-
-            TextBox_CasinoAI_11.Text.Trim() != "" &&
-            TextBox_CasinoAI_12.Text.Trim() != "" &&
-            TextBox_CasinoAI_13.Text.Trim() != "" &&
-            TextBox_CasinoAI_14.Text.Trim() != "" &&
-            TextBox_CasinoAI_15.Text.Trim() != "")
+        try
         {
-            // 赌场抢劫玩家分红比例
-            Hacks.WriteGA(1966534 + 1497 + 736 + 92 + 1, Convert.ToInt32(TextBox_Casino_Player1.Text.Trim()));
-            Hacks.WriteGA(1966534 + 1497 + 736 + 92 + 2, Convert.ToInt32(TextBox_Casino_Player2.Text.Trim()));
-            Hacks.WriteGA(1966534 + 1497 + 736 + 92 + 3, Convert.ToInt32(TextBox_Casino_Player3.Text.Trim()));
-            Hacks.WriteGA(1966534 + 1497 + 736 + 92 + 4, Convert.ToInt32(TextBox_Casino_Player4.Text.Trim()));
+            if (TextBox_Casino_Player1.Text.Trim() != "" &&
+                TextBox_Casino_Player2.Text.Trim() != "" &&
+                TextBox_Casino_Player3.Text.Trim() != "" &&
+                TextBox_Casino_Player4.Text.Trim() != "" &&
 
-            Hacks.WriteGA(262145 + 28779, Convert.ToInt32(TextBox_Casino_Lester.Text.Trim()));
+                TextBox_Casino_Lester.Text.Trim() != "" &&
 
-            Hacks.WriteGA(262145 + 28793, Convert.ToInt32(TextBox_CasinoPotential_Money.Text.Trim()));
-            Hacks.WriteGA(262145 + 28794, Convert.ToInt32(TextBox_CasinoPotential_Artwork.Text.Trim()));
-            Hacks.WriteGA(262145 + 28795, Convert.ToInt32(TextBox_CasinoPotential_Gold.Text.Trim()));
-            Hacks.WriteGA(262145 + 28796, Convert.ToInt32(TextBox_CasinoPotential_Diamonds.Text.Trim()));
+                TextBox_CasinoPotential_Money.Text.Trim() != "" &&
+                TextBox_CasinoPotential_Artwork.Text.Trim() != "" &&
+                TextBox_CasinoPotential_Gold.Text.Trim() != "" &&
+                TextBox_CasinoPotential_Diamonds.Text.Trim() != "" &&
 
-            Hacks.WriteGA(262145 + 28804 + 1, Convert.ToInt32(TextBox_CasinoAI_1.Text.Trim()));
-            Hacks.WriteGA(262145 + 28804 + 2, Convert.ToInt32(TextBox_CasinoAI_2.Text.Trim()));
-            Hacks.WriteGA(262145 + 28804 + 3, Convert.ToInt32(TextBox_CasinoAI_3.Text.Trim()));
-            Hacks.WriteGA(262145 + 28804 + 4, Convert.ToInt32(TextBox_CasinoAI_4.Text.Trim()));
-            Hacks.WriteGA(262145 + 28804 + 5, Convert.ToInt32(TextBox_CasinoAI_5.Text.Trim()));
+                TextBox_CasinoAI_1.Text.Trim() != "" &&
+                TextBox_CasinoAI_2.Text.Trim() != "" &&
+                TextBox_CasinoAI_3.Text.Trim() != "" &&
+                TextBox_CasinoAI_4.Text.Trim() != "" &&
+                TextBox_CasinoAI_5.Text.Trim() != "" &&
 
-            Hacks.WriteGA(262145 + 28804 + 6, Convert.ToInt32(TextBox_CasinoAI_6.Text.Trim()));
-            Hacks.WriteGA(262145 + 28804 + 7, Convert.ToInt32(TextBox_CasinoAI_7.Text.Trim()));
-            Hacks.WriteGA(262145 + 28804 + 8, Convert.ToInt32(TextBox_CasinoAI_8.Text.Trim()));
-            Hacks.WriteGA(262145 + 28804 + 9, Convert.ToInt32(TextBox_CasinoAI_9.Text.Trim()));
-            Hacks.WriteGA(262145 + 28804 + 10, Convert.ToInt32(TextBox_CasinoAI_10.Text.Trim()));
+                TextBox_CasinoAI_6.Text.Trim() != "" &&
+                TextBox_CasinoAI_7.Text.Trim() != "" &&
+                TextBox_CasinoAI_8.Text.Trim() != "" &&
+                TextBox_CasinoAI_9.Text.Trim() != "" &&
+                TextBox_CasinoAI_10.Text.Trim() != "" &&
 
-            Hacks.WriteGA(262145 + 28804 + 11, Convert.ToInt32(TextBox_CasinoAI_11.Text.Trim()));
-            Hacks.WriteGA(262145 + 28804 + 12, Convert.ToInt32(TextBox_CasinoAI_12.Text.Trim()));
-            Hacks.WriteGA(262145 + 28804 + 13, Convert.ToInt32(TextBox_CasinoAI_13.Text.Trim()));
-            Hacks.WriteGA(262145 + 28804 + 14, Convert.ToInt32(TextBox_CasinoAI_14.Text.Trim()));
-            Hacks.WriteGA(262145 + 28804 + 15, Convert.ToInt32(TextBox_CasinoAI_15.Text.Trim()));
+                TextBox_CasinoAI_11.Text.Trim() != "" &&
+                TextBox_CasinoAI_12.Text.Trim() != "" &&
+                TextBox_CasinoAI_13.Text.Trim() != "" &&
+                TextBox_CasinoAI_14.Text.Trim() != "" &&
+                TextBox_CasinoAI_15.Text.Trim() != "")
+            {
+                // 赌场抢劫玩家分红比例
+                Hacks.WriteGA(1966534 + 1497 + 736 + 92 + 1, Convert.ToInt32(TextBox_Casino_Player1.Text.Trim()));
+                Hacks.WriteGA(1966534 + 1497 + 736 + 92 + 2, Convert.ToInt32(TextBox_Casino_Player2.Text.Trim()));
+                Hacks.WriteGA(1966534 + 1497 + 736 + 92 + 3, Convert.ToInt32(TextBox_Casino_Player3.Text.Trim()));
+                Hacks.WriteGA(1966534 + 1497 + 736 + 92 + 4, Convert.ToInt32(TextBox_Casino_Player4.Text.Trim()));
+
+                Hacks.WriteGA(262145 + 28779, Convert.ToInt32(TextBox_Casino_Lester.Text.Trim()));
+
+                Hacks.WriteGA(262145 + 28793, Convert.ToInt32(TextBox_CasinoPotential_Money.Text.Trim()));
+                Hacks.WriteGA(262145 + 28794, Convert.ToInt32(TextBox_CasinoPotential_Artwork.Text.Trim()));
+                Hacks.WriteGA(262145 + 28795, Convert.ToInt32(TextBox_CasinoPotential_Gold.Text.Trim()));
+                Hacks.WriteGA(262145 + 28796, Convert.ToInt32(TextBox_CasinoPotential_Diamonds.Text.Trim()));
+
+                Hacks.WriteGA(262145 + 28804 + 1, Convert.ToInt32(TextBox_CasinoAI_1.Text.Trim()));
+                Hacks.WriteGA(262145 + 28804 + 2, Convert.ToInt32(TextBox_CasinoAI_2.Text.Trim()));
+                Hacks.WriteGA(262145 + 28804 + 3, Convert.ToInt32(TextBox_CasinoAI_3.Text.Trim()));
+                Hacks.WriteGA(262145 + 28804 + 4, Convert.ToInt32(TextBox_CasinoAI_4.Text.Trim()));
+                Hacks.WriteGA(262145 + 28804 + 5, Convert.ToInt32(TextBox_CasinoAI_5.Text.Trim()));
+
+                Hacks.WriteGA(262145 + 28804 + 6, Convert.ToInt32(TextBox_CasinoAI_6.Text.Trim()));
+                Hacks.WriteGA(262145 + 28804 + 7, Convert.ToInt32(TextBox_CasinoAI_7.Text.Trim()));
+                Hacks.WriteGA(262145 + 28804 + 8, Convert.ToInt32(TextBox_CasinoAI_8.Text.Trim()));
+                Hacks.WriteGA(262145 + 28804 + 9, Convert.ToInt32(TextBox_CasinoAI_9.Text.Trim()));
+                Hacks.WriteGA(262145 + 28804 + 10, Convert.ToInt32(TextBox_CasinoAI_10.Text.Trim()));
+
+                Hacks.WriteGA(262145 + 28804 + 11, Convert.ToInt32(TextBox_CasinoAI_11.Text.Trim()));
+                Hacks.WriteGA(262145 + 28804 + 12, Convert.ToInt32(TextBox_CasinoAI_12.Text.Trim()));
+                Hacks.WriteGA(262145 + 28804 + 13, Convert.ToInt32(TextBox_CasinoAI_13.Text.Trim()));
+                Hacks.WriteGA(262145 + 28804 + 14, Convert.ToInt32(TextBox_CasinoAI_14.Text.Trim()));
+                Hacks.WriteGA(262145 + 28804 + 15, Convert.ToInt32(TextBox_CasinoAI_15.Text.Trim()));
+            }
+            else
+            {
+                NotifierHelper.Show(NotifierType.Warning, "部分数据为空，请检查后重新写入");
+            }
         }
-        else
+        catch (Exception ex)
         {
-            NotifierHelper.Show(NotifierType.Warning, "部分数据为空，请检查后重新写入");
+            NotifierHelper.ShowException(ex);
         }
     }
     #endregion
@@ -162,11 +169,6 @@ public partial class CasinoView : UserControl
 
         TextBox_PreviewGTAHax.Clear();
         TextBox_PreviewGTAHax.AppendText("INT32\n");
-
-        if (CheckBox_H3_COMPLETEDPOSIX.IsChecked == true)
-        {
-            TextBox_AppendText_MP("_H3_COMPLETEDPOSIX", "-1");
-        }
 
         if (CheckBox_Reset_P1P2.IsChecked == true)
         {
@@ -481,7 +483,7 @@ public partial class CasinoView : UserControl
     {
         Task.Run(() =>
         {
-            Hacks.WriteStat(hash, value);
+            Hacks.STATS_WriteInt(hash, value);
             Task.Delay(1000).Wait();
         });
     }
@@ -797,5 +799,11 @@ public partial class CasinoView : UserControl
         WriteStatWithDelay("_H3OPT_VEHS", 3);
         WriteStatWithDelay("_H3OPT_BITSET0", -1);
     }
+
+    private void Button_CAS_HEIST_FLOW_Click(object sender, RoutedEventArgs e)
+    {
+        WriteStatWithDelay("_CAS_HEIST_FLOW", -1610744257);
+    }
     #endregion
+
 }

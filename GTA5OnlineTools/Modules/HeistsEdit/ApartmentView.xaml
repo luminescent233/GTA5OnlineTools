@@ -10,19 +10,10 @@
     mc:Ignorable="d">
 
     <TabControl Margin="5">
-        <ui:UiTabItemEmoji Emoji="🐰" Header="公寓抢劫 - 前置任务">
-            <TextBlock
-                HorizontalAlignment="Center"
-                VerticalAlignment="Center"
-                FontSize="36"
-                FontWeight="Bold"
-                Text="功能开发中..." />
-        </ui:UiTabItemEmoji>
-        <!--  ##############################  -->
         <ui:UiTabItemEmoji Emoji="🐰" Header="公寓抢劫 - 分红数据">
             <StackPanel>
                 <Border Margin="5" Background="#F0F0F0">
-                    <WrapPanel HorizontalAlignment="Right">
+                    <WrapPanel HorizontalAlignment="Center">
                         <ui:UiButtonEmoji
                             x:Name="Button_Read"
                             Click="Button_Read_Click"
@@ -77,16 +68,15 @@
             </StackPanel>
         </ui:UiTabItemEmoji>
         <!--  ##############################  -->
-        <ui:UiTabItemEmoji Emoji="🍉" Header="公寓抢劫 - 高级">
+        <ui:UiTabItemEmoji Emoji="🐰" Header="公寓抢劫 - 高级">
             <UniformGrid Columns="3">
                 <StackPanel Margin="5">
-                    <TextBlock Style="{StaticResource TextBlockStyle_Title}" Text="跳过前置" />
+                    <TextBlock Style="{StaticResource TextBlockStyle_Title}" Text="公寓抢劫" />
                     <Button
                         x:Name="Button_HEIST_PLANNING_STAGE"
                         Click="Button_HEIST_PLANNING_STAGE_Click"
-                        Content="直接进入分红关" />
+                        Content="跳过前置任务" />
 
-                    <TextBlock />
                     <TextBlock Style="{StaticResource TextBlockStyle_Hint}">
                         提示：组好人看动画过程中执行
                     </TextBlock>

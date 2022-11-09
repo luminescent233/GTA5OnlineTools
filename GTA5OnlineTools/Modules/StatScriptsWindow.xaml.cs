@@ -73,7 +73,7 @@ public partial class StatScriptsWindow
                     {
                         AppendTextBox($"正在执行 第 {i + 1}/{StatData.StatDataClass[index].StatInfo.Count} 条代码");
 
-                        Hacks.WriteStat(StatData.StatDataClass[index].StatInfo[i].Hash, StatData.StatDataClass[index].StatInfo[i].Value);
+                        Hacks.STATS_WriteInt(StatData.StatDataClass[index].StatInfo[i].Hash, StatData.StatDataClass[index].StatInfo[i].Value);
                         Task.Delay(500).Wait();
                     }
 

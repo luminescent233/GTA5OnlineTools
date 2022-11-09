@@ -96,8 +96,10 @@
                         <TextBlock />
                         <Expander Header="高级" IsExpanded="True">
                             <StackPanel Margin="5">
-                                <CheckBox x:Name="CheckBox_H3_COMPLETEDPOSIX" Content="重置赌场抢劫冷却时间" />
-                                <CheckBox x:Name="CheckBox_Reset_P1P2" Content="重置赌场抢劫第一第二块面板" />
+                                <CheckBox
+                                    x:Name="CheckBox_Reset_P1P2"
+                                    Content="重置赌场抢劫第一第二块面板"
+                                    Foreground="Red" />
                             </StackPanel>
                         </Expander>
 
@@ -205,7 +207,7 @@
         <ui:UiTabItemEmoji Emoji="🐹" Header="赌场抢劫 - 分红数据">
             <StackPanel>
                 <Border Margin="5" Background="#F0F0F0">
-                    <WrapPanel HorizontalAlignment="Right">
+                    <WrapPanel HorizontalAlignment="Center">
                         <ui:UiButtonEmoji
                             x:Name="Button_Read"
                             Click="Button_Read_Click"
@@ -561,6 +563,13 @@
                             x:Name="Button_H3OPT_BITSET0"
                             Click="Button_H3OPT_BITSET0_Click"
                             Content="重置面板二" />
+
+                        <TextBlock />
+                        <Button x:Name="Button_CAS_HEIST_FLOW" Click="Button_CAS_HEIST_FLOW_Click">
+                            <TextBlock TextAlignment="Center">
+                                解决赌场抢劫所有问题<LineBreak />
+                                （包括拍照和启动战局卡游戏厅视角）</TextBlock>
+                        </Button>
                     </StackPanel>
                 </ScrollViewer>
             </UniformGrid>
