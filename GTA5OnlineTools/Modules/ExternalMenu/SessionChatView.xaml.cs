@@ -1,5 +1,5 @@
-﻿using GTA5OnlineTools.Common.Utils;
-using GTA5OnlineTools.Common.API;
+﻿using GTA5OnlineTools.Common.API;
+using GTA5OnlineTools.Common.Utils;
 using GTA5OnlineTools.Common.Helper;
 using GTA5OnlineTools.Features.SDK;
 using GTA5OnlineTools.Features.Core;
@@ -183,7 +183,12 @@ public partial class SessionChatView : UserControl
         AudioUtil.PlayClickSound();
 
         long pCPlayerInfo = Globals.GetCPlayerInfo();
-        TextBox_PlayerName.Text = Memory.ReadString(pCPlayerInfo + Offsets.CPed_CPlayerInfo_Name, 20);
+        TextBox_PlayerName.Text = Memory.ReadString(pCPlayerInfo + Offsets.CPed_CPlayerInfo_Name, 64);
+    }
+
+    private void CheckBox_IngnoreInputRule_Click(object sender, RoutedEventArgs e)
+    {
+        TextBox_PlayerName.MaxLength = CheckBox_IngnoreInputRule.IsChecked == true ? 64 : 20;
     }
 
     private void Button_WritePlayerName_Click(object sender, RoutedEventArgs e)
@@ -195,33 +200,35 @@ public partial class SessionChatView : UserControl
             string playerName = TextBox_PlayerName.Text.Trim();
             TextBox_PlayerName.Text = playerName;
 
-            if (Regex.IsMatch(playerName, "^[a-zA-Z0-9_-]{3,20}$"))
+            if (CheckBox_IngnoreInputRule.IsChecked == false)
             {
-                long pCPlayerInfo = Globals.GetCPlayerInfo();
-                string name = Memory.ReadString(pCPlayerInfo + Offsets.CPed_CPlayerInfo_Name, 20);
-
-                if (playerName.Equals(name))
+                if (!Regex.IsMatch(playerName, "^[A-Za-z0-9_\\s-]{3,20}$"))
                 {
-                    NotifierHelper.Show(NotifierType.Information, "玩家昵称未改动，无需修改");
+                    NotifierHelper.Show(NotifierType.Warning, "玩家昵称不合法，规则：3到20位（字母，数字，下划线，减号，空格）");
                     return;
                 }
-
-                playerName += "\0";
-
-                var pointers = Memory.FindPatterns(name);
-                foreach (var item in pointers)
-                {
-                    Memory.WriteString(item, playerName);
-                }
-
-                Memory.WriteString(pCPlayerInfo + Offsets.CPed_CPlayerInfo_Name, playerName);
-
-                NotifierHelper.Show(NotifierType.Success, "修改玩家昵称成功，切换战局生效");
             }
-            else
+
+            long pCPlayerInfo = Globals.GetCPlayerInfo();
+            string name = Memory.ReadString(pCPlayerInfo + Offsets.CPed_CPlayerInfo_Name, 64);
+
+            if (playerName.Equals(name))
             {
-                NotifierHelper.Show(NotifierType.Warning, "玩家昵称不合法，规则：3到20位（字母，数字，下划线，减号）");
+                NotifierHelper.Show(NotifierType.Information, "玩家昵称未改动，无需修改");
+                return;
             }
+
+            playerName += "\0";
+
+            var pointers = Memory.FindPatterns(name);
+            foreach (var item in pointers)
+            {
+                Memory.WriteString(item, playerName);
+            }
+
+            Memory.WriteString(pCPlayerInfo + Offsets.CPed_CPlayerInfo_Name, playerName);
+
+            NotifierHelper.Show(NotifierType.Success, "修改玩家昵称成功，切换战局生效");
         }
         catch (Exception ex)
         {

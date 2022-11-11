@@ -32,7 +32,7 @@ public partial class PlayerListView : UserControl
         lock (this)
         {
             NetPlayerDatas.Clear();
-            ListBox_PlayerList.Items.Clear();
+            ListBox_NetPlayer.Items.Clear();
 
             long pCNetworkPlayerMgr = Memory.Read<long>(Pointers.NetworkPlayerMgrPTR);
 
@@ -74,26 +74,38 @@ public partial class PlayerListView : UserControl
 
                 ////////////////////////////////////////////
 
+                var god = Memory.Read<byte>(pCPed + Offsets.CPed_God);
+                var position = Memory.Read<Vector3>(pCPed + Offsets.CPed_VisualX);
+
+                var money = Hacks.ReadGA<long>(1853348 + 1 + i * 834 + 205 + 56);
+                var cash = Hacks.ReadGA<long>(1853348 + 1 + i * 834 + 205 + 3);
+
+                ////////////////////////////////////////////
+
                 NetPlayerDatas.Add(new NetPlayerData()
                 {
+                    Rank = Hacks.ReadGA<int>(1853348 + 1 + (i * 834) + 205 + 6),
+
                     RockstarId = Memory.Read<long>(pCPlayerInfo + Offsets.CPed_CPlayerInfo_RockstarID),
                     PlayerName = Memory.ReadString(pCPlayerInfo + Offsets.CPed_CPlayerInfo_Name, 20),
+
+                    Money = money,
+                    Cash = cash,
+                    Bank = money - cash,
 
                     Health = Memory.Read<float>(pCPed + Offsets.CPed_Health),
                     MaxHealth = Memory.Read<float>(pCPed + Offsets.CPed_HealthMax),
                     Armor = Memory.Read<float>(pCPed + Offsets.CPed_Armor),
-                    GodMode = Memory.Read<byte>(pCPed + Offsets.CPed_God) != 0x00,
+                    GodMode = (god & 1) == 1,
                     NoRagdoll = Memory.Read<byte>(pCPed + Offsets.CPed_Ragdoll) != 0x20,
 
-                    Position = Memory.Read<Vector3>(pCPed + Offsets.CPed_VisualX),
+                    Distance = GetDistance(Teleport.GetPlayerPosition(), position),
+                    Position = position,
 
                     WantedLevel = Memory.Read<byte>(pCPlayerInfo + Offsets.CPed_CPlayerInfo_WantedLevel),
                     WalkSpeed = Memory.Read<float>(pCPlayerInfo + Offsets.CPed_CPlayerInfo_WalkSpeed),
                     RunSpeed = Memory.Read<float>(pCPlayerInfo + Offsets.CPed_CPlayerInfo_RunSpeed),
                     SwimSpeed = Memory.Read<float>(pCPlayerInfo + Offsets.CPed_CPlayerInfo_SwimSpeed),
-                    WantedCanChange = Memory.Read<float>(pCPlayerInfo + Offsets.CPed_CPlayerInfo_WantedCanChange) != 0x00,
-                    NPCIgnore = Memory.Read<int>(pCPlayerInfo + Offsets.CPed_CPlayerInfo_NPCIgnore),
-                    FrameFlags = Memory.Read<int>(pCPlayerInfo + Offsets.CPed_CPlayerInfo_FrameFlags),
 
                     ClanName = Memory.ReadString(pCNetGamePlayer + Offsets.CNetworkPlayerMgr_CNetGamePlayer_ClanName, 20),
                     ClanTag = Memory.ReadString(pCNetGamePlayer + Offsets.CNetworkPlayerMgr_CNetGamePlayer_ClanTag, 20),
@@ -110,14 +122,13 @@ public partial class PlayerListView : UserControl
                 });
             }
 
-            var index = 0;
             foreach (var item in NetPlayerDatas)
             {
                 var url = "https://prod.cloud.rockstargames.com/members/sc/5605/" + item.RockstarId + "/publish/gta5/mpchars/0.png";
 
-                ListBox_PlayerList.Items.Add(new NetPlayer()
+                ListBox_NetPlayer.Items.Add(new NetPlayer()
                 {
-                    Index = ++index,
+                    Rank = item.Rank,
                     Avatar = url,
                     Name = string.IsNullOrEmpty(item.ClanTag) ? item.PlayerName : $"{item.PlayerName} [{item.ClanTag}]",
                     RID = item.RockstarId,
@@ -131,9 +142,9 @@ public partial class PlayerListView : UserControl
     {
         AudioUtil.PlayClickSound();
 
-        if (ListBox_PlayerList.SelectedItem != null)
+        if (ListBox_NetPlayer.SelectedItem != null)
         {
-            var index = ListBox_PlayerList.SelectedIndex;
+            var index = ListBox_NetPlayer.SelectedIndex;
             if (index != -1)
             {
                 Teleport.SetTeleportPosition(NetPlayerDatas[index].Position);
@@ -141,7 +152,7 @@ public partial class PlayerListView : UserControl
         }
     }
 
-    private void PlayerInfoAppend(string title, string value)
+    private void PlayerInfoAppend(string title = "", string value = "")
     {
         ListBox_PlayerInfo.Items.Add(new EmojiMenu()
         {
@@ -156,41 +167,57 @@ public partial class PlayerListView : UserControl
         return value ? "ON" : "OFF";
     }
 
-    private void ListBox_PlayerList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    private float GetDistance(Vector3 myPosV3, Vector3 pedPosV3)
+    {
+        return (float)Math.Sqrt(
+            Math.Pow(myPosV3.X - pedPosV3.X, 2) +
+            Math.Pow(myPosV3.Y - pedPosV3.Y, 2) +
+            Math.Pow(myPosV3.Z - pedPosV3.Z, 2));
+    }
+
+    private void ListBox_NetPlayer_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         ListBox_PlayerInfo.Items.Clear();
 
-        var index = ListBox_PlayerList.SelectedIndex;
+        var index = ListBox_NetPlayer.SelectedIndex;
         if (index != -1)
         {
             var item = NetPlayerDatas[index];
 
-            PlayerInfoAppend("玩家昵称", $"{item.PlayerName}");
-            PlayerInfoAppend("玩家RID", $"{item.RockstarId}");
-            PlayerInfoAppend("玩家帮会", $"{item.ClanTag}");
-            PlayerInfoAppend("玩家帮会名称", $"{item.ClanName}");
+            PlayerInfoAppend("昵称", $"{item.PlayerName}");
+            PlayerInfoAppend("RockStar ID", $"{item.RockstarId}");
+            PlayerInfoAppend("帮会", $"{item.ClanTag}");
+            PlayerInfoAppend("帮会名称", $"{item.ClanName}");
+            PlayerInfoAppend();
+
+            PlayerInfoAppend("等级", $"{item.Rank}");
+            PlayerInfoAppend("$ 总计", $"{item.Money}");
+            PlayerInfoAppend("$ 银行", $"{item.Bank}");
+            PlayerInfoAppend("$ 现金", $"{item.Cash}");
+            PlayerInfoAppend();
 
             PlayerInfoAppend("护甲值", $"{item.Armor:0.0}");
             PlayerInfoAppend("生命值", $"{item.Health:0.0}");
             PlayerInfoAppend("最大生命值", $"{item.MaxHealth:0.0}");
+            PlayerInfoAppend();
 
             PlayerInfoAppend("无敌状态", BoolToString(item.GodMode));
             PlayerInfoAppend("无布娃娃", BoolToString(item.NoRagdoll));
             PlayerInfoAppend("通缉等级", $"{item.WantedLevel}");
+            PlayerInfoAppend();
 
             PlayerInfoAppend("步行速度", $"{item.WalkSpeed:0.0}");
             PlayerInfoAppend("奔跑速度", $"{item.RunSpeed:0.0}");
             PlayerInfoAppend("游泳速度", $"{item.SwimSpeed:0.0}");
-            PlayerInfoAppend("永不通缉", BoolToString(item.WantedCanChange));
-            PlayerInfoAppend("NPC忽略", $"{item.NPCIgnore}");
-            PlayerInfoAppend("帧标志", $"{item.FrameFlags}");
-
+            PlayerInfoAppend("与我距离", $"{item.Distance:0.000}");
             PlayerInfoAppend("坐标数据", $"{item.Position.X:0.000}, {item.Position.Y:0.000}, {item.Position.Z:0.000}");
+            PlayerInfoAppend();
 
             PlayerInfoAppend("是否在观看", BoolToString(item.IsSpectating));
-            PlayerInfoAppend("是否为R星开发者", BoolToString(item.IsRockStarDev));
+            PlayerInfoAppend("是否为R星Dev", BoolToString(item.IsRockStarDev));
             PlayerInfoAppend("是否为R星QA", BoolToString(item.IsRockStarQA));
             PlayerInfoAppend("是否为作弊者", BoolToString(item.IsCheater));
+            PlayerInfoAppend();
 
             PlayerInfoAppend("中继IP地址", $"{item.RelayIP}");
             PlayerInfoAppend("外部IP地址", $"{item.ExternalIP}");

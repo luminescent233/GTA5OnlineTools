@@ -40,10 +40,11 @@ public static class Hacks
     /// 读取全局地址字符串
     /// </summary>
     /// <param name="index"></param>
+    /// <param name="length"></param>
     /// <returns></returns>
-    public static string ReadGAString(int index)
+    public static string ReadGAString(int index, int length = 20)
     {
-        return Memory.ReadString(GlobalAddress(index), 20);
+        return Memory.ReadString(GlobalAddress(index), length);
     }
 
     /// <summary>
@@ -168,7 +169,7 @@ public static class Hacks
         long pReplayInterface = Memory.Read<long>(Pointers.ReplayInterfacePTR);
         long pCPickupInterface = Memory.Read<long>(pReplayInterface + 0x20);    // pCPickupInterface
 
-        long oPickupNum  = Memory.Read<long>(pCPickupInterface + 0x110);        // oPickupNum
+        long oPickupNum = Memory.Read<long>(pCPickupInterface + 0x110);        // oPickupNum
         long pPickupList = Memory.Read<long>(pCPickupInterface + 0x100);       // pPickupList
 
         for (long i = 0; i < oPickupNum; i++)

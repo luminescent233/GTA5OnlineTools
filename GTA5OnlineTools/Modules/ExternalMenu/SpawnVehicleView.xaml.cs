@@ -35,7 +35,6 @@ public partial class SpawnVehicleView : UserControl
         {
             ComboBox_VehicleExtras.Items.Add(item.Name);
         }
-        ComboBox_VehicleExtras.SelectedIndex = 0;
     }
 
     private void ExternalMenuWindow_WindowClosingEvent()

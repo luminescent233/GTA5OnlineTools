@@ -38,7 +38,6 @@ public partial class SpawnWeaponView : UserControl
         {
             ComboBox_ImpactExplosion.Items.Add(item.Name);
         }
-        ComboBox_ImpactExplosion.SelectedIndex = 0;
     }
 
     private void ExternalMenuWindow_WindowClosingEvent()
@@ -153,23 +152,16 @@ public partial class SpawnWeaponView : UserControl
         Weapon.Range();
     }
 
-    private void CheckBox_ImpactType_Click(object sender, RoutedEventArgs e)
-    {
-        if (CheckBox_ImpactType.IsChecked == true)
-        {
-            Weapon.ImpactType(5);
-        }
-        else
-        {
-            Weapon.ImpactType(3);
-        }
-    }
-
     private void ComboBox_ImpactExplosion_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         var index = ComboBox_ImpactExplosion.SelectedIndex;
         if (index != -1)
         {
+            if (index == 0)
+                Weapon.ImpactType(3);
+            else
+                Weapon.ImpactType(5);
+
             Weapon.ImpactExplosion(MiscData.ImpactExplosions[index].ID);
         }
     }

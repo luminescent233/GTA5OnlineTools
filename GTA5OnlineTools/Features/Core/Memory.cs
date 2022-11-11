@@ -1,5 +1,7 @@
 ﻿using GTA5OnlineTools.Features.SDK;
 using GTA5OnlineTools.Common.Helper;
+using System.Text;
+using System;
 
 namespace GTA5OnlineTools.Features.Core;
 
@@ -517,11 +519,11 @@ public static class Memory
             {
                 byte[] _buffer = new byte[i];
                 Buffer.BlockCopy(buffer, 0, _buffer, 0, i);
-                return Encoding.ASCII.GetString(_buffer);
+                return Encoding.UTF8.GetString(_buffer);
             }
         }
 
-        return Encoding.ASCII.GetString(buffer);
+        return Encoding.UTF8.GetString(buffer);
     }
 
     /// <summary>
@@ -556,7 +558,7 @@ public static class Memory
     /// <param name="str"></param>
     public static void WriteString(long address, string str)
     {
-        var buffer = new ASCIIEncoding().GetBytes(str);
+        var buffer = new UTF8Encoding().GetBytes(str);
         Win32.WriteProcessMemory(GTA5ProHandle, address, buffer, buffer.Length, out _);
     }
 
@@ -568,12 +570,12 @@ public static class Memory
     /// <param name="str"></param>
     public static void WriteString(long basePtr, int[] offsets, string str)
     {
-        var buffer = new ASCIIEncoding().GetBytes(str);
+        var buffer = new UTF8Encoding().GetBytes(str);
         Win32.WriteProcessMemory(GTA5ProHandle, GetPtrAddress(basePtr, offsets), buffer, buffer.Length, out _);
     }
 
     /// <summary>
-    /// 读取字节
+    /// 读取字节数组
     /// </summary>
     /// <param name="basePtr"></param>
     /// <param name="size"></param>
@@ -581,13 +583,12 @@ public static class Memory
     public static byte[] ReadBytes(long basePtr, int size)
     {
         var buffer = new byte[size];
-
         Win32.ReadProcessMemory(GTA5ProHandle, basePtr, buffer, size, out _);
         return buffer;
     }
 
     /// <summary>
-    /// 写入字节
+    /// 写入字节数组
     /// </summary>
     /// <param name="basePtr"></param>
     /// <param name="bytes"></param>

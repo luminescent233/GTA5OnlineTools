@@ -97,7 +97,18 @@
         <!--  面板2  -->
         <StackPanel>
             <ui:UiLabelEmoji Content="玩家昵称修改（最大20字符）" />
-            <TextBlock Margin="5" Text="输入你要修改的昵称 " />
+            <DockPanel LastChildFill="False">
+                <TextBlock
+                    Margin="5"
+                    DockPanel.Dock="Left"
+                    Text="输入你要修改的昵称 " />
+                <CheckBox
+                    x:Name="CheckBox_IngnoreInputRule"
+                    Margin="5"
+                    Click="CheckBox_IngnoreInputRule_Click"
+                    Content="解除输入限制"
+                    DockPanel.Dock="Right" />
+            </DockPanel>
             <TextBox x:Name="TextBox_PlayerName" MaxLength="20" />
             <UniformGrid Columns="2">
                 <Button
@@ -110,6 +121,12 @@
                     Content="修改" />
             </UniformGrid>
             <!--  ##########  -->
+            <TextBlock Style="{StaticResource TextBlockStyle_Hint}">
+                提示：默认仅运行修改英文、数字、空格和下划线，范围3~20字符。勾选解除输入限制后无限制
+            </TextBlock>
+            <TextBlock Style="{StaticResource TextBlockStyle_Hint}">
+                提示：勾选解除输入限制后如果输入其他特殊字符（比如中文），可能会导致战局异常，需要重启游戏解决
+            </TextBlock>
             <TextBlock Style="{StaticResource TextBlockStyle_Hint}">
                 提示：修改成功后，切换战局生效
             </TextBlock>
