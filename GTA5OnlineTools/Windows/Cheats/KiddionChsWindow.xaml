@@ -80,7 +80,7 @@
                 Height="60"
                 Margin="5"
                 VerticalContentAlignment="Center"
-                IsEnabled="False"
+                IsReadOnly="True"
                 Text="{Binding ElementName=DataGrid_KiddionUIs, Path=SelectedItem.Name, Mode=OneWay}" />
             <TextBox
                 x:Name="TextBox_SelectedItem_Vaule"
