@@ -17,11 +17,6 @@ public partial class LoadWindow
     /// </summary>
     public LoadModel LoadModel { get; set; } = new();
 
-    /// <summary>
-    /// 第三方辅助功能开关点击命令
-    /// </summary>
-    public RelayCommand<string> ButtonClickCommand { get; private set; }
-
     public LoadWindow()
     {
         InitializeComponent();
@@ -30,8 +25,6 @@ public partial class LoadWindow
     private void Window_Load_Loaded(object sender, RoutedEventArgs e)
     {
         this.DataContext = this;
-
-        ButtonClickCommand = new(ButtonClick);
 
         Task.Run(() =>
         {
@@ -61,7 +54,6 @@ public partial class LoadWindow
                 Directory.CreateDirectory(FileUtil.D_Config_Path);
                 Directory.CreateDirectory(FileUtil.D_Kiddion_Path);
                 Directory.CreateDirectory(FileUtil.D_KiddionScripts_Path);
-                Directory.CreateDirectory(FileUtil.D_Inject_Path);
                 Directory.CreateDirectory(FileUtil.D_Log_Path);
 
                 // 清空缓存文件夹
@@ -93,17 +85,6 @@ public partial class LoadWindow
 
                 FileUtil.ExtractResFile(FileUtil.Resource_Path + "Notepad2.exe", FileUtil.D_Cache_Path + "Notepad2.exe");
 
-                // 判断DLL文件是否存在以及是否被占用
-                if (!File.Exists(FileUtil.D_Inject_Path + "YimMenu.dll"))
-                {
-                    FileUtil.ExtractResFile(FileUtil.Resource_Inject_Path + "YimMenu.dll", FileUtil.D_Inject_Path + "YimMenu.dll");
-                }
-                else
-                {
-                    if (!FileUtil.IsOccupied(FileUtil.D_Inject_Path + "YimMenu.dll"))
-                        FileUtil.ExtractResFile(FileUtil.Resource_Inject_Path + "YimMenu.dll", FileUtil.D_Inject_Path + "YimMenu.dll");
-                }
-
                 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 
                 // 提前预加载转换字库
@@ -134,6 +115,7 @@ public partial class LoadWindow
         });
     }
 
+    [RelayCommand]
     private void ButtonClick(string name)
     {
         try
@@ -143,8 +125,6 @@ public partial class LoadWindow
                 case "InitDefaultPath":
                     {
                         FileUtil.DelectDir(FileUtil.Default_Path);
-                        Thread.Sleep(100);
-                        FileUtil.DelectDir(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"/BigBaseV2/");
                         Thread.Sleep(100);
 
                         App.AppMainMutex.Dispose();

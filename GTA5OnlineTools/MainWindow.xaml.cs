@@ -23,22 +23,11 @@ public partial class MainWindow
     /// </summary>
     public MainModel MainModel { get; set; } = new();
 
-    /// <summary>
-    /// 主窗口页面导航命令
-    /// </summary>
-    public RelayCommand<string> NavigateCommand { get; private set; }
-
-    /// <summary>
-    /// 当前View名称
-    /// </summary>
-    private string CurrentViewName = string.Empty;
-
-    /// <summary>
-    /// 用户控件，用于视图切换
-    /// </summary>
+    ///////////////////////////////////////////////////////////////
+    
     private readonly HomeView HomeView = new();
-    private readonly CheatsView ThirdView = new();
-    private readonly ModulesView HacksView = new();
+    private readonly CheatsView CheatsView = new();
+    private readonly ModulesView ModulesView = new();
     private readonly ToolsView ToolsView = new();
     private readonly OptionView OptionView = new();
     private readonly AboutView AboutView = new();
@@ -93,8 +82,6 @@ public partial class MainWindow
         // 向外暴露主窗口实例
         MainWindowInstance = this;
 
-        // 初始化主数据模型
-        NavigateCommand = new(Navigate);
         // 首页导航
         Navigate("HomeView");
 
@@ -165,36 +152,34 @@ public partial class MainWindow
     /// View页面导航
     /// </summary>
     /// <param name="viewName"></param>
+    [RelayCommand]
     private void Navigate(string viewName)
     {
-        if (viewName == null || string.IsNullOrEmpty(viewName))
-            return;
-
-        // 防止重复触发
-        if (CurrentViewName != viewName)
-            CurrentViewName = viewName;
-        else
-            return;
-
         switch (viewName)
         {
             case "HomeView":
-                ContentControl_Main.Content = HomeView;
+                if (ContentControl_Main.Content != HomeView)
+                    ContentControl_Main.Content = HomeView;
                 break;
-            case "ThirdView":
-                ContentControl_Main.Content = ThirdView;
+            case "CheatsView":
+                if (ContentControl_Main.Content != CheatsView)
+                    ContentControl_Main.Content = CheatsView;
                 break;
-            case "HacksView":
-                ContentControl_Main.Content = HacksView;
+            case "ModulesView":
+                if (ContentControl_Main.Content != ModulesView)
+                    ContentControl_Main.Content = ModulesView;
                 break;
             case "ToolsView":
-                ContentControl_Main.Content = ToolsView;
+                if (ContentControl_Main.Content != ToolsView)
+                    ContentControl_Main.Content = ToolsView;
                 break;
             case "OptionView":
-                ContentControl_Main.Content = OptionView;
+                if (ContentControl_Main.Content != OptionView)
+                    ContentControl_Main.Content = OptionView;
                 break;
             case "AboutView":
-                ContentControl_Main.Content = AboutView;
+                if (ContentControl_Main.Content != AboutView)
+                    ContentControl_Main.Content = AboutView;
                 break;
         }
     }
@@ -204,7 +189,7 @@ public partial class MainWindow
     /// </summary>
     private void UpdateUiThread()
     {
-        while (MainWindow.IsAppRunning)
+        while (IsAppRunning)
         {
             // 获取软件运行时间
             MainModel.AppRunTime = CoreUtil.ExecDateDiff(OriginDateTime, DateTime.Now);
@@ -280,8 +265,6 @@ public partial class MainWindow
                     if (boxResult == MessageBoxResult.Yes)
                     {
                         FileUtil.DelectDir(FileUtil.Default_Path);
-                        Thread.Sleep(100);
-                        FileUtil.DelectDir(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"/BigBaseV2/");
                         Thread.Sleep(100);
 
                         App.AppMainMutex.Dispose();

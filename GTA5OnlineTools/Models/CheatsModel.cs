@@ -44,16 +44,6 @@ public class CheatsModel : ObservableObject
         set => SetProperty(ref _lSCHaxIsRun, value);
     }
 
-    private bool _yimMenuIsRun = false;
-    /// <summary>
-    /// YimMenu运行状态
-    /// </summary>
-    public bool YimMenuIsRun
-    {
-        get => _yimMenuIsRun;
-        set => SetProperty(ref _yimMenuIsRun, value);
-    }
-
     private object _frameContent;
     /// <summary>
     /// Frame的呈现内容

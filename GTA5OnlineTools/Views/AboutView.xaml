@@ -33,41 +33,6 @@
                 </Hyperlink>
             </TextBlock>
 
-            <Expander Margin="5" HorizontalAlignment="Center">
-                <Expander.Header>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock
-                            Margin="5"
-                            FontSize="18"
-                            Foreground="#F06292"
-                            Style="{StaticResource TextBlockStyle_IconFontVerCen}"
-                            Text="&#xe61b;" />
-                        <TextBlock
-                            Margin="0,5,5,5"
-                            FontSize="14"
-                            Foreground="#F06292"
-                            Text="捐赠作者" />
-                    </StackPanel>
-                </Expander.Header>
-                <StackPanel HorizontalAlignment="Center">
-                    <TextBlock
-                        Margin="10,10,10,5"
-                        HorizontalAlignment="Center"
-                        Foreground="#F06292"
-                        TextWrapping="WrapWithOverflow">
-                        如果您觉得这个软件对你有帮助，可以扫描下面的二维码捐赠作者，<LineBreak />
-                        以帮助作者把这个软件做的更好，感谢大家的支持 (*^_^*)</TextBlock>
-                    <Image
-                        MaxWidth="400"
-                        MaxHeight="250"
-                        Margin="5"
-                        RenderOptions.BitmapScalingMode="HighQuality"
-                        RenderOptions.ClearTypeHint="Enabled"
-                        Source="/Assets/Images/Donate.png"
-                        Stretch="Uniform"
-                        UseLayoutRounding="True" />
-                </StackPanel>
-            </Expander>
             <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
                 <StackPanel.Resources>
                     <Style BasedOn="{StaticResource TextBlockStyle_IconFontVerCen}" TargetType="{x:Type TextBlock}">

@@ -62,50 +62,45 @@
             <StackPanel
                 VerticalAlignment="Center"
                 DockPanel.Dock="Left"
-                Orientation="Horizontal">
+                Orientation="Horizontal"
+                WindowChrome.IsHitTestVisibleInChrome="True">
                 <ui:UiRadioButtonEmoji
                     Command="{Binding NavigateCommand}"
                     CommandParameter="HomeView"
                     Content="主页"
                     Emoji="🏡"
                     IsChecked="True"
-                    Style="{StaticResource RadioButtonStyle_NavMenu}"
-                    WindowChrome.IsHitTestVisibleInChrome="True" />
+                    Style="{StaticResource RadioButtonStyle_NavMenu}" />
                 <ui:UiRadioButtonEmoji
                     Command="{Binding NavigateCommand}"
-                    CommandParameter="ThirdView"
+                    CommandParameter="CheatsView"
                     Content="第三方"
                     Emoji="📡"
-                    Style="{StaticResource RadioButtonStyle_NavMenu}"
-                    WindowChrome.IsHitTestVisibleInChrome="True" />
+                    Style="{StaticResource RadioButtonStyle_NavMenu}" />
                 <ui:UiRadioButtonEmoji
                     Command="{Binding NavigateCommand}"
-                    CommandParameter="HacksView"
+                    CommandParameter="ModulesView"
                     Content="功能"
                     Emoji="🖥"
-                    Style="{StaticResource RadioButtonStyle_NavMenu}"
-                    WindowChrome.IsHitTestVisibleInChrome="True" />
+                    Style="{StaticResource RadioButtonStyle_NavMenu}" />
                 <ui:UiRadioButtonEmoji
                     Command="{Binding NavigateCommand}"
                     CommandParameter="ToolsView"
                     Content="工具"
                     Emoji="🛠"
-                    Style="{StaticResource RadioButtonStyle_NavMenu}"
-                    WindowChrome.IsHitTestVisibleInChrome="True" />
+                    Style="{StaticResource RadioButtonStyle_NavMenu}" />
                 <ui:UiRadioButtonEmoji
                     Command="{Binding NavigateCommand}"
                     CommandParameter="OptionView"
                     Content="选项"
                     Emoji="⚙"
-                    Style="{StaticResource RadioButtonStyle_NavMenu}"
-                    WindowChrome.IsHitTestVisibleInChrome="True" />
+                    Style="{StaticResource RadioButtonStyle_NavMenu}" />
                 <ui:UiRadioButtonEmoji
                     Command="{Binding NavigateCommand}"
                     CommandParameter="AboutView"
                     Content="关于"
                     Emoji="🎈"
-                    Style="{StaticResource RadioButtonStyle_NavMenu}"
-                    WindowChrome.IsHitTestVisibleInChrome="True" />
+                    Style="{StaticResource RadioButtonStyle_NavMenu}" />
             </StackPanel>
         </DockPanel>
     </ui:UiWindow.TitleContent>
@@ -134,7 +129,7 @@
             ToolTipText="GTA5线上小助手"
             TrayMouseDoubleClick="TaskbarIcon_Main_TrayMouseDoubleClick" />
         <!--  ######################  -->
-        <ContentControl x:Name="ContentControl_Main" />
+        <ContentControl x:Name="ContentControl_Main" FocusVisualStyle="{x:Null}" />
     </Grid>
 
 </ui:UiWindow>

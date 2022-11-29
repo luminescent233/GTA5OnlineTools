@@ -121,8 +121,6 @@ public partial class ToolsView : UserControl
                 Thread.Sleep(100);
                 FileUtil.DelectDir(FileUtil.Default_Path);
                 Thread.Sleep(100);
-                FileUtil.DelectDir(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"/BigBaseV2/");
-                Thread.Sleep(100);
 
                 App.AppMainMutex.Dispose();
                 ProcessUtil.OpenPath(FileUtil.Current_Path);

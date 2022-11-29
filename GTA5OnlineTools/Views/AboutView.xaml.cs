@@ -9,16 +9,13 @@ namespace GTA5OnlineTools.Views;
 /// </summary>
 public partial class AboutView : UserControl
 {
-    public RelayCommand<string> HyperlinkClickCommand { get; private set; }
-
     public AboutView()
     {
         InitializeComponent();
         this.DataContext = this;
-
-        HyperlinkClickCommand = new(HyperlinkClick);
     }
 
+    [RelayCommand]
     private void HyperlinkClick(string url)
     {
         ProcessUtil.OpenPath(url);
