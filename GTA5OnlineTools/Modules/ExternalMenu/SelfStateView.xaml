@@ -290,6 +290,11 @@
                     Background="#EA4335"
                     Click="Button_Suicide_Click"
                     Content="玩家自杀" />
+                <Button
+                    x:Name="Button_ToWaypoint_Super"
+                    Click="Button_ToWaypoint_Super_Click"
+                    Content="传送到导航点(精准传送)" />
+                <TextBlock Style="{StaticResource TextBlockStyle_Hint}" Width="127"><Run Text="精准传送传送时不能移动，否则可能会出现传送到错误位置"/></TextBlock>
             </WrapPanel>
             <TextBlock Style="{StaticResource TextBlockStyle_Hint}">
                 提示：带 ★ 的功能代表会进入线程循环修改，这样切换战局也不会失效，其余功能仅在点击时修改内存
