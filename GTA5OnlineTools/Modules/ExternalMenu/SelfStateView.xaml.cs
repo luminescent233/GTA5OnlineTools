@@ -426,4 +426,12 @@ public partial class SelfStateView : UserControl
         Player.NoCollision(Toggle_NoCollision);
         MenuSetting.Player.NoCollision = Toggle_NoCollision;
     }
+
+    private void Button_ToWaypoint_Super_Click(object sender, RoutedEventArgs e)
+    {
+        AudioUtil.PlayClickSound();
+
+        //Teleport.ToWaypoint();
+        Teleport.ToWaypoint_Super();
+    }
 }
